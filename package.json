@@ -1,0 +1,37 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "backend nodejs KhoaHoc",
+  "main": "sever.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/sever.js"
+  },
+  "keywords": [
+    "fullstack"
+  ],
+  "author": "Hai Anh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "moment": "^2.29.4",
+    "mssql": "^9.1.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
+    "sweetalert2": "^11.6.13",
+    "tedious": "^16.1.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "nodemon": "^3.0.1",
+    "sequelize-cli": "^6.2.0"
+  }
+}
