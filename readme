@@ -5,3 +5,4 @@ npm install --save-dev @babel/core@7.12.10 @babel/preset-env@7.12.10
 npm install --save-dev sequelize-cli@6.2.0
 npm install --save mysql2@2.2.5
 npm install --save sequelize@6.6.2
+hello may fen
