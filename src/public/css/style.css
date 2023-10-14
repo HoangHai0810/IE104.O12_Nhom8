@@ -57,6 +57,7 @@ label {
 h1, h2, h3, h4, h5, h6{
     color: #262626;
 }
+
 .input-group input, .input-group select, .input-group .dropdown-menu, .input-group .popover {
 	font-size: 13px;
 }
@@ -93,7 +94,6 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .header-main .container {
-    width: 1230px;
     max-width: 100%;
     margin-right: auto;
     margin-left: auto;
@@ -116,15 +116,9 @@ header li{
 }
 
 .dropdown.myaccount{
-    position: absolute;
     display: block;
-    padding: 0px;
+    padding: 5px;
     width: auto;
-    margin-top: 10px;
-    margin-left: 22px;
-    margin-right: 22px;
-    right: 25px;
-    top: 7px;
 }
 
 .dropdown.myaccount:hover ul{
@@ -163,7 +157,6 @@ header li{
     color: #888888;
 }
 
-
 .header-logo{
     text-align: center;
     display: inline-block;
@@ -178,18 +171,12 @@ header li{
     z-index: 99;
     font-size: 20px;
     padding: 0px;
-    margin-top: 39px;
-    margin-right: 11px;
 }
 
 #cart .dropdown-toggle {
-    padding: 10px;
     border: none;
-    position: absolute;
 	background:none;
     cursor: pointer;
-    top: 22px;
-    right: 85px;
 }
 
 #cart:hover button.btn.btn-inverse.btn-block.btn-lg.dropdown-toggle {
@@ -203,8 +190,8 @@ header li{
 
 span#cart-total {
     position: absolute;
-    top: 15px;
-    right: -5px;
+    top: 23px;
+    right: 27px;
 }
 
 .header-main {
@@ -256,8 +243,7 @@ header{
 #search {
     float: right;
     width: auto;
-    padding: 0px;
-    margin-top: 42px;
+    padding: 5px;
 }
 #search .search_toggle{
     display: none;
@@ -346,7 +332,6 @@ header .dropdown.myaccount > a{
     cursor: pointer;
     height: 25px;
     width: 25px;
-    padding: 0;
     transition: none;
     background: url(../image/capricathemes/nav-icon.png) no-repeat scroll center -150px transparent;
 }
@@ -371,7 +356,13 @@ header .dropdown.myaccount a:hover .fa,header .dropdown.myaccount a:focus .fa{
     border-bottom: 0;
 }
 .header-container .row{ 
-    margin: 0px; 
+    margin: 0px;
+    display: flex;
+    height: 100%;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #cart {
@@ -379,16 +370,6 @@ header .dropdown.myaccount a:hover .fa,header .dropdown.myaccount a:focus .fa{
 }
 .header-cart #cart:hover {
     background-position: 0px -188px;
-}
-#cart .cart_heading {
-    text-decoration: none;
-    padding: 0;
-    color: #000000;
-    display: block;
-    text-align: left;
-    height: 25px;
-    width: 25px;
-    background: url(../image/capricathemes/nav-icon.png) no-repeat scroll center -238px transparent;
 }
 #cart:hover .cart_heading{color: #888888; background-position: center -284px;}
 #cart:hover .cart_heading:before {
@@ -410,19 +391,7 @@ header .dropdown.myaccount a:hover .fa,header .dropdown.myaccount a:focus .fa{
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%;
-}
-#cart > .btn .fa{
-    display:none
-}
-#cart-quantity {
-    display: none;
-}
-
-header #cart li a, header #cart li {
-    color:#262626; 
-    font-size: 14px;
-    font-weight: 400;
-}
+}   
 #cart.open > .btn {
 	box-shadow: none;
 	-webkit-box-shadow: none;
@@ -499,27 +468,6 @@ header #cart li a, header #cart li {
         box-shadow: 0 4px 16px rgba(0,0,0,.15);
 		border: none;
     }
-	.header-container.fixed #search{ 
-        margin-top: -57px;
-        margin-right: 7px;
-    }
-	.header-container.fixed  .dropdown.myaccount,
-	.header-container.fixed .header-cart{
-		    margin-top: 25px;
-	}
-	.header-container.fixed #search .search_toggle{
-		top: 51px;
-	}
-	.header-container.fixed .dropdown.myaccount .myaccount-menu{
-		top: 7px;
-        right: 2px;
-	}
-	.header-container.fixed  #cart .dropdown-menu{
-	  	top: 52px;
-	}
-	.header-container.fixed .main-menu ul li ul .list-unstyled a {
-		padding: 3px 0;
-	}
 	.header-container.fixed .main-menu > ul > .dropdown ul > li > a {
 		padding-top: 0;
 		padding-bottom: 10px;
@@ -639,12 +587,13 @@ header #cart li a, header #cart li {
     z-index: 5;	
 } 
 nav.nav-container {
-    width: 100%;
+    width: 55%;
     height: 90px;
 }
 
 .dropdown-menu.megamenu.column1 {
     width: 150px;
+
 }
 
 nav.nav-container .responsive-menu .main-navigation {
@@ -663,7 +612,7 @@ ul.nav.navbar-nav li{
 
 .dropdown-menu.megamenu {
     width: 300px;
-    height: 120px;
+    height: 170px;
 }
 
 .dropdown-menu .list-unstyled.childs_2 li, 
@@ -818,16 +767,12 @@ ul.nav.navbar-nav li{
 #menu ul.nav li .megamenu ul.list-unstyled li .dropdown-menu {
     border: medium none;
     margin: 0;
-    padding: 5px 0;
     position: relative;
 	box-shadow: none;
     -webkit-box-shadow: none;
 }
 #menu ul li.dropdown.more_menu .dropdown-menu{ left:auto; right:0;}
 
-#menu ul li .megamenu.column1, #menu ul li.hiden_menu .dropdown-menu{
-    padding: 10px 20px;
-}
 .hiden_menu .dropdown-menu{min-width:215px;}
 #menu ul li .megamenu.column1 ul.list-unstyled {
     padding: 0;
@@ -941,3 +886,5 @@ ul.nav.navbar-nav li{
 i {
     font-size: 22px;
 }
+
+
