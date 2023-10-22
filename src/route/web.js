@@ -5,6 +5,7 @@ let router = express.Router();
 
 let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
+    router.get('/register', homeController.getLoginSignUp);
     return app.use("/", router);
 }
 
