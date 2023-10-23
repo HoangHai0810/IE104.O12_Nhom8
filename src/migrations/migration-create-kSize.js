@@ -5,7 +5,7 @@ module.exports = {
       sizeID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(5)
       },
       size: {
         type: Sequelize.TEXT,

@@ -5,15 +5,10 @@ module.exports = {
       categoryProductID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
       gender: {
         type: Sequelize.TEXT,
-        // references: {
-        //   model: 'loaiChungChis',
-        //   key: 'maLoaiChungChi'
-        // }
-        
       },
       material: {
         type: Sequelize.TEXT

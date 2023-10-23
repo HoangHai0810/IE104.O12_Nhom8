@@ -1,14 +1,37 @@
 'use strict';
+
+const sequelize = require("sequelize");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('chucVus', {
-      maChucVu: {
+    await queryInterface.createTable('Products', {
+      productID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
-      tenChucVu: {
+      name: {
+        allowNull: false,
         type: Sequelize.TEXT
+      },
+      description: {
+        type: Sequelize.TEXT
+      },
+      price:{
+        type: Sequelize.BIGINT
+      },
+      rate:{
+        type: Sequelize.FLOAT
+      },
+      discount:{
+        type: Sequelize.TINYINT
+      },
+      categoryProductID:{
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Category_Products',
+          key: 'categoryProductID'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -21,6 +44,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('chucVus');
+    await queryInterface.dropTable('Products');
   }
 };

@@ -5,14 +5,10 @@ module.exports = {
       colorID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
       color: {
         type: Sequelize.TEXT,
-        // references: {
-        //   model: 'doiBongs',
-        //   key: 'tenDoiBong'
-        // }
       },
       createdAt: {
         allowNull: false,

@@ -1,50 +1,22 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('dienBiens', {
-      maDienBien: {
-        allowNull: false,
-        autoIncrement: true,
+    await queryInterface.createTable('Product_Colors', {
+      productID: {
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      tenDoiBong: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(10),
         references: {
-          model: 'doiBongs',
-          key: 'tenDoiBong'
+          model: 'Products',
+          key: 'productID'
         }
       },
-      maCauThu: {
-        type: Sequelize.INTEGER,
+      colorID: {
+        primaryKey: true,
+        type: Sequelize.STRING(10),
         references: {
-          model: 'cauThus',
-          key: 'maCauThu'
+          model: 'Colors',
+          key: 'colorID'
         }
-      },
-      maLich: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'lichThiDaus',
-          key: 'maLich'
-        }
-      },
-      maLoaiBanThang: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'loaiBanThangs',
-          key: 'maLoaiBanThang'
-        }
-      },
-      maLoaiThe: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'loaiThes',
-          key: 'maLoaiThe'
-        }
-      },
-      thoiDiem: {
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -57,6 +29,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('dienBiens');
+    await queryInterface.dropTable('Product_Colors');
   }
 };
