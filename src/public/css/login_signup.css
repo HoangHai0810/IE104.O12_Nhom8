@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#main_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#main_login::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("https://images.pexels.com/photos/33961/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#main_login::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: -1;
+}
+
+#main_login.signup::after {
+    opacity: 1;
+}
+
+#main_login.signup::before {
+    opacity: 0;
+}
+
+.login_container {
+    position: relative;
+    width: 350px;
+    height: 340px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+#main_login.signup .login_container {
+    height:  440px;
+}
+
+.login_container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(from var(--a), #807172 0%, #7e7776 10%, transparent 10%, transparent 80%, #817172 100%);
+    border-radius: 20px;
+    animation: animate 2.5s linear infinite;
+}
+
+@property --a {
+    syntax:  '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes animate {
+    0% {
+        --a : 0deg
+    }
+    100% {
+        --a : 360deg
+    }
+}
+
+.login_container span {
+    position: absolute;
+    inset: 5px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.login_container span::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background-image: url("https://images.pexels.com/photos/33961/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+}
+
+.login_container span::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background-image: url("https://images.pexels.com/photos/33961/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+}
+
+#main_login.signup .login_container span::before,
+#main_login.signup .login_container span::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background-image: url("https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+}
+
+form{
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    transition: 0.5s;
+}
+
+form h2 {
+    position: relative;
+    color: black;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+form .inputBox {
+    position: relative;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+form .inputBox a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.85em;
+}
+form .inputBox a:nth-child(2)
+{
+    text-decoration: underline;
+}
+
+form .inputBox input {
+    width: 100%;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.15);
+    padding: 6px 15px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: white;
+}
+
+form .inputBox input::placeholder {
+    color: white;
+}
+
+form .inputBox input[type='submit'] {
+    background-color: rgb(165, 181, 28);
+    font-weight: 500;
+    cursor: pointer;
+}

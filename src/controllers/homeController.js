@@ -13,6 +13,15 @@ let getHomePage = async (req, res) => {
     }
 }
 
+let getLoginSignUp = async (req, res) => {
+    try {
+        return res.render('login_signup.ejs')
+    } catch(e) {
+        console.log(e);
+    }
+}
+
 module.exports = {
     getHomePage: getHomePage,
+    getLoginSignUp: getLoginSignUp,
 }
