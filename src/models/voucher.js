@@ -2,26 +2,28 @@
 const {
   Model
 } = require('sequelize');
+// const doibong = require('./doibong');
 module.exports = (sequelize, DataTypes) => {
-  class chucVu extends Model {
+  class voucher extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      chucVu.hasMany(models.huanLuyenVien)
+      // define association here
+      voucher.hasMany(models.order);
     }
   };
-  chucVu.init({
-    maChucVu: {
-      type: DataTypes.STRING,
+  voucher.init({
+    voucherID: {
+      type: DataTypes.SRTING(10),
       primaryKey: true,
     },
-    tenChucVu: DataTypes.TEXT,
+    value: DataTypes.FLOAT
   }, {
     sequelize,
-    modelName: 'chucVu',
+    modelName: 'voucher',
   });
-  return chucVu;
+  return voucher;
 };
