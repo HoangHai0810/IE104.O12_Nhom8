@@ -1,23 +1,19 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('chungChis', {
-      soChungChi: {
+    await queryInterface.createTable('Category_Products', {
+      categoryProductID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
-      maLoaiChungChi: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'loaiChungChis',
-          key: 'maLoaiChungChi'
-        }
+      gender: {
+        type: Sequelize.TEXT,
       },
-      ngayCap: {
-        type: Sequelize.DATE
+      material: {
+        type: Sequelize.TEXT
       },
-      noiCap: {
+      type: {
         type: Sequelize.TEXT
       },
       createdAt: {
@@ -31,6 +27,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('chungChis');
+    await queryInterface.dropTable('Category_Products');
   }
 };
