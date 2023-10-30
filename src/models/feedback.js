@@ -3,18 +3,18 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class feedback extends Model {
+  class Feedback extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      feedback.belongsTo(models.product, { foreignKey: 'productID' });
-      feedback.belongsTo(models.user, { foreignKey: 'userID' });
+      Feedback.belongsTo(models.Product, { foreignKey: 'productID' });
+      Feedback.belongsTo(models.Users, { foreignKey: 'userID' });
     }
   };
-  feedback.init({
+  Feedback.init({
     feedbackID: {
       type: DataTypes.STRING(15),
       primaryKey: true,
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     rate: DataTypes.TINYINT
   }, {
     sequelize,
-    modelName: 'feedback',
+    modelName: 'Feedback',
   });
-  return feedback;
+  return Feedback;
 };

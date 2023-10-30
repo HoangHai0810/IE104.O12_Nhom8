@@ -4,7 +4,7 @@ const {
 } = require('sequelize');
 // const doibong = require('./doibong');
 module.exports = (sequelize, DataTypes) => {
-  class voucher extends Model {
+  class Voucher extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,18 +12,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      voucher.hasMany(models.order);
+      Voucher.hasMany(models.Order);
     }
   };
-  voucher.init({
+  Voucher.init({
     voucherID: {
-      type: DataTypes.SRTING(10),
+      type: DataTypes.STRING(10),
       primaryKey: true,
     },
     value: DataTypes.FLOAT
   }, {
     sequelize,
-    modelName: 'voucher',
+    modelName: 'Voucher',
   });
-  return voucher;
+  return Voucher;
 };

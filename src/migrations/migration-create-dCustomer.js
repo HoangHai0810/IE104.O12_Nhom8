@@ -10,6 +10,13 @@ module.exports = {
       name: {
         type: Sequelize.TEXT
       },
+      userID: {
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'user',
+          key: 'userID'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
