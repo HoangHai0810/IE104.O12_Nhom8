@@ -2,8 +2,9 @@
 const {
   Model
 } = require('sequelize');
+// const doibong = require('./doibong');
 module.exports = (sequelize, DataTypes) => {
-  class loaiBanThang extends Model {
+  class Voucher extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,18 +12,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      loaiBanThang.hasMany(models.dienBien)
+      Voucher.hasMany(models.Order);
     }
   };
-  loaiBanThang.init({
-    maLoaiBanThang: {
-      type: DataTypes.STRING,
+  Voucher.init({
+    voucherID: {
+      type: DataTypes.STRING(10),
       primaryKey: true,
     },
-    tenLoaiBanThang: DataTypes.TEXT
+    value: DataTypes.FLOAT
   }, {
     sequelize,
-    modelName: 'loaiBanThang',
+    modelName: 'Voucher',
   });
-  return loaiBanThang;
+  return Voucher;
 };

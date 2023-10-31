@@ -3,25 +3,27 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class loaiThe extends Model {
+  class Feedback extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      loaiThe.hasMany(models.dienBien);
+      Feedback.belongsTo(models.Product, { foreignKey: 'productID' });
+      Feedback.belongsTo(models.Users, { foreignKey: 'userID' });
     }
   };
-  loaiThe.init({
-    maLoaiThe: {
-      type: DataTypes.STRING,
+  Feedback.init({
+    feedbackID: {
+      type: DataTypes.STRING(15),
       primaryKey: true,
     },
-    tenLoaiThe: DataTypes.TEXT,
+    content: DataTypes.TEXT,
+    rate: DataTypes.TINYINT
   }, {
     sequelize,
-    modelName: 'loaiThe',
+    modelName: 'Feedback',
   });
-  return loaiThe;
+  return Feedback;
 };
