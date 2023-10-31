@@ -68,6 +68,13 @@
     animation: animate 2.5s linear infinite;
 }
 
+#main_login.signup .login_container::before
+{
+    filter: hue-rotate(140deg);
+    background: repeating-conic-gradient(from var(--a), #b0cf27 0%, #b2d828 10%, transparent 10%, transparent 80%, #b2d828 100%);
+}
+
+
 @property --a {
     syntax:  '<angle>';
     inherits: false;
@@ -134,6 +141,21 @@ form{
     width: 100%;
     gap: 15px;
     transition: 0.5s;
+}
+form#signupForm
+{
+    left: 100%;
+    opacity: 0;
+}
+#main_login.signup form#signinForm
+{
+    left: -100%;
+    opacity: 0;
+}
+#main_login.signup form#signupForm
+{
+    left: 0;
+    opacity: 1;
 }
 
 form h2 {
