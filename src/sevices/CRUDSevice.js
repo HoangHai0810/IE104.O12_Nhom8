@@ -1,4 +1,3 @@
-import doibong from '../models/doibong';
 import  db, { sequelize } from '../models/index'
 import bcrypt from 'bcryptjs';
 const { QueryTypes } = require('sequelize');

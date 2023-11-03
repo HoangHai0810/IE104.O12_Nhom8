@@ -116,15 +116,19 @@ header li{
 	list-style: none;
 }
 
+
 .dropdown.myaccount{
     display: block;
     padding: 5px;
     width: auto;
+    cursor: pointer;
 }
 
 .dropdown.myaccount:hover ul{
     display: inline;
     scale: 1; 
+    top: 920%;
+    left: 0;
 }
 .dropdown.myaccount:hover  a{
     color: #888888; 
@@ -612,8 +616,8 @@ ul.nav.navbar-nav li{
 }
 
 .dropdown-menu.megamenu {
-    width: 300px;
-    height: 170px;
+    width: 350px;
+    height: 180px;
 }
 
 .dropdown-menu .list-unstyled.childs_2 li, 
@@ -769,6 +773,7 @@ ul.nav.navbar-nav li{
     border: medium none;
     margin: 0;
     position: relative;
+    padding: inherit;
 	box-shadow: none;
     -webkit-box-shadow: none;
 }

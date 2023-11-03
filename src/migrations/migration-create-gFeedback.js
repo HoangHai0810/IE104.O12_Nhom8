@@ -1,21 +1,31 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('customer', {
-      customerID: {
+    await queryInterface.createTable('feedback', {
+      feedbackID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(10)
+        type: Sequelize.STRING(15)
       },
-      name: {
-        type: Sequelize.TEXT
+      productID: {
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Product',
+          key: 'productID'
+        }
       },
       userID: {
         type: Sequelize.STRING(10),
         references: {
-          model: 'user',
+          model: 'Users',
           key: 'userID'
         }
+      },
+      content: {
+        type: Sequelize.TEXT
+      },
+      rate: {
+        type: Sequelize.TINYINT
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +38,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('customer');
+    await queryInterface.dropTable('feedback');
   }
 };

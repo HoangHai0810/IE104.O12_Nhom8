@@ -10,7 +10,7 @@ module.exports = {
       customerID: {
         type: Sequelize.STRING(10),
         references: {
-          model: 'customer',
+          model: 'Customer',
           key: 'customerID'
         }
       },
@@ -31,10 +31,14 @@ module.exports = {
         type: Sequelize.TEXT
       },
       totalCost: {
-        type: Sequelize.INT
+        type: Sequelize.INTEGER
       },
       voucherID: {
-        type: Sequelize.STRING(10)
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Voucher',
+          key: 'voucherID'
+        }
       },
       createdAt: {
         allowNull: false,

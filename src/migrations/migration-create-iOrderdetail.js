@@ -15,14 +15,14 @@ module.exports = {
       orderID: {
         type: Sequelize.STRING(10),
         references: {
-          model: 'order',
+          model: 'Order',
           key: 'orderID'
         }
       },
       productID: {
         type: Sequelize.STRING(10),
         references: {
-          model: 'product',
+          model: 'Product',
           key: 'productID'
         }
       },
