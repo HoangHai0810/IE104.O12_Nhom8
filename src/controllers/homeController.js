@@ -21,6 +21,7 @@ let getLoginSignUp = async (req, res) => {
     }
 }
 
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
