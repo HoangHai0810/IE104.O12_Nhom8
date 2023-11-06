@@ -7,6 +7,8 @@ let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/register', homeController.getLoginSignUp);
     router.get('/menshirts', homeController.getListProduct);
+    router.get('/women', homeController.getListProductWomen);
+    router.get('/hotitem', homeController.getListProductHotItem);
     return app.use("/", router);
 }
 
