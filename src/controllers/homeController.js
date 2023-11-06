@@ -21,8 +21,16 @@ let getLoginSignUp = async (req, res) => {
     }
 }
 
+let getListProduct = async (req, res) => {
+    try {
+        return res.render('list_product.ejs')
+    } catch(e) {
+        console.log(e);
+    }
+}
 
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
+    getListProduct: getListProduct,
 }
