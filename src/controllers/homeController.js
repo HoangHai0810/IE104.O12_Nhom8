@@ -23,23 +23,23 @@ let getLoginSignUp = async (req, res) => {
 
 let getListProduct = async (req, res) => {
     try {
-        return res.render('list_product.ejs')
+        return res.render('list_product_men.ejs')
     } catch(e) {
         console.log(e);
     }
 }
 
-let getListProductWomen = async (req, res) => {
+let getInfoUser = async (req, res) => {
     try {
-        return res.render('list_product_women.ejs')
+        return res.render('info_user.ejs')
     } catch(e) {
         console.log(e);
     }
 }
 
-let getListProductHotItem = async (req, res) => {
+let getCart = async (req, res) => {
     try {
-        return res.render('list_product_hotitem.ejs')
+        return res.render('cart.ejs')
     } catch(e) {
         console.log(e);
     }
@@ -49,6 +49,6 @@ module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
     getListProduct: getListProduct,
-    getListProductWomen: getListProductWomen,
-    getListProductHotItem: getListProductHotItem
+    getInfoUser: getInfoUser,
+    getCart: getCart
 }
