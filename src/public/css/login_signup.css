@@ -52,6 +52,7 @@
     justify-content: center;
     align-items: center;
     transition: 0.5s;
+    overflow: hidden;
 }
 
 #main_login.signup .login_container {
