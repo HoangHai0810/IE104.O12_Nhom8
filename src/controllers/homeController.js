@@ -23,7 +23,15 @@ let getLoginSignUp = async (req, res) => {
 
 let getListProduct = async (req, res) => {
     try {
-        return res.render('list_product_men.ejs')
+        return res.render('list_product.ejs')
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+let getInfoProduct = async (req, res) => {
+    try {
+        return res.render('info_product.ejs')
     } catch(e) {
         console.log(e);
     }
@@ -50,5 +58,6 @@ module.exports = {
     getLoginSignUp: getLoginSignUp,
     getListProduct: getListProduct,
     getInfoUser: getInfoUser,
-    getCart: getCart
+    getCart: getCart,
+    getInfoProduct: getInfoProduct
 }

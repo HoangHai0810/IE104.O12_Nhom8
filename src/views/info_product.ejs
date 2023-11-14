@@ -12,11 +12,18 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link href="./style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./login_signup.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/login_signup.css">
+    <link rel="stylesheet" type="text/css" href="./css/info_product.css">
     <script src="./js/homepage.js"></script>
 </head>
 
@@ -32,7 +39,7 @@
                         <div class="header-logo">
                             <div id="logo">
                                 <a href="#">
-                                    <img src="logo.png" title="DLATT Fashion" class="img-product"
+                                    <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
                                         style="width: 200px;">
                                 </a>
                             </div>
@@ -231,161 +238,203 @@
         </div>
     </header>
     <!--Content cua website:-->
-    <div class="container">
-        <div class="p-header">Thong tin san pham</div>
-        <div class="row wraper">
-            <div class="col-5 thumnails">
-                <div class="row">
-                    <img class="product_img" src="https://cdn2.yame.vn/pimg/so-mi-co-danton-on-gian-y-nguyen-ban-ver11-0020737/429cf36f-fd34-a600-36ce-00191515f621.jpg?w=540&h=756"
-                    height="600px" width="600px">
-                </div>
-                <div class="row">
-                    <div class="col-3">
-                        <img class="thumnails_img" src="https://cdn2.yame.vn/pimg/so-mi-co-danton-on-gian-y-nguyen-ban-ver11-0020737/429cf36f-fd34-a600-36ce-00191515f621.jpg?w=540&h=756">
-                    </div>
-                    <div class="col-3">
-                        <img class="thumnails_img" src="https://cdn2.yame.vn/pimg/so-mi-co-danton-on-gian-y-nguyen-ban-ver11-0020737/429cf36f-fd34-a600-36ce-00191515f621.jpg?w=540&h=756">
-                    </div>
-                    <div class="col-3">
-                        <img class="thumnails_img" src="https://cdn2.yame.vn/pimg/so-mi-co-danton-on-gian-y-nguyen-ban-ver11-0020737/429cf36f-fd34-a600-36ce-00191515f621.jpg?w=540&h=756">
-                    </div>
-                    <div class="col-3">
-                        <img class="thumnails_img" src="https://cdn2.yame.vn/pimg/so-mi-co-danton-on-gian-y-nguyen-ban-ver11-0020737/429cf36f-fd34-a600-36ce-00191515f621.jpg?w=540&h=756">
-                    </div>
-                </div>
+    <div class="container" style="margin-top: 100px;">
+        <div class="block">
+            <div class="block-title" style="padding: 30px;">
+                <strong>THÔNG TIN SẢN PHẨM</strong>
             </div>
-            <div class="col-7 details">
-                <div class="rows">
-                    <p>Tên sản phẩm</p>
+            <div class="row wraper">
+                <div class="col-5 thumnails">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="product_img"
+                            src="https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/a/o/ao-polo-nam-1010-10s23pol037_rain_forest_1__2_jpg.webp">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="thumnails_img"
+                                src="https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/a/o/ao-polo-nam-1010-10s23pol037_rain_forest_3__1_jpg.webp">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="thumnails_img"
+                                src="https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23pol037_rain_forest-ao-polo-nam_17_1__2_1_jpg.webp">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="thumnails_img"
+                                src="https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23pol037_rain_forest-ao-polo-nam_17_3__1_1_jpg.webp">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="rows">
-                    <p>Mã số sản phẩm: #xxxx</p>
-                </div>
-                <div class="rows">
-                    <p>Giá gốc: <span style="text-decoration: line-through; display: inline;">xxx.000đ</span></p>
-                </div>
-                <div class="rows"> 
-                    <p class="sale_price">Giá Sale: <span style="color: red">xxx.000đ</span></p>
-                </div>
-                <div class="rows">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Size: Đen, S</td>
-                                <td><a>SL còn:</a> </td>
-                                <td><a href="https://uit.edu.vn"><span style="text-align: left;">Chọn mua:</span></a></td>
-                            </tr>
-                            <tr>
-                                <td>Size: Đen, M</td>
-                                <td><a>SL còn:</a> </td>
-                                <td><a href="https://student.uit.edu.vn"><span style="text-align: left;">Chọn mua:</span></a></td>
-                            </tr>
-                            <tr>
-                                <td>Size: Đen, L</td>
-                                <td><a>SL còn:</a> </td>
-                                <td><a href="https://student.uit.edu.vn"><span style="text-align: left;">Chọn mua:</span></a></td>
-                            </tr>
-                            <tr>
-                                <td>Size: Đen, XL</td>
-                                <td><a>SL còn:</a> </td>
-                                <td><a href="https://student.uit.edu.vn"><span style="text-align: left;">Chọn mua:</span></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <script>
+                    $(document).ready(function(){
+                        $('#myCarousel').carousel({
+                            interval: 3000,
+                            pause: 'hover',
+                            infinity: true,
+                        });
+                    });
+                </script>
+                <div class="col-7 details">
                     <div class="rows">
-                        <button class="btn-outline-dark btn-sm" onclick="showMessage()" data-toggle="collapse" href="#moTaSanPham"
-                              role="button" aria-expanded="false" aria-controls="moTaSanPham">Xem mô tả sản phẩm</button> 
-                  
-                              <p id="message">Day la thong tin san pham <br> 333 
-                              </p>
-                          
-                              <script>
-                                // JavaScript to toggle the display of the message when the button is clicked
+                        <p>Tên sản phẩm</p>
+                    </div>
+                    <div class="rows">
+                        <p>Giá gốc: <span style="text-decoration: line-through; display: inline;">xxx.000đ</span></p>
+                    </div>
+                    <div class="rows">
+                        <p class="sale_price">Giá Sale: <span style="color: red">xxx.000đ</span></p>
+                    </div>
+                    <div class="rows">
+                        <p class="color">Màu sắc:</p>
+                        <button class="color_btn" style="--color: #fff;" onclick="toggleActive(this)"></button>
+                        <button class="color_btn" style="--color: #aa2929;" onclick="toggleActive(this)"></button>
+                        <button class="color_btn" style="--color: rgb(34, 93, 175);"
+                            onclick="toggleActive(this)"></button>
+                        <button class="color_btn" style="--color: rgb(6, 111, 71);"
+                            onclick="toggleActive(this)"></button>
+                        <script>
+                            function toggleActive(button) {
+                                var buttons = document.querySelectorAll('.color_btn');
+                                buttons.forEach(function (btn) {
+                                    btn.classList.remove('active');
+                                });
+
+                                button.classList.add('active');
+                            }
+                        </script>
+                        <div class="rows">
+                            <button class="btn-outline-dark btn-sm" onclick="showMessage()" data-toggle="collapse"
+                                href="#moTaSanPham" role="button" aria-expanded="false" aria-controls="moTaSanPham">Xem
+                                mô tả sản phẩm</button>
+
+                            <p id="message" style="display: none;">Day la thong tin san pham <br> 333
+                            </p>
+
+                            <script>
                                 function showMessage() {
-                                  var message = document.getElementById("message");
-                              
-                                  // Check the current display style of the message
-                                  if (message.style.display === "none" || message.style.display === "") {
-                                    // If it's hidden, show it
-                                    message.style.display = "block";
-                                  } else {
-                                    // If it's visible, hide it
-                                    message.style.display = "none";
-                                  }
+                                    var message = document.getElementById("message");
+
+                                    if (message.style.display === "none" || message.style.display === "") {
+                                        message.style.display = "block";
+                                    } else {
+                                        message.style.display = "none";
+                                    }
                                 }
-                              </script>
-                      </div>
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row buy">
+                        <label for="quantity">Số lượng:</label>
+                        <div class="product-quantity">
+                            <button type="button" class="btn-minus">-</button>
+                            <input type="text" id="quantity" value="1" min="1" max="10">
+                            <button type="button" class="btn-plus">+</button>
+                        </div>
+                        <button type="submit" class="btn_buy">MUA NGAY</button>
+                    </div>
+                    <script>
+                        function increaseQuantity() {
+                            var quantity = document.querySelector("#quantity").value;
+                            quantity++;
+                            document.querySelector("#quantity").value = quantity;
+                          }
+                          
+                          // Hàm để giảm số lượng sản phẩm
+                          function decreaseQuantity() {
+                            var quantity = document.querySelector("#quantity").value;
+                            quantity--;
+                            if (quantity < 1) {
+                              quantity = 1;
+                            }
+                            document.querySelector("#quantity").value = quantity;
+                          }
+                          
+                          // Thêm sự kiện click cho nút tăng số lượng
+                          document.querySelector(".btn-plus").addEventListener("click", increaseQuantity);
+                          
+                          // Thêm sự kiện click cho nút giảm số lượng
+                          document.querySelector(".btn-minus").addEventListener("click", decreaseQuantity);
+                    </script>
                 </div>
             </div>
         </div>
     </div>
- <!--Footer-->
- <footer class="footer">
-    <div class="footer_row">
-        <div class="footer_infomation">
-            <div class="logo">
-                <a href="#">
-                    <img src="logo.png" alt="DLATT">
-                </a>
+    <!--Footer-->
+    <footer class="footer">
+        <div class="footer_row">
+            <div class="footer_infomation">
+                <div class="logo">
+                    <a href="#">
+                        <img src="./img/logo.png" alt="DLATT">
+                    </a>
+                </div>
+                <h3>CÔNG TY TNHH DLATT VIETNAM</h3>
             </div>
-            <h3>CÔNG TY TNHH DLATT VIETNAM</h3>
-        </div>
-        <div class="group">
-            <h3>IE104.012 - Nhóm 8</h3>
-            <div class="members">
-                <div class="card">
-                    <div class="img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
-                            alt="">
+            <div class="group">
+                <h3>IE104.012 - Nhóm 8</h3>
+                <div class="members">
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Hoàng Hải Anh</span>
+                        </div>
                     </div>
-                    <div class="glass">
-                        <span>Hoàng Hải Anh</span>
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Nguyễn Chí Thi</span>
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
-                            alt="">
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Trương Khánh Long</span>
+                        </div>
                     </div>
-                    <div class="glass">
-                        <span>Nguyễn Chí Thi</span>
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Bùi Lê Trọng Đức</span>
+
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
-                            alt="">
-                    </div>
-                    <div class="glass">
-                        <span>Trương Khánh Long</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
-                            alt="">
-                    </div>
-                    <div class="glass">
-                        <span>Bùi Lê Trọng Đức</span>
-    
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
-                            alt="">
-                    </div>
-                    <div class="glass">
-                        <span>Nguyễn Tiến Thịnh</span>
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Nguyễn Tiến Thịnh</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
