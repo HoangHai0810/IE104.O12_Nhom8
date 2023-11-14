@@ -12,7 +12,7 @@ module.exports = {
       },
       colorID: {
         primaryKey: true,
-        type: Sequelize.STRING(10),
+        type: Sequelize.STRING(20),
         references: {
           model: 'Colors',
           key: 'colorID'
