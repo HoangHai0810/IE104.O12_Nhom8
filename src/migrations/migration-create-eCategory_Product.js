@@ -5,15 +5,12 @@ module.exports = {
       categoryProductID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(10)
+        type: Sequelize.STRING(20)
       },
       gender: {
         type: Sequelize.TEXT,
       },
-      material: {
-        type: Sequelize.TEXT
-      },
-      type: {
+      categoryProductName:{
         type: Sequelize.TEXT
       },
       createdAt: {

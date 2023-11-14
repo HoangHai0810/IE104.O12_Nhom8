@@ -13,19 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   thamSo.init({
-    tuoiCauThuToiThieu: DataTypes.INTEGER,
-    tuoiCauThuToiDa: DataTypes.INTEGER,
-    soCauThuToiThieu: DataTypes.INTEGER,
-    soCauThuToiDa: DataTypes.INTEGER,
-    soCauThuNuocNgoaiToiDa: DataTypes.INTEGER,
-    chungChiHLVToiThieu: DataTypes.TEXT,
-    chungChiTroLyHLVToiThieu: DataTypes.TEXT,
-    thoiDiemGhiBanToiThieu: DataTypes.INTEGER,
-    thoiDiemGhiBanToiDa: DataTypes.INTEGER,
-    diemThang: DataTypes.INTEGER,
-    diemHoa: DataTypes.INTEGER,
-    diemThua: DataTypes.INTEGER,
-    uuTienXepHang: DataTypes.STRING
+    tenThamSo: DataTypes.STRING,
+    giaTri: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'thamSo',

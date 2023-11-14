@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             // Product.hasMany(models.Order_Detail);
             // Product.hasMany(models.Product_Color);
             // Product.hasMany(models.Product_Size);
-            Product.belongsToMany(models.Order, {through: 'Orderdetail', foreignKey: 'oderID'});
+            Product.belongsToMany(models.Order, {through: 'Orderdetail', foreignKey: 'orderID'});
             Product.belongsToMany(models.Color, {through: 'Product_Color', foreignKey: 'colorID'});
             Product.belongsToMany(models.Size, {through: 'Product_Size', foreignKey: 'sizeID'});
             Product.hasMany(models.Feedback);
@@ -27,11 +27,13 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             allowNull: false,
         },
-        name: {
+        productName: {
             type: DataTypes.TEXT,
             allowNull: false,
         } ,
         description: DataTypes.TEXT,
+        material: DataTypes.TEXT,
+        type: DataTypes.TEXT,
         price: DataTypes.BIGINT,
         rate: DataTypes.FLOAT,
         discount: DataTypes.TINYINT,

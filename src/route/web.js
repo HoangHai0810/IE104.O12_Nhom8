@@ -10,7 +10,7 @@ let initWebRoutes = (app) => {
     router.get('/women', homeController.getListProduct);
     router.get('/hotitem', homeController.getListProduct);
     router.get('/sale', homeController.getListProduct);
-    router.get('/more', homeController.getProduct);
+    router.get('/more', homeController.getListProduct);
     router.get('/user', homeController.getInfoUser);
     router.get('/cart', homeController.getCart);
     return app.use("/", router);

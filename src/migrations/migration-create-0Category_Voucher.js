@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Colors', {
-      colorID: {
+    await queryInterface.createTable('Category_Vouchers', {
+      categoryVoucherID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(10)
       },
-      colorName: {
-        type: Sequelize.TEXT,
+      categoryVoucherName:{
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -21,6 +21,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Colors');
+    await queryInterface.dropTable('Category_Vouchers');
   }
 };
