@@ -1,14 +1,23 @@
 'use strict';
+
+const sequelize = require("sequelize");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Voucher', {
+    await queryInterface.createTable('Vouchers', {
       voucherID: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING(10)
       },
-      value: {
-        type: Sequelize.FLOAT,
+      describe: Sequelize.TEXT,
+      expirationDate: Sequelize.INTEGER,
+      categoryVoucherID:{
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Category_Vouchers',
+          key: 'categoryVoucherID'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -21,6 +30,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Voucher');
+    await queryInterface.dropTable('Vouchers');
   }
 };

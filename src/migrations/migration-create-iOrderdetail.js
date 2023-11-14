@@ -1,21 +1,11 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Orderdetail', {
-      // orderID: {
-      //   allowNull: false,
-      //   primaryKey: true,
-      //   type: Sequelize.STRING(10)
-      // },
-      // productID: {
-      //   allowNull: false,
-      //   primaryKey: true,
-      //   type: Sequelize.STRING(10)
-      // },
+    await queryInterface.createTable('Orderdetails', {
       orderID: {
         type: Sequelize.STRING(10),
         references: {
-          model: 'Order',
+          model: 'Orders',
           key: 'orderID'
         }
       },
@@ -37,6 +27,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Orderdetail');
+    await queryInterface.dropTable('Orderdetails');
   }
 };

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Order', {
+    await queryInterface.createTable('Orders', {
       orderID: {
         allowNull: false,
         primaryKey: true,
@@ -10,17 +10,10 @@ module.exports = {
       customerID: {
         type: Sequelize.STRING(10),
         references: {
-          model: 'Customer',
+          model: 'Customers',
           key: 'customerID'
         }
       },
-      // customerID: {
-      //   type: Sequelize.STRING(10),
-      //   references: {
-      //     model: 'user',
-      //     key: 'userID'
-      //   }
-      // },
       status: {
         type: Sequelize.TEXT
       },
@@ -36,7 +29,7 @@ module.exports = {
       voucherID: {
         type: Sequelize.STRING(10),
         references: {
-          model: 'Voucher',
+          model: 'Vouchers',
           key: 'voucherID'
         }
       },
@@ -51,6 +44,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Order');
+    await queryInterface.dropTable('Orders');
   }
 };

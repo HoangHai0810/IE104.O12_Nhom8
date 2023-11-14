@@ -10,11 +10,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING(10)
       },
-      name: {
+      productName: {
         allowNull: false,
         type: Sequelize.TEXT
       },
       description: {
+        type: Sequelize.TEXT
+      },
+      material: {
+        type: Sequelize.TEXT
+      },
+      type: {
         type: Sequelize.TEXT
       },
       price:{
@@ -27,7 +33,7 @@ module.exports = {
         type: Sequelize.TINYINT
       },
       categoryProductID:{
-        type: Sequelize.STRING(10),
+        type: Sequelize.STRING(20),
         references: {
           model: 'Category_Products',
           key: 'categoryProductID'
