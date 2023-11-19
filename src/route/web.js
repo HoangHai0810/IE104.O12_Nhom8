@@ -7,6 +7,7 @@ let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/register', homeController.getLoginSignUp);
     router.get('/login', homeController.getLoginSignUp);
+    router.get('/product', homeController.getInfoProduct);
     router.get('/men', homeController.getListProduct);
     router.get('/menshirts', homeController.getListProduct);
     router.get('/menAoThun', homeController.getListProduct);
@@ -32,13 +33,16 @@ let initWebRoutes = (app) => {
     router.get('/hotitem', homeController.getListProduct);
     router.get('/sale', homeController.getListProduct);
     router.get('/more', homeController.getListProduct);
-    router.get('/giay', homeController.getListProduct);
-    router.get('/tat', homeController.getListProduct);
-    router.get('/non', homeController.getListProduct);
+    router.get('/shoes', homeController.getListProduct);
+    router.get('/jackets', homeController.getListProduct);
+    router.get('/glasses', homeController.getListProduct);
+    router.get('/Socks', homeController.getListProduct);
+    router.get('/hats', homeController.getListProduct);
     router.get('/user', homeController.getInfoUser);
     router.get('/product', homeController.getInfoProduct);
     router.get('/cart', homeController.getCart);
     router.post('/upavatar', homeController.uploadAvatar);
+    router.post('/signup', homeController.postSignUp)
     return app.use("/", router);
 }
 
