@@ -163,7 +163,18 @@ let getInfoProduct = async (req, res) => {
 
 let getInfoUser = async (req, res) => {
     try {
-        return res.render('info_user.ejs')
+        let login = await CRUDSevice.getLogin({ raw: true});
+        if (login.length > 0)
+        {
+            let data = await CRUDSevice.getUser(login[0].userId, {
+                raw :   true,
+            });
+            return res.render('info_user.ejs', {
+                login: login,
+                data: data
+            })
+        }
+        res.redirect('/');
     } catch(e) {
         console.log(e);
     }
@@ -177,6 +188,32 @@ let getCart = async (req, res) => {
     }
 }
 
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, '../public/img'),
+  filename: function (req, file, cb) {
+    const userId = req.user.id;
+    const filename = `${userId}`;
+
+    cb(null, filename);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+const uploadAvatar = (req, res) => {
+  upload.single('file')(req, res, (err) => {
+    if (err) {
+      console.error('Lỗi khi tải lên ảnh:', err);
+      return res.status(500).send('Internal Server Error');
+    }
+    else {
+        console.error('Lưu trữ ảnh thành công');
+    }
+  });
+};
 let postSignUp = async(req,res) => {
     let message = await CRUDSevice.createNewUser(req.body);
     console.log(message);
@@ -190,5 +227,6 @@ module.exports = {
     getInfoUser: getInfoUser,
     getCart: getCart,
     getInfoProduct: getInfoProduct,
+    uploadAvatar: uploadAvatar,
     postSignUp: postSignUp,
 }

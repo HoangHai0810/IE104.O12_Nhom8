@@ -15,6 +15,13 @@ module.exports = {
           key: 'userID'
         }
       },
+      role: {
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Users',
+          key: 'role'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

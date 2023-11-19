@@ -39,7 +39,9 @@ let initWebRoutes = (app) => {
     router.get('/Socks', homeController.getListProduct);
     router.get('/hats', homeController.getListProduct);
     router.get('/user', homeController.getInfoUser);
+    router.get('/product', homeController.getInfoProduct);
     router.get('/cart', homeController.getCart);
+    router.post('/upavatar', homeController.uploadAvatar);
     router.post('/signup', homeController.postSignUp)
     return app.use("/", router);
 }
