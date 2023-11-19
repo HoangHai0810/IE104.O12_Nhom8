@@ -15,7 +15,16 @@ let getHomePage = async (req, res) => {
 
 let getLoginSignUp = async (req, res) => {
     try {
-        return res.render('login_signup.ejs')
+        let dataUser = await CRUDSevice.getAllUser({
+            raw: true,
+        })
+        return res.render(
+            'login_signup.ejs',
+            {
+                dataUserF: dataUser,
+                dataUser: JSON.stringify(dataUser),
+            }
+        )
     } catch(e) {
         console.log(e);
     }
@@ -168,11 +177,18 @@ let getCart = async (req, res) => {
     }
 }
 
+let postSignUp = async(req,res) => {
+    let message = await CRUDSevice.createNewUser(req.body);
+    console.log(message);
+    res.redirect('/')
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
     getListProduct: getListProduct,
     getInfoUser: getInfoUser,
     getCart: getCart,
-    getInfoProduct: getInfoProduct
+    getInfoProduct: getInfoProduct,
+    postSignUp: postSignUp,
 }

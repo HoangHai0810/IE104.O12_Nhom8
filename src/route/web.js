@@ -40,6 +40,7 @@ let initWebRoutes = (app) => {
     router.get('/hats', homeController.getListProduct);
     router.get('/user', homeController.getInfoUser);
     router.get('/cart', homeController.getCart);
+    router.post('/signup', homeController.postSignUp)
     return app.use("/", router);
 }
 

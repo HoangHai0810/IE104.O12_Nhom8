@@ -9,14 +9,11 @@ const salt = bcrypt.genSaltSync(10);
 let createNewUser = async(data) => {
     return new Promise(async (reslove,reject) => {
         try{
-            await db.User.create({
-                firstName: data.firstName,
-                lastName: data.lastName,
+            await db.Users.create({
                 userName: data.userName,
-                password: data.password,
-                roleId: data.roleId,
+                userPassword: data.password,
+                // role: data.role,
             })
-
             reslove('Added user!')
         } catch(e) {
             reject(e);
@@ -367,7 +364,7 @@ let hashUserPassword = (password) => {
 let getAllUser = () => {
     return new Promise(async(reslove,reject) => {
         try {
-            let users = db.User.findAll();
+            let users = db.Users.findAll();
             reslove(users);
         } catch(e){
             reject(e);
@@ -1235,8 +1232,8 @@ module.exports = {
     getAllSocks: getAllSocks,
     getAllHats: getAllHats,
 
-    // createNewUser : createNewUser,
-    // getAllUser: getAllUser,
+    createNewUser : createNewUser,
+    getAllUser: getAllUser,
     // getUserInfoById: getUserInfoById,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
