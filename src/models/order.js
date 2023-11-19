@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(10),
       primaryKey: true,
     },
+    customerID: DataTypes.STRING(10),
+    voucherID: DataTypes.STRING(10),
     status: DataTypes.TEXT,
     note: DataTypes.TEXT,
     address: DataTypes.TEXT,

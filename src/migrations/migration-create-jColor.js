@@ -5,9 +5,9 @@ module.exports = {
       colorID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(10)
+        type: Sequelize.STRING(20)
       },
-      color: {
+      colorName: {
         type: Sequelize.TEXT,
       },
       createdAt: {

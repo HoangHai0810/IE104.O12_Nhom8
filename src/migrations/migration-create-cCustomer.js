@@ -7,8 +7,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING(10)
       },
-      name: {
+      fullName: {
         type: Sequelize.TEXT
+      },
+      dateOfBirth: {
+        type: Sequelize.DATE
+      },
+      phoneNumber: {
+        type: Sequelize.STRING(10)
+      },
+      nativeVillage: {
+        type: Sequelize.STRING
       },
       userID: {
         type: Sequelize.STRING(10),

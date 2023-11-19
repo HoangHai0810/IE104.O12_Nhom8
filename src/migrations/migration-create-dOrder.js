@@ -14,13 +14,6 @@ module.exports = {
           key: 'customerID'
         }
       },
-      // customerID: {
-      //   type: Sequelize.STRING(10),
-      //   references: {
-      //     model: 'user',
-      //     key: 'userID'
-      //   }
-      // },
       status: {
         type: Sequelize.TEXT
       },

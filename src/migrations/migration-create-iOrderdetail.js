@@ -2,16 +2,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Orderdetails', {
-      // orderID: {
-      //   allowNull: false,
-      //   primaryKey: true,
-      //   type: Sequelize.STRING(10)
-      // },
-      // productID: {
-      //   allowNull: false,
-      //   primaryKey: true,
-      //   type: Sequelize.STRING(10)
-      // },
       orderID: {
         type: Sequelize.STRING(10),
         references: {
