@@ -9,27 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(10),
         references: {
-          model: 'users',
-          key: 'id'
+          model: 'Users',
+          key: 'UserID'
         }
       },
-      tenDoiBong: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'doiBongs',
-          key: 'tenDoiBong'
-        }
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      // tenDoiBong: {
+      //   type: Sequelize.STRING,
+      //   references: {
+      //     model: 'doiBongs',
+      //     key: 'tenDoiBong'
+      //   }
+      // },
+      // createdAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE
+      // },
+      // updatedAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE
+      // }
     });
   },
   down: async (queryInterface, Sequelize) => {
