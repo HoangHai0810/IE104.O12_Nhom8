@@ -6,6 +6,7 @@ let router = express.Router();
 let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/register', homeController.getLoginSignUp);
+    router.get('/login', homeController.getLoginSignUp);
     router.get('/men', homeController.getListProduct);
     router.get('/menshirts', homeController.getListProduct);
     router.get('/menAoThun', homeController.getListProduct);
@@ -35,7 +36,9 @@ let initWebRoutes = (app) => {
     router.get('/tat', homeController.getListProduct);
     router.get('/non', homeController.getListProduct);
     router.get('/user', homeController.getInfoUser);
+    router.get('/product', homeController.getInfoProduct);
     router.get('/cart', homeController.getCart);
+    router.post('/upavatar', homeController.uploadAvatar);
     return app.use("/", router);
 }
 
