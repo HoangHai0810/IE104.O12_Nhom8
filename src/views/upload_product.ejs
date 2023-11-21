@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Product</title>
+    <link rel="stylesheet" href="upload_products.css">
+</head>
+
+<body>
+    <h1 class="announce"> Đăng kí hàng lên kệ</h1>
+    <form method="post" action="" id="formUpload">
+        <fieldset>
+
+            <label>Nhập tên thương hiệu:<input type="text" required></label>
+            <label>Tên mặt hàng: <input type="text" required></label>
+            <label>Mô tả: <br><textarea id="" name="" rows="3" cols="60"
+                    placeholder="Sản phẩm này chỉ đơn giản là một chiếc áo ... "></textarea></label>
+            <label for="">Giới tính
+                <select id="" name="">
+                    <option value="">(select one)</option>
+                    <option value="1">Nam</option>
+                    <option value="2">Nữ</option>
+                    <option value="3">Khác</option>
+                </select>
+            </label>
+
+        </fieldset>
+        <fieldset id="product-field">
+
+            <label>Upload pictures of product: <input id="product-picture" type="file" multiple
+                    onclick="uploadPicture(this)"></label>
+            <div id="preview-images"></div>
+            <script>
+                function uploadPicture(fileInput) {
+                    if (fileInput.id[fileInput.id.length - 1] != 'e')
+                    {
+                        var previewImagesContainer = document.getElementById('preview-images-' + fileInput.id[fileInput.id.length - 1]);
+                    }
+                    else 
+                    {
+                        var previewImagesContainer = document.getElementById('preview-images')
+                    }
+                    fileInput.addEventListener('change', function (event) {
+                        const files = event.target.files;
+
+                        previewImagesContainer.innerHTML = ''; // Xóa các hình ảnh hiện có trước khi hiển thị hình ảnh mới
+
+                        for (let i = 0; i < files.length; i++) {
+                            const file = files[i];
+                            const reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                const previewImage = document.createElement('img');
+                                previewImage.src = e.target.result;
+                                previewImagesContainer.appendChild(previewImage);
+                            };
+
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                }
+            </script>
+            <label>Kích thước:
+                <label for=""><input type="checkbox" /> XS </label>
+                <label for=""><input type="checkbox" /> S</label>
+                <label for=""><input type="checkbox" /> M</label>
+                <label for=""><input type="checkbox" /> L</label>
+                <label for=""><input type="checkbox" /> XL</label>
+                <label for=""><input type="checkbox" /> XXL</label>
+            </label>
+            <label>Giá niêm yết: <input type="text" required> VNĐ.</label>
+            <label>Số lượng hàng hiện có trong kho: <input type="text" required></label>
+        </fieldset>
+    </form>
+    
+    <script>
+        var dem = 0;
+
+        function addProduct() {
+            dem++;
+            var productField = document.getElementById('product-field');
+            var newField = document.createElement('fieldset');
+            newField.setAttribute('id', 'product-field-' + dem);
+            newField.innerHTML = productField.innerHTML;
+            var previewImagesContainerid = newField.querySelector('#preview-images');
+            previewImagesContainerid.setAttribute('id', 'preview-images-' + dem);
+            previewImagesContainerid.innerHTML = ''
+            var imgInputid = newField.querySelector('#product-picture');
+            imgInputid.setAttribute('id', 'product-picture-' + dem);
+            var formUpload = document.getElementById('formUpload');
+            formUpload.appendChild(newField);
+        }
+
+    </script>
+    <fieldset class="submitField">
+        <button type="button" class="createNewProduct button1" onclick="addProduct()">Thêm sản phẩm</button>
+        <input class="button1" type="submit" value="Submit" />
+    </fieldset>
+</body>
+
+</html>

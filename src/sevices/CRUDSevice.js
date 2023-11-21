@@ -868,14 +868,14 @@ let getAllMenAoJean = () => {
     });
 }
 
-let getAllMenAo3Lo = () => {
+let getAllMenAoKhoac = () => {
     return new Promise(async(resolve, reject) => {
         try {
-            let menAo3Lo = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Ao 3 Lo'",
+            let menAoKhoac = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Ao Khoac'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAo3Lo);
+            resolve(menAoKhoac);
         } catch(e)
         {
             reject(e)
@@ -928,14 +928,14 @@ let getAllMenQuanJean = () => {
     });
 }
 
-let getAllMenQuanLot = () => {
+let getAllMenQuanTay = () => {
     return new Promise(async(resolve, reject) => {
         try {
-            let menQuanLot = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Lot'",
+            let menQuanTay = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Tay'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanLot);
+            resolve(menQuanTay);
         } catch(e)
         {
             reject(e)
@@ -1139,21 +1139,6 @@ let getAllDiscounted = () => {
     });
 }
 
-let getAllJackets = () => {
-    return new Promise(async(resolve, reject) => {
-        try {
-            let allJackets = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'jacket'",
-                { type: QueryTypes.SELECT }
-            )
-            resolve(allJackets);
-        } catch(e)
-        {
-            reject(e)
-        }
-    });
-}
-
 let getAllGlasses = () => {
     return new Promise(async(resolve, reject) => {
         try {
@@ -1206,12 +1191,12 @@ module.exports = {
     getAllMenAoThun: getAllMenAoThun,
     getAllMenAoSoMi: getAllMenAoSoMi,
     getAllMenAoJean: getAllMenAoJean,
-    getAllMenAo3Lo: getAllMenAo3Lo,
+    getAllMenAoKhoac: getAllMenAoKhoac,
     getAllMenTrousers: getAllMenTrousers,
     getAllMenQuanThun: getAllMenQuanThun,
     getAllMenQuanDui: getAllMenQuanDui,
     getAllMenQuanJean: getAllMenQuanJean,
-    getAllMenQuanLot: getAllMenQuanLot,
+    getAllMenQuanTay: getAllMenQuanTay,
     
     getAllWomen: getAllWomen,
     getAllWomenShirts: getAllWomenShirts,
@@ -1227,7 +1212,6 @@ module.exports = {
 
     getAllShoes: getAllShoes,
     getAllDiscounted: getAllDiscounted,
-    getAllJackets: getAllJackets,
     getAllGlasses: getAllGlasses,
     getAllSocks: getAllSocks,
     getAllHats: getAllHats,

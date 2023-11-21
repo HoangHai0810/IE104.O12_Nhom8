@@ -25,10 +25,61 @@
         <div class="header-container fixed">
             <div class="header-main">
                 <div class="container">
+                    <div class="toggle">
+                        <i class="fa-solid fa-bars menu"></i>
+                        <div id="logo-toggle">
+                            <a href="/">
+                                <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                    style="width: 200px;">
+                            </a>
+                        </div>
+                        <div class="btn-toggle">
+                            <div id="search-toggle">
+                                <span class="search_button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                            </div>
+                            <div class="myaccount-toggle">
+                                <a href="/account" title="My Account">  
+                                    <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="header-shoppingcart-toggle">
+                                <a href="/cart" title="Cart"></a>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav-toggle">
+                        <li class="top_level dropdown">
+                            <a href="/men">Nam</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/women">Nữ</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/hotitem">Bán chạy</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/sale">Giảm giá</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/more">Xem thêm</a>
+                        </li>
+                    </ul>
+                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                    <script>
+                        $(document).ready(function() 
+                            {
+                                $('.menu').click(function() {
+                                    $('.navbar-nav-toggle').toggleClass('active')
+                                })
+                            }
+                        )
+                    </script>
                     <div class="row">
                         <div class="header-logo">
                             <div id="logo">
-                                <a href="#">
+                                <a href="/">
                                     <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
                                         style="width: 200px;">
                                 </a>
@@ -48,16 +99,16 @@
                                                             <div class="dropdown-inner">
                                                                 <ul class="list-unstyled childs_2">
                                                                     <li>
-                                                                        <a href="#">Áo thun nam</a>
+                                                                        <a href="/menAoThun">Áo thun nam</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Áo sơ mi nam </a>
+                                                                        <a href="/menAoSoMi">Áo sơ mi nam </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Áo jean nam</a>
+                                                                        <a href="/menAoJean">Áo jean nam</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Áo 3 lỗ nam</a>
+                                                                        <a href="/menAoKhoac">Áo khoác nam</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -71,16 +122,16 @@
                                                             <div class="dropdown-inner">
                                                                 <ul class="list-unstyled childs_2">
                                                                     <li>
-                                                                        <a href="#">Quần thun nam</a>
+                                                                        <a href="/menQuanThun">Quần thun nam</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Quần đùi nam </a>
+                                                                        <a href="/menQuanDui">Quần đùi nam </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Quần jean nam</a>
+                                                                        <a href="/menQuanJean">Quần jean nam</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Quần lót nam</a>
+                                                                        <a href="/menQuanTay">Quần tây nam</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -101,16 +152,16 @@
                                                             <div class="dropdown-inner">
                                                                 <ul class="list-unstyled childs_2">
                                                                     <li>
-                                                                        <a href="#">Áo thun nữ</a>
+                                                                        <a href="/womenAoThun">Áo thun nữ</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Áo sơ mi nữ </a>
+                                                                        <a href="/womenAoSoMi">Áo sơ mi nữ </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Áo jean nữ</a>
+                                                                        <a href="/womenAoJean">Áo jean nữ</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Áo khoác nữ</a>
+                                                                        <a href="/womenAoKhoac">Áo khoác nữ</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -124,16 +175,16 @@
                                                             <div class="dropdown-inner">
                                                                 <ul class="list-unstyled childs_2">
                                                                     <li>
-                                                                        <a href="#">Quần thun nữ</a>
+                                                                        <a href="/womenQuanThun">Quần thun nữ</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Quần đùi nữ</a>
+                                                                        <a href="/womenQuanDui">Quần đùi nữ</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Quần jean nữ</a>
+                                                                        <a href="/womenQuanJean">Quần jean nữ</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#">Quần tây nữ</a>
+                                                                        <a href="/womenQuanTay">Quần tây nữ</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -161,10 +212,10 @@
                                                         <a href="/jackets">Áo khoác</a>
                                                     </li>
                                                     <li>
-                                                        <a href="glasses">Kính</a>
+                                                        <a href="/glasses">Kính</a>
                                                     </li>
                                                     <li>
-                                                        <a href="Socks">Tất</a>
+                                                        <a href="/socks">Tất</a>
                                                     </li>
                                                     <li>
                                                         <a href="hats">Mũ</a>
@@ -192,7 +243,7 @@
                             </div>
                         </div>
                         <div class="dropdown myaccount">
-                            <a href="/account" title="My Account" class="dropdown-toggle">
+                            <a href="/account" title="My Account">
                                 <i class="fa-solid fa-user"></i>
                                 <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
                                     <li>
@@ -211,15 +262,9 @@
                         </div>
                         <div class="header-shoppingcart">
                             <div id="cart" class="btn-group btn-block">
-                                <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle">
+                                <a href="/cart" title="Cart">
                                     <i class="fa-solid fa-cart-shopping"></i>
-                                    <span id="cart-total">0</span>
-                                </button>
-                                <ul class="dropdown-menu pull-right cart-menu">
-                                    <li>
-                                        <p class="text-center">Giỏ hàng trống!</p>
-                                    </li>
-                                </ul>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -231,59 +276,92 @@
     <!--Block-->
     <div class="block">
         <div class="block-title">
-            <strong>Áo thun nam</strong>
+            <strong id="title-type">Áo thun nam</strong>
         </div>
+        <script>
+            title_type = document.getElementById('title-type');
+            if (window.location.href.includes('/menshirts')) {
+                title_type.innerHTML = 'Áo nam';
+            }
+            else if (window.location.href.includes('/menAoThun')) {
+                title_type.innerHTML = 'Áo thun nam';
+            }
+            else if (window.location.href.includes('/menAoSoMi')) {
+                title_type.innerHTML = 'Áo sơ mi nam';
+            }
+            else if (window.location.href.includes('/menAoJean')) {
+                title_type.innerHTML = 'Áo jean nam';
+            }
+            else if (window.location.href.includes('/menAoKhoac')) {
+                title_type.innerHTML = 'Áo khoác nam';
+            }
+            else if (window.location.href.includes('/mentrousers')) {
+                title_type.innerHTML = 'Quần nam';
+            }
+            else if (window.location.href.includes('/menQuanThun')) {
+                title_type.innerHTML = 'Quần thun nam';
+            }
+            else if (window.location.href.includes('/menQuanDui')) {
+                title_type.innerHTML = 'Quần đùi nam';
+            }
+            else if (window.location.href.includes('/menQuanJean')) {
+                title_type.innerHTML = 'Quần jean nam';
+            }
+            else if (window.location.href.includes('/menQuanTay')) {
+                title_type.innerHTML = 'Quần tây nam';
+            }
+            else if (window.location.href.includes('/men')) {
+                title_type.innerHTML = 'Thời trang nam';
+            }
+            else if (window.location.href.includes('/womenshirts')) {
+                title_type.innerHTML = 'Áo nữ';
+            }
+            else if (window.location.href.includes('/womenAoThun')) {
+                title_type.innerHTML = 'Áo thun nữ';
+            }
+            else if (window.location.href.includes('/womenAoSoMi')) {
+                title_type.innerHTML = 'Áo sơ mi nữ';
+            }
+            else if (window.location.href.includes('/womenAoJean')) {
+                title_type.innerHTML = 'Áo jean nữ';
+            }
+            else if (window.location.href.includes('/womenAoKhoac')) {
+                title_type.innerHTML = 'Áo khoác nữ';
+            }
+            else if (window.location.href.includes('/womentrousers')) {
+                title_type.innerHTML = 'Quần nữ';
+            }
+            else if (window.location.href.includes('/womenQuanThun')) {
+                title_type.innerHTML = 'Quần thun nữ';
+            }
+            else if (window.location.href.includes('/womenQuanDui')) {
+                title_type.innerHTML = 'Quần đùi nữ';
+            }
+            else if (window.location.href.includes('/womenQuanJean')) {
+                title_type.innerHTML = 'Quần jean nữ';
+            }
+            else if (window.location.href.includes('/womenQuanTay')) {
+                title_type.innerHTML = 'Quần tây nữ';
+            }
+            else if (window.location.href.includes('/women')) {
+                title_type.innerHTML = 'Thời trang nữ';
+            }
+
+        </script>
         <div class="block_content">
             <!--Product Sale-->
             <ul class="products">
+                <% for (let i=0; i<dataProduct.length;i++) { %>
                 <li class="product_item">
-                    <a href="/product?id=%=dataProduct[i].id%>">
+                    <a href="/product?id=<%=dataProduct[i].productID%>">
                         <img class="product_img" src="https://routine.vn/media/catalog/product/cache/d0cf4470db45e8932c69fc124d711a7e/1/0/10f21jac022-whitesand-3_4_1.jpg" alt="">
                     </a>
-                    <a href="/product?id=%=dataProduct[i].id%>" class="title_product">Áo Khoác Nhung Nam Cotton Form Regular - 10F21JAC022</a>
+                    <a href="/product?id=<%=dataProduct[i].productID%>" class="title_product"><%= dataProduct[i].productName %></a>
                     <div class="price">
-                        <span class="price_discount">575.000 ₫</span>
-                        <span class="price_original">1.150.000 ₫</span>
-                        <span class="discount">-50%</span>
-                        <i class="fa-solid fa-tag"></i>
+                        <span class="price_discount"><%=dataProduct[i].price%></span>
                     </div>
                 </li>
-                <li class="product_item">
-                    <a href="/product?id=%=dataProduct[i].id%>">
-                        <img class="product_img" src="https://routine.vn/media/catalog/product/cache/d0cf4470db45e8932c69fc124d711a7e/1/0/10f21jac022-whitesand-3_4_1.jpg" alt="">
-                    </a>
-                    <a href="/product?id=%=dataProduct[i].id%>" class="title_product">Áo Khoác Nhung Nam Cotton Form Regular - 10F21JAC022</a>
-                    <div class="price">
-                        <span class="price_discount">575.000 ₫</span>
-                        <span class="price_original">1.150.000 ₫</span>
-                        <span class="discount">-50%</span>
-                        <i class="fa-solid fa-tag"></i>
-                    </div>
-                </li>
-                <li class="product_item">
-                    <a href="/product?id=%=dataProduct[i].id%>">
-                        <img class="product_img" src="https://routine.vn/media/catalog/product/cache/d0cf4470db45e8932c69fc124d711a7e/1/0/10f21jac022-whitesand-3_4_1.jpg" alt="">
-                    </a>
-                    <a href="/product?id=%=dataProduct[i].id%>" class="title_product">Áo Khoác Nhung Nam Cotton Form Regular - 10F21JAC022</a>
-                    <div class="price">
-                        <span class="price_discount">575.000 ₫</span>
-                        <span class="price_original">1.150.000 ₫</span>
-                        <span class="discount">-50%</span>
-                        <i class="fa-solid fa-tag"></i>
-                    </div>
-                </li>
-                <li class="product_item">
-                    <a href="/product?id=%=dataProduct[i].id%>">
-                        <img class="product_img" src="https://routine.vn/media/catalog/product/cache/d0cf4470db45e8932c69fc124d711a7e/1/0/10f21jac022-whitesand-3_4_1.jpg" alt="">
-                    </a>
-                    <a href="/product?id=%=dataProduct[i].id%>" class="title_product">Áo Khoác Nhung Nam Cotton Form Regular - 10F21JAC022</a>
-                    <div class="price">
-                        <span class="price_discount">575.000 ₫</span>
-                        <span class="price_original">1.150.000 ₫</span>
-                        <span class="discount">-50%</span>
-                        <i class="fa-solid fa-tag"></i>
-                    </div>
-                </li>
+                <% } %>
             </ul>
         </div>
     </div>
@@ -292,7 +370,7 @@
         <div class="footer_row">
             <div class="footer_infomation">
                 <div class="logo">
-                    <a href="#">
+                    <a href="/">
                         <img src="./img/logo.png" alt="DLATT">
                     </a>
                 </div>
