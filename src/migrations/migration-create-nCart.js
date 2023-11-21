@@ -1,14 +1,24 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Category_Vouchers', {
-      categoryVoucherID: {
+    await queryInterface.createTable('Carts', {
+      cartID: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING(10)
       },
-      categoryVoucherName:{
-        type: Sequelize.TEXT
+      soLuong: {
+        type: Sequelize.TINYINT,
+      },
+      thanhTien: {
+        type: Sequelize.BIGINT,
+      },
+      userID: {
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Users',
+          key: 'userID'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -21,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Category_Vouchers');
+    await queryInterface.dropTable('Carts');
   }
 };

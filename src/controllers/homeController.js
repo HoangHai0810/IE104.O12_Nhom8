@@ -41,31 +41,31 @@ let getListProduct = async (req, res) => {
         let menAoThun = await CRUDSevice.getAllMenAoThun({
             raw: true,
         });
-        let menAoSoMi = await CRUDSevice.getAllMenAoSoMi({
+        // let menAoSoMi = await CRUDSevice.getAllMenAoSoMi({
+        //     raw: true,
+        // });
+        let menAoKhoac = await CRUDSevice.getAllMenAoKhoac({
             raw: true,
         });
-        let menAoJean = await CRUDSevice.getAllMenAoJean({
-            raw: true,
-        });
-        let menAo3Lo = await CRUDSevice.getAllMenAo3Lo({
-            raw: true,
-        });
+        // let menAo3Lo = await CRUDSevice.getAllMenAo3Lo({
+        //     raw: true,
+        // });
         let allMen = await CRUDSevice.getAllMen({
             raw: true,
         });
         let menTrousers = await CRUDSevice.getAllMenTrousers({
                     raw: true,
         });
-        let menQuanThun = await CRUDSevice.getAllMenQuanThun({
-            raw: true,
-        });
+        // let menQuanThun = await CRUDSevice.getAllMenQuanThun({
+        //     raw: true,
+        // });
         let menQuanDui = await CRUDSevice.getAllMenQuanDui({
                     raw: true,
         });
         let menQuanJean = await CRUDSevice.getAllMenQuanJean({
                     raw: true,
         });
-        let menQuanLot = await CRUDSevice.getAllMenQuanLot({
+        let menSweetShirt = await CRUDSevice.getAllMenSweetShirt({
                     raw: true,
         });
 
@@ -76,54 +76,20 @@ let getListProduct = async (req, res) => {
         let womenShirts = await CRUDSevice.getAllWomenShirts({
             raw: true,
         });
-        let womenAoThun = await CRUDSevice.getAllWomenAoThun({
-            raw: true,
-        });
-        let womenAoSoMi = await CRUDSevice.getAllWomenAoSoMi({
-            raw: true,
-        });
-        let womenAoJean = await CRUDSevice.getAllWomenAoJean({
-            raw: true,
-        });
         let womenAoKhoac = await CRUDSevice.getAllWomenAoKhoac({
             raw: true,
         });
-        let womenTrousers = await CRUDSevice.getAllWomenTrousers({
-                    raw: true,
-        });
-        let womenQuanThun = await CRUDSevice.getAllWomenQuanThun({
-            raw: true,
-        });
-        let womenQuanDui = await CRUDSevice.getAllWomenQuanDui({
-                    raw: true,
-        });
-        let womenQuanJean = await CRUDSevice.getAllWomenQuanJean({
-                    raw: true,
-        });
-        let womenQuanTay = await CRUDSevice.getAllWomenQuanTay({
+        let womenDress = await CRUDSevice.getAllWomenDress({
                     raw: true,
         });
 
-
-        let allShoes = await CRUDSevice.getAllShoes({
-                    raw: true,
-        });
         let allDiscounted = await CRUDSevice.getAllDiscounted({
                     raw: true,
         });
         let allJackets = await CRUDSevice.getAllJackets({
                     raw: true,
         });
-        let allGlasses = await CRUDSevice.getAllGlasses({
-                    raw: true,
-        });
-        let allSocks = await CRUDSevice.getAllSocks({
-                    raw: true,
-        });
-        let allHats = await CRUDSevice.getAllHats({
-                    raw: true,
-        });
-        
+
         return res.render('list_product.ejs',
         {
             allProducts: JSON.stringify(allProducts),
@@ -131,22 +97,22 @@ let getListProduct = async (req, res) => {
             allMen: JSON.stringify(allMen),
             menShirts: JSON.stringify(menShirts),
             menAoThun: JSON.stringify(menAoThun),
-            menAoSoMi: JSON.stringify(menAoSoMi),
-            menAoJean: JSON.stringify(menAoJean),
-            menAo3Lo: JSON.stringify(menAo3Lo),
+            // menAoSoMi: JSON.stringify(menAoSoMi),
+            menAoKhoac: JSON.stringify(menAoKhoac),
+            // menAo3Lo: JSON.stringify(menAo3Lo),
             menTrousers: JSON.stringify(menTrousers),
-            menQuanThun: JSON.stringify(menQuanThun),
+            // menQuanThun: JSON.stringify(menQuanThun),
             menQuanDui: JSON.stringify(menQuanDui),
             menQuanJean: JSON.stringify(menQuanJean),
-            menQuanLot: JSON.stringify(menQuanLot),
+            menSweetShirt: JSON.stringify(menSweetShirt),
             
+            allWomen: JSON.stringify(allWomen),
+            womenShirts: JSON.stringify(womenShirts),
+            womenAoKhoac: JSON.stringify(womenAoKhoac),
+            womenDress: JSON.stringify(womenDress),
 
-            allShoes: JSON.stringify(allShoes),
             allDiscounted: JSON.stringify(allDiscounted),
             allJackets: JSON.stringify(allJackets),
-            allGlasses: JSON.stringify(allGlasses),
-            allSocks: JSON.stringify(allSocks),
-            allHats: JSON.stringify(allHats),
         })
     } catch(e) {
         console.log(e);

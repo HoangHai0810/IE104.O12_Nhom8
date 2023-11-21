@@ -14,6 +14,13 @@ module.exports = {
           key: 'customerID'
         }
       },
+      voucherID: {
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Vouchers',
+          key: 'voucherID'
+        }
+      },
       status: {
         type: Sequelize.TEXT
       },
@@ -24,14 +31,10 @@ module.exports = {
         type: Sequelize.TEXT
       },
       totalCost: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
-      voucherID: {
-        type: Sequelize.STRING(10),
-        references: {
-          model: 'Vouchers',
-          key: 'voucherID'
-        }
+      phoneNumber: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

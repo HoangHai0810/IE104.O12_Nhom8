@@ -1,17 +1,25 @@
 'use strict';
-
-const sequelize = require("sequelize");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Vouchers', {
-      voucherID: {
+    await queryInterface.createTable('Cart_Details', {
+      cartID: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING(10)
       },
-      describe: Sequelize.TEXT,
-      expirationDate: Sequelize.DATE,
+      soLuong: {
+        type: Sequelize.TINYINT,
+      },
+      thanhTien: {
+        type: Sequelize.BIGINT,
+      },
+      productID: {
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Products',
+          key: 'productID'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -23,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Vouchers');
+    await queryInterface.dropTable('Cart_Details');
   }
 };

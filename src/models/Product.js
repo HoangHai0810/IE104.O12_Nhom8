@@ -14,11 +14,12 @@ module.exports = (sequelize, DataTypes) => {
             // Product.hasMany(models.Order_Detail);
             // Product.hasMany(models.Product_Color);
             // Product.hasMany(models.Product_Size);
-            Product.belongsToMany(models.Order, {through: 'Orderdetail', foreignKey: 'orderID'});
-            Product.belongsToMany(models.Color, {through: 'Product_Color', foreignKey: 'colorID'});
-            Product.belongsToMany(models.Size, {through: 'Product_Size', foreignKey: 'sizeID'});
+            Product.belongsToMany(models.Order, {through: 'Orderdetail', foreignKey: 'productID'});
+            Product.belongsToMany(models.Color, {through: 'Product_Color', foreignKey: 'productID'});
+            Product.belongsToMany(models.Size, {through: 'Product_Size', foreignKey: 'productID'});
             Product.hasMany(models.Feedback);
             Product.belongsTo(models.Category_Product, {foreignKey: 'categoryProductID'});
+            Product.belongsToMany(models.Cart, {through: 'Cart_Detail', foreignKey: 'productID'});
         }
     };
     Product.init({
@@ -33,11 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         } ,
         description: DataTypes.TEXT,
         material: DataTypes.TEXT,
-        type: DataTypes.TEXT,
+        // type: DataTypes.TEXT,
         price: DataTypes.BIGINT,
         rate: DataTypes.FLOAT,
         discount: DataTypes.TINYINT,
-        categoryProductID: DataTypes.STRING(10)
+        // categoryProductID: DataTypes.STRING(10)
     }, {
         sequelize,
         modelName: 'Product',

@@ -268,6 +268,42 @@
                 <div class='inputBox'>
                     <input type='submit' value='Đăng ký'>
                 </div>
+                <script>
+                    function checkPassword1(password) {
+                        // Kiểm tra độ dài tối thiểu 8 kí tự
+                        if (password.length < 8) {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    function checkPassword2(password) {
+                        // Kiểm tra kí tự đặc biệt
+                        var specialChars = /[!@#$%^&*(),.?":{}|<>`~;']/;
+                        if (!specialChars.test(password)) {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    function checkPassword3(password) {
+                        // Kiểm tra kí tự in hoa
+                        var uppercaseChars = /[A-Z]/;
+                        if (!uppercaseChars.test(password)) {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    function checkPassword4(password) {
+                        var numberChars = /[0-9]/;
+                        if (!numberChars.test(password)) {
+                            return false;
+                        }
+                        return true;
+                    }
+                    
+                </script>
             </form>
         </div>
     </div>

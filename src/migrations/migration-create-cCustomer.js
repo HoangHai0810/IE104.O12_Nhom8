@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.STRING(10)
       },
       nativeVillage: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       userID: {
         type: Sequelize.STRING(10),

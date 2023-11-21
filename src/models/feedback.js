@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     content: DataTypes.TEXT,
-    rate: DataTypes.TINYINT
+    rate: DataTypes.TINYINT,
+    // userID: DataTypes.STRING(10),
+    // productID: DataTypes.STRING(10)
   }, {
     sequelize,
     modelName: 'Feedback',
