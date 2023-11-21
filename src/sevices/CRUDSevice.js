@@ -1162,6 +1162,84 @@ let createUser = async (data) => {
     })
 }
 
+let createCart = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            await db.Carts.create({
+                cartID: data.userID,
+                soLuong: 0,
+                thanhTien: 0,
+                userID: data.userID
+            })
+
+            reslove('Added Cart!')
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let createOrder = async (data) => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let Od = await db.Orders.create({
+                customerID: data.customerID,
+                status: 'Đang chuẩn bị',
+                note: '',
+                address: data.address,
+                totalCost: 0,
+                voucherID: ''
+            })
+
+            // Od.totalCost = Od.totalCost + 
+
+            reslove('Added Cart!')
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let updateCart = async (user, product) => {
+    return new Promise(async (reslove, reject) => {
+        try {
+            let cart = await db.Carts.findOne({
+                where: {
+                    cartID: user.userID,
+                }
+            })
+            let product = await db.Products.findOne({
+                where: {
+                    productID: product.productID,
+                }
+            })
+            await db.Cart_Details.create({
+                cartID: user.userID,
+                productID: product.productID,
+                soLuong: 0,
+                thanhTien: 0
+            })
+            let cd = await db.Cart_Details.findOne({
+                where: {
+                    cartID: user.userID,
+                    productID: product.productID
+                }
+            })
+            if (cart && product) {
+                cd.soLuong = cd.soLuong + 1;
+                cd.thanhTien = cd.thanhTien + product.price;
+                await cd.save();
+                cart.soLuong = cart.soLuong + 1;
+                cart.thanhTien = cart.thanhTien + cd.thanhTien;
+            }
+            await cart.save();
+            reslove('Updated cart!');
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
 
 let editUser = async (data) => {
     return new Promise(async (reslove, reject) => {
@@ -1251,8 +1329,11 @@ module.exports = {
 
     createCustomer: createCustomer,
     createUser: createUser,
+    createCart: createCart,
+    createOrder: createOrder,
 
     editUser: editUser,
+    updateCart: updateCart,
 
     deleteUser: deleteUser,
     // createNewUser : createNewUser,

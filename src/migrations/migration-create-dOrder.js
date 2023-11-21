@@ -5,6 +5,7 @@ module.exports = {
       orderID: {
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.STRING(10)
       },
       customerID: {
