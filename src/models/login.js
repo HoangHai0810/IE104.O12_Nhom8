@@ -11,11 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Login.belongsToOne(models.Users, { foreignKey: 'userID' })
     }
   };
   Login.init({
     userID: DataTypes.STRING(10),
-    role: DataTypes.STRING(10)
+    role: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Login',
