@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         } ,
         description: DataTypes.TEXT,
         material: DataTypes.TEXT,
-        type: DataTypes.TEXT,
         price: DataTypes.BIGINT,
         rate: DataTypes.FLOAT,
         discount: DataTypes.TINYINT,

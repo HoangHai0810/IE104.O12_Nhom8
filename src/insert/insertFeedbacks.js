@@ -15,7 +15,7 @@ async function insertFB()
         const newFB1 = 
         { 
             feedbackID: 'FB001',
-            productID: 'TS002',
+            productID: 'MTS002',
             userID: 'CS004',
             content: 'Áo mặc tốt, thoải mái, form dáng đẹp như hình ảnh trưng bày.',
             rate: 4.5,

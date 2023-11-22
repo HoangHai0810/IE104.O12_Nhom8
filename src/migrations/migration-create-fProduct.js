@@ -20,9 +20,6 @@ module.exports = {
       material: {
         type: Sequelize.TEXT
       },
-      type: {
-        type: Sequelize.TEXT
-      },
       price:{
         type: Sequelize.BIGINT
       },
