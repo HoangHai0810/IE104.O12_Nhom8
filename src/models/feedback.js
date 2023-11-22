@@ -20,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(15),
       primaryKey: true,
     },
+    userID: DataTypes.STRING(10),
+    productID: DataTypes.STRING(10),
     content: DataTypes.TEXT,
     rate: DataTypes.TINYINT
   }, {

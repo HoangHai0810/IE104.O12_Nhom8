@@ -12,13 +12,7 @@ module.exports = {
       },
       describe: Sequelize.TEXT,
       expirationDate: Sequelize.INTEGER,
-      categoryVoucherID:{
-        type: Sequelize.STRING(10),
-        references: {
-          model: 'Category_Vouchers',
-          key: 'categoryVoucherID'
-        }
-      },
+      value: Sequelize.TINYINT,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

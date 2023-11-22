@@ -17,7 +17,11 @@ async function insertUS()
             userName: 'Boo DE',
             userPassword: '12345678',
             role: 'Guest'
+<<<<<<< HEAD
+        };
+=======
           };
+>>>>>>> 4683b7231427a0510d42993dcc812bcc8c8c2660
         const Us1 = await US.create(newUS1);
         console.log('US1 created: ', Us1.toJSON());
         const newUS2 = 
@@ -26,7 +30,11 @@ async function insertUS()
             userName: 'UITerXPhonan',
             userPassword: '88888888',
             role: 'Guest'
+<<<<<<< HEAD
+        };
+=======
         }; 
+>>>>>>> 4683b7231427a0510d42993dcc812bcc8c8c2660
         const Us2 = await US.create(newUS2);
         console.log('US2 created: ', Us2.toJSON());
         const newUS3 = 
@@ -47,6 +55,24 @@ async function insertUS()
         };
         const Us4 = await US.create(newUS4);
         console.log('US4 created: ', Us4.toJSON());
+        const newUS5 = 
+        {
+            userID: 'ID005',
+            userName: 'haianhtest',
+            userPassword: '11111111',
+            role: 'Admin'
+        };
+        const Us5 = await US.create(newUS5);
+        console.log('US5 created: ', Us5.toJSON());
+        const newUS6 = 
+        {
+            userID: 'ID006',
+            userName: 'builetrongduc',
+            userPassword: '11111111',
+            role: 'Employee'
+        };
+        const Us6 = await US.create(newUS6);
+        console.log('US6 created: ', Us6.toJSON());
     }
     catch(error)
     {

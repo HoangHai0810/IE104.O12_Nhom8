@@ -15,21 +15,21 @@ async function insertDetail()
         const newDT1 = 
         { 
             orderID: 'Ord01',
-            productID: 'P001'
+            productID: 'MP001'
         };
         const Dt1 = await Ord_Det.create(newDT1);
         console.log('Dt1 created: ', Dt1.toJSON())
         const newDT2 = 
         { 
             orderID: 'Ord02',
-            productID: 'JK001'
+            productID: 'MJK001'
         };
         const Dt2 = await Ord_Det.create(newDT2);
         console.log('Dt2 created: ', Dt2.toJSON())
         const newDT3 = 
         { 
             orderID: 'Ord03',
-            productID: 'TS002'
+            productID: 'MTS002'
         };
         const Dt3 = await Ord_Det.create(newDT3);
         console.log('Dt3 created: ', Dt3.toJSON())
