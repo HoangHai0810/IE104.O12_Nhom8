@@ -260,7 +260,9 @@ let getListProduct = async (req, res) => {
 
 let getInfoProduct = async (req, res) => {
     try {
-        return res.render('info_product.ejs')
+        let productID = req.query.productID;
+        let product = await CRUDSevice.getProductInfoByProductId(productID)
+        return res.render('info_product.ejs',{ product: product})
     } catch (e) {
         console.log(e);
     }
