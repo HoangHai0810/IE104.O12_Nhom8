@@ -8,7 +8,7 @@ module.exports = {
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      userID: {
         type: Sequelize.STRING(10),
         references: {
           model: 'Users',

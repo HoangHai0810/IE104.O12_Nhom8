@@ -13,11 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Users.hasMany(models.Feedback);
       Users.hasOne(models.Customer);
+      Users.hasOne(models.Login);
     }
   };
   Users.init({
     userID: {
       type: DataTypes.STRING(10),
+      autoIncrement: true,
       primaryKey: true,
     },
     userName: DataTypes.TEXT,
