@@ -13,12 +13,12 @@ let initWebRoutes = (app) => {
     router.get('/menAoThun', homeController.getListProduct);
     router.get('/menAoSoMi', homeController.getListProduct);
     router.get('/menAoJean', homeController.getListProduct);
-    router.get('/menAo3Lo', homeController.getListProduct);
+    router.get('/menAoKhoac', homeController.getListProduct);
     router.get('/mentrousers', homeController.getListProduct);
     router.get('/menQuanThun', homeController.getListProduct);
     router.get('/menQuanDui', homeController.getListProduct);
     router.get('/menQuanJean', homeController.getListProduct);
-    router.get('/menQuanLot', homeController.getListProduct);
+    router.get('/menQuanTay', homeController.getListProduct);
     router.get('/women', homeController.getListProduct);
     router.get('/womenshirts', homeController.getListProduct);
     router.get('/womenAoThun', homeController.getListProduct);
@@ -39,7 +39,11 @@ let initWebRoutes = (app) => {
     router.get('/Socks', homeController.getListProduct);
     router.get('/hats', homeController.getListProduct);
     router.get('/user', homeController.getInfoUser);
+    router.get('/product', homeController.getInfoProduct);
     router.get('/cart', homeController.getCart);
+    router.get('/upload', homeController.getUpload);
+    router.post('/upavatar', homeController.uploadAvatar);
+    router.post('/signup', homeController.postSignUp)
     return app.use("/", router);
 }
 

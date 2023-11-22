@@ -6,17 +6,14 @@ const { QueryTypes } = require('sequelize');
 const salt = bcrypt.genSaltSync(10);
 
 
-let createNewUser = async (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            await db.User.create({
-                firstName: data.firstName,
-                lastName: data.lastName,
+let createNewUser = async(data) => {
+    return new Promise(async (reslove,reject) => {
+        try{
+            await db.Users.create({
                 userName: data.userName,
-                password: data.password,
-                roleId: data.roleId,
+                userPassword: data.password,
+                // role: data.role,
             })
-
             reslove('Added user!')
         } catch (e) {
             reject(e);
@@ -343,7 +340,7 @@ let hashUserPassword = (password) => {
 let getAllUser = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let users = db.User.findAll();
+            let users = db.Users.findAll();
             reslove(users);
         } catch (e) {
             reject(e);
@@ -812,15 +809,16 @@ let getAllMenAoJean = () => {
     });
 }
 
-let getAllMenAo3Lo = () => {
-    return new Promise(async (resolve, reject) => {
+let getAllMenAoKhoac = () => {
+    return new Promise(async(resolve, reject) => {
         try {
-            let menAo3Lo = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Ao 3 Lo'",
+            let menAoKhoac = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Ao Khoac'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAo3Lo);
-        } catch (e) {
+            resolve(menAoKhoac);
+        } catch(e)
+        {
             reject(e)
         }
     });
@@ -868,15 +866,16 @@ let getAllMenQuanJean = () => {
     });
 }
 
-let getAllMenQuanLot = () => {
-    return new Promise(async (resolve, reject) => {
+let getAllMenQuanTay = () => {
+    return new Promise(async(resolve, reject) => {
         try {
-            let menQuanLot = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Lot'",
+            let menQuanTay = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Tay'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanLot);
-        } catch (e) {
+            resolve(menQuanTay);
+        } catch(e)
+        {
             reject(e)
         }
     });
@@ -1059,20 +1058,6 @@ let getAllDiscounted = () => {
                 { type: QueryTypes.SELECT }
             )
             resolve(allDiscounted);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllJackets = () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let allJackets = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'jacket'",
-                { type: QueryTypes.SELECT }
-            )
-            resolve(allJackets);
         } catch (e) {
             reject(e)
         }
@@ -1301,13 +1286,12 @@ module.exports = {
     getAllMenAoThun: getAllMenAoThun,
     getAllMenAoSoMi: getAllMenAoSoMi,
     getAllMenAoJean: getAllMenAoJean,
-    getAllMenAo3Lo: getAllMenAo3Lo,
+    getAllMenAoKhoac: getAllMenAoKhoac,
     getAllMenTrousers: getAllMenTrousers,
     getAllMenQuanThun: getAllMenQuanThun,
     getAllMenQuanDui: getAllMenQuanDui,
     getAllMenQuanJean: getAllMenQuanJean,
-    getAllMenQuanLot: getAllMenQuanLot,
-
+    getAllMenQuanTay: getAllMenQuanTay,
     getAllWomen: getAllWomen,
     getAllWomenShirts: getAllWomenShirts,
     getAllWomenAoThun: getAllWomenAoThun,
@@ -1322,7 +1306,6 @@ module.exports = {
 
     getAllShoes: getAllShoes,
     getAllDiscounted: getAllDiscounted,
-    getAllJackets: getAllJackets,
     getAllGlasses: getAllGlasses,
     getAllSocks: getAllSocks,
     getAllHats: getAllHats,
@@ -1336,8 +1319,7 @@ module.exports = {
     updateCart: updateCart,
 
     deleteUser: deleteUser,
-    // createNewUser : createNewUser,
-    // getAllUser: getAllUser,
+
     // getUserInfoById: getUserInfoById,
     // editUser: editUser,
     // deleteUserById: deleteUserById,

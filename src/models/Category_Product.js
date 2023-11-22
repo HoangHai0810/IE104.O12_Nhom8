@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             allowNull: false,
         },
-        categoryProductName: DataTypes.TEXT,
+        type: DataTypes.TEXT,
         gender: DataTypes.TEXT,
     }, {
         sequelize,

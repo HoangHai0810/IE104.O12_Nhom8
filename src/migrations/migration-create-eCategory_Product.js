@@ -10,7 +10,7 @@ module.exports = {
       gender: {
         type: Sequelize.TEXT,
       },
-      categoryProductName:{
+      type:{
         type: Sequelize.TEXT
       },
       createdAt: {

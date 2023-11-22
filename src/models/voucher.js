@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             // Product.hasMany(models.Order_Detail);
             // Product.hasMany(models.Product_Color);
             // Product.hasMany(models.Product_Size);
-            Voucher.belongsTo(models.Category_Voucher, {foreignKey: 'voucherID'});
+            //Voucher.belongsTo(models.Category_Voucher, {foreignKey: 'voucherID'});
         }
     };
     Voucher.init({
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         describe: DataTypes.TEXT,
         expirationDate: DataTypes.INTEGER,
-        categoryVoucherID: DataTypes.STRING(10)
+        value: DataTypes.TINYINT
     }, {
         sequelize,
         modelName: 'Voucher',

@@ -189,8 +189,21 @@ async function insertColor()
         };
         const Color22 = await Color.create(newColor22);
         console.log('Color22 created: ', Color22.toJSON());
-
-
+        //Product 22: https://routine.vn/ao-gile-len-nam-det-kim-sat-nach-acrylic-co-v-form-regular-10f23kni007.html (Beige, Black, Grey)
+        //Product 23: https://routine.vn/ao-tanktop-nam-co-tron-soc-gan-tron-form-regular-10s23kni006.html (White, Blue, Grey)
+        //Product 24: https://routine.vn/ao-thun-tanktop-nam-sat-nach-ke-soc-gan-tron-form-slim-10s23tto001.html (Beige, Black, White)
+        //Product 25: https://routine.vn/quan-short-nam-ong-rong-rut-day-tron-form-relax-10f23psh024.html (Beige, Black)
+        //Product 26: https://routine.vn/quan-short-the-thao-in-chuyen-nhiet-form-regular-10s23psha001.html (Navy, Black, Grey)
+        //Product 27: https://routine.vn/quan-short-nam-tui-hop-tron-form-relax-10f22psh014.html (Khaki, Navy)
+        //Product 28: https://routine.vn/quan-boxer-und002-s21-10s21und002cr1.html (Navy, Grey, Blue)
+        //Product 29: https://routine.vn/quan-lot-nam-seamless-co-gion-theu-form-fitted-10s22und001r1.html (Light Blue, Black, White, Brown)
+        const newColor23 = 
+        {
+            colorID: '#ADD8E6',
+            colorName: 'Light Blue' ,
+        };
+        const Color23 = await Color.create(newColor23);
+        console.log('Color23 created: ', Color23.toJSON());
     }
     catch(error)
     {
