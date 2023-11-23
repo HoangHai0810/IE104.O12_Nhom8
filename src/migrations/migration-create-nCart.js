@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.TINYINT,
       },
       thanhTien: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
       },
       userID: {
         type: Sequelize.STRING(10),

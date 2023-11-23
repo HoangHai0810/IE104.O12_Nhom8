@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     soLuong: DataTypes.TINYINT,
-    thanhTien: DataTypes.INTEGER
+    thanhTien: DataTypes.BIGINT,
   }, {
     sequelize,
     modelName: 'Cart_Detail',

@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cart.belongsToMany(models.Product, {through: 'Cart_Detail', foreignKey: 'productID'})
-      Cart
+      Cart.belongsToMany(models.Product, {through: 'Cart_Detail', foreignKey: 'cartID'})
+      Cart.belongsTo(models.Users, {foreignKey: 'userID'})
     }
   };
   Cart.init({
@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(20)
     },
     soLuong: DataTypes.TINYINT,
-    thanhTien: DataTypes.INTEGER
+    thanhTien: DataTypes.BIGINT,
+
   }, {
     sequelize,
     modelName: 'Cart',

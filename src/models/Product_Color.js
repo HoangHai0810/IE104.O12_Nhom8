@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Product_Color extends Model {
     static associate(models) {
-       Product_Color.belongsTo(models.Color, {foreignKey: 'colorID'});
-       Product_Color.belongsTo(models.Product, {foreignKey: 'productID'})
+      //  Product_Color.belongsTo(models.Color, {foreignKey: 'colorID'});
+      //  Product_Color.belongsTo(models.Product, {foreignKey: 'productID'})
     }
   };
   Product_Color.init({

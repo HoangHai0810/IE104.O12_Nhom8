@@ -11,8 +11,8 @@ module.exports = {
         type: Sequelize.STRING(10)
       },
       describe: Sequelize.TEXT,
-      expirationDate: Sequelize.INTEGER,
       value: Sequelize.TINYINT,
+      expirationDate: Sequelize.DATE,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
