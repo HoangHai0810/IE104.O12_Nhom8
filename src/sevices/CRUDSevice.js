@@ -489,66 +489,54 @@ let getUserInfoById = (userId) => {
     })
 }
 
-// let editUser = async(data) => {
-//     return new Promise(async(reslove,reject) => {
-//         try{
-//             let user = await db.User.findOne({
-//                 where: {
-//                     id: data.id,
-//                 }
-//             })
-//             if (user)
-//             {
-//                 user.firstName = data.firstName;
-//                 user.lastName = data.lastName;
-//                 user.address = data.address;
-//                 user.phoneNumber = data.phoneNumber;
-//                 user.gender = data.gender === '1' ? true : false;
-
-//                 await user.save();
-//                 reslove('Edited user!');
-//             }
-//             else
-//             {
-//                 reslove();
-//             }
-//         } catch(e) {
-//             reject(e);
-//         }
-//     })
-// }
-
-let editCauThu = async (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let cauthu = await db.cauThu.findOne({
+let editUser = async(data) => {
+    return new Promise(async(reslove,reject) => {
+        try{
+            let user = await db.User.findOne({
                 where: {
-                    maCauThu: data.maCauThu,
+                    id: data.id,
                 }
             })
-            if (cauthu) {
-                cauthu.quocTich = data.quocTich;
-                cauthu.soAo = data.soAo;
-                cauthu.chieuCao = data.chieuCao;
-                cauthu.canNang = data.canNang;
-                if (data.viTri == '1')
-                    cauthu.viTri = 'Tiền đạo';
-                if (data.viTri == '2')
-                    cauthu.viTri = 'Tiền vệ';
-                if (data.viTri == '3')
-                    cauthu.viTri = 'Hậu Vệ';
-                if (data.viTri == '4')
-                    cauthu.viTri = 'Thủ môn';
+            if (user)
+            {
+                user.firstName = data.firstName;
+                user.lastName = data.lastName;
+                user.address = data.address;
+                user.phoneNumber = data.phoneNumber;
+                user.gender = data.gender === '1' ? true : false;
 
-                await cauthu.save();
+                await user.save();
                 reslove('Edited user!');
             }
-            else {
+            else
+            {
                 reslove();
             }
-        } catch (e) {
+        } catch(e) {
             reject(e);
         }
+    })
+}
+
+let getProductInfoByProductId = (productID) => {
+    return new Promise(async(reslove, reject) => {
+        try {
+            let product = await db.Products.findOne({
+                where: {
+                    productID: productID,
+                }
+            })
+            if (product)
+            {
+                reslove(product)
+            }
+            else
+            {
+                reslove({})
+            }
+        } catch(e){
+            reject(e);
+        };
     })
 }
 
@@ -588,25 +576,6 @@ let updateUserRole = async (data) => {
     })
 }
 
-let editTongKet = async (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let tongKet = await db.tongKet.findOne({
-                where: {
-                    tenDoiBong: data,
-                }
-            })
-            if (user) {
-
-            }
-            else {
-                reslove();
-            }
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
 
 let deleteUserById = (userId) => {
     return new Promise(async (reslove, reject) => {
@@ -626,20 +595,6 @@ let deleteUserById = (userId) => {
                     }
                     user.destroy();
                 }
-            }
-            reslove();
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-let deleteCauThuById = (userId) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let cauThu = await db.cauThu.findOne({ where: { maCauThu: userId } })
-            if (cauThu) {
-                cauThu.destroy();
             }
             reslove();
         } catch (e) {
@@ -676,38 +631,6 @@ let getAllThamSo = () => {
     });
 }
 
-let getAllAllCode = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT * FROM allcodes", { type: QueryTypes.SELECT });
-            reslove(ketqua)
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-
-let getCauThuByMaCauThu = (maCauThu) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let cauThu = await db.cauThu.findOne({
-                where: {
-                    maCauThu: maCauThu,
-                }
-            })
-            if (cauThu) {
-                reslove(cauThu)
-            }
-            else {
-                reslove({})
-            }
-            reslove(user);
-        } catch (e) {
-            reject(e);
-        };
-    })
-}
 // ------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------
 let getAllProducts = () => {
@@ -1297,6 +1220,10 @@ module.exports = {
     getAllSocks: getAllSocks,
     getAllHats: getAllHats,
 
+    createNewUser : createNewUser,
+    getAllUser: getAllUser,
+
+    getProductInfoByProductId: getProductInfoByProductId,
     createCustomer: createCustomer,
     createUser: createUser,
     createCart: createCart,
