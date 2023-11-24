@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.STRING(20)
+        type: Sequelize.INTEGER
       },
       soLuong: {
         type: Sequelize.TINYINT,
@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.BIGINT,
       },
       userID: {
-        type: Sequelize.STRING(10),
+        type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'userID'

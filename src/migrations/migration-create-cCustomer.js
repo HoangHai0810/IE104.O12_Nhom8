@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       userID: {
-        type: Sequelize.STRING(10),
+        type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'userID'

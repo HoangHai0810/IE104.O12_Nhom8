@@ -25,7 +25,7 @@ let createNewLogin = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
             await db.Login.create({
-                userId: data.userId
+                userID: data.userID
             })
             reslove('Added login!')
         } catch (e) {
@@ -371,7 +371,7 @@ let getAllCode = (userId) => {
 let getLogin = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let login = await sequelize.query("SELECT userId ,users.roleId FROM `logins` INNER JOIN `users` ON logins.userId = users.Id", { type: QueryTypes.SELECT });
+            let login = await sequelize.query("SELECT users.userID ,users.role FROM `logins` INNER JOIN `users` ON logins.userID = users.userID", { type: QueryTypes.SELECT });
             reslove(login);
         } catch (e) {
             reject(e);
@@ -1135,7 +1135,7 @@ let updateCart = async (user, product) => {
     });
 }
 
-let editUser = async (data) => {
+let editCustomer = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
             let user = await db.Customers.findOne({
@@ -1230,9 +1230,12 @@ module.exports = {
     createOrder: createOrder,
 
     editUser: editUser,
+    editCustomer: editCustomer,
     updateCart: updateCart,
 
     deleteUser: deleteUser,
+
+    getLogin: getLogin,
 
     // getUserInfoById: getUserInfoById,
     // editUser: editUser,
@@ -1249,8 +1252,7 @@ module.exports = {
     // getAllLichThiDau: getAllLichThiDau,
     // getAllTranDau: getAllTranDau,
     // getAllThamSo: getAllThamSo,
-    // createNewLogin: createNewLogin,
-    // getLogin: getLogin,
+    createNewLogin: createNewLogin,
     // getAllCode: getAllCode,
     // logoutCRUD: logoutCRUD,
     // getCauThuByMaCauThu: getCauThuByMaCauThu,

@@ -5,8 +5,8 @@ module.exports = {
       userID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(10),
-        // autoIncrement: true,
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
       },
       userName: {
         type: Sequelize.TEXT

@@ -3,7 +3,7 @@ module.exports = {
     up: async (queryInterface, Sequelize) => {
         await queryInterface.createTable('Cart_Details', {
             cartID: {
-                type: Sequelize.STRING(10),
+                type: Sequelize.INTEGER,
                 references: {
                     model: 'Orders',
                     key: 'orderID'
