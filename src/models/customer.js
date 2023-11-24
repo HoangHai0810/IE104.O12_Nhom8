@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             Customer.hasMany(models.Order);
-            Customer.belongsToOne(models.Users, { foreignKey: 'userID' })
+            Customer.belongsTo(models.Users, { foreignKey: 'userID' })
         }
     };
     Customer.init({
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         dateOfBirth: DataTypes.DATE,
         phoneNumber: DataTypes.STRING(10),
         nativeVillage: DataTypes.TEXT,
-        userID: DataTypes.STRING(10)
+        // userID: DataTypes.STRING(10)
     }, {
         sequelize,
         modelName: 'Customer',
