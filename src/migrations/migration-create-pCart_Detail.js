@@ -5,7 +5,7 @@ module.exports = {
       cartID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(10)
+        type: Sequelize.INTEGER
       },
       soLuong: {
         type: Sequelize.TINYINT,

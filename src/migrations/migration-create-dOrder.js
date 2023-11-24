@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.STRING(10)
+        type: Sequelize.INTEGER
       },
       customerID: {
         type: Sequelize.STRING(10),

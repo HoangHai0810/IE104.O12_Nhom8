@@ -16,7 +16,7 @@ async function insertFB()
         { 
             feedbackID: 'FB001',
             productID: 'MTS002',
-            userID: 'CS004',
+            userID: '4',
             content: 'Áo mặc tốt, thoải mái, form dáng đẹp như hình ảnh trưng bày.',
             rate: 4.5,
         };
