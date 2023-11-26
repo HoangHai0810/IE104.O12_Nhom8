@@ -56,14 +56,14 @@ async function insertSP()
         //Product 4: https://ssstutter.com/p/sss-daily-khaki-pants
         const newSP4 = 
         {
-            productID: 'MP001',
+            productID: 'MK001',
             productName: 'Daily Khaki Pants',
             description: 'Có cúc cài cạp và 2 túi sau',
             price: 449000,
             rate: 3.8,
             material: 'Khaki mềm mại',
             discount: 0,
-            categoryProductID: 'MP'
+            categoryProductID: 'MK'
         };
         const Sp4 = await Sp.create(newSP4);
         console.log('SP4 created: ', Sp4.toJSON());
@@ -168,28 +168,28 @@ async function insertSP()
          //Product 12: https://routine.vn/quan-kaki-nam-tui-suon-tron-form-cargo-10s23pca013.html
          const newSP12 = 
          {
-             productID: 'MP002',
+             productID: 'MK002',
              productName: 'Quần Túi Sườn Trơn',
              description: '',
              material: 'Khaki',
              price: 629000,
              rate: 4.7,
              discount: 2,
-             categoryProductID: 'MP'
+             categoryProductID: 'MK'
          };
          const Sp12 = await Sp.create(newSP12);
          console.log('SP12 created: ', Sp12.toJSON());
          //Product 13: https://routine.vn/quan-kaki-nam-gap-ly-tron-form-slim-crop-10s23pca001.html
          const newSP13 = 
          {
-             productID: 'MP003',
+             productID: 'MK003',
              productName: 'Quần Gập Ly Trơn',
              description: 'Kiểu quần được thiết kế thanh lịch dành cho các chàng trai công sở hiện đại, trẻ trung',
              material: 'Cotton',
              price: 549000,
              rate: 4.9,
              discount: 2,
-             categoryProductID: 'MP'
+             categoryProductID: 'MK'
          };
          const Sp13 = await Sp.create(newSP13);
          console.log('SP13 created: ', Sp13.toJSON());
@@ -394,7 +394,7 @@ async function insertSP()
         const newSP103 = 
         {
             productID: 'WDr001',
-            productName: 'Đầm Kiểu Nữ Tay Dài Sơ Mi Nẹp Lệch',
+            productName: 'Đầm Tay Dài Sơ Mi Nẹp Lệch',
             description: 'Thiết kế cổ lệch kết hợp với hàng nút không nằm ở vị trí chính giữa thường thấy mà nằm bên trái thân áo ',
             material: '97% Cotton / 3% Lycra',
             price: 850000,
@@ -408,7 +408,7 @@ async function insertSP()
         const newSP104 = 
         {
             productID: 'WDr002',
-            productName: 'Đầm Nữ Mini Sát Nách Cổ Thuyền',
+            productName: 'Đầm Mini Sát Nách Cổ Thuyền',
             description: 'Thiết kế cổ có đường xẻ',
             material: '65% Poly / 33% Viscose / 2% SP',
             price: 650000,
@@ -432,6 +432,174 @@ async function insertSP()
         };
         const Sp105 = await Sp.create(newSP105);
         console.log('SP105 created: ', Sp105.toJSON());
+        //Product 106: https://routine.vn/ao-polo-nu-tay-bo-cotton-pique-tron-form-fitted-10s23polw002.html
+        const newSP106 = 
+        {
+            productID: 'WTS001',
+            productName: 'Áo Polo Tay Bo Trơn Form Fitted',
+            description: '',
+            material: 'Cotton Pique',
+            price: 392000,
+            rate: 4.1,
+            discount: 0,
+            categoryProductID: 'WTS'
+        };
+        const Sp106 = await Sp.create(newSP106);
+        console.log('SP106 created: ', Sp106.toJSON());
+        //Product 107: https://routine.vn/ao-thun-nu-tay-ngan-co-tron-ke-soc-ngang-form-fitted-10s23tssw012.html
+        const newSP107 = 
+        {
+            productID: 'WTS002',
+            productName: 'Áo Tay Ngắn Cổ Tròn Kẻ Sọc Ngang Form Fitted',
+            description: '',
+            material: 'Cotton',
+            price: 299000,
+            rate: 4.3,
+            discount: 2,
+            categoryProductID: 'WTS'
+        };
+        const Sp107 = await Sp.create(newSP107);
+        console.log('SP107 created: ', Sp107.toJSON());
+        //Product 108: https://routine.vn/ao-thun-tay-ngan-in-regular-crop-10s22tssw002.html
+        const newSP108 = 
+        {
+            productID: 'WTS003',
+            productName: 'Áo Croptop Tay Ngắn In Chữ Form Regular Crop',
+            description: 'Áo có các tone màu basic vừa không kén da người mặc lại vừa dễ phối đồ',
+            material: 'Cotton',
+            price: 320000,
+            rate: 4.8,
+            discount: 53,
+            categoryProductID: 'WTS'
+        };
+        const Sp108 = await Sp.create(newSP108);
+        console.log('SP108 created: ', Sp108.toJSON());
+        //Product 109: https://routine.vn/ao-so-mi-unisex-ke-soc-caro-form-loose-10f23shlu001.html
+        const newSP109 = 
+        {
+            productID: 'WS001',
+            productName: 'Áo Sơ Mi Nữ Tay Dài Trơn Nhún Nẹp Form Regular',
+            description: '',
+            material: 'Polyester',
+            price: 520000,
+            rate: 4.0,
+            discount: 0,
+            categoryProductID: 'WS'
+        };
+        const Sp109 = await Sp.create(newSP109);
+        console.log('SP109 created: ', Sp109.toJSON());
+        //Product 110: https://routine.vn/ao-so-mi-nu-tay-dai-linen-tui-theu-form-regular-crop-10s23shlw010.html
+        const newSP110 = 
+        {
+            productID: 'WS002',
+            productName: 'Áo Sơ Mi Nữ Tay Dài Linen Túi Thêu Form Regular Crop',
+            description: 'Được làm từ chất vải lanh thoáng mát bật nhất và có độ mỏng nhẹ, form dáng áo có động rộng, suông',
+            material: 'Linen',
+            price: 549000,
+            rate: 5,
+            discount: 35,
+            categoryProductID: 'WS'
+        };
+        const Sp110 = await Sp.create(newSP110);
+        console.log('SP110 created: ', Sp110.toJSON());
+        //Product 111: https://routine.vn/ao-so-mi-nu-tay-dai-tron-xe-sau-form-loose-10f22shlw010.html
+        const newSP111 = 
+        {
+            productID: 'WS003',
+            productName: 'Áo Sơ Mi Nữ Viscose Tay Dài Trơn Xẻ Sau Form Loose',
+            description: 'Form áo có phần thân và tay áo suông và không ôm sát cơ thể',
+            material: '55% Viscose / 45% Poly',
+            price: 529000,
+            rate: 5,
+            discount: 53,
+            categoryProductID: 'WS'
+        };
+        const Sp111 = await Sp.create(newSP111);
+        console.log('SP111 created: ', Sp111.toJSON());
+        //Product 112: https://routine.vn/quan-jean-lien-suon-lai-tua-loose-10f23dpaw021.html
+        const newSP112 = 
+        {
+            productID: 'WJ001',
+            productName: 'Quần Jean Liền Sườn Lai Tưa Form Loose',
+            description: '',
+            material: 'Cotton',
+            price: 649000,
+            rate: 3.9,
+            discount: 2,
+            categoryProductID: 'WJ'
+        };
+        const Sp112 = await Sp.create(newSP112);
+        console.log('SP112 created: ', Sp112.toJSON());
+        //Product 113: https://routine.vn/quan-jean-nu-tron-phoi-lai-form-straight-10s23dpaw013.html
+        const newSP113 = 
+        {
+            productID: 'WJ002',
+            productName: 'Quần Jean Nữ Trơn Phối Lai Form Straight',
+            description: 'Form quần classic suông từ trên xuống, eo và mông được may hơi ôm vào người, phần ống hơi rộng và xòe nhẹ',
+            material: 'Jeans',
+            price: 579000,
+            rate: 3.8,
+            discount: 2,
+            categoryProductID: 'WJ'
+        };
+        const Sp113 = await Sp.create(newSP113);
+        console.log('SP113 created: ', Sp113.toJSON());
+        //Product 114: https://routine.vn/quan-jean-nu-xe-lai-tron-form-flare-10f22dpaw022.html
+        const newSP114 = 
+        {
+            productID: 'WJ003',
+            productName: 'Quần Jean Nữ Xẻ Lai Trơn Form Flare',
+            description: 'Mang form rộng rãi, thoải mái, ống quần suông thẳng, lai ống quần được thiết kế xẻ độc đáo, phá cách',
+            material: 'Jeans',
+            price: 549000,
+            rate: 4.3,
+            discount: 35,
+            categoryProductID: 'WJ'
+        };
+        const Sp114 = await Sp.create(newSP114);
+        console.log('SP114 created: ', Sp114.toJSON());
+        //Product 115: https://yody.vn/quan-short-kaki-nu-tui-nap
+        const newSP115 = 
+        {
+            productID: 'WSP001',
+            productName: 'Quần Short Kaki Nữ Túi Nắp',
+            description: 'Chất vải mềm, thấm hút mồ hôi cùng đương mai vô cùng chắc chắn',
+            material: '97% Cotton / 3% Spandex',
+            price: 349000,
+            rate: 5,
+            discount: 10,
+            categoryProductID: 'WSP'
+        };
+        const Sp115 = await Sp.create(newSP115);
+        console.log('SP115 created: ', Sp115.toJSON());
+        //Product 116: https://routine.vn/quan-short-nu-ngan-relax-10f22pshw001.html
+        const newSP116 = 
+        {
+            productID: 'WSP002',
+            productName: 'Quần Short Nữ Ngắn Form Relax',
+            description: 'Được may theo kiểu dáng ôm vừa, ống suông và được là từ chất liệu tự nhiên có đặc tính thoáng mát, chống mùi và thấm hút mồ hôi tốt.',
+            material: 'Polyester',
+            price: 380000,
+            rate: 4.4,
+            discount: 35,
+            categoryProductID: 'WSP'
+        };
+        const Sp116 = await Sp.create(newSP116);
+        console.log('SP116 created: ', Sp116.toJSON());
+        //Product 117: https://routine.vn/quan-short-nu-lung-cao-tron-form-panama-10s23pshw001.html
+        const newSP117 = 
+        {
+            productID: 'WSP003',
+            productName: 'Quần Short Nữ Lưng Cao Trơn Xếp Ly Form Panama',
+            description: '',
+            material: 'Polyester',
+            price: 422000,
+            rate: 3.5,
+            discount: 0,
+            categoryProductID: 'WSP'
+        };
+        const Sp117 = await Sp.create(newSP117);
+        console.log('SP117 created: ', Sp117.toJSON());
     }
     catch(error)
     {

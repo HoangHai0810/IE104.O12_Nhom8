@@ -189,6 +189,7 @@ async function insertColor()
         };
         const Color22 = await Color.create(newColor22);
         console.log('Color22 created: ', Color22.toJSON());
+        /*Nam Part 2:*/
         //Product 22: https://routine.vn/ao-gile-len-nam-det-kim-sat-nach-acrylic-co-v-form-regular-10f23kni007.html (Beige, Black, Grey)
         //Product 23: https://routine.vn/ao-tanktop-nam-co-tron-soc-gan-tron-form-regular-10s23kni006.html (White, Blue, Grey)
         //Product 24: https://routine.vn/ao-thun-tanktop-nam-sat-nach-ke-soc-gan-tron-form-slim-10s23tto001.html (Beige, Black, White)
@@ -204,6 +205,55 @@ async function insertColor()
         };
         const Color23 = await Color.create(newColor23);
         console.log('Color23 created: ', Color23.toJSON());
+        //Product 30: https://yame.vn/shop/quan-lot-tam-giac/quan-lot-hip-brief-y2010-bamboo-m9-combo-3-0021547?c=Đen (Black)
+        /*Nữ Part 2:*/
+        //Product 31: https://routine.vn/ao-polo-nu-tay-bo-cotton-pique-tron-form-fitted-10s23polw002.html (White, Dark Blue)
+        const newColor24 =
+        {
+            colorID: '#FFB6C1',
+            colorName: 'Light Pink' ,
+        };
+        const Color24 = await Color.create(newColor24);
+        console.log('Color24 created: ', Color24.toJSON());
+        //Product 32: https://routine.vn/ao-thun-nu-tay-ngan-co-tron-ke-soc-ngang-form-fitted-10s23tssw012.html (Orange, Light Pink)
+        const newColor25 =
+        {
+            colorID: '#8FBC8F',
+            colorName: 'Dark Sea Green' ,
+        };
+        const Color25 = await Color.create(newColor25);
+        console.log('Color25 created: ', Color25.toJSON());
+        //Product 33: https://routine.vn/ao-thun-tay-ngan-in-regular-crop-10s22tssw002.html (Black, White)
+        const newColor26 =
+        {
+            colorID: '#FFC0CB',
+            colorName: 'Pink' ,
+        };
+        const Color26 = await Color.create(newColor26);
+        console.log('Color26 created: ', Color26.toJSON());
+        //Product 34: https://routine.vn/ao-so-mi-unisex-ke-soc-caro-form-loose-10f23shlu001.html (Black, Brown)
+        //Product 35: https://routine.vn/ao-so-mi-nu-tay-dai-linen-tui-theu-form-regular-crop-10s23shlw010.html (Yellow Green)
+        const newColor27 =
+        {
+            colorID: '#F8F8FF',
+            colorName: 'Ghost White' ,
+        };
+        const Color27 = await Color.create(newColor27);
+        console.log('Color27 created: ', Color27.toJSON());
+        //Product 36: https://routine.vn/ao-so-mi-nu-tay-dai-tron-xe-sau-form-loose-10f22shlw010.html (Black, White, Yellow Green)
+        //Product 37: https://routine.vn/quan-jean-lien-suon-lai-tua-loose-10f23dpaw021.html (Beige)
+        //Product 38: https://routine.vn/quan-jean-nu-tron-phoi-lai-form-straight-10s23dpaw013.html (Dark Blue)
+        //Product 39: https://routine.vn/quan-jean-nu-xe-lai-tron-form-flare-10f22dpaw022.html (Grey)
+        //Product 40: https://yody.vn/quan-short-kaki-nu-tui-nap (Rosy Brown)
+        //Product 41: https://routine.vn/quan-short-nu-ngan-relax-10f22pshw001.html (Black, Yellow Green, Light Pink)
+        const newColor28 =
+        {
+            colorID: '#F5F5F5',
+            colorName: 'White Smoke' ,
+        };
+        const Color28 = await Color.create(newColor28);
+        console.log('Color28 created: ', Color28.toJSON());
+        //Product 42: https://routine.vn/quan-short-nu-lung-cao-tron-form-panama-10s23pshw001.html (Yellow Green, White)
     }
     catch(error)
     {
