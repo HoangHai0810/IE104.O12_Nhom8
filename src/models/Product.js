@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         price: DataTypes.BIGINT,
         rate: DataTypes.FLOAT,
         discount: DataTypes.TINYINT,
-        // categoryProductID: DataTypes.STRING(10)
+        categoryProductID: DataTypes.STRING(10)
     }, {
         sequelize,
         modelName: 'Product',

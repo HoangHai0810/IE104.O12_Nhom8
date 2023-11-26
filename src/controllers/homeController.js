@@ -55,7 +55,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/menAoThun') {
-            let menAoThun = await CRUDSevice.getAllMenAoThun({
+            let menAoThun = await CRUDSevice.getAllMenTShirts({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -63,8 +63,8 @@ let getListProduct = async (req, res) => {
                     dataProduct: (menAoThun),
                 })
         }
-        else if (req.url == '/menSoMi') {
-            let menSoMi = await CRUDSevice.getAllMenSoMi({
+        else if (req.url == '/menAoSoMi') {
+            let menSoMi = await CRUDSevice.getAllMenSweatShirt({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -72,8 +72,9 @@ let getListProduct = async (req, res) => {
                     dataProduct: (menSoMi),
                 })
         }
+        //SoMi -> Sweat Shirt
         else if (req.url == '/menAoJean') {
-            let menAoJean = await CRUDSevice.getAllMenAoJean({
+            let menAoJean = await CRUDSevice.getAllMenTankTop({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -81,8 +82,9 @@ let getListProduct = async (req, res) => {
                     dataProduct: (menAoJean),
                 })
         }
+        //AoJean -> TankTop
         else if (req.url == '/menAoKhoac') {
-            let menAoKhoac = await CRUDSevice.getAllMenAoKhoac({
+            let menAoKhoac = await CRUDSevice.getAllMenJacket({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -100,7 +102,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/menQuanDui') {
-            let menQuanDui = await CRUDSevice.getAllMenQuanDui({
+            let menQuanDui = await CRUDSevice.getAllMenShortPants({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -109,7 +111,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/menQuanThun') {
-            let menQuanThun = await CRUDSevice.getAllMenQuanThun({
+            let menQuanThun = await CRUDSevice.getAllMenKhaki({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -118,7 +120,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/menQuanJean') {
-            let menQuanJean = await CRUDSevice.getAllMenQuanJean({
+            let menQuanJean = await CRUDSevice.getAllMenJeans({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -127,7 +129,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/menQuanTay') {
-            let menQuanTay = await CRUDSevice.getAllMenQuanTay({
+            let menQuanTay = await CRUDSevice.getAllMenUnderwear({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -154,7 +156,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/womenAoThun') {
-            let womenAoThun = await CRUDSevice.getAllWomenAoThun({
+            let womenAoThun = await CRUDSevice.getAllWomenTShirt({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -162,8 +164,8 @@ let getListProduct = async (req, res) => {
                     dataProduct: (womenAoThun),
                 })
         }
-        else if (req.url == '/womenSoMi') {
-            let womenSoMi = await CRUDSevice.getAllWomenSoMi({
+        else if (req.url == '/womenAoSoMi') {
+            let womenSoMi = await CRUDSevice.getAllWomenShirt({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -172,7 +174,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/womenAoJean') {
-            let womenAoJean = await CRUDSevice.getAllWomenAoJean({
+            let womenAoJean = await CRUDSevice.getAllWomenDresses({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -181,7 +183,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/womenAoKhoac') {
-            let womenAoKhoac = await CRUDSevice.getAllWomenAoKhoac({
+            let womenAoKhoac = await CRUDSevice.getAllWomenJackets({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -199,7 +201,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/womenQuanDui') {
-            let womenQuanDui = await CRUDSevice.getAllWomenQuanDui({
+            let womenQuanDui = await CRUDSevice.getAllWomenPants({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -208,7 +210,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/womenQuanThun') {
-            let womenQuanThun = await CRUDSevice.getAllWomenQuanThun({
+            let womenQuanThun = await CRUDSevice.getAllWomenShorts({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -217,7 +219,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/womenQuanJean') {
-            let womenQuanJean = await CRUDSevice.getAllWomenQuanJean({
+            let womenQuanJean = await CRUDSevice.getAllWomenJeans({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -226,7 +228,7 @@ let getListProduct = async (req, res) => {
                 })
         }
         else if (req.url == '/womenQuanTay') {
-            let womenQuanTay = await CRUDSevice.getAllWomenQuanTay({
+            let womenQuanTay = await CRUDSevice.getAllWomenAuthPants({
                 raw: true,
             });
             return res.render('list_product.ejs',
@@ -234,13 +236,14 @@ let getListProduct = async (req, res) => {
                     dataProduct: (womenQuanTay),
                 })
         }
-        else if (req.url == '/womenQuanTay') {
-            let womenQuanTay = await CRUDSevice.getAllWomenQuanTay({
+        //////////////////////
+        else if (req.url == '/sale') {
+            let discounted = await CRUDSevice.getAllDiscounted({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenQuanTay),
+                    dataProduct: (discounted),
                 })
         }
         else if (req.url == '/hotitem') {
