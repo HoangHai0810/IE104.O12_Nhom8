@@ -724,6 +724,83 @@ async function insertPr_Cl()
         };
         const Pr_Cl135 = await Pr_Cl.create(newPr_Cl135);
         console.log('Pr_Cl135 created: ', Pr_Cl135.toJSON());
+        const newPr_Cl136 = 
+        {
+            productID: 'WP001',
+            colorID: '#A52A2A',
+        };
+        const Pr_Cl136 = await Pr_Cl.create(newPr_Cl136);
+        console.log('Pr_Cl136 created: ', Pr_Cl136.toJSON());
+        const newPr_Cl137 = 
+        {
+            productID: 'WP002',
+            colorID: '#000000',
+        };
+        const Pr_Cl137 = await Pr_Cl.create(newPr_Cl137);
+        console.log('Pr_Cl137 created: ', Pr_Cl137.toJSON());
+        const newPr_Cl138 = 
+        {
+            productID: 'WP002',
+            colorID: '#D3D3D3',
+        };
+        const Pr_Cl138 = await Pr_Cl.create(newPr_Cl138);
+        console.log('Pr_Cl138 created: ', Pr_Cl138.toJSON());
+        const newPr_Cl139 = 
+        {
+            productID: 'WP003',
+            colorID: '#9ACD32',
+        };
+        const Pr_Cl139 = await Pr_Cl.create(newPr_Cl139);
+        console.log('Pr_Cl139 created: ', Pr_Cl139.toJSON());
+        const newPr_Cl140 = 
+        {
+            productID: 'WAP001',
+            colorID: '#000000',
+        };
+        const Pr_Cl140 = await Pr_Cl.create(newPr_Cl140);
+        console.log('Pr_Cl140 created: ', Pr_Cl140.toJSON());
+        const newPr_Cl141 = 
+        {
+            productID: 'WAP002',
+            colorID: '#000000',
+        };
+        const Pr_Cl141 = await Pr_Cl.create(newPr_Cl141);
+        console.log('Pr_Cl141 created: ', Pr_Cl141.toJSON());
+        const newPr_Cl142 = 
+        {
+            productID: 'WAP002',
+            colorID: '#F5F5DC',
+        };
+        const Pr_Cl142 = await Pr_Cl.create(newPr_Cl142);
+        console.log('Pr_Cl142 created: ', Pr_Cl142.toJSON());
+        const newPr_Cl143 = 
+        {
+            productID: 'WAP002',
+            colorID: '#A52A2A',
+        };
+        const Pr_Cl143 = await Pr_Cl.create(newPr_Cl143);
+        console.log('Pr_Cl143 created: ', Pr_Cl143.toJSON());
+        const newPr_Cl144 = 
+        {
+            productID: 'WAP002',
+            colorID: '#A9A9A9',
+        };
+        const Pr_Cl144 = await Pr_Cl.create(newPr_Cl144);
+        console.log('Pr_Cl144 created: ', Pr_Cl144.toJSON());
+        const newPr_Cl145 = 
+        {
+            productID: 'WAP002',
+            colorID: '#9370D8',
+        };
+        const Pr_Cl145 = await Pr_Cl.create(newPr_Cl145);
+        console.log('Pr_Cl145 created: ', Pr_Cl145.toJSON());
+        const newPr_Cl146 = 
+        {
+            productID: 'WAP003',
+            colorID: '#F5F5DC',
+        };
+        const Pr_Cl146 = await Pr_Cl.create(newPr_Cl146);
+        console.log('Pr_Cl146 created: ', Pr_Cl146.toJSON());
 
 
 

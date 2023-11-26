@@ -125,6 +125,23 @@ async function insertCP()
         };
         const Cp15 = await CP.create(newCP15);
         console.log('Cp15 created: ', Cp15.toJSON());
+        const newCP16 = 
+        {
+            categoryProductID: 'WP',
+            type: 'Pants',
+            gender: 'Woman',
+        };
+        const Cp16 = await CP.create(newCP16);
+        console.log('Cp16 created: ', Cp16.toJSON());
+        const newCP17 =
+        {
+            categoryProductID: 'WAP',
+            type: 'Auth Pants',
+            gender: 'Woman',
+        };
+        const Cp17 = await CP.create(newCP17);
+        console.log('Cp17 created: ', Cp17.toJSON());
+
         
     }
     catch(error)

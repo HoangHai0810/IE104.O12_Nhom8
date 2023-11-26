@@ -600,6 +600,92 @@ async function insertSP()
         };
         const Sp117 = await Sp.create(newSP117);
         console.log('SP117 created: ', Sp117.toJSON());
+        //Product 118: https://routine.vn/quan-vai-nu-ong-rong-xep-ly-form-relax-10f23pfow003.html
+        const newSP118 = 
+        {
+            productID: 'WP001',
+            productName: 'Quần Vải Nữ Ống Rộng Sọc Dài Xếp Ly Trơn Form Relax',
+            description: 'Quần có đường may xếp ly ở lưng',
+            material: 'Polyester',
+            price: 638000,
+            rate: 3.8,
+            discount: 0,
+            categoryProductID: 'WP'
+        };
+        const Sp118 = await Sp.create(newSP118);
+        console.log('SP118 created: ', Sp118.toJSON());
+        //Product 119: https://routine.vn/quan-dai-tui-mo-xep-ly-carrot-10f22pfow003.html
+        const newSP119 = 
+        {
+            productID: 'WP002',
+            productName: 'Quần Dài Nữ Túi Mổ Xếp Ly Form Carrot',
+            description: 'Quần được may theo form carrot, có phần hông và đùi được may rộng rãi thoải mái, sau đó phần ống sẽ được may ôm dần xuống dưới',
+            material: 'Polyester',
+            price: 489000,
+            rate: 4.2,
+            discount: 35,
+            categoryProductID: 'WP'
+        };
+        const Sp119 = await Sp.create(newSP119);
+        console.log('SP119 created: ', Sp119.toJSON());
+        //Product 120: https://routine.vn/quan-vai-nu-ong-rong-ke-caro-xep-ly-nhun-truoc-form-wide-leg-10s23pfow020.html
+        const newSP120 = 
+        {
+            productID: 'WP003',
+            productName: 'Quần Vải Nữ Ống Rộng Kẻ Caro Xếp Ly Nhún Trước Form Wide Leg',
+            description: 'Thấm hút mồ hôi tốt, thiết kế họa tiết caro cá tính, phần lưng quần được may xếp ly',
+            material: 'Cotton',
+            price: 549000,
+            rate: 4.5,
+            discount: 35,
+            categoryProductID: 'WP'
+        };
+        const Sp120 = await Sp.create(newSP120);
+        console.log('SP120 created: ', Sp120.toJSON());
+        //Product 121: https://routine.vn/quan-tay-nu-twill-xep-ly-tron-form-regular-10s23pfow024.html
+        const newSP121 = 
+        {
+            productID: 'WAP001',
+            productName: 'Quần Tây Nữ Twill Xếp Ly Trơn Form Regular',
+            description: 'Form quần được thiết kế suông, rộng thẳng đứng từ trên xuống nhưng không quá rộng, được làm từ chất liệu bền, mềm mại và đẹp mắt với các sợi đan chéo từ chất vải Twill',
+            material: 'Twill',
+            price: 599000,
+            rate: 4.8,
+            discount: 35,
+            categoryProductID: 'WAP'
+        };
+        const Sp121 = await Sp.create(newSP121);
+        console.log('SP121 created: ', Sp121.toJSON());
+        //Product 122: https://yody.vn/quan-au-nu-relax-pants-co-gian-4-chieu
+        const newSP122 = 
+        {
+            productID: 'WAP002',
+            productName: 'Quần Âu Nữ Relax Pants Co Giãn 4 Chiều',
+            description: 'Vải hạn chế nhăn, tiết kiệm thời gian chăm sóc, chất liệu co giãn theo cả hai chiều',
+            material: '79% Polyester / 17% Viscose / 4% Spandex',
+            price: 499000,
+            rate: 5,
+            discount: 50,
+            categoryProductID: 'WAP'
+        };
+        const Sp122 = await Sp.create(newSP122);
+        console.log('SP122 created: ', Sp122.toJSON());
+        //Product 123: https://yody.vn/quan-baggy-nu-cong-so-cap-phoi-v
+        const newSP123 = 
+        {
+            productID: 'WAP003',
+            productName: 'Quần Baggy Nữ Công Sở Cạp Phối V Chống Nhăn Thoáng Khí',
+            description: 'Nhẹ, thoáng mát, hạn chế xù lông, rút sợi, không bạc màu',
+            material: 'Tuýt Si',
+            price: 499000,
+            rate: 3.8,
+            discount: 10,
+            categoryProductID: 'WAP'
+        };
+        const Sp123 = await Sp.create(newSP123);
+        console.log('SP123 created: ', Sp123.toJSON());
+
+
     }
     catch(error)
     {

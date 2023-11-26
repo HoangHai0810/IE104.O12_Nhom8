@@ -27,7 +27,7 @@ async function insertFB()
         { 
             feedbackID: 'FB002',
             productID: 'MJK001',
-            userID: 4,
+            userID: 5,
             content: 'Áo khoác chần bông này không chỉ chất lượng mà còn thể hiện sự ấm áp và phong cách. Thiết kế slim fit tôn lên đường cong cơ thể mà không làm giảm sự thoải mái. Tính năng như túi ngoại, mũ trùm đầu và dây rút ở lưng tăng thêm tính tiện ích. Đây là sự kết hợp hoàn hảo giữa chất lượng và phong cách cho mùa đông',
             rate: 4.8,
         };

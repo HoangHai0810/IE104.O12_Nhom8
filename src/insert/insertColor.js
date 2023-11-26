@@ -254,6 +254,26 @@ async function insertColor()
         const Color28 = await Color.create(newColor28);
         console.log('Color28 created: ', Color28.toJSON());
         //Product 42: https://routine.vn/quan-short-nu-lung-cao-tron-form-panama-10s23pshw001.html (Yellow Green, White)
+        //Product 43: https://routine.vn/quan-vai-nu-ong-rong-xep-ly-form-relax-10f23pfow003.html (Brown)
+        //Product 44: https://routine.vn/quan-dai-tui-mo-xep-ly-carrot-10f22pfow003.html (Black, Light Grey)
+        //Product 45: https://routine.vn/quan-vai-nu-ong-rong-ke-caro-xep-ly-nhun-truoc-form-wide-leg-10s23pfow020.html (Yellow Green)
+        //Product 46: https://routine.vn/quan-tay-nu-twill-xep-ly-tron-form-regular-10s23pfow024.html (Black)
+        //Product 47: https://yody.vn/quan-au-nu-relax-pants-co-gian-4-chieu (Brown, Black, Beige)
+        const newColor29 =
+        {
+            colorID: '#9370D8',
+            colorName: 'Medium Purple' ,
+        };
+        const Color29 = await Color.create(newColor29);
+        console.log('Color29 created: ', Color29.toJSON());
+        const newColor30 =
+        {
+            colorID: '#A9A9A9',
+            colorName: 'Dark Grey' ,
+        };
+        const Color30 = await Color.create(newColor30);
+        console.log('Color30 created: ', Color30.toJSON());
+        //Product 48: https://yody.vn/quan-baggy-nu-cong-so-cap-phoi-v (Beige)
     }
     catch(error)
     {
