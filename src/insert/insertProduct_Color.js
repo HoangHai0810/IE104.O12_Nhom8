@@ -417,56 +417,56 @@ async function insertPr_Cl()
         console.log('Pr_Cl57 created: ', Pr_Cl57.toJSON());
         const newPr_Cl58 = 
         {
-            productID: 'MU001',
+            productID: 'MS001',
             colorID: '#0000FF',
         };
         const Pr_Cl58 = await Pr_Cl.create(newPr_Cl58);
         console.log('Pr_Cl58 created: ', Pr_Cl58.toJSON());
         const newPr_Cl59 = 
         {
-            productID: 'MU001',
+            productID: 'MS001',
             colorID: '#808080',
         };
         const Pr_Cl59 = await Pr_Cl.create(newPr_Cl59);
         console.log('Pr_Cl59 created: ', Pr_Cl59.toJSON());
         const newPr_Cl60 = 
         {
-            productID: 'MU001',
+            productID: 'MS001',
             colorID: '#000080',
         };
         const Pr_Cl60 = await Pr_Cl.create(newPr_Cl60);
         console.log('Pr_Cl60 created: ', Pr_Cl60.toJSON());
         const newPr_Cl61 = 
         {
-            productID: 'MU002',
+            productID: 'MS002',
             colorID: '#ADD8E6',
         };
         const Pr_Cl61 = await Pr_Cl.create(newPr_Cl61);
         console.log('Pr_Cl61 created: ', Pr_Cl61.toJSON());
         const newPr_Cl62 = 
         {
-            productID: 'MU002',
+            productID: 'MS002',
             colorID: '#000000',
         };
         const Pr_Cl62 = await Pr_Cl.create(newPr_Cl62);
         console.log('Pr_Cl62 created: ', Pr_Cl62.toJSON());
         const newPr_Cl63 = 
         {
-            productID: 'MU002',
+            productID: 'MS002',
             colorID: '#FFFFFF',
         };
         const Pr_Cl63 = await Pr_Cl.create(newPr_Cl63);
         console.log('Pr_Cl63 created: ', Pr_Cl63.toJSON());
         const newPr_Cl64 = 
         {
-            productID: 'MU002',
+            productID: 'MS002',
             colorID: '#A52A2A',
         };
         const Pr_Cl64 = await Pr_Cl.create(newPr_Cl64);
         console.log('Pr_Cl64 created: ', Pr_Cl64.toJSON());
         const newPr_Cl65 = 
         {
-            productID: 'MU003',
+            productID: 'MS003',
             colorID: '#000000',
         };
         const Pr_Cl65 = await Pr_Cl.create(newPr_Cl65);

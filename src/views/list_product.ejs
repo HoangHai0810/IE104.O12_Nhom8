@@ -353,10 +353,10 @@
             <ul class="products">
                 <% for (let i=0; i<dataProduct.length;i++) { %>
                 <li class="product_item">
-                    <a href="/product?id=<%=dataProduct[i].productID%>">
+                    <a href="/product?productID=<%=dataProduct[i].productID%>">
                         <img class="product_img" src="https://routine.vn/media/catalog/product/cache/d0cf4470db45e8932c69fc124d711a7e/1/0/10f21jac022-whitesand-3_4_1.jpg" alt="">
                     </a>
-                    <a href="/product?id=<%=dataProduct[i].productID%>" class="title_product"><%= dataProduct[i].productName %></a>
+                    <a href="/product?productID=<%=dataProduct[i].productID%>" class="title_product"><%= dataProduct[i].productName %></a>
                     <div class="price">
                         <span class="price_discount"><%=dataProduct[i].price%></span>
                     </div>

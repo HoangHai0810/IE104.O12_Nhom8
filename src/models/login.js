@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   Login.init({
     userID: DataTypes.INTEGER,
-    role: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Login',

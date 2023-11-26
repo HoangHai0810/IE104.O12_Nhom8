@@ -247,18 +247,29 @@
                             <a href="/account" title="My Account">
                                 <i class="fa-solid fa-user"></i>
                                 <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                    <% if (login.length == 0) { %>
                                     <li>
                                         <a href="/register">Đăng kí</a>
                                     </li>
                                     <li>
                                         <a href="/login">Đăng nhập</a>
                                     </li>
+                                    <% }  else { %>
+                                    <li>
+                                        <a href="/logout">Đăng xuất</a>
+                                    </li>
+                                    <% } %>
                                     <li>
                                         <a href="/cart" title="Shopping Cart">Giỏ hàng</a>
                                     </li>
                                     <li>
                                         <a href="/checkout" title="Checkout">Thanh toán</a>
                                     </li>
+                                    <% if (login.length > 0 && login[0].role === 'Employee') { %>
+                                    <li>
+                                        <a href="/upload" title="Checkout">Thêm sản phẩm</a>
+                                    </li>
+                                    <% } %>
                                 </ul>
                         </div>
                         <div class="header-shoppingcart">

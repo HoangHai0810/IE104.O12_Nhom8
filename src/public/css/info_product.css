@@ -82,3 +82,9 @@
   .details  .btn_buy:hover {
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
   }
+
+  .rows p {
+    font-weight: bold;
+    color: #000;
+    font-size: 20;
+  }

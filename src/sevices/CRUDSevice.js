@@ -11,10 +11,73 @@ let createNewUser = async(data) => {
         try{
             await db.Users.create({
                 userName: data.userName,
-                userPassword: data.password,
-                // role: data.role,
+                userPassword: data.userPassword,
+                role: 'Guest',
             })
             reslove('Added user!')
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+
+let createNewProduct = async(data) => {
+    return new Promise(async (reslove,reject) => {
+        try{
+            let product = await db.Product.findAll();
+            console.log(product.length)
+            var productID = data.categoryProductID + '0' + (product.length + 1).toString();
+
+            await db.Product.create({
+                productID: productID,
+                productName: data.productName,
+                description: data.description,
+                material: data.material,
+                categoryProductID: data.categoryProductID,
+                price: data.price,
+                rate: 0,
+                discount: 0,
+            })
+
+            for (let i=0; i< data.sizeID.length; i++)
+            {
+                let size = ''
+                if (productID[0] === 'M')
+                    if (data.sizeID[i] != 'XS')
+                        size = data.sizeID[i] + '01';
+                else
+                    if (data.sizeID[i] != 'XL')
+                        size = data.sizeID[i] + '02';
+                if (size != '')
+                {
+                    await db.Product_Size.create({
+                        sizeID: size,
+                        productID: productID
+                    })
+                }
+            }
+            for (let i=0 ; i<data.colorID.length; i++)
+            {
+                let Color = db.Color.findAll()
+                let checkCl = true;
+                for (let j=0;j<Color.length;j++)
+                {
+                    if (Color.colorID == data.colorID[i])
+                        checkCl = false
+                }
+                if (checkCl)
+                {
+                    await db.Color.create({
+                        colorID: data.colorID[i],
+                    })
+                }
+                await db.Product_Color.create({
+                    colorID: data.colorID[i],
+                    productID: productID
+                })
+            }
+            reslove('Added Product!')
         } catch (e) {
             reject(e);
         }
@@ -348,25 +411,6 @@ let getAllUser = () => {
     })
 }
 
-let getAllCode = (userId) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let allcode = await db.Allcode.findOne({
-                where: {
-                    userId: userId,
-                }
-            })
-            if (allcode) {
-                reslove(allcode);
-            }
-            else {
-                reslove();
-            }
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
 
 let getLogin = () => {
     return new Promise(async (reslove, reject) => {
@@ -468,12 +512,12 @@ let getAllKetQua = () => {
     });
 }
 
-let getUserInfoById = (userId) => {
+let getUserInfoById = (userID) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({
+            let user = await db.Users.findOne({
                 where: {
-                    id: userId,
+                    userID: userID,
                 }
             })
             if (user) {
@@ -521,7 +565,7 @@ let editUser = async(data) => {
 let getProductInfoByProductId = (productID) => {
     return new Promise(async(reslove, reject) => {
         try {
-            let product = await db.Products.findOne({
+            let product = await db.Product.findOne({
                 where: {
                     productID: productID,
                 }
@@ -1228,6 +1272,7 @@ module.exports = {
     createUser: createUser,
     createCart: createCart,
     createOrder: createOrder,
+    createNewProduct: createNewProduct,
 
     editUser: editUser,
     editCustomer: editCustomer,
@@ -1237,7 +1282,7 @@ module.exports = {
 
     getLogin: getLogin,
 
-    // getUserInfoById: getUserInfoById,
+    getUserInfoById: getUserInfoById,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
     // createTeam: createTeam,
@@ -1254,7 +1299,7 @@ module.exports = {
     // getAllThamSo: getAllThamSo,
     createNewLogin: createNewLogin,
     // getAllCode: getAllCode,
-    // logoutCRUD: logoutCRUD,
+    logoutCRUD: logoutCRUD,
     // getCauThuByMaCauThu: getCauThuByMaCauThu,
     // editCauThu: editCauThu,
     // deleteCauThuById: deleteCauThuById,

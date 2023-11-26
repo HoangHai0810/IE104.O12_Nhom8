@@ -44,8 +44,11 @@ let initWebRoutes = (app) => {
     router.get('/cart', homeController.getCart);
     router.get('/upload', homeController.getUpload);
     router.post('/upavatar', homeController.uploadAvatar);
+    router.post('/uploadPhoto', homeController.uploadPhoto)
     router.post('/signup', homeController.postSignUp);
-    router.post('/login', homeController.loginCRUD)
+    router.post('/login', homeController.loginCRUD);
+    router.get('/logout',homeController.logout);
+    router.post('/uploadProduct', homeController.pushProduct)
     return app.use("/", router);
 }
 

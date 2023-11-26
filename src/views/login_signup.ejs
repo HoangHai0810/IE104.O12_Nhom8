@@ -357,7 +357,7 @@
                 </div>
                 <div id="userNameInfo"></div>
                 <div class='inputBox'>
-                    <input type='password' name="userPassword" id="password" placeholder='Mật khẩu'>
+                    <input type='password' name="userPassword" id="userPassword" placeholder='Mật khẩu'>
                 </div>
                 <div id="passwordInfo"></div>
                 <div class='inputBox'>
@@ -445,9 +445,9 @@
                         }
                     });
 
-                    var checkPasswordInput = document.getElementById("password");
+                    var checkPasswordInput = document.getElementById("userPassword");
                     checkPasswordInput.addEventListener('input', () => {
-                        var passwordInput = document.getElementById("password").value;
+                        var passwordInput = document.getElementById("userPassword").value;
                         var isValidPassword1 = checkPassword1(passwordInput);
                         var isValidPassword2 = checkPassword2(passwordInput);
                         var isValidPassword3 = checkPassword3(passwordInput);
@@ -479,7 +479,7 @@
                     });
                     var checkRePasswordInput = document.getElementById("rePassword");
                     checkRePasswordInput.addEventListener('input', () => {
-                        var passwordInput = document.getElementById("password").value;
+                        var passwordInput = document.getElementById("userPassword").value;
                         var rePasswordInput = document.getElementById("rePassword").value;
                         var rePasswordInfo = document.getElementById('rePasswordInfo')
 
@@ -498,7 +498,7 @@
                     
                     var signUpBtn = document.getElementById('signUpBtn');
                     signUpBtn.addEventListener('click', () => {
-                        var passwordInput = document.getElementById("password").value;
+                        var passwordInput = document.getElementById("userPassword").value;
                         if (checkPassword1(passwordInput) && checkPassword2(passwordInput) && checkPassword3(passwordInput) && checkPassword4(passwordInput) && userNameCheck && checkCfPassword) {
                             replaceTab();
 
@@ -530,8 +530,6 @@
                     }
 
                     function replaceTab() {
-                        console.log('Thi dan')  
-
                         Swal.fire({
                             title: 'Thành công',
                             text: 'Bạn đã đăng kí thành công tài khoản',
