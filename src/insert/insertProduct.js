@@ -118,7 +118,7 @@ async function insertSP()
             material: 'Cotton 250gsm',
             price: 299000,
             rate: 4.4,
-            discount: 0,
+            discount: 10,
             categoryProductID: 'MTS'
         };
         const Sp8 = await Sp.create(newSP8);
@@ -684,8 +684,6 @@ async function insertSP()
         };
         const Sp123 = await Sp.create(newSP123);
         console.log('SP123 created: ', Sp123.toJSON());
-
-
     }
     catch(error)
     {
