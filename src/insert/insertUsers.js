@@ -45,20 +45,28 @@ async function insertUS()
         console.log('US4 created: ', Us4.toJSON());
         const newUS5 = 
         {
-            userName: 'haianhtest',
-            userPassword: '11111111',
-            role: 'Admin'
+            userName: 'haiiyins',
+            userPassword: '03012003',
+            role: 'Guest'
         };
         const Us5 = await US.create(newUS5);
         console.log('US5 created: ', Us5.toJSON());
         const newUS6 = 
         {
+            userName: 'haianhtest',
+            userPassword: '11111111',
+            role: 'Admin'
+        };
+        const Us6 = await US.create(newUS6);
+        console.log('US6 created: ', Us6.toJSON());
+        const newUS7 = 
+        {
             userName: 'builetrongduc',
             userPassword: '11111111',
             role: 'Employee'
         };
-        const Us6 = await US.create(newUS6);
-        console.log('US6 created: ', Us6.toJSON());
+        const Us7 = await US.create(newUS7);
+        console.log('US7 created: ', Us7.toJSON());
     }
     catch(error)
     {
