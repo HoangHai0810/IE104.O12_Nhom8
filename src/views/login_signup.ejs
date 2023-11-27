@@ -12,6 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/login_signup.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/homepage.css">
@@ -278,41 +279,274 @@
             <span></span>
             <span></span>
             <span></span>
+            <form method="post" id="loginUser" action="/login">
+                <input id='userNamelogin' type="hidden" value="" name="userID">
+            </form>
             <form id="signinForm" action="/signin" method="post">
                 <h2>Đăng nhập</h2>
                 <div class="inputBox">
-                    <input type="text" placeholder="Tên đăng nhập">
+                    <input type="text" id="userNameLogIn" placeholder="Tên đăng nhập">
                 </div>
+                <div id="errorUserName"></div>
                 <div class="inputBox">
-                    <input type="password" placeholder="Mật khẩu">
+                    <input type="password" id="passwordLogIn" placeholder="Mật khẩu">
                 </div>
+                <div id="errorPassword"></div>
                 <div class="inputBox">
                     <a href="#">Quên mật khẩu</a>
-                    <a id="signup" href="#">Đăng ký</a>
+                    <a id="signup" href="register">Đăng ký</a>
                 </div>
                 <div class="inputBox">
-                    <input type="submit" value="Đăng nhập">
+                    <input type="button" onclick="checkLogin()" value="Đăng nhập">
                 </div>
             </form>
+            <script>
+                function checkLogin() {
+                    var data = JSON.parse(unescape('<%- dataUserF %>'));
+                    var checkUserName = false;
+                    var userNameLogIn = document.getElementById('userNameLogIn')
+                    userNameLogIn.addEventListener('input', () => {
+                        userNameLogIn.parentNode.classList.remove('error-border');
+                        errorUserName.innerHTML = '';
+                    })
+                    var userNameLogInValue = userNameLogIn.value;
+                    for (let i = 0; i < data.length; i++) {
+                        if (userNameLogInValue === data[i].userName) {
+                            checkUserName = true;
+                        }
+                    }
+                    if (checkUserName) {
+                        var checkPassword = false;
+                        var passwordLogIn = document.getElementById('passwordLogIn')
+                        passwordLogIn.addEventListener('input', () => {
+                            passwordLogIn.parentNode.classList.remove('error-border');
+                            errorPassword.innerHTML = '';
+                        })
+                        var passwordLogInValue = passwordLogIn.value;
+                        for (let i = 0; i < data.length; i++) {
+                            if (passwordLogInValue === data[i].userPassword) {
+                                checkPassword = true;
+                            }
+                        }
+                        if (checkPassword) {
+                            for (let m = 0; m < data.length; m++) {
+                                if (data[m].userName === userNameLogInValue && data[m].userPassword === passwordLogInValue) {
+                                    let form = document.getElementById("loginUser");
+                                    let userNamelogin = document.getElementById('userNamelogin');
+                                    userNamelogin.value = data[m].userID;
+                                    form.submit();
+                                }
+                            }
+                        } else {
+                            errorPassword.innerHTML = 'Mật khẩu sai!';
+                            errorPassword.style.color = '#e53535';
+                            passwordLogIn.parentNode.classList.add('error-border');
+                        }
+                    } else {
+                        errorUserName.innerHTML = 'Tên đăng nhập không tồn tại!';
+                        errorUserName.style.color = '#e53535';
+                        userNameLogIn.parentNode.classList.add('error-border');
+                    }
+                }
+            </script>
 
             <form id='signupForm' action='/signup' method='post'>
                 <h2>Đăng kí</h2>
                 <div class='inputBox'>
-                    <input type='text' name="userName" placeholder='Tên đăng nhập'>
+                    <input type='text' name="userName" id="userName" placeholder='Tên đăng nhập'>
                 </div>
+                <div id="userNameInfo"></div>
                 <div class='inputBox'>
-                    <input type='password' name="password" placeholder='Mật khẩu'>
+                    <input type='password' name="userPassword" id="password" placeholder='Mật khẩu'>
                 </div>
+                <div id="passwordInfo"></div>
                 <div class='inputBox'>
-                    <input type='password' name="re-password" placeholder='Xác nhận mật khẩu'>
+                    <input type='password' name="re-password" id="rePassword" placeholder='Xác nhận mật khẩu'>
                 </div>
+                <div id="rePasswordInfo"></div>
                 <div class='inputBox'>
                     <a href='#'>Đã có tài khoản?</a>
-                    <a id='signin' href='#'>Đăng nhập</a>
+                    <a id='signin' href='/login'>Đăng nhập</a>
                 </div>
                 <div class='inputBox'>
-                    <input type='submit' value='Đăng ký'>
+                    <input type='button' id="signUpBtn" value='Đăng ký'>
                 </div>
+                <script>
+                    function checkPassword1(password) {
+                        // Kiểm tra độ dài tối thiểu 8 kí tự
+                        if (password.length < 8) {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    function checkPassword2(password) {
+                        // Kiểm tra kí tự đặc biệt
+                        var specialChars = /[!@#$%^&*(),.?":{}|<>`~;']/;
+                        if (!specialChars.test(password)) {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    function checkPassword3(password) {
+                        // Kiểm tra kí tự in hoa
+                        var uppercaseChars = /[A-Z]/;
+                        if (!uppercaseChars.test(password)) {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    function checkPassword4(password) {
+                        var numberChars = /[0-9]/;
+                        if (!numberChars.test(password)) {
+                            return false;
+                        }
+                        return true;
+                    }
+                    var data = JSON.parse(unescape('<%- dataUserF %>'));
+                    var userNameCheck = false;
+                    var checkCfPassword = false;
+                    var checkUserNameInput = document.getElementById("userName");
+                    checkUserNameInput.addEventListener('input', () => {
+                        var userNameInput = document.getElementById("userName").value;
+                        var userNameInfo = document.getElementById('userNameInfo');
+                        if (checkPassword2(userNameInput)) {
+                            userNameInfo.innerHTML = 'Tên đăng nhập có chứa kí tự đặc biệt!!!';
+                            userNameInfo.style.color = '#e53535';
+                            userNameCheck = false;
+                        } else {
+                            if (userNameInput.length < 6) {
+                                userNameInfo.innerHTML = 'Tên đăng nhập dưới 6 kí tự';
+                                userNameInfo.style.color = '#e53535';
+                                userNameCheck = false;
+                            } else {
+                                userNameCheck = true;
+                                userNameInfo.style.color = '#08e104';
+
+                                for (let i = 0; i < data.length; i++) {
+                                    if (data[i].userName === userNameInput) {
+                                        userNameInfo.innerHTML = 'Tên đăng nhập đã tồn tại!';
+                                        userNameInfo.style.color = '#e53535';
+                                        userNameCheck = false;
+                                        break;
+                                    }
+                                }
+                                if (userNameCheck)
+                                {
+                                    userNameInfo.innerHTML = 'Tên đăng nhập hợp lệ';
+                                    userNameInfo.style.color = '#08e104';
+                                }
+                            }
+                        }
+                        if (userNameCheck) {
+                            checkUserNameInput.parentNode.classList.remove('error-border');
+                        }
+                    });
+
+                    var checkPasswordInput = document.getElementById("password");
+                    checkPasswordInput.addEventListener('input', () => {
+                        var passwordInput = document.getElementById("password").value;
+                        var isValidPassword1 = checkPassword1(passwordInput);
+                        var isValidPassword2 = checkPassword2(passwordInput);
+                        var isValidPassword3 = checkPassword3(passwordInput);
+                        var isValidPassword4 = checkPassword4(passwordInput);
+
+                        if (!isValidPassword1) {
+                            passwordInfo.innerHTML = 'Mật khẩu dưới 8 ký tự!!';
+                            passwordInfo.style.color = '#e53535';
+                        } else if (!isValidPassword2) {
+                            passwordInfo.innerHTML = 'Mật khẩu chưa có kí tự đặc biệt!!';
+                            passwordInfo.style.color = '#e53535';
+                        }
+                        else if (!isValidPassword3) {
+                            passwordInfo.innerHTML = 'Mật khẩu chưa có kí tự in hoa!!';
+                            passwordInfo.style.color = '#e53535';
+                        } else if (!isValidPassword4) {
+                            passwordInfo.innerHTML = 'Mật khẩu chưa có kí tự số!!';
+                            passwordInfo.style.color = '#e53535';
+                        } else {
+                            passwordInfo.innerHTML = 'Mật khẩu hợp lệ';
+                            passwordInfo.style.color = '#08e104';
+                        }
+                        
+
+                        if (isValidPassword1 && isValidPassword2 && isValidPassword3 && isValidPassword4) {
+                            checkPasswordInput.parentNode.classList.remove('error-border');
+                        }
+
+                    });
+                    var checkRePasswordInput = document.getElementById("rePassword");
+                    checkRePasswordInput.addEventListener('input', () => {
+                        var passwordInput = document.getElementById("password").value;
+                        var rePasswordInput = document.getElementById("rePassword").value;
+                        var rePasswordInfo = document.getElementById('rePasswordInfo')
+
+                        if (rePasswordInput != passwordInput)
+                        {
+                            rePasswordInfo.innerHTML = 'Mật khẩu xác thực chưa đúng!!'
+                            rePasswordInfo.style.color = '#e53535';
+                            checkCfPassword = false;
+                        }
+                        else {
+                            rePasswordInfo.innerHTML = 'Mật khẩu xác thực hợp lệ!!'
+                            rePasswordInfo.style.color = '#08e104';
+                            checkCfPassword = true;
+                        }
+                    })
+                    
+                    var signUpBtn = document.getElementById('signUpBtn');
+                    signUpBtn.addEventListener('click', () => {
+                        var passwordInput = document.getElementById("password").value;
+                        if (checkPassword1(passwordInput) && checkPassword2(passwordInput) && checkPassword3(passwordInput) && checkPassword4(passwordInput) && userNameCheck && checkCfPassword) {
+                            replaceTab();
+
+                        } else {
+                            signUpBtn.type = 'button';
+                            signUpBtn.style.backgroundColor = "rgb(165, 181, 28)"
+                            if (!userNameCheck) {
+                                scrollUserName();
+                            } else {
+                                scrollPasswordName();
+                            }
+                        }
+                    })
+
+                    function scrollPasswordName() {
+                        checkPasswordInput.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                        checkPasswordInput.parentNode.classList.add('error-border');
+                    }
+
+                    function scrollUserName() {
+                        checkUserNameInput.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                        checkUserNameInput.parentNode.classList.add('error-border');
+                    }
+
+                    function replaceTab() {
+                        console.log('Thi dan')  
+
+                        Swal.fire({
+                            title: 'Thành công',
+                            text: 'Bạn đã đăng kí thành công tài khoản',
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                signupForm =document.getElementById('signupForm')
+                                signupForm.submit();
+                            }
+                        });
+                    }
+                </script>
             </form>
         </div>
     </div>
@@ -398,6 +632,7 @@
         };
         
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
