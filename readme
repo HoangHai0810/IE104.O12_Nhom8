@@ -5,3 +5,19 @@ npm install --save-dev @babel/core@7.12.10 @babel/preset-env@7.12.10
 npm install --save-dev sequelize-cli@6.2.0
 npm install --save mysql2@2.2.5
 npm install --save sequelize@6.6.2
+npm install --save multer
+
+npx sequelize-cli db:migrate
+//Insert data
+node ./src/insert/insertColor.js
+node ./src/insert/insertCategory_Product.js
+node ./src/insert/insertProduct.js
+node ./src/insert/insertProduct_Color.js
+node ./src/insert/insertSize.js
+node ./src/insert/insertProduct_Size.js
+node ./src/insert/insertVoucher.js
+node ./src/insert/insertUsers.js
+node ./src/insert/insertCustomer.js
+node ./src/insert/insertOrder.js
+node ./src/insert/insertOrderdetail.js
+node ./src/insert/insertFeedbacks.js    

@@ -21,8 +21,8 @@ let getLoginSignUp = async (req, res) => {
         return res.render(
             'login_signup.ejs',
             {
-                dataUserF: dataUser,
-                dataUser: (dataUser),
+                dataUserF: JSON.stringify(dataUser),
+                dataUser: dataUser,
             }
         )
     } catch (e) {
@@ -260,7 +260,9 @@ let getListProduct = async (req, res) => {
 
 let getInfoProduct = async (req, res) => {
     try {
-        return res.render('info_product.ejs')
+        let productID = req.query.productID;
+        let product = await CRUDSevice.getProductInfoByProductId(productID)
+        return res.render('info_product.ejs',{ product: product})
     } catch (e) {
         console.log(e);
     }
@@ -326,6 +328,21 @@ const uploadAvatar = (req, res) => {
         }
     });
 };
+
+let loginCRUD = async(req, res) => {
+    let mes = await CRUDSevice.createNewLogin(req.body);
+    console.log(mes);
+    let login = await CRUDSevice.getLogin({ raw: true});
+    if (login[0].role == 'admin')
+    {   
+        res.redirect('/admin');
+    }
+    else
+    {
+        res.redirect('/')
+    }
+}
+
 let postSignUp = async (req, res) => {
     let message = await CRUDSevice.createNewUser(req.body);
     console.log(message);
@@ -341,5 +358,6 @@ module.exports = {
     getInfoProduct: getInfoProduct,
     uploadAvatar: uploadAvatar,
     postSignUp: postSignUp,
+    loginCRUD: loginCRUD,
     getUpload: getUpload,
 }

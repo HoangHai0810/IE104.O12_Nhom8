@@ -5,13 +5,21 @@ module.exports = {
       orderID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(10)
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       customerID: {
         type: Sequelize.STRING(10),
         references: {
           model: 'Customers',
           key: 'customerID'
+        }
+      },
+      voucherID: {
+        type: Sequelize.STRING(10),
+        references: {
+          model: 'Vouchers',
+          key: 'voucherID'
         }
       },
       status: {
@@ -24,14 +32,10 @@ module.exports = {
         type: Sequelize.TEXT
       },
       totalCost: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
-      voucherID: {
-        type: Sequelize.STRING(10),
-        references: {
-          model: 'Vouchers',
-          key: 'voucherID'
-        }
+      phoneNumber: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

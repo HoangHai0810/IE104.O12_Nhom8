@@ -132,7 +132,7 @@ async function insertPr_Size()
         console.log('Ns17 created: ', Ns17.toJSON());
         const newSize18 = 
         {
-            productID: 'MMJ001',
+            productID: 'MJ001',
             sizeID: 'M01'
         };
         const Ns18 = await Pr_Size.create(newSize18);
@@ -670,7 +670,7 @@ async function insertPr_Size()
         };
         const Ns94 = await Pr_Size.create(newSize94);
         console.log('Ns94 created: ', Ns94.toJSON());
-        /*--------------------------------------------*/
+        /--------------------------------------------/
         const newSize100 = 
         {
             productID: 'WJK001',

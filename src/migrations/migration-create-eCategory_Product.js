@@ -5,7 +5,7 @@ module.exports = {
       categoryProductID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(10)
       },
       gender: {
         type: Sequelize.TEXT,

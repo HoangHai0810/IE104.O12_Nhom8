@@ -201,8 +201,11 @@ form .inputBox input::placeholder {
     color: white;
 }
 
-form .inputBox input[type='submit'] {
+form .inputBox input[type='button'] {
     background-color: rgb(165, 181, 28);
     font-weight: 500;
     cursor: pointer;
+}
+.error-border {
+    border: #cc2530 solid 1px;
 }

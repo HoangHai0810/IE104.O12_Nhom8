@@ -16,7 +16,7 @@ async function insertUS()
             userName: 'Boo DE',
             userPassword: '12345678',
             role: 'Guest'
-          };
+        };
         const Us1 = await US.create(newUS1);
         console.log('US1 created: ', Us1.toJSON());
         const newUS2 = 
