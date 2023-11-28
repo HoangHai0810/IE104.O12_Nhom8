@@ -320,7 +320,7 @@ let getAllMenShirts = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let menShirts = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type in ('T-shirt', 'Jacket', 'Tank Top', 'Sweat Shirt')",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type in ('T-shirt', 'Jacket', 'Tank Top', 'Sweater Shirt')",
                 { type: QueryTypes.SELECT }
             );
             reslove(menShirts);
@@ -358,11 +358,11 @@ let getAllMenJacket = () => {
     });
 }
 
-let getAllMenSweatShirt = () => {
+let getAllMenSweaterShirt = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let menSweatShirt = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Sweat Shirt'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Sweater Shirt'",
                 { type: QueryTypes.SELECT }
             );
             resolve(menSweatShirt);
@@ -387,14 +387,14 @@ let getAllMenTankTop = () => {
     });
 }
 
-let getAllMenKhaki = () => {
+let getAllMenKaki = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menKhaki = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Khaki'",
+            let menKaki = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Kaki'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menKhaki);
+            resolve(menKaki);
         } catch (e) {
             reject(e)
         }
@@ -862,11 +862,11 @@ module.exports = {
     getAllMenShirts: getAllMenShirts,
     getAllMenTShirts: getAllMenTShirts,
     getAllMenJacket: getAllMenJacket,
-    getAllMenSweatShirt: getAllMenSweatShirt,
+    getAllMenSweaterShirt: getAllMenSweaterShirt,
     getAllMenTankTop: getAllMenTankTop,
     
     getAllMenTrousers: getAllMenTrousers,
-    getAllMenKhaki: getAllMenKhaki,
+    getAllMenKaki: getAllMenKaki,
     getAllMenJeans: getAllMenJeans,
     getAllMenShortPants: getAllMenShortPants,
     getAllMenUnderwear: getAllMenUnderwear,

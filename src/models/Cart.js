@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     soLuong: DataTypes.TINYINT,
     thanhTien: DataTypes.BIGINT,
-
+    userID: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Cart',

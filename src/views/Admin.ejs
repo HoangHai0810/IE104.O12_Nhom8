@@ -3,42 +3,285 @@
 
 <head>
     <link rel="icon" href="https://th.bing.com/th/id/R.6cc73b5620060d4ba2def37f6d81625c?rik=iOta38bicn4zJA&pid=ImgRaw&r=0">
-    <meta name="twitter:title" content="Premier League Football News, Fixtures, Scores & Results" />
-    <meta name="keywords" content="Premier League, Football, Soccer, Official" />
-    <meta property="og:type" content="website" />
-    <meta name="description"
-        content="For all the latest Premier League news, visit the official website of the Premier League." />
-    <meta name="twitter:description"
-        content="For all the latest Premier League news, visit the official website of the Premier League." />
-    <meta name="twitter:image"
-        content="https://s3.amazonaws.com/premierleague-static-files/premierleague/pl_icon.png" />
-    <meta property="og:title" content="Premier League Football News, Fixtures, Scores & Results" />
-    <meta property="og:image" content="https://s3.amazonaws.com/premierleague-static-files/premierleague/pl_icon.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
-    <meta name="theme-color" content="#38003C" />
-    <title>Quản lý giải bóng đá vô địch quốc gia</title>
+    <title>Admin Fashion DLATT</title>
 
-    <!-- Designed and built by Pulselive - www.pulselive.com -->
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="./css/badge-abbreviations.css">
-    <link rel="stylesheet" href="./css/screen.css">
-    <!--<![endif]-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
-    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
-    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
-    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
-    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
-    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-    <meta name="apple-itunes-app" content="app-id=1138895159">
+    <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body>
+        <!--Header-->
+        <header>
+            <div class="header-container fixed">
+                <div class="header-main">
+                    <div class="container">
+                        <div class="toggle">
+                            <i class="fa-solid fa-bars menu"></i>
+                            <div id="logo-toggle">
+                                <a href="#">
+                                    <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                        style="width: 200px;">
+                                </a>
+                            </div>
+                            <div class="btn-toggle">
+                                <div id="search-toggle">
+                                    <span class="search_button">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
+                                </div>
+                                <div class="myaccount-toggle">
+                                    <a href="/account" title="My Account">  
+                                        <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div class="header-shoppingcart-toggle">
+                                    <a href="/cart" title="Cart"></a>
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="navbar-nav-toggle">
+                            <li class="top_level dropdown">
+                                <a href="/man">Nam</a>
+                            </li>
+                            <li class="top_level dropdown">
+                                <a href="/woman">Nữ</a>
+                            </li>
+                            <li class="top_level">
+                                <a href="/hotitem">Bán chạy</a>
+                            </li>
+                            <li class="top_level">
+                                <a href="/sale">Giảm giá</a>
+                            </li>
+                            <li class="top_level dropdown">
+                                <a href="/more">Xem thêm</a>
+                            </li>
+                        </ul>
+                        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                        <script>
+                            $(document).ready(function() 
+                                {
+                                    $('.menu').click(function() {
+                                        $('.navbar-nav-toggle').toggleClass('active')
+                                    })
+                                }
+                            )
+                        </script>
+                        <div class="row">
+                            <div class="header-logo">
+                                <div id="logo">
+                                    <a href="/">
+                                        <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                            style="width: 200px;">
+                                    </a>
+                                </div>
+                            </div>
+                            <nav class="nav-container">
+                                <div id="menu" class="main-menu" style="display: block;">
+                                    <ul class="nav navbar-nav">
+                                        <li class="top_level dropdown">
+                                            <a href="/men">Nam</a>
+                                            <div class="dropdown-menu megamenu column3">
+                                                <div class="dropdown-inner">
+                                                    <ul class="list-unstyled childs_1">
+                                                        <li class="dropdown">
+                                                            <a href="/menShirts">Áo</a>
+                                                            <div class="dropdown-menu">
+                                                                <div class="dr  opdown-inner">
+                                                                    <ul class="list-unstyled childs_2">
+                                                                        <li>
+                                                                            <a href="/menSweater">Áo Sweater Nam</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/menTankTop">Áo ba lỗ Nam</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/menTShirt">Áo thun nam</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/menJacket">Áo khoác nam</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="list-unstyled childs_1">
+                                                        <li class="dropdown">
+                                                            <a href="/menTrousers">Quần</a>
+                                                            <div class="dropdown-menu">
+                                                                <div class="dropdown-inner">
+                                                                    <ul class="list-unstyled childs_2">
+                                                                        <li>
+                                                                            <a href="/menKaki">Quần kaki nam</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/menShorts">Quần đùi nam </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/menJean">Quần jean nam</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/menUnderwear">Quần lót nam</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="top_level dropdown">
+                                            <a href="/women">Nữ</a>
+                                            <div class="dropdown-menu megamenu column3">
+                                                <div class="dropdown-inner">
+                                                    <ul class="list-unstyled childs_1">
+                                                        <li class="dropdown">
+                                                            <a href="/womenShirts">Áo</a>
+                                                            <div class="dropdown-menu">
+                                                                <div class="dropdown-inner">
+                                                                    <ul class="list-unstyled childs_2">
+                                                                        <li>
+                                                                            <a href="/womenShirt">Áo thun nữ</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/womenTShirt">Áo sơ mi nữ </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/womenDress">Đầm nữ</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/womenJacket">Áo khoác nữ</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="list-unstyled childs_1">
+                                                        <li class="dropdown">
+                                                            <a href="/womenTrousers">Quần</a>
+                                                            <div class="dropdown-menu">
+                                                                <div class="dropdown-inner">
+                                                                    <ul class="list-unstyled childs_2">
+                                                                        <li>
+                                                                            <a href="/womenPants">Quần dài nữ</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/womenShorts">Quần đùi nữ</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/womenJeans">Quần jean nữ</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="/womenAuthPants">Quần tây nữ</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="top_level">
+                                            <a href="/hotitem">Bán chạy</a>
+                                        </li>
+                                        <li class="top_level">
+                                            <a href="/sale">Giảm giá</a>
+                                        </li>
+                                        <li class="top_level dropdown">
+                                            <a href="/more">Xem thêm</a>
+                                            <div class="dropdown-menu megamenu column1" style="height: 120px">
+                                                <div class="dropdown-inner">
+                                                    <ul class="list-unstyled childs_1">
+                                                        <li>
+                                                            <a href="/shoes">Giày</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/glasses">Kính</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/socks">Tất</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="hats">Mũ</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div id="search" class="input-group">
+                                <span class="search_button"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <div class="search_toggle">
+                                    <div id="searchbox">
+                                        <input type="text" name="search" value="" placeholder="Search Products Here"
+                                            class="form-control input-lg">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-lg">
+                                                Search
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <% if (login.length > 0) { %>
+                            <div class="dropdown myaccount" style="width: 200px">
+                                <a href="/account" title="My Account" style="width: 100%">
+                                    <i class="fa-solid fa-user"></i>
+                                        <span class="userName" ><%=login[0].fullName%></span>
+                            <% } else { %>
+                            <div class="dropdown myaccount">
+                                <a href="/account" title="My Account" style="width: 100%">
+                                    <i class="fa-solid fa-user"></i>
+                                    <% } %>
+                                    <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                        <% if (login.length == 0) { %>
+                                        <li>
+                                            <a href="/register">Đăng kí</a>
+                                        </li>
+                                        <li>
+                                            <a href="/login">Đăng nhập</a>
+                                        </li>
+                                        <% }  else { %>
+                                        <li>
+                                            <a href="/logout">Đăng xuất</a>
+                                        </li>
+                                        <% } %>
+                                        <li>
+                                            <a href="/cart" title="Shopping Cart">Giỏ hàng</a>
+                                        </li>
+                                        <li>
+                                            <a href="/checkout" title="Checkout">Thanh toán</a>
+                                        </li>
+                                        <% if (login.length > 0 && login[0].role === 'Employee') { %>
+                                        <li>
+                                            <a href="/upload" title="Checkout">Thêm sản phẩm</a>
+                                        </li>
+                                        <% } %>
+                                    </ul>
+                            </div>
+                            <div class="header-shoppingcart">
+                                <div id="cart" class="btn-group btn-block">
+                                    <a href="/cart" title="Cart">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
         <!--Các tài khoản đã phân quyền-->
         
         <style>
