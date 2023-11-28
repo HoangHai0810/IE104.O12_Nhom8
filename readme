@@ -20,4 +20,5 @@ node ./src/insert/insertUsers.js
 node ./src/insert/insertCustomer.js
 node ./src/insert/insertOrder.js
 node ./src/insert/insertOrderdetail.js
-node ./src/insert/insertFeedbacks.js    
+node ./src/insert/insertFeedbacks.js  
+  

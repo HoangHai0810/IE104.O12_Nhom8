@@ -5,7 +5,8 @@ module.exports = {
       customerID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(10)
+        autoIncrement: true,
+        type: Sequelize.INTEGER
       },
       fullName: {
         type: Sequelize.TEXT

@@ -5,27 +5,338 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Product</title>
-    <link rel="stylesheet" href="upload_products.css">
+    <link rel="stylesheet" href="./css/upload_product.css">
 </head>
 
 <body>
+    <!--Header-->
+    <header>
+        <div class="header-container fixed">
+            <div class="header-main">
+                <div class="container">
+                    <div class="toggle">
+                        <i class="fa-solid fa-bars menu"></i>
+                        <div id="logo-toggle">
+                            <a href="#">
+                                <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                    style="width: 200px;">
+                            </a>
+                        </div>
+                        <div class="btn-toggle">
+                            <div id="search-toggle">
+                                <span class="search_button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                            </div>
+                            <div class="myaccount-toggle">
+                                <a href="/account" title="My Account">  
+                                    <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="header-shoppingcart-toggle">
+                                <a href="/cart" title="Cart"></a>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav-toggle">
+                        <li class="top_level dropdown">
+                            <a href="/man">Nam</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/woman">Nữ</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/hotitem">Bán chạy</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/sale">Giảm giá</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/more">Xem thêm</a>
+                        </li>
+                    </ul>
+                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                    <script>
+                        $(document).ready(function() 
+                            {
+                                $('.menu').click(function() {
+                                    $('.navbar-nav-toggle').toggleClass('active')
+                                })
+                            }
+                        )
+                    </script>
+                    <div class="row">
+                        <div class="header-logo">
+                            <div id="logo">
+                                <a href="/">
+                                    <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                        style="width: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                        <nav class="nav-container">
+                            <div id="menu" class="main-menu" style="display: block;">
+                                <ul class="nav navbar-nav">
+                                    <li class="top_level dropdown">
+                                        <a href="/men">Nam</a>
+                                        <div class="dropdown-menu megamenu column3">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/menShirts">Áo</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dr  opdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/menSweater">Áo Sweater Nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menTankTop">Áo ba lỗ Nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menTShirt">Áo thun nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menJacket">Áo khoác nam</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/menTrousers">Quần</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/menKaki">Quần kaki nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menShorts">Quần đùi nam </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menJean">Quần jean nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menUnderwear">Quần lót nam</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="top_level dropdown">
+                                        <a href="/women">Nữ</a>
+                                        <div class="dropdown-menu megamenu column3">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/womenShirts">Áo</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/womenShirt">Áo thun nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenTShirt">Áo sơ mi nữ </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenDress">Đầm nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenJacket">Áo khoác nữ</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/womenTrousers">Quần</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/womenPants">Quần dài nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenShorts">Quần đùi nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenJeans">Quần jean nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenAuthPants">Quần tây nữ</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="top_level">
+                                        <a href="/hotitem">Bán chạy</a>
+                                    </li>
+                                    <li class="top_level">
+                                        <a href="/sale">Giảm giá</a>
+                                    </li>
+                                    <li class="top_level dropdown">
+                                        <a href="/more">Xem thêm</a>
+                                        <div class="dropdown-menu megamenu column1" style="height: 120px">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li>
+                                                        <a href="/shoes">Giày</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/glasses">Kính</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/socks">Tất</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="hats">Mũ</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div id="search" class="input-group">
+                            <span class="search_button"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <div class="search_toggle">
+                                <div id="searchbox">
+                                    <input type="text" name="search" value="" placeholder="Search Products Here"
+                                        class="form-control input-lg">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            Search
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <% if (login.length > 0) { %>
+                        <div class="dropdown myaccount" style="width: 200px">
+                            <a href="/account" title="My Account" style="width: 100%">
+                                <i class="fa-solid fa-user"></i>
+                                    <span class="userName" ><%=login[0].fullName%></span>
+                        <% } else { %>
+                        <div class="dropdown myaccount">
+                            <a href="/account" title="My Account" style="width: 100%">
+                                <i class="fa-solid fa-user"></i>
+                                <% } %>
+                                <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                    <% if (login.length == 0) { %>
+                                    <li>
+                                        <a href="/register">Đăng kí</a>
+                                    </li>
+                                    <li>
+                                        <a href="/login">Đăng nhập</a>
+                                    </li>
+                                    <% }  else { %>
+                                    <li>
+                                        <a href="/logout">Đăng xuất</a>
+                                    </li>
+                                    <% } %>
+                                    <li>
+                                        <a href="/cart" title="Shopping Cart">Giỏ hàng</a>
+                                    </li>
+                                    <li>
+                                        <a href="/checkout" title="Checkout">Thanh toán</a>
+                                    </li>
+                                    <% if (login.length > 0 && login[0].role === 'Employee') { %>
+                                    <li>
+                                        <a href="/upload" title="Checkout">Thêm sản phẩm</a>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                        </div>
+                        <div class="header-shoppingcart">
+                            <div id="cart" class="btn-group btn-block">
+                                <a href="/cart" title="Cart">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--Uploaddd-->
     <h1 class="announce"> Đăng kí hàng lên kệ</h1>
-    <form method="post" action="" id="formUpload">
+    <form method="post" action="/uploadProduct" id="formUpload">
         <fieldset>
-
-            <label>Nhập tên thương hiệu:<input type="text" required></label>
-            <label>Tên mặt hàng: <input type="text" required></label>
-            <label>Mô tả: <br><textarea id="" name="" rows="3" cols="60"
-                    placeholder="Sản phẩm này chỉ đơn giản là một chiếc áo ... "></textarea></label>
+            <label>Tên sản phẩm: <input type="text" name="productName"></label>
+            <label>Chất liệu: <input type="text" name="material"></label>
+            <label>Mô tả: <br><textarea id="" name="description" rows="3" cols="60"
+                    placeholder="Mô tả sản phẩm"></textarea></label>
             <label for="">Giới tính
-                <select id="" name="">
-                    <option value="">(select one)</option>
+                <select id="gender" name="gender">
                     <option value="1">Nam</option>
                     <option value="2">Nữ</option>
-                    <option value="3">Khác</option>
                 </select>
             </label>
 
+            <label for="">Loại sản phẩm
+                <select id="catePro" name="categoryProductID">
+                    <option value="MJ">Quần Jeans</option>
+                    <option value="MP">Quần Tây</option>
+                    <option value="MSP">Quần Đùi</option>
+                    <option value="MSS">Quần thể thao</option>
+                    <option value="MS">Áo thun</option>
+                    <option value="MTS">Áo sơ mi</option>
+                    <option value="MTT">Áo ba lỗ</option>
+                    <option value="MJK">Áo khoác</option>
+                </select>
+            </label>
+
+            <script>
+                catePro = document.getElementById("catePro")
+                gender = document.getElementById('gender')
+
+                gender.addEventListener('change', () => {
+                if (gender.value == 1)
+                {
+                    catePro.innerHTML = 
+                    `
+                    <option value="MJ">Quần Jeans</option>
+                    <option value="MP">Quần Tây</option>
+                    <option value="MSP">Quần Đùi</option>
+                    <option value="MSS">Quần thể thao</option>
+                    <option value="MS">Áo thun</option>
+                    <option value="MTS">Áo sơ mi</option>
+                    <option value="MTT">Áo ba lỗ</option>
+                    <option value="MJK">Áo khoác</option>
+                    `
+                } else {
+                    catePro.innerHTML = 
+                    `
+                    <option value="WJ">Quần Jeans</option>
+                    <option value="WP">Quần Tây</option>
+                    <option value="WSP">Quần Đùi</option>
+                    <option value="WSS">Quần thể thao</option>
+                    <option value="WS">Áo thun</option>
+                    <option value="WTS">Áo sơ mi</option>
+                    <option value="WTT">Áo ba lỗ</option>
+                    <option value="WJK">Áo khoác</option>
+                    `
+                }
+            })
+            </script>
         </fieldset>
         <fieldset id="product-field">
 
@@ -45,7 +356,7 @@
                     fileInput.addEventListener('change', function (event) {
                         const files = event.target.files;
 
-                        previewImagesContainer.innerHTML = ''; // Xóa các hình ảnh hiện có trước khi hiển thị hình ảnh mới
+                        previewImagesContainer.innerHTML = '';
 
                         for (let i = 0; i < files.length; i++) {
                             const file = files[i];
@@ -62,42 +373,69 @@
                     });
                 }
             </script>
-            <label>Kích thước:
-                <label for=""><input type="checkbox" /> XS </label>
-                <label for=""><input type="checkbox" /> S</label>
-                <label for=""><input type="checkbox" /> M</label>
-                <label for=""><input type="checkbox" /> L</label>
-                <label for=""><input type="checkbox" /> XL</label>
-                <label for=""><input type="checkbox" /> XXL</label>
+            <label id="colorInput" for="colorProduct">Màu sắc:
+                <input type="color" name="colorID">
             </label>
-            <label>Giá niêm yết: <input type="text" required> VNĐ.</label>
-            <label>Số lượng hàng hiện có trong kho: <input type="text" required></label>
+            <button onclick="AddColor()" type="button">Thêm màu sắc</button>
+            <script>
+                function AddColor() {
+                    let colorInput = document.getElementById('colorInput');
+                    var inputColor = document.createElement('input');
+                    inputColor.setAttribute('type', 'color')
+                    inputColor.setAttribute('name', 'colorID')
+                    colorInput.appendChild(inputColor);
+                }
+            </script>
+            <label>Kích thước:
+                <label for=""><input name="sizeID" type="checkbox" value="XS"/> XS </label>
+                <label for=""><input name="sizeID" type="checkbox" value="S"/> S</label>
+                <label for=""><input name="sizeID" type="checkbox" value="M"/> M</label>
+                <label for=""><input name="sizeID" type="checkbox" value="L"/> L</label>
+                <label for=""><input name="sizeID" type="checkbox" value="XL"/> XL</label>
+            </label>
+            <label>Giá niêm yết: <input type="number" name="price"> VNĐ.</label>
+        </fieldset>
+        <fieldset class="submitField">
+            <button class="button1" type="button" value="Submit" onclick="uploadFile()">Tải lên</button>
         </fieldset>
     </form>
     
+    
+
     <script>
         var dem = 0;
 
-        function addProduct() {
-            dem++;
-            var productField = document.getElementById('product-field');
-            var newField = document.createElement('fieldset');
-            newField.setAttribute('id', 'product-field-' + dem);
-            newField.innerHTML = productField.innerHTML;
-            var previewImagesContainerid = newField.querySelector('#preview-images');
-            previewImagesContainerid.setAttribute('id', 'preview-images-' + dem);
-            previewImagesContainerid.innerHTML = ''
-            var imgInputid = newField.querySelector('#product-picture');
-            imgInputid.setAttribute('id', 'product-picture-' + dem);
-            var formUpload = document.getElementById('formUpload');
-            formUpload.appendChild(newField);
+        function uploadFile() {
+            const fileInput = document.getElementById('product-picture');
+            for (let i = 0; i< fileInput.files.length; i++)
+            {
+                var file = fileInput.files[i];
+                
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    var productLength = '<%- productLength %>';
+                    
+                    productID = catePro.value + '0' + (parseInt(productLength) + 1).toString() + i.toString();
+
+                    fetch('/uploadPhoto?productID='+ productID, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(error => {
+                        console.error('Error uploading file:', error);
+                    });
+                    document.getElementById('formUpload').submit();
+                }
+            }
         }
 
     </script>
-    <fieldset class="submitField">
-        <button type="button" class="createNewProduct button1" onclick="addProduct()">Thêm sản phẩm</button>
-        <input class="button1" type="submit" value="Submit" />
-    </fieldset>
 </body>
 
 </html>

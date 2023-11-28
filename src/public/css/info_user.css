@@ -3,6 +3,10 @@ body {
     margin-top: 20px;
 }
 
+.content-user {
+    margin-top: 100px;
+}
+
 label {
     display: block;
     margin: 0.5rem 0;

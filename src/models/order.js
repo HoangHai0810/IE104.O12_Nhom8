@@ -18,11 +18,12 @@ module.exports = (sequelize, DataTypes) => {
   };
   Order.init({
     orderID: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
-    // customerID: DataTypes.STRING(10),
-    // voucherID: DataTypes.STRING(10),
+    customerID: DataTypes.INTEGER,
+    voucherID: DataTypes.STRING(10),
     status: DataTypes.TEXT,
     note: DataTypes.TEXT,
     address: DataTypes.TEXT,

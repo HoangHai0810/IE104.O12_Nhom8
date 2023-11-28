@@ -3,13 +3,15 @@ module.exports = {
     up: async (queryInterface, Sequelize) => {
         await queryInterface.createTable('Cart_Details', {
             cartID: {
+                primaryKey: true,   
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'Orders',
-                    key: 'orderID'
+                    model: 'Carts',
+                    key: 'cartID'
                 }
             },
             productID: {
+                primaryKey: true,
                 type: Sequelize.STRING(10),
                 references: {
                     model: 'Products',

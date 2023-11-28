@@ -10,42 +10,44 @@ let initWebRoutes = (app) => {
     router.get('/login', homeController.getLoginSignUp);
     router.get('/product', homeController.getInfoProduct);
     router.get('/men', homeController.getListProduct);
-    router.get('/menshirts', homeController.getListProduct);
-    router.get('/menAoThun', homeController.getListProduct);
-    router.get('/menAoSoMi', homeController.getListProduct);
-    router.get('/menAoJean', homeController.getListProduct);
-    router.get('/menAoKhoac', homeController.getListProduct);
-    router.get('/mentrousers', homeController.getListProduct);
-    router.get('/menQuanThun', homeController.getListProduct);
-    router.get('/menQuanDui', homeController.getListProduct);
-    router.get('/menQuanJean', homeController.getListProduct);
-    router.get('/menQuanTay', homeController.getListProduct);
+    router.get('/menShirts', homeController.getListProduct);
+    router.get('/menSweater', homeController.getListProduct);
+    router.get('/menTankTop', homeController.getListProduct);
+    router.get('/menTShirt', homeController.getListProduct);
+    router.get('/menJacket', homeController.getListProduct);
+    router.get('/menTrousers', homeController.getListProduct);
+    router.get('/menKaki', homeController.getListProduct);
+    router.get('/menShorts', homeController.getListProduct);
+    router.get('/menJean', homeController.getListProduct);
+    router.get('/menUnderwear', homeController.getListProduct);
     router.get('/women', homeController.getListProduct);
-    router.get('/womenshirts', homeController.getListProduct);
-    router.get('/womenAoThun', homeController.getListProduct);
-    router.get('/womenAoSoMi', homeController.getListProduct);
-    router.get('/womenAoJean', homeController.getListProduct);
-    router.get('/womenAoKhoac', homeController.getListProduct);
-    router.get('/womentrousers', homeController.getListProduct);
-    router.get('/womenQuanThun', homeController.getListProduct);
-    router.get('/womenQuanDui', homeController.getListProduct);
-    router.get('/womenQuanJean', homeController.getListProduct);
-    router.get('/womenQuanTay', homeController.getListProduct);
+    router.get('/womenShirts', homeController.getListProduct);
+    router.get('/womenShirt', homeController.getListProduct);
+    router.get('/womenTShirt', homeController.getListProduct);
+    router.get('/womenDress', homeController.getListProduct);
+    router.get('/womenJacket', homeController.getListProduct);
+    router.get('/womenTrousers', homeController.getListProduct);
+    router.get('/womenPants', homeController.getListProduct);
+    router.get('/womenShorts', homeController.getListProduct);
+    router.get('/womenJeans', homeController.getListProduct);
+    router.get('/womenAuthPants', homeController.getListProduct);
     router.get('/hotitem', homeController.getListProduct);
     router.get('/sale', homeController.getListProduct);
     router.get('/more', homeController.getListProduct);
     router.get('/shoes', homeController.getListProduct);
-    router.get('/jackets', homeController.getListProduct);
     router.get('/glasses', homeController.getListProduct);
-    router.get('/Socks', homeController.getListProduct);
+    router.get('/socks', homeController.getListProduct);
     router.get('/hats', homeController.getListProduct);
     router.get('/user', homeController.getInfoUser);
     router.get('/product', homeController.getInfoProduct);
     router.get('/cart', homeController.getCart);
     router.get('/upload', homeController.getUpload);
     router.post('/upavatar', homeController.uploadAvatar);
+    router.post('/uploadPhoto', homeController.uploadPhoto)
     router.post('/signup', homeController.postSignUp);
-    router.post('/login', homeController.loginCRUD)
+    router.post('/login', homeController.loginCRUD);
+    router.get('/logout',homeController.logout);
+    router.post('/uploadProduct', homeController.pushProduct)
     return app.use("/", router);
 }
 
