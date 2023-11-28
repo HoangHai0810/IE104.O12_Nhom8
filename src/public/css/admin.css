@@ -1,0 +1,21 @@
+table {
+    border-collapse: collapse;
+    width: 90%;
+    border: 1px solid black;
+    margin: 50px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+.action-buttons{
+    display: flex;
+    gap: 5px;
+}
+.action-buttons button{
+    border: none;
+    background-color: transparent;
+    margin-right: 0;
+}
