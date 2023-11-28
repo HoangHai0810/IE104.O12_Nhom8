@@ -31,7 +31,7 @@ async function insertCP()
         const newCP3 = 
         {
             categoryProductID: 'MK',
-            type: 'Khaki',
+            type: 'Kaki',
             gender: 'Man',
         };
         const Cp3 = await CP.create(newCP3);
@@ -47,7 +47,7 @@ async function insertCP()
         const newCP5 = 
         {
             categoryProductID: 'MSS',
-            type: 'Sweat Shirt',
+            type: 'Sweater Shirt',
             gender: 'Man',
         };
         const Cp5 = await CP.create(newCP5);
@@ -70,8 +70,8 @@ async function insertCP()
         console.log('Cp7 created: ', Cp7.toJSON());
         const newCP8 = 
         {
-            categoryProductID: 'MSS',
-            type: 'Sport Short',
+            categoryProductID: 'MU',
+            type: 'Underwear',
             gender: 'Man'
         };
         const Cp8 = await CP.create(newCP8);

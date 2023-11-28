@@ -97,7 +97,7 @@
                                                     <li class="dropdown">
                                                         <a href="/menShirts">Áo</a>
                                                         <div class="dropdown-menu">
-                                                            <div class="dropdown-inner">
+                                                            <div class="dr  opdown-inner">
                                                                 <ul class="list-unstyled childs_2">
                                                                     <li>
                                                                         <a href="/menSweater">Áo Sweater Nam</a>
@@ -203,14 +203,11 @@
                                     </li>
                                     <li class="top_level dropdown">
                                         <a href="/more">Xem thêm</a>
-                                        <div class="dropdown-menu megamenu column1">
+                                        <div class="dropdown-menu megamenu column1" style="height: 120px">
                                             <div class="dropdown-inner">
                                                 <ul class="list-unstyled childs_1">
                                                     <li>
                                                         <a href="/shoes">Giày</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/jackets">Áo khoác</a>
                                                     </li>
                                                     <li>
                                                         <a href="/glasses">Kính</a>
@@ -243,9 +240,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdown myaccount">
-                            <a href="/account" title="My Account">
+                        <% if (login.length > 0) { %>
+                        <div class="dropdown myaccount" style="width: 200px">
+                            <a href="/account" title="My Account" style="width: 100%">
                                 <i class="fa-solid fa-user"></i>
+                                    <span class="userName" ><%=login[0].fullName%></span>
+                        <% } else { %>
+                        <div class="dropdown myaccount">
+                            <a href="/account" title="My Account" style="width: 100%">
+                                <i class="fa-solid fa-user"></i>
+                                <% } %>
                                 <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
                                     <% if (login.length == 0) { %>
                                     <li>

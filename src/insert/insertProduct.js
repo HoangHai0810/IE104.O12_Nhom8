@@ -98,14 +98,14 @@ async function insertSP()
         //Product 7: https://ssstutter.com/p/city-sweatshirt-2023
         const newSP7 = 
         {
-            productID: 'MS001',
+            productID: 'MSS001',
             productName: 'City Sweat Shirt 2023',
             description: 'Áo sweatshirt thêu tên 4 thành phố đạt danh hiệu "Tứ Đại" kinh đô thời trang.',
             material: 'Nỉ da cá',
             price: 449000,
             rate: 3.5,
             discount: 0,
-            categoryProductID: 'MS'
+            categoryProductID: 'MSS'
         };
         const Sp7 = await Sp.create(newSP7);
         console.log('SP7 created: ', Sp7.toJSON());
@@ -196,28 +196,28 @@ async function insertSP()
          //Product 14: https://ssstutter.com/p/american-polo-sweatshirt
         const newSP14 = 
         {
-            productID: 'MS002',
+            productID: 'MSS002',
             productName: 'American Polo Sweatshirt',
             description: 'Áo nỉ có cổ polo và cài cúc, có cúc dự phòng,có chi tiết hình cờ Mĩ',
             material: 'Nỉ cotton',
             price: 499000,
             rate: 3.8,
             discount: 0,
-            categoryProductID: 'MS'
+            categoryProductID: 'MSS'
         };
         const Sp14 = await Sp.create(newSP14);
         console.log('SP14 created: ', Sp14.toJSON());
         //Product 15: https://ssstutter.com/p/tennis-sweatshirt---ver2
         const newSP15 = 
         {
-            productID: 'MS003',
+            productID: 'MSS003',
             productName: 'Tennis Sweatshirt',
             description: 'Hình thêu tennis ở ngực áo',
             material: 'Nỉ chân cua định lượng 450gsm',
             price: 449000,
             rate: 4,
             discount: 50,
-            categoryProductID: 'MS'
+            categoryProductID: 'MSS'
         };
         const Sp15 = await Sp.create(newSP15);
         console.log('SP15 created: ', Sp15.toJSON());
@@ -308,42 +308,42 @@ async function insertSP()
         //Product 22: https://routine.vn/quan-boxer-und002-s21-10s21und002cr1.html
         const newSP22 =
         {
-            productID: 'MSS001',
+            productID: 'MU001',
             productName: 'Quần Lót Form Fitted',
             description: 'Có khả năng thấm hút mồ hôi và co giãn tốt',
             material: '95% Cotton / 5% Spandex',
             price: 85000,
             rate: 4.7,
             discount: 54,
-            categoryProductID: 'MSS'
+            categoryProductID: 'MU'
         };
         const Sp22 = await Sp.create(newSP22);
         console.log('SP22 created: ', Sp22.toJSON());
          //Product 23: https://routine.vn/quan-lot-nam-seamless-co-gion-theu-form-fitted-10s22und001r1.html
          const newSP23 =
          {
-             productID: 'MSS002',
+             productID: 'MU002',
              productName: 'Quần Lót Seamless Co Giãn Thêu Form Fitted',
              description: '',
              material: '90% Poliamide / 10% Spandex',
              price: 129000,
              rate: 4.1,
              discount: 2,
-             categoryProductID: 'MSS'
+             categoryProductID: 'MU'
          };
          const Sp23 = await Sp.create(newSP23);
          console.log('SP23 created: ', Sp23.toJSON());
          //Product 24: https://yame.vn/shop/quan-lot-tam-giac/quan-lot-hip-brief-y2010-bamboo-m9-combo-3-0021547?c=Đen
          const newSP24 =
          {
-             productID: 'MSS003',
+             productID: 'MU003',
              productName: 'Quần Lót Tam Giác Sợi Tre Kiểm Soát Mùi Trơn Dáng Vừa Phụ Kiện Nguyên Bản M9',
              description: 'Kiểm soát mùi cơ thể vượt trội, hạn chế tối đa việc gây dị ứng đối với da nhạy cảm',
              material: '95% Bamboo / 5% Spandex',
              price: 99000,
              rate: 4.9,
              discount: 0,
-             categoryProductID: 'MSS'
+             categoryProductID: 'MU'
          };
          const Sp24 = await Sp.create(newSP24);
          console.log('SP24 created: ', Sp24.toJSON());
