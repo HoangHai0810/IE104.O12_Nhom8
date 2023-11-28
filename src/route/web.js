@@ -11,7 +11,7 @@ let initWebRoutes = (app) => {
     router.get('/product', homeController.getInfoProduct);
     router.get('/men', homeController.getListProduct);
     router.get('/menShirts', homeController.getListProduct);
-    router.get('/menSweatShirt', homeController.getListProduct);
+    router.get('/menSweater', homeController.getListProduct);
     router.get('/menTankTop', homeController.getListProduct);
     router.get('/menTShirt', homeController.getListProduct);
     router.get('/menJacket', homeController.getListProduct);
@@ -48,7 +48,7 @@ let initWebRoutes = (app) => {
     router.post('/login', homeController.loginCRUD);
     router.get('/logout',homeController.logout);
     router.post('/uploadProduct', homeController.pushProduct);
-    // router.post('/addToCart', homeController.addToCart);
+    router.post('/postCart', homeController.addToCart);
     return app.use("/", router);
 }
 

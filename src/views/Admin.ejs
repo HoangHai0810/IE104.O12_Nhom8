@@ -2,195 +2,383 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="https://th.bing.com/th/id/R.6cc73b5620060d4ba2def37f6d81625c?rik=iOta38bicn4zJA&pid=ImgRaw&r=0">
-    <meta name="twitter:title" content="Premier League Football News, Fixtures, Scores & Results" />
-    <meta name="keywords" content="Premier League, Football, Soccer, Official" />
-    <meta property="og:type" content="website" />
-    <meta name="description"
-        content="For all the latest Premier League news, visit the official website of the Premier League." />
-    <meta name="twitter:description"
-        content="For all the latest Premier League news, visit the official website of the Premier League." />
-    <meta name="twitter:image"
-        content="https://s3.amazonaws.com/premierleague-static-files/premierleague/pl_icon.png" />
-    <meta property="og:title" content="Premier League Football News, Fixtures, Scores & Results" />
-    <meta property="og:image" content="https://s3.amazonaws.com/premierleague-static-files/premierleague/pl_icon.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
-    <meta name="theme-color" content="#38003C" />
-    <title>Quản lý giải bóng đá vô địch quốc gia</title>
+    <link rel="icon"
+        href="https://th.bing.com/th/id/R.6cc73b5620060d4ba2def37f6d81625c?rik=iOta38bicn4zJA&pid=ImgRaw&r=0">
+    <title>Admin Fashion DLATT</title>
 
-    <!-- Designed and built by Pulselive - www.pulselive.com -->
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="./css/badge-abbreviations.css">
-    <link rel="stylesheet" href="./css/screen.css">
-    <!--<![endif]-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
-    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
-    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
-    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
-    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
-    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-    <meta name="apple-itunes-app" content="app-id=1138895159">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/admin.css">
+
 </head>
 
 <body>
-        <!--Các tài khoản đã phân quyền-->
-        
-        <style>
-            table {
-                border-collapse: collapse;
-                width: 100%;
-                border: 1px solid black;
-            }
-    
-            th, td {
-                border: 1px solid black;
-                padding: 8px;
-                text-align: left;
-            }
-            .action-buttons{
-                display: flex;
-                gap: 5px;
-            }
-            .action-buttons button{
-                border: none;
-                background-color: transparent;
-                margin-right: 0;
-            }
-        </style>
+    <!--Header-->
+    <header>
+        <div class="header-container fixed">
+            <div class="header-main">
+                <div class="container">
+                    <div class="toggle">
+                        <i class="fa-solid fa-bars menu"></i>
+                        <div id="logo-toggle">
+                            <a href="#">
+                                <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                    style="width: 200px;">
+                            </a>
+                        </div>
+                        <div class="btn-toggle">
+                            <div id="search-toggle">
+                                <span class="search_button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                            </div>
+                            <div class="myaccount-toggle">
+                                <a href="/account" title="My Account">
+                                    <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="header-shoppingcart-toggle">
+                                <a href="/cart" title="Cart"></a>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav-toggle">
+                        <li class="top_level dropdown">
+                            <a href="/man">Nam</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/woman">Nữ</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/hotitem">Bán chạy</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/sale">Giảm giá</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/more">Xem thêm</a>
+                        </li>
+                    </ul>
+                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.menu').click(function () {
+                                $('.navbar-nav-toggle').toggleClass('active')
+                            })
+                        }
+                        )
+                    </script>
+                    <div class="row">
+                        <div class="header-logo">
+                            <div id="logo">
+                                <a href="/">
+                                    <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                        style="width: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                        <nav class="nav-container">
+                            <div id="menu" class="main-menu" style="display: block;">
+                                <ul class="nav navbar-nav">
+                                    <li class="top_level dropdown">
+                                        <a href="/men">Nam</a>
+                                        <div class="dropdown-menu megamenu column3">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/menShirts">Áo</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dr  opdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/menSweater">Áo Sweater Nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menTankTop">Áo ba lỗ Nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menTShirt">Áo thun nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menJacket">Áo khoác nam</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/menTrousers">Quần</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/menKaki">Quần kaki nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menShorts">Quần đùi nam </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menJean">Quần jean nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menUnderwear">Quần lót nam</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="top_level dropdown">
+                                        <a href="/women">Nữ</a>
+                                        <div class="dropdown-menu megamenu column3">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/womenShirts">Áo</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/womenShirt">Áo thun nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenTShirt">Áo sơ mi nữ </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenDress">Đầm nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenJacket">Áo khoác nữ</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/womenTrousers">Quần</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/womenPants">Quần dài nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenShorts">Quần đùi nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenJeans">Quần jean nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenAuthPants">Quần tây nữ</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="top_level">
+                                        <a href="/hotitem">Bán chạy</a>
+                                    </li>
+                                    <li class="top_level">
+                                        <a href="/sale">Giảm giá</a>
+                                    </li>
+                                    <li class="top_level dropdown">
+                                        <a href="/more">Xem thêm</a>
+                                        <div class="dropdown-menu megamenu column1" style="height: 120px">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li>
+                                                        <a href="/shoes">Giày</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/glasses">Kính</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/socks">Tất</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="hats">Mũ</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div id="search" class="input-group">
+                            <span class="search_button"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <div class="search_toggle">
+                                <div id="searchbox">
+                                    <input type="text" name="search" value="" placeholder="Search Products Here"
+                                        class="form-control input-lg">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            Search
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <% if (login.length> 0) { %>
+                            <div class="dropdown myaccount" style="width: 200px">
+                                <a href="/account" title="My Account" style="width: 100%">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="userName">
+                                        <%=login[0].fullName%>
+                                    </span>
+                                    <% } else { %>
+                                        <div class="dropdown myaccount">
+                                            <a href="/account" title="My Account" style="width: 100%">
+                                                <i class="fa-solid fa-user"></i>
+                                                <% } %>
+                                                    <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                                        <% if (login.length==0) { %>
+                                                            <li>
+                                                                <a href="/register">Đăng kí</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/login">Đăng nhập</a>
+                                                            </li>
+                                                            <% } else { %>
+                                                                <li>
+                                                                    <a href="/logout">Đăng xuất</a>
+                                                                </li>
+                                                                <% } %>
+                                                                    <li>
+                                                                        <a href="/cart" title="Shopping Cart">Giỏ
+                                                                            hàng</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/checkout" title="Checkout">Thanh
+                                                                            toán</a>
+                                                                    </li>
+                                                                    <% if (login.length> 0 && login[0].role ===
+                                                                        'Employee') { %>
+                                                                        <li>
+                                                                            <a href="/upload" title="Checkout">Thêm sản
+                                                                                phẩm</a>
+                                                                        </li>
+                                                                        <% } %>
+                                                    </ul>
+                                        </div>
+                                        <div class="header-shoppingcart">
+                                            <div id="cart" class="btn-group btn-block">
+                                                <a href="/cart" title="Cart">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <!--Các tài khoản đã phân quyền-->
+    <main>
+        <div class="block cart" style="margin-top: 150px;">
+            <div class="block-title" style="padding: 30px;">
+                <strong>ADMIN</strong>
+            </div>
             <table id="myTable">
                 <tr>
-                    <th>Họ</th>
-                    <th>Tên</th>
+                    <th>Họ và Tên</th>
                     <th>Username</th>
                     <th>Password</th>
                     <th>Vai trò</th>
-                    <th>Đội bóng</th>
                     <th>Phân quyền</th>
                     <th>Xóa</th>
                 </tr>
             </table>
             <form id='tablepq' method="post" action="/updateuser">
                 <input hidden="true" name="userName" id="userName">
-                <input hidden="true" name="roleId" id="roleuser">
-                <input hidden="true" name="tenDoiBong" id="tendoibong">
+                <input hidden="true" name="role" id="roleuser">
             </form>
-        <script>
-            let doiBong = JSON.parse(unescape('<%- parseDataDoiBong %>'));
-            let allCode = JSON.parse(unescape('<%- allcode %>'));
-            let Data = JSON.parse(unescape('<%-data%>'));
-            let login = JSON.parse(unescape('<%-Login%>'));
-            let data = [];
-            for (let i=0; i<Data.length; i++)
-                if (Data[i].id != login[0].userId)
-                {
-                    data.push(Data[i]);
-                }
-            for (let i=0; i<data.length; i++)
-            {
-                var table = document.getElementById("myTable");
-                var row = table.insertRow(-1);
+        </div>
+    </main>
+    <script>
+        let Data = '<%-dataUser%>';
+        let login = '<%-login%>';
+        let data = [];
+        console.log(Data[1])
 
-                var cell1 = row.insertCell(0);
-                cell1.innerHTML = "<label>" + data[i].firstName + "</label>";
-
-                var cell2 = row.insertCell(1);
-                cell2.innerHTML = "<label>" + data[i].lastName + "</label>";
-
-                var cell3 = row.insertCell(2);
-                cell3.innerHTML = "<label>" + data[i].userName + "</label>";
-
-                var cell4 = row.insertCell(3);
-                cell4.innerHTML = "<label>" + data[i].password + "</label>";
-
-                var cell5 = row.insertCell(4);
-                cell5.innerHTML = createRoleSelect(i);
-
-                var cell6 = row.insertCell(5);
-                cell6.innerHTML = createDoiBongSelect(i);;
-                
-                addDeleteButton(row,i);
-                addPermissionButton(row,i);
-            }
-            let roles = document.querySelectorAll('[id="roleiduser"]');
-
-            function createRoleSelect(i){
-                var select = "<select id='roleiduser' value='"+ data[i].roleId + "'>";
-                    if (data[i].roleId == 'guest')
-                        select += "<option value='guest' selected>Khách</option>";
-                    else
-                        select += "<option value='guest'>Khách</option>";
-                    if (data[i].roleId == 'manager')
-                        select += "<option value='manager' selected>Manager</option>";
-                    else
-                        select += "<option value='manager'>Manager</option>";
-                    if (data[i].roleId == 'banquanly')
-                        select += "<option value='banquanly' selected>Ban Quản lý</option>";
-                    else
-                        select += "<option value='banquanly'>Ban Quản lý</option>";
-                    if (data[i].roleId == 'admin')
-                        select += "<option value='admin' selected>Admin</option>";
-                    else
-                        select += "<option value='admin'>Admin</option>";
-                    select += "</select>";
-                return select;
+        for (let i = 0; i < Data.length; i++)
+            if (Data[i].userID != login[0].userID) {
+                data.push(Data[i]);
             }
 
-            function createDoiBongSelect(i){
-                let doibong = '';
-                let tam = -1;
-                for (let k = 0; k< allCode.length; k++)
-                {
-                    if (allCode[k].userId === data[i].id)
-                    {
-                        doibong = allCode[k].tenDoiBong;
-                        tam = k;
-                    }
-                }
-                if (data[i].roleId == 'manager')
-                    var select = "<select id='doibonguser' value='"+ doibong + "' >";
-                else
-                    var select = "<select id='doibonguser' value='"+ doibong + "' hidden='false'>";
-                    if (tam>=0)
-                        for (let k =0 ; k< doiBong.length;k++)
-                        {
-                            
-                                if (doiBong[k].tenDoiBong == allCode[tam].tenDoiBong)
-                                    select += "<option value='" + doiBong[k].tenDoiBong + "' selected>" + doiBong[k].tenDoiBong + "</option>";
-                                else
-                                    select += "<option value='" + doiBong[k].tenDoiBong + "'>" + doiBong[k].tenDoiBong + "</option>";
-                        }
-                    else
-                        for (let k =0 ; k< doiBong.length;k++)
-                        {
-                            select += "<option value='" + doiBong[k].tenDoiBong + "'>" + doiBong[k].tenDoiBong + "</option>";
-                        }
-                    select += "</select>";
-                return select;
-            }
+        
+        for (let i = 0; i < Data.length; i++) {
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(-1);
 
-            function addDeleteButton(row,i)
-            {
-                var cell = row.insertCell(6);
-                var deleteButton = document.createElement("button");
-                deleteButton.innerHTML = "Xóa";
-                deleteButton.onclick = function()
-                {
-                    window.location.href = '/delete-crud?id=' + data[i].id;
-                };
-                cell.appendChild(deleteButton);
-            }
-            function addPermissionButton(row,i) 
-            {
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = "<label>" + data[i].fullName + "</label>";
+
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = "<label>" + data[i].userName + "</label>";
+
+            var cell3 = row.insertCell(2);
+            cell3.innerHTML = "<label>" + data[i].userPassword + "</label>";
+
+            var cell4 = row.insertCell(3);
+            cell4.innerHTML = createRoleSelect(i);
+
+            var cell5 = row.insertCell(4);
+            cell5.innerHTML = createDoiBongSelect(i);;
+
+            addDeleteButton(row, i);
+            addPermissionButton(row, i);
+        }
+        let roles = document.querySelectorAll('[id="roleiduser"]');
+
+        function createRoleSelect(i) {
+            var select = "<select id='roleiduser' value='" + data[i].roleId + "'>";
+            if (data[i].role == 'Guest')
+                select += "<option value='Guest' selected>Khách</option>";
+            else
+                select += "<option value='Guest'>Khách</option>";
+            if (data[i].role == 'Employee')
+                select += "<option value='Employee' selected>Nhân viên</option>";
+            else
+                select += "<option value='Employee'>Nhân viên</option>";
+            if (data[i].roleId == 'Admin')
+                select += "<option value='Admin' selected>Admin</option>";
+            else
+                select += "<option value='Admin'>Admin</option>";
+            select += "</select>";
+            return select;
+        }
+
+        function addDeleteButton(row, i) {
+            var cell = row.insertCell(6);
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "Xóa";
+            deleteButton.onclick = function () {
+                window.location.href = '/delete-crud?id=' + data[i].id;
+            };
+            cell.appendChild(deleteButton);
+        }
+        function addPermissionButton(row, i) {
             var cell = row.insertCell(6);
             var permissionButton = document.createElement("button");
             permissionButton.innerHTML = "Phân quyền";
-            permissionButton.onclick = function() {
+            permissionButton.onclick = function () {
                 // Xử lý logic khi nhấp vào nút "Phân quyền"
                 let form = document.getElementById('tablepq');
                 let roleIdValue = document.getElementById('roleuser');
@@ -198,8 +386,7 @@
                 let userNameValue = document.getElementById('userName');
                 let tenDoiBongValue = document.getElementById('tendoibong');
                 console.log(tenDoiBongValue)
-                if (role[i].value === 'manager')
-                {
+                if (role[i].value === 'manager') {
                     let doibonguser = document.querySelectorAll('[id="doibonguser"]');
                     tenDoiBongValue.value = doibonguser[i].value;
                 }
@@ -209,166 +396,8 @@
                 form.submit();
             };
             cell.appendChild(permissionButton);
-            }
-        </script>
-    <!--Footer chính-->
-    <footer class="mainFooter" style="margin-top: 13rem;">
-        <!--Nội dung Footer-->
-        <div class="footerContent">
-            <div class="wrapper">
-                <!--GVDQG-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">Giải vô địch quốc gia</h3>
-                    <ul class="list--premier-league" role="menu">
-                        <li> <a href="//www.premierleague.com/" target="_self" role="menuitem">
-                                <span class=" link">Trang chủ</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/fixtures" target="_self" role="menuitem">
-                                <span class=" link">Trận đấu</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/results" target="_self" role="menuitem">
-                                <span class=" link">Kết quả</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/tables" target="_self" role="menuitem">
-                                <span class=" link">Bảng xếp hang</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/clubs" target="_self" role="menuitem">
-                                <span class=" link">Câu lạc bộ</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/players" target="_self" role="menuitem">
-                                <span class=" link">Cầu thủ</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!--More-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">More</h3>
-                    <ul class="list--more" role="menu">
-                        <li> <a href="//www.premierleague.com/referees" target="_self" role="menuitem">
-                                <span class=" link">Trọng tài</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/managers" target="_self" role="menuitem">
-                                <span class=" link">Huấn luyện viên</span>
-                            </a>
-                        </li>
-                        <li> <a href="//www.premierleague.com/contact" target="_self" role="menuitem">
-                                <span class=" link">Liên hệ</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!--Thông tin nhóm-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">Thông tin nhóm</h3>
-                    <ul class="list--social" role="menu">
-                        <li> <a href="https://www.facebook.com/hai2k3/" target="_blank" role="menuitem">
-                                <span class=" link">Hoàng Hải Anh - 21521819</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/builetrongduc031103" target="_blank" role="menuitem">
-                                <span class=" link">Bùi Lê Trọng Đức - 21520725</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/thinguyen.27072003" target="_blank" role="menuitem">
-                                <span class=" link">Nguyễn Chí Thi - 21522614</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/khanhlong150403" target="_blank" role="menuitem">
-                                <span class=" link">Trương Khánh Long - 21521750</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                        <li> <a href="https://www.facebook.com/notthin123" target="_blank" role="menuitem">
-                                <span class=" link">Nguyễn Tiến Thịnh - 21521472</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!--Giáo viên hướng dẫn-->
-                <div class="footerCol ">
-                    <h3 class="subHeader">Giáo viên hướng dẫn</h3>
-                    <ul class="list--more" role="menu">
-                        <li>
-                            <a href="https://courses.uit.edu.vn/user/profile.php?id=534" target="_self" role="menuitem">
-                                <span class=" link">Đỗ Thị Thanh Tuyền</span>
-                                <span class="icn external-sm-pink"><span class="visuallyHidden">External
-                                        Link</span></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--Footer Corporate-->
-        <div class="footerCorporate" data-script="pl_footer" data-widget="footer-corporate">
-            <div class="wrapper col-12">
-                <ul role="menu">
-                    <li><strong>Giải vô địch quốc gia 2023</strong></li>
-                    <li>
-                        <a onclick="scrollToTop()" class="backToTopContainer" role="menuitem"
-                            style="cursor: pointer;">Về đầu trang</a>
-                        <script>
-                            function scrollToTop() {
-                                window.scrollTo({
-                                    top: 0,
-                                    behavior: "smooth"
-                                });
-                            }
-                        </script>
-                    </li>
-                </ul>
-                <div class="official"><a href="//www.premierleague.com" class="icn pl-logo-corporate"></a></div>
-                <style>
-                    .footerCorporate #ot-sdk-btn.ot-sdk-show-settings {
-                        padding: 0;
-                        border: 0;
-                        background: none;
-                        color: #000;
-                        font-size: 11px;
-                    }
-
-                    .footerCorporate #ot-sdk-btn.ot-sdk-show-settings:hover {
-                        background: none;
-                        color: #000;
-                        text-decoration: underline;
-                    }
-                </style>
-            </div>
-        </div>
-
-    </footer>
-    <script src="./scripts/vendors.min.js"></script>
-    <script src="./scripts/main.min.js"></script>
-    <script src="./widgets/common.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            var adfScr = document.createElement("script");
-            adfScr.src = "https://track.adform.net/serving/scripts/trackpoint/";
-            adfScr.onload = function () {
-                adf.container(998269, 'Master Tag');
-            };
-            document.head.appendChild(adfScr);
-        })();
+        }
     </script>
-
-    <div data-script="pl_chartbeat" data-widget="chartbeat-generic" data-chartbeat-uid="67021" data-page-title=""
-        data-page-section="Premier League"></div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 </body>
 

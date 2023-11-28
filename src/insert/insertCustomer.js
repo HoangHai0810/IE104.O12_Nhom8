@@ -13,7 +13,6 @@ async function insertCTM()
         await sequelize.sync();
         const newCTM1 = 
         {
-           customerID: 'CS001',
            fullName: 'Nguyễn Phú Trung',
            dateOfBirth: '2002-03-28',
            phoneNumber: '0865958707',
@@ -24,7 +23,6 @@ async function insertCTM()
         console.log('Customer_1 created: ', Ctm1.toJSON());
         const newCTM2 = 
         {
-           customerID: 'CS002',
            fullName: 'Nguyễn Văn Phong',
            dateOfBirth: '2003-09-05',
            phoneNumber: '0948347245',
@@ -35,7 +33,6 @@ async function insertCTM()
         console.log('Customer_2 created: ', Ctm2.toJSON());
         const newCTM3 = 
         {
-           customerID: 'CS003',
            fullName: 'Lê Quốc Kiệt',
            dateOfBirth: '2003-03-28',
            phoneNumber: '0915716578',
@@ -46,7 +43,6 @@ async function insertCTM()
         console.log('Customer_3 created: ', Ctm3.toJSON());
         const newCTM4 = 
         {
-           customerID: 'CS004',
            fullName: 'Lương Quốc Toàn',
            dateOfBirth: '2003-01-22',
            phoneNumber: '0367556243',
@@ -57,7 +53,6 @@ async function insertCTM()
         console.log('Customer_4 created: ', Ctm4.toJSON());
         const newCTM5 = 
         {
-           customerID: 'CS005',
            fullName: 'Phan Nguyễn Hải Yến',
            dateOfBirth: '2003-01-03',
            phoneNumber: '0795848949',

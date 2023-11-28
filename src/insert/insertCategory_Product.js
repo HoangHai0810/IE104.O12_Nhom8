@@ -63,7 +63,7 @@ async function insertCP()
         const newCP7 = 
         {
             categoryProductID: 'MSP',
-            type: 'Shorts',
+            type: 'Shorts Pants',
             gender: 'Man'
         };
         const Cp7 = await CP.create(newCP7);
