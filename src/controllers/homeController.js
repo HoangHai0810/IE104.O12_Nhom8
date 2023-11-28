@@ -1,13 +1,18 @@
 import { render } from "ejs";
 import express, { application } from 'express'
-import db from "../models/index";
+import db, { sequelize } from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
 import { json } from "body-parser";
 
+const fs = require('fs');
 
 let getHomePage = async (req, res) => {
+    let login = await CRUDSevice.getLogin({ raw: true });
+    console.log(login)
     try {
-        return res.render('homepage.ejs')
+        return res.render('homepage.ejs',{
+            login: login
+        })
     } catch (e) {
         console.log(e);
     }
@@ -262,7 +267,17 @@ let getInfoProduct = async (req, res) => {
     try {
         let productID = req.query.productID;
         let product = await CRUDSevice.getProductInfoByProductId(productID)
-        return res.render('info_product.ejs',{ product: product})
+        let Product_Color = await db.Product_Color.findAll()
+        let imageCount = 0;
+        const path = require('path');
+        const imgDirectory = path.join(__dirname, '..', 'public', 'img');
+        const files = fs.readdirSync(imgDirectory);
+        files.forEach(file => {
+            if (file.includes(productID)) {
+                imageCount++;
+            }
+        });
+        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color})
     } catch (e) {
         console.log(e);
     }
@@ -272,11 +287,11 @@ let getInfoUser = async (req, res) => {
     try {
         let login = await CRUDSevice.getLogin({ raw: true });
         if (login.length > 0) {
-            let data = await CRUDSevice.getUser(login[0].userId, {
+            let data = await CRUDSevice.getUserInfoById(login[0].userID, {
                 raw: true,
             });
             return res.render('info_user.ejs', {
-                login: login,
+                login: JSON.stringify(login),
                 data: data
             })
         }
@@ -288,7 +303,10 @@ let getInfoUser = async (req, res) => {
 
 let getUpload = async (req, res) => {
     try {
-        return res.render('upload_product.ejs')
+        let product = await CRUDSevice.getAllProducts();
+        return res.render('upload_product.ejs' ,{
+            productLength: product.length
+        })
     } catch (e) {
         console.log(e);
     }
@@ -305,20 +323,21 @@ let getCart = async (req, res) => {
 const multer = require('multer');
 const path = require('path');
 
-const storage = multer.diskStorage({
+const storageAVT = multer.diskStorage({
     destination: path.join(__dirname, '../public/img'),
     filename: function (req, file, cb) {
-        const userId = req.user.id;
-        const filename = `${userId}`;
+        const userID = req.query.userID;
+        console.log(userID)
+        const filename = userID + '.png';
 
         cb(null, filename);
     }
 });
 
-const upload = multer({ storage: storage });
+const uploadAVT = multer({ storage: storageAVT });
 
 const uploadAvatar = (req, res) => {
-    upload.single('file')(req, res, (err) => {
+    uploadAVT.single('file')(req, res, (err) => {
         if (err) {
             console.error('Lỗi khi tải lên ảnh:', err);
             return res.status(500).send('Internal Server Error');
@@ -328,6 +347,35 @@ const uploadAvatar = (req, res) => {
         }
     });
 };
+
+const storagePT = multer.diskStorage({
+    destination: path.join(__dirname, '../public/img'),
+    filename: function (req, file, cb) {
+        const productID = req.query.productID;
+        const filename = productID + '.png';
+
+        cb(null, filename);
+    }
+});
+
+const uploadPT = multer({ storage: storagePT });
+
+const uploadPhoto = (req,res) => {
+    uploadPT.single('file')(req, res, (err) => {
+        if (err) {
+            console.error('Lỗi khi tải lên ảnh:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        else {
+            console.error('Lưu trữ ảnh thành công');
+        }
+    });
+}
+
+let pushProduct = async(req, res) => {
+    let mes = await CRUDSevice.createNewProduct(req.body);
+    res.redirect('/')
+}
 
 let loginCRUD = async(req, res) => {
     let mes = await CRUDSevice.createNewLogin(req.body);
@@ -349,6 +397,11 @@ let postSignUp = async (req, res) => {
     res.redirect('/')
 }
 
+let logout = async (req,res) => {
+    await CRUDSevice.logoutCRUD();
+    res.redirect('/')
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -357,7 +410,10 @@ module.exports = {
     getCart: getCart,
     getInfoProduct: getInfoProduct,
     uploadAvatar: uploadAvatar,
+    uploadPhoto, uploadPhoto,
     postSignUp: postSignUp,
     loginCRUD: loginCRUD,
     getUpload: getUpload,
+    logout: logout,
+    pushProduct: pushProduct,
 }

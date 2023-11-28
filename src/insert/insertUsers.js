@@ -48,7 +48,7 @@ async function insertUS()
             userName: 'haiiyins',
             userPassword: '03012003',
             role: 'Guest'
-        };
+        };0
         const Us5 = await US.create(newUS5);
         console.log('US5 created: ', Us5.toJSON());
         const newUS6 = 

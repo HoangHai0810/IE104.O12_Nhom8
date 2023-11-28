@@ -376,7 +376,7 @@ async function insertSP()
         };
         const Sp101 = await Sp.create(newSP101);
         console.log('SP101 created: ', Sp101.toJSON());
-        //Product 102: https://routine.vn/ao-khoac-gio-nu-co-mu-tui-dap-tron-form-cargo-10s23wjaw001.html
+        //Product 102: https://routine.vn/ao-khoac-gio-nu-co-MSS-tui-dap-tron-form-cargo-10s23wjaw001.html
         const newSP102 = 
         {
             productID: 'WJK003',

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Orderdetail.init({
     orderID: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.INTEGER,
       primaryKey: true,
     },
     productID: {

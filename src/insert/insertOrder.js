@@ -13,7 +13,6 @@ async function insertOrd()
         await sequelize.sync();
         const newOrd1 = 
         {
-            orderID: 'Ord01',
             customerID: 'CS002',
             status: 'Đang chuẩn bị',
             note: '',
@@ -25,7 +24,6 @@ async function insertOrd()
         console.log('Ord1 created: ', Ord1.toJSON());
         const newOrd2 = 
         {
-            orderID: 'Ord02',
             customerID: 'CS001',
             status: 'Đang vận chuyển',
             note: 'Sẽ đến trong 2 ngày tới',
@@ -37,7 +35,6 @@ async function insertOrd()
         console.log('Ord2 created: ', Ord2.toJSON());
         const newOrd3 = 
         {
-            orderID: 'Ord03',
             customerID: 'CS004',
             status: 'Đã hoàn thành',
             note: 'Đã giao vào lúc 16:00 ngày 13/11/2023 - Người nhận: Lương Quốc Toàn',
@@ -48,7 +45,6 @@ async function insertOrd()
         console.log('Ord3 created: ', Ord3.toJSON());
         const newOrd4 = 
         {
-            orderID: 'Ord04',
             customerID: 'CS005',
             status: 'Đã hoàn thành',
             note: 'Đã giao vào lúc 20:00 ngày 28/11/2023 - Người nhận: Phan Nguyễn Hải Yến',
