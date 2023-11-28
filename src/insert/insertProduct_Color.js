@@ -87,14 +87,14 @@ async function insertPr_Cl()
         //Product 4: https://ssstutter.com/p/sss-daily-khaki-pants
         const newPr_Cl11 = 
         {
-            productID: 'MP001',
+            productID: 'MK001',
             colorID: '#F5F5DC',
         };
         const Pr_Cl11 = await Pr_Cl.create(newPr_Cl11);
         console.log('Pr_Cl11 created: ', Pr_Cl11.toJSON());
         const newPr_Cl12 = 
         {
-            productID: 'MP001',
+            productID: 'MK001',
             colorID: '#000000',
         };
         const Pr_Cl12 = await Pr_Cl.create(newPr_Cl12);
@@ -144,21 +144,21 @@ async function insertPr_Cl()
         console.log('Pr_Cl18 created: ', Pr_Cl18.toJSON());
         const newPr_Cl19 = 
         {
-            productID: 'MSS001',
+            productID: 'MU001',
             colorID: '#808000',
         };
         const Pr_Cl19 = await Pr_Cl.create(newPr_Cl19);
         console.log('Pr_Cl19 created: ', Pr_Cl19.toJSON());
         const newPr_Cl20 = 
         {
-            productID: 'MSS001',
+            productID: 'MU001',
             colorID: '#F5F5DC',
         };
         const Pr_Cl20 = await Pr_Cl.create(newPr_Cl20);
         console.log('Pr_Cl20 created: ', Pr_Cl20.toJSON());
         const newPr_Cl21 = 
         {
-            productID: 'MSS001',
+            productID: 'MU001',
             colorID: '#000080',
         };
         const Pr_Cl21 = await Pr_Cl.create(newPr_Cl21);
@@ -242,63 +242,63 @@ async function insertPr_Cl()
         console.log('Pr_Cl32 created: ', Pr_Cl32.toJSON());
         const newPr_Cl33 = 
         {
-            productID: 'MP002',
+            productID: 'MK002',
             colorID: '#F5F5DC',
         };
         const Pr_Cl33 = await Pr_Cl.create(newPr_Cl33);
         console.log('Pr_Cl33 created: ', Pr_Cl33.toJSON());
         const newPr_Cl34 = 
         {
-            productID: 'MP003',
+            productID: 'MK003',
             colorID: '#000000',
         };
         const Pr_Cl34 = await Pr_Cl.create(newPr_Cl34);
         console.log('Pr_Cl34 created: ', Pr_Cl34.toJSON());
         const newPr_Cl35 = 
         {
-            productID: 'MP003',
+            productID: 'MK003',
             colorID: '#FFFFFF',
         };
         const Pr_Cl35 = await Pr_Cl.create(newPr_Cl35);
         console.log('Pr_Cl35 created: ', Pr_Cl35.toJSON());
         const newPr_Cl36 = 
         {
-            productID: 'MP003',
+            productID: 'MK003',
             colorID: '#2E8B57',
         };
         const Pr_Cl36 = await Pr_Cl.create(newPr_Cl36);
         console.log('Pr_Cl36 created: ', Pr_Cl36.toJSON());
         const newPr_Cl37 = 
         {
-            productID: 'MSS002',
+            productID: 'MU002',
             colorID: '#000080',
         };
         const Pr_Cl37 = await Pr_Cl.create(newPr_Cl37);
         console.log('Pr_Cl37 created: ', Pr_Cl37.toJSON());
         const newPr_Cl38 = 
         {
-            productID: 'MSS002',
+            productID: 'MU002',
             colorID: '#FFFF00',
         };
         const Pr_Cl38 = await Pr_Cl.create(newPr_Cl38);
         console.log('Pr_Cl38 created: ', Pr_Cl38.toJSON());
         const newPr_Cl39 = 
         {
-            productID: 'MSS003',
+            productID: 'MU003',
             colorID: '#228B22',
         };
         const Pr_Cl39 = await Pr_Cl.create(newPr_Cl39);
         console.log('Pr_Cl39 created: ', Pr_Cl39.toJSON());
         const newPr_Cl40 = 
         {
-            productID: 'MSS003',
+            productID: 'MU003',
             colorID: '#000080',
         };
         const Pr_Cl40 = await Pr_Cl.create(newPr_Cl40);
         console.log('Pr_Cl40 created: ', Pr_Cl40.toJSON());
         const newPr_Cl41 = 
         {
-            productID: 'MSS003',
+            productID: 'MU003',
             colorID: '#FFFFF0',
         };
         const Pr_Cl41 = await Pr_Cl.create(newPr_Cl41);
@@ -431,42 +431,42 @@ async function insertPr_Cl()
         console.log('Pr_Cl59 created: ', Pr_Cl59.toJSON());
         const newPr_Cl60 = 
         {
-            productID: 'MU001',
+            productID: 'MSS001',
             colorID: '#000080',
         };
         const Pr_Cl60 = await Pr_Cl.create(newPr_Cl60);
         console.log('Pr_Cl60 created: ', Pr_Cl60.toJSON());
         const newPr_Cl61 = 
         {
-            productID: 'MU002',
+            productID: 'MSS002',
             colorID: '#ADD8E6',
         };
         const Pr_Cl61 = await Pr_Cl.create(newPr_Cl61);
         console.log('Pr_Cl61 created: ', Pr_Cl61.toJSON());
         const newPr_Cl62 = 
         {
-            productID: 'MU002',
+            productID: 'MSS002',
             colorID: '#000000',
         };
         const Pr_Cl62 = await Pr_Cl.create(newPr_Cl62);
         console.log('Pr_Cl62 created: ', Pr_Cl62.toJSON());
         const newPr_Cl63 = 
         {
-            productID: 'MU002',
+            productID: 'MSS002',
             colorID: '#FFFFFF',
         };
         const Pr_Cl63 = await Pr_Cl.create(newPr_Cl63);
         console.log('Pr_Cl63 created: ', Pr_Cl63.toJSON());
         const newPr_Cl64 = 
         {
-            productID: 'MU002',
+            productID: 'MSS002',
             colorID: '#A52A2A',
         };
         const Pr_Cl64 = await Pr_Cl.create(newPr_Cl64);
         console.log('Pr_Cl64 created: ', Pr_Cl64.toJSON());
         const newPr_Cl65 = 
         {
-            productID: 'MU003',
+            productID: 'MSS003',
             colorID: '#000000',
         };
         const Pr_Cl65 = await Pr_Cl.create(newPr_Cl65);
@@ -542,6 +542,266 @@ async function insertPr_Cl()
         };
         const Pr_Cl109 = await Pr_Cl.create(newPr_Cl109);
         console.log('Pr_Cl109 created: ', Pr_Cl109.toJSON());
+        const newPr_Cl110 = 
+        {
+            productID: 'WTS001',
+            colorID: '#FFB6C1',
+        };
+        const Pr_Cl110 = await Pr_Cl.create(newPr_Cl110);
+        console.log('Pr_Cl110 created: ', Pr_Cl110.toJSON());
+        const newPr_Cl111 = 
+        {
+            productID: 'WTS001',
+            colorID: '#000000',
+        };
+        const Pr_Cl111 = await Pr_Cl.create(newPr_Cl111);
+        console.log('Pr_Cl111 created: ', Pr_Cl111.toJSON());
+        const newPr_Cl112 =
+        {
+            productID: 'WTS001',
+            colorID: '#00008B',
+        };
+        const Pr_Cl112 = await Pr_Cl.create(newPr_Cl112);
+        console.log('Pr_Cl112 created: ', Pr_Cl112.toJSON());
+        const newPr_Cl113 = 
+        {
+            productID: 'WTS002',
+            colorID: '#8FBC8F',
+        };
+        const Pr_Cl113 = await Pr_Cl.create(newPr_Cl113);
+        console.log('Pr_Cl113 created: ', Pr_Cl113.toJSON());
+        const newPr_Cl114 = 
+        {
+            productID: 'WTS002',
+            colorID: '#FFA500',
+        };
+        const Pr_Cl114 = await Pr_Cl.create(newPr_Cl114);
+        console.log('Pr_Cl114 created: ', Pr_Cl114.toJSON());
+        const newPr_Cl115 =
+        {
+            productID: 'WTS002',
+            colorID: '#FFB6C1',
+        };
+        const Pr_Cl115 = await Pr_Cl.create(newPr_Cl115);
+        console.log('Pr_Cl115 created: ', Pr_Cl115.toJSON());
+        const newPr_Cl116 = 
+        {
+            productID: 'WTS003',
+            colorID: '#FFC0CB',
+        };
+        const Pr_Cl116 = await Pr_Cl.create(newPr_Cl116);
+        console.log('Pr_Cl116 created: ', Pr_Cl116.toJSON());
+        const newPr_Cl117 = 
+        {
+            productID: 'WTS003',
+            colorID: '#000000',
+        };
+        const Pr_Cl117 = await Pr_Cl.create(newPr_Cl117);
+        console.log('Pr_Cl117 created: ', Pr_Cl117.toJSON());
+        const newPr_Cl118 =
+        {
+            productID: 'WTS003',
+            colorID: '#FFFFFF',
+        };
+        const Pr_Cl118 = await Pr_Cl.create(newPr_Cl118);
+        console.log('Pr_Cl118 created: ', Pr_Cl118.toJSON());
+        const newPr_Cl119 = 
+        {
+            productID: 'WS001',
+            colorID: '#000000',
+        };
+        const Pr_Cl119 = await Pr_Cl.create(newPr_Cl119);
+        console.log('Pr_Cl119 created: ', Pr_Cl119.toJSON());
+        const newPr_Cl120 = 
+        {
+            productID: 'WS001',
+            colorID: '#A52A2A',
+        };
+        const Pr_Cl120 = await Pr_Cl.create(newPr_Cl120);
+        console.log('Pr_Cl120 created: ', Pr_Cl120.toJSON());
+        const newPr_Cl121 = 
+        {
+            productID: 'WS002',
+            colorID: '#F8F8FF',
+        };
+        const Pr_Cl121 = await Pr_Cl.create(newPr_Cl121);
+        console.log('Pr_Cl121 created: ', Pr_Cl121.toJSON());
+        const newPr_Cl122 = 
+        {
+            productID: 'WS002',
+            colorID: '#9ACD32',
+        };
+        const Pr_Cl122 = await Pr_Cl.create(newPr_Cl122);
+        console.log('Pr_Cl122 created: ', Pr_Cl122.toJSON());
+        const newPr_Cl123 = 
+        {
+            productID: 'WS003',
+            colorID: '#000000',
+        };
+        const Pr_Cl123 = await Pr_Cl.create(newPr_Cl123);
+        console.log('Pr_Cl123 created: ', Pr_Cl123.toJSON());
+        const newPr_Cl124 = 
+        {
+            productID: 'WS003',
+            colorID: '#FFFFFF',
+        };
+        const Pr_Cl124 = await Pr_Cl.create(newPr_Cl124);
+        console.log('Pr_Cl124 created: ', Pr_Cl124.toJSON());
+        const newPr_Cl125 = 
+        {
+            productID: 'WS003',
+            colorID: '#9ACD32',
+        };
+        const Pr_Cl125 = await Pr_Cl.create(newPr_Cl125);
+        console.log('Pr_Cl125 created: ', Pr_Cl125.toJSON());
+        const newPr_Cl126 = 
+        {
+            productID: 'WJ001',
+            colorID: '#F5F5DC',
+        };
+        const Pr_Cl126 = await Pr_Cl.create(newPr_Cl126);
+        console.log('Pr_Cl126 created: ', Pr_Cl126.toJSON());
+        const newPr_Cl127 = 
+        {
+            productID: 'WJ002',
+            colorID: '#00008B',
+        };
+        const Pr_Cl127 = await Pr_Cl.create(newPr_Cl127);
+        console.log('Pr_Cl127 created: ', Pr_Cl127.toJSON());
+        const newPr_Cl128 = 
+        {
+            productID: 'WJ003',
+            colorID: '#808080',
+        };
+        const Pr_Cl128 = await Pr_Cl.create(newPr_Cl128);
+        console.log('Pr_Cl128 created: ', Pr_Cl128.toJSON());
+        const newPr_Cl129 = 
+        {
+            productID: 'WSP001',
+            colorID: '#BC8F8F',
+        };
+        const Pr_Cl129 = await Pr_Cl.create(newPr_Cl129);
+        console.log('Pr_Cl129 created: ', Pr_Cl129.toJSON());
+        const newPr_Cl130 = 
+        {
+            productID: 'WSP002',
+            colorID: '#F5F5F5',
+        };
+        const Pr_Cl130 = await Pr_Cl.create(newPr_Cl130);
+        console.log('Pr_Cl130 created: ', Pr_Cl130.toJSON());
+        const newPr_Cl131 = 
+        {
+            productID: 'WSP002',
+            colorID: '#000000',
+        };
+        const Pr_Cl131 = await Pr_Cl.create(newPr_Cl131);
+        console.log('Pr_Cl131 created: ', Pr_Cl131.toJSON());
+        const newPr_Cl132 = 
+        {
+            productID: 'WSP002',
+            colorID: '#FFB6C1',
+        };
+        const Pr_Cl132 = await Pr_Cl.create(newPr_Cl132);
+        console.log('Pr_Cl132 created: ', Pr_Cl132.toJSON());
+        const newPr_Cl133 = 
+        {
+            productID: 'WSP002',
+            colorID: '#9ACD32',
+        };
+        const Pr_Cl133 = await Pr_Cl.create(newPr_Cl133);
+        console.log('Pr_Cl133 created: ', Pr_Cl133.toJSON());
+        const newPr_Cl134 = 
+        {
+            productID: 'WSP003',
+            colorID: '#9ACD32',
+        };
+        const Pr_Cl134 = await Pr_Cl.create(newPr_Cl134);
+        console.log('Pr_Cl134 created: ', Pr_Cl134.toJSON());
+        const newPr_Cl135 = 
+        {
+            productID: 'WSP003',
+            colorID: '#FFFFFF',
+        };
+        const Pr_Cl135 = await Pr_Cl.create(newPr_Cl135);
+        console.log('Pr_Cl135 created: ', Pr_Cl135.toJSON());
+        const newPr_Cl136 = 
+        {
+            productID: 'WP001',
+            colorID: '#A52A2A',
+        };
+        const Pr_Cl136 = await Pr_Cl.create(newPr_Cl136);
+        console.log('Pr_Cl136 created: ', Pr_Cl136.toJSON());
+        const newPr_Cl137 = 
+        {
+            productID: 'WP002',
+            colorID: '#000000',
+        };
+        const Pr_Cl137 = await Pr_Cl.create(newPr_Cl137);
+        console.log('Pr_Cl137 created: ', Pr_Cl137.toJSON());
+        const newPr_Cl138 = 
+        {
+            productID: 'WP002',
+            colorID: '#D3D3D3',
+        };
+        const Pr_Cl138 = await Pr_Cl.create(newPr_Cl138);
+        console.log('Pr_Cl138 created: ', Pr_Cl138.toJSON());
+        const newPr_Cl139 = 
+        {
+            productID: 'WP003',
+            colorID: '#9ACD32',
+        };
+        const Pr_Cl139 = await Pr_Cl.create(newPr_Cl139);
+        console.log('Pr_Cl139 created: ', Pr_Cl139.toJSON());
+        const newPr_Cl140 = 
+        {
+            productID: 'WAP001',
+            colorID: '#000000',
+        };
+        const Pr_Cl140 = await Pr_Cl.create(newPr_Cl140);
+        console.log('Pr_Cl140 created: ', Pr_Cl140.toJSON());
+        const newPr_Cl141 = 
+        {
+            productID: 'WAP002',
+            colorID: '#000000',
+        };
+        const Pr_Cl141 = await Pr_Cl.create(newPr_Cl141);
+        console.log('Pr_Cl141 created: ', Pr_Cl141.toJSON());
+        const newPr_Cl142 = 
+        {
+            productID: 'WAP002',
+            colorID: '#F5F5DC',
+        };
+        const Pr_Cl142 = await Pr_Cl.create(newPr_Cl142);
+        console.log('Pr_Cl142 created: ', Pr_Cl142.toJSON());
+        const newPr_Cl143 = 
+        {
+            productID: 'WAP002',
+            colorID: '#A52A2A',
+        };
+        const Pr_Cl143 = await Pr_Cl.create(newPr_Cl143);
+        console.log('Pr_Cl143 created: ', Pr_Cl143.toJSON());
+        const newPr_Cl144 = 
+        {
+            productID: 'WAP002',
+            colorID: '#A9A9A9',
+        };
+        const Pr_Cl144 = await Pr_Cl.create(newPr_Cl144);
+        console.log('Pr_Cl144 created: ', Pr_Cl144.toJSON());
+        const newPr_Cl145 = 
+        {
+            productID: 'WAP002',
+            colorID: '#9370D8',
+        };
+        const Pr_Cl145 = await Pr_Cl.create(newPr_Cl145);
+        console.log('Pr_Cl145 created: ', Pr_Cl145.toJSON());
+        const newPr_Cl146 = 
+        {
+            productID: 'WAP003',
+            colorID: '#F5F5DC',
+        };
+        const Pr_Cl146 = await Pr_Cl.create(newPr_Cl146);
+        console.log('Pr_Cl146 created: ', Pr_Cl146.toJSON());
+
 
 
     }

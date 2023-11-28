@@ -12,10 +12,73 @@ let createNewUser = async(data) => {
         try{
             await db.Users.create({
                 userName: data.userName,
-                userPassword: data.password,
-                // role: data.role,
+                userPassword: data.userPassword,
+                role: 'Guest',
             })
             reslove('Added user!')
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+
+let createNewProduct = async(data) => {
+    return new Promise(async (reslove,reject) => {
+        try{
+            let product = await db.Product.findAll();
+            console.log(product.length)
+            var productID = data.categoryProductID + '0' + (product.length + 1).toString();
+
+            await db.Product.create({
+                productID: productID,
+                productName: data.productName,
+                description: data.description,
+                material: data.material,
+                categoryProductID: data.categoryProductID,
+                price: data.price,
+                rate: 0,
+                discount: 0,
+            })
+
+            for (let i=0; i< data.sizeID.length; i++)
+            {
+                let size = ''
+                if (productID[0] === 'M')
+                    if (data.sizeID[i] != 'XS')
+                        size = data.sizeID[i] + '01';
+                else
+                    if (data.sizeID[i] != 'XL')
+                        size = data.sizeID[i] + '02';
+                if (size != '')
+                {
+                    await db.Product_Size.create({
+                        sizeID: size,
+                        productID: productID
+                    })
+                }
+            }
+            for (let i=0 ; i<data.colorID.length; i++)
+            {
+                let Color = db.Color.findAll()
+                let checkCl = true;
+                for (let j=0;j<Color.length;j++)
+                {
+                    if (Color.colorID == data.colorID[i])
+                        checkCl = false
+                }
+                if (checkCl)
+                {
+                    await db.Color.create({
+                        colorID: data.colorID[i],
+                    })
+                }
+                await db.Product_Color.create({
+                    colorID: data.colorID[i],
+                    productID: productID
+                })
+            }
+            reslove('Added Product!')
         } catch (e) {
             reject(e);
         }
@@ -178,201 +241,24 @@ let createTeam = async (data) => {
     })
 }
 
-let createKetQua = async (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketquaDoi1 = 0;
-            let ketquaDoi2 = 0;
-            let soTheVang = 0;
-            let soTheDo = 0;
-            let thamSo = getAllThamSo({ raw: true });
-            let DiemThang = 3;
-            let DiemHoa = 1;
-            let DiemThua = 0;
-            for (let i = 0; i < thamSo.length; i++) {
-                if (thamSo[i].tenThamSo == 'DiemThang') {
-                    DiemThang = parseInt(thamSo[i].giaTri);
-                }
-                if (thamSo[i].tenThamSo == 'DiemHoa') {
-                    DiemHoa = parseInt(thamSo[i].giaTri);
-                }
-                if (thamSo[i].tenThamSo == 'DiemThua') {
-                    DiemThua = parseInt(thamSo[i].giaTri);
-                }
-            }
-            for (let i = 0; i < data.dienBien.length; i++) {
-                console.log(data.dienBien[i])
-                console.log(data.doiNha)
-                console.log(data.maLich)
-                if (data.dienBien[i][3] == 'Thẻ vàng') { soTheVang = soTheVang + 1; };
-                if (data.dienBien[i][3] == 'Thẻ đỏ') { soTheDo = soTheDo + 1; };
-                if (data.dienBien[i][2] == 'Phản lưới nhà' && data.dienBien[i][0] == data.doiNha) { ketquaDoi2 = ketquaDoi2 + 1 };
-                if (data.dienBien[i][2] == 'Phản lưới nhà' && data.dienBien[i][0] != data.doiNha) { ketquaDoi1 = ketquaDoi1 + 1 };
-                if (data.dienBien[i][0] == data.doiNha) {
-                    if (data.dienBien[i][2] == 'Trực tiếp' || data.dienBien[i][2] == 'Đá phạt') {
-                        ketquaDoi1 = ketquaDoi1 + 1;
-                    }
-                }
-                if (data.dienBien[i][0] != data.doiNha) {
-                    if (data.dienBien[i][2] == 'Trực tiếp' || data.dienBien[i][2] == 'Đá phạt') {
-                        ketquaDoi2 = ketquaDoi2 + 1;
-                    }
-                }
-            };
-            await db.ketQua.create({
-                maLich: data.maLich,
-                soBanThangDoi1: ketquaDoi1,
-                soBanThangDoi2: ketquaDoi2,
-                soTheDo: soTheDo,
-                soTheVang: soTheVang,
-            })
-            let tongKet1 = await db.tongKet.findOne({
-                where: {
-                    tenDoiBong: data.doiNha,
-                }
-            })
-            if (tongKet1) {
-                tongKet1.soTranDau += 1;
-                if (ketquaDoi1 > ketquaDoi2) {
-                    tongKet1.diemSo += DiemThang;
-                    tongKet1.soTranThang += 1;
-                } else if (ketquaDoi1 == ketquaDoi2) {
-                    tongKet1.diemSo += DiemHoa
-                    tongKet1.soTranHoa += 1;
-                } else {
-                    tongKet1.diemSo += DiemThua;
-                    tongKet1.soTranThua += 1;
-                }
-                tongKet1.soBanThang = tongKet1.soBanThang + ketquaDoi1;
-                tongKet1.soBanThua += ketquaDoi2;
-                tongKet1.hieuSo = tongKet1.hieuSo + ketquaDoi1 - ketquaDoi2;
-                tongKet1.soTheVang = soTheVang;
-                tongKet1.soTheDo = soTheDo;
-
-                await tongKet1.save();
-            }
-            else {
-                reslove();
-            }
-
-
-            let tongKet2 = await db.tongKet.findOne({
-                where: {
-                    tenDoiBong: data.doiKhach,
-                }
-            })
-            if (tongKet2) {
-                tongKet2.soTranDau += 1;
-                if (ketquaDoi1 < ketquaDoi2) {
-                    tongKet2.diemSo += DiemThang;
-                    tongKet2.soTranThang += 1;
-                } else if (ketquaDoi1 == ketquaDoi2) {
-                    tongKet2.diemSo += DiemHoa
-                    tongKet2.soTranHoa += 1;
-                } else {
-                    tongKet2.diemSo += DiemThua;
-                    tongKet2.soTranThua += 1;
-                }
-                tongKet2.soBanThang = tongKet2.soBanThang + ketquaDoi2;
-                tongKet2.soBanThua += ketquaDoi1;
-                tongKet2.hieuSo = tongKet2.hieuSo + ketquaDoi2 - ketquaDoi1;
-                tongKet2.soTheVang = soTheVang;
-                tongKet2.soTheDo = soTheDo;
-
-                await tongKet2.save()
-            }
-            else {
-                reslove();
-            }
-            reslove('Add kq!');
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
-
-let createCauThu = (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let viTri = 1;
-            if (data.viTri == '1')
-                viTri = 'Tiền đạo';
-            if (data.viTri == '2')
-                viTri = 'Tiền vệ';
-            if (data.viTri == '3')
-                viTri = 'Hậu vệ';
-            if (data.viTri == '4')
-                viTri = 'Thủ môn';
-            let maLoaiCT = '';
-            if (data.quocTich === 'Việt Nam')
-                maLoaiCT = 'TN';
-            else
-                maLoaiCT = 'NN';
-            await db.cauThu.create({
-                tenCauThu: data.tenCauThu,
-                quocTich: data.quocTich,
-                viTri: viTri,
-                chieuCao: data.chieuCao,
-                canNang: data.canNang,
-                soAo: data.soAo,
-                ngaySinh: data.ngaySinh,
-                tenDoiBong: data.tenDoiBong,
-                maLoaiCauThu: maLoaiCT
-            })
-
-            reslove('Added user!')
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-let hashUserPassword = (password) => {
-    return new Promise((reslove, reject) => {
-        try {
-            var hashPassword = bcrypt.hashSync(password, salt);
-            reslove(hashPassword);
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
 
 let getAllUser = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let users = db.Users.findAll();
+            let users = await sequelize.query("SELECT * FROM `customers` INNER JOIN `users` ON customers.userID = users.userID", { type: QueryTypes.SELECT });
             reslove(users);
+            console.log(users)
         } catch (e) {
             reject(e);
         }
     })
 }
 
-let getAllCode = (userId) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let allcode = await db.Allcode.findOne({
-                where: {
-                    userId: userId,
-                }
-            })
-            if (allcode) {
-                reslove(allcode);
-            }
-            else {
-                reslove();
-            }
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
 
 let getLogin = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let login = await sequelize.query("SELECT users.userID ,users.role FROM `logins` INNER JOIN `users` ON logins.userID = users.userID", { type: QueryTypes.SELECT });
+            let login = await sequelize.query("SELECT * FROM (`logins` INNER JOIN `users` ON logins.userID = users.userID) INNER JOIN `customers` ON customers.userID = users.userID", { type: QueryTypes.SELECT });
             reslove(login);
         } catch (e) {
             reject(e);
@@ -380,101 +266,12 @@ let getLogin = () => {
     })
 }
 
-let getAllTongKet = () => {
+let getUserInfoById = (userID) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC, hieuSo DESC, soBanThang DESC", { type: QueryTypes.SELECT });
-            reslove(tongket);
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-let getAllCauThu = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let cauThu = await sequelize.query("SELECT * FROM `cauThus` ORDER BY tenDoiBong,viTri DESC", { type: QueryTypes.SELECT });
-            reslove(cauThu);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getALLDoiBong = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ORDER BY createdAt", { type: QueryTypes.SELECT });
-            reslove(doibong);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllLichDaThiDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let lichThiDau = await sequelize.query("SELECT distinct DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay FROM `lichThiDaus` WHERE (maLich  not in  (SELECT maLich from ketQuas )) and (DATE(ngayGio) <= NOW()) ORDER BY ngay DESC", { type: QueryTypes.SELECT });
-            reslove(lichThiDau);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllLichChuaThiDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let lichThiDauSau = await sequelize.query("SELECT lichThiDaus.maLich, tenDoiBong1,tenDoiBong2, soBanThangDoi1, soBanThangDoi2, DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `ketQuas` ON lichThiDaus.maLich = ketQuas.maLich ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT });
-            reslove(lichThiDauSau);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllLichThiDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT maLich, tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha, lichThiDaus.ngayGio AS ngayGio, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%Y-%m-%dT%H:%i') as ngayGioThiDau FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT });
-            console.log(ketqua);
-            reslove(ketqua);
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
-
-let getAllTranDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let lichThiDauTruoc = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong ORDER BY ngay DESC", { type: QueryTypes.SELECT });
-            reslove(lichThiDauTruoc);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllKetQua = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay, DATE_FORMAT(ngayGio, '%H:%i') AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich ORDER BY ngay DESC", { type: QueryTypes.SELECT });
-            reslove(ketqua);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getUserInfoById = (userId) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let user = await db.User.findOne({
+            let user = await db.Users.findOne({
                 where: {
-                    id: userId,
+                    userID: userID,
                 }
             })
             if (user) {
@@ -522,7 +319,7 @@ let editUser = async(data) => {
 let getProductInfoByProductId = (productID) => {
     return new Promise(async(reslove, reject) => {
         try {
-            let product = await db.Products.findOne({
+            let product = await db.Product.findOne({
                 where: {
                     productID: productID,
                 }
@@ -1243,6 +1040,7 @@ module.exports = {
     createUser: createUser,
     createCart: createCart,
     createOrder: createOrder,
+    createNewProduct: createNewProduct,
 
     editUser: editUser,
     editCustomer: editCustomer,
@@ -1252,7 +1050,7 @@ module.exports = {
 
     getLogin: getLogin,
 
-    // getUserInfoById: getUserInfoById,
+    getUserInfoById: getUserInfoById,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
     // createTeam: createTeam,
@@ -1269,7 +1067,7 @@ module.exports = {
     // getAllThamSo: getAllThamSo,
     createNewLogin: createNewLogin,
     // getAllCode: getAllCode,
-    // logoutCRUD: logoutCRUD,
+    logoutCRUD: logoutCRUD,
     // getCauThuByMaCauThu: getCauThuByMaCauThu,
     // editCauThu: editCauThu,
     // deleteCauThuById: deleteCauThuById,

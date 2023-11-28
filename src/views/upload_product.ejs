@@ -5,27 +5,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Product</title>
-    <link rel="stylesheet" href="upload_products.css">
+    <link rel="stylesheet" href="./css/upload_product.css">
 </head>
 
 <body>
     <h1 class="announce"> Đăng kí hàng lên kệ</h1>
-    <form method="post" action="" id="formUpload">
+    <form method="post" action="/uploadProduct" id="formUpload">
         <fieldset>
-
-            <label>Nhập tên thương hiệu:<input type="text" required></label>
-            <label>Tên mặt hàng: <input type="text" required></label>
-            <label>Mô tả: <br><textarea id="" name="" rows="3" cols="60"
-                    placeholder="Sản phẩm này chỉ đơn giản là một chiếc áo ... "></textarea></label>
+            <label>Tên sản phẩm: <input type="text" name="productName"></label>
+            <label>Chất liệu: <input type="text" name="material"></label>
+            <label>Mô tả: <br><textarea id="" name="description" rows="3" cols="60"
+                    placeholder="Mô tả sản phẩm"></textarea></label>
             <label for="">Giới tính
-                <select id="" name="">
-                    <option value="">(select one)</option>
+                <select id="gender" name="gender">
                     <option value="1">Nam</option>
                     <option value="2">Nữ</option>
-                    <option value="3">Khác</option>
                 </select>
             </label>
 
+            <label for="">Loại sản phẩm
+                <select id="catePro" name="categoryProductID">
+                    <option value="MJ">Quần Jeans</option>
+                    <option value="MP">Quần Tây</option>
+                    <option value="MSP">Quần Đùi</option>
+                    <option value="MSS">Quần thể thao</option>
+                    <option value="MS">Áo thun</option>
+                    <option value="MTS">Áo sơ mi</option>
+                    <option value="MTT">Áo ba lỗ</option>
+                    <option value="MJK">Áo khoác</option>
+                </select>
+            </label>
+
+            <script>
+                catePro = document.getElementById("catePro")
+                gender = document.getElementById('gender')
+
+                gender.addEventListener('change', () => {
+                if (gender.value == 1)
+                {
+                    catePro.innerHTML = 
+                    `
+                    <option value="MJ">Quần Jeans</option>
+                    <option value="MP">Quần Tây</option>
+                    <option value="MSP">Quần Đùi</option>
+                    <option value="MSS">Quần thể thao</option>
+                    <option value="MS">Áo thun</option>
+                    <option value="MTS">Áo sơ mi</option>
+                    <option value="MTT">Áo ba lỗ</option>
+                    <option value="MJK">Áo khoác</option>
+                    `
+                } else {
+                    catePro.innerHTML = 
+                    `
+                    <option value="WJ">Quần Jeans</option>
+                    <option value="WP">Quần Tây</option>
+                    <option value="WSP">Quần Đùi</option>
+                    <option value="WSS">Quần thể thao</option>
+                    <option value="WS">Áo thun</option>
+                    <option value="WTS">Áo sơ mi</option>
+                    <option value="WTT">Áo ba lỗ</option>
+                    <option value="WJK">Áo khoác</option>
+                    `
+                }
+            })
+            </script>
         </fieldset>
         <fieldset id="product-field">
 
@@ -45,7 +88,7 @@
                     fileInput.addEventListener('change', function (event) {
                         const files = event.target.files;
 
-                        previewImagesContainer.innerHTML = ''; // Xóa các hình ảnh hiện có trước khi hiển thị hình ảnh mới
+                        previewImagesContainer.innerHTML = '';
 
                         for (let i = 0; i < files.length; i++) {
                             const file = files[i];
@@ -62,42 +105,69 @@
                     });
                 }
             </script>
-            <label>Kích thước:
-                <label for=""><input type="checkbox" /> XS </label>
-                <label for=""><input type="checkbox" /> S</label>
-                <label for=""><input type="checkbox" /> M</label>
-                <label for=""><input type="checkbox" /> L</label>
-                <label for=""><input type="checkbox" /> XL</label>
-                <label for=""><input type="checkbox" /> XXL</label>
+            <label id="colorInput" for="colorProduct">Màu sắc:
+                <input type="color" name="colorID">
             </label>
-            <label>Giá niêm yết: <input type="text" required> VNĐ.</label>
-            <label>Số lượng hàng hiện có trong kho: <input type="text" required></label>
+            <button onclick="AddColor()" type="button">Thêm màu sắc</button>
+            <script>
+                function AddColor() {
+                    let colorInput = document.getElementById('colorInput');
+                    var inputColor = document.createElement('input');
+                    inputColor.setAttribute('type', 'color')
+                    inputColor.setAttribute('name', 'colorID')
+                    colorInput.appendChild(inputColor);
+                }
+            </script>
+            <label>Kích thước:
+                <label for=""><input name="sizeID" type="checkbox" value="XS"/> XS </label>
+                <label for=""><input name="sizeID" type="checkbox" value="S"/> S</label>
+                <label for=""><input name="sizeID" type="checkbox" value="M"/> M</label>
+                <label for=""><input name="sizeID" type="checkbox" value="L"/> L</label>
+                <label for=""><input name="sizeID" type="checkbox" value="XL"/> XL</label>
+            </label>
+            <label>Giá niêm yết: <input type="number" name="price"> VNĐ.</label>
+        </fieldset>
+        <fieldset class="submitField">
+            <button class="button1" type="button" value="Submit" onclick="uploadFile()">Tải lên</button>
         </fieldset>
     </form>
     
+    
+
     <script>
         var dem = 0;
 
-        function addProduct() {
-            dem++;
-            var productField = document.getElementById('product-field');
-            var newField = document.createElement('fieldset');
-            newField.setAttribute('id', 'product-field-' + dem);
-            newField.innerHTML = productField.innerHTML;
-            var previewImagesContainerid = newField.querySelector('#preview-images');
-            previewImagesContainerid.setAttribute('id', 'preview-images-' + dem);
-            previewImagesContainerid.innerHTML = ''
-            var imgInputid = newField.querySelector('#product-picture');
-            imgInputid.setAttribute('id', 'product-picture-' + dem);
-            var formUpload = document.getElementById('formUpload');
-            formUpload.appendChild(newField);
+        function uploadFile() {
+            const fileInput = document.getElementById('product-picture');
+            for (let i = 0; i< fileInput.files.length; i++)
+            {
+                var file = fileInput.files[i];
+                
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    var productLength = '<%- productLength %>';
+                    
+                    productID = catePro.value + '0' + (parseInt(productLength) + 1).toString() + i.toString();
+
+                    fetch('/uploadPhoto?productID='+ productID, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(error => {
+                        console.error('Error uploading file:', error);
+                    });
+                    document.getElementById('formUpload').submit();
+                }
+            }
         }
 
     </script>
-    <fieldset class="submitField">
-        <button type="button" class="createNewProduct button1" onclick="addProduct()">Thêm sản phẩm</button>
-        <input class="button1" type="submit" value="Submit" />
-    </fieldset>
 </body>
 
 </html>

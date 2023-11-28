@@ -17,11 +17,16 @@
 
 #myCarousel {
     width: 440px;
-    height: 660px;
+    height: 550px;
 }
 .carousel-item img {
     max-height: 100%;
     max-width: 100%;
+}
+
+.carousel-inner
+{
+  height: 100%;
 }
 
 .carousel-control-prev:hover,
@@ -81,4 +86,10 @@
   }
   .details  .btn_buy:hover {
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .rows p {
+    font-weight: bold;
+    color: #000;
+    font-size: 20;
   }
