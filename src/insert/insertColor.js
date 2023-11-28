@@ -231,7 +231,7 @@ async function insertColor()
         };
         const Color26 = await Color.create(newColor26);
         console.log('Color26 created: ', Color26.toJSON());
-        //Product 34: https://routine.vn/ao-so-mi-unisex-ke-soc-caro-form-loose-10f23shlu001.html (Black, Brown)
+        //Product 34: https://routine.vn/ao-so-mi-nu-tay-dai-tron-form-regular-10f22shlw014.html?utm_source=google&utm_medium=cpc&utm_campaign=%7Bcampaignname%7D&utm_content=%7Badgroupname%7D&utm_keyword=&utm_matchtype=&campaign_id=20767326427&ad_group_id=&ad_id=&matchtype=&device=c&product_partition_id=&adposition=&loc_interest_ms=&loc_physical_ms=1028581&feeditemid=&gad_source=1&gclid=CjwKCAiAvJarBhA1EiwAGgZl0NXWVWE3FVy5GVbl2msmKwKYMv5smjihJfWj0oUEBI8fEBaEFCrQVxoCfn4QAvD_BwE (Black, Beige, White)
         //Product 35: https://routine.vn/ao-so-mi-nu-tay-dai-linen-tui-theu-form-regular-crop-10s23shlw010.html (Yellow Green)
         const newColor27 =
         {
@@ -274,6 +274,12 @@ async function insertColor()
         const Color30 = await Color.create(newColor30);
         console.log('Color30 created: ', Color30.toJSON());
         //Product 48: https://yody.vn/quan-baggy-nu-cong-so-cap-phoi-v (Beige)
+        //Product 49: https://yody.vn/giay-nam-penny-loafer-da-bo-nappa-cao-cap (Black, Brown)
+        //Product 50: https://yody.vn/giay-nam-da-that-de-the-thao (Black, Brown)
+        //Product 51: https://yody.vn/giay-sneaker-nam-basic-tre-trung (Black, Brown, White)
+        //Product 52: https://www.uniqlo.com/us/en/products/E462241-000/00?colorDisplayCode=00&sizeDisplayCode=027 (Black, Grey)
+        //Product 53: https://www.uniqlo.com/us/en/products/E463645-001/00?colorDisplayCode=03&sizeDisplayCode=027 (Brown, Grey)
+        //Product 54: https://www.uniqlo.com/us/en/products/E457278-000/00?colorDisplayCode=09&sizeDisplayCode=027 (Black, Blue, White)
     }
     catch(error)
     {
