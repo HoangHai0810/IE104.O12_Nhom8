@@ -2,6 +2,7 @@ import { promiseImpl } from 'ejs';
 import db, { sequelize } from '../models/index'
 import bcrypt from 'bcryptjs';
 import { query } from 'express';
+// import { all } from 'sequelize/types/lib/operators';
 const { QueryTypes } = require('sequelize');
 const salt = bcrypt.genSaltSync(10);
 
@@ -448,7 +449,7 @@ let getAllMen = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let allMen = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man'",
+                "select * from Products, Category_Products where Products.categoryProductID = Category_Products.categoryProductID and gender = 'Man'",
                 { type: QueryTypes.SELECT }
             );
             resolve(allMen);
@@ -458,12 +459,11 @@ let getAllMen = () => {
     });
 }
 
-
 let getAllMenShirts = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let menShirts = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type like 'Ao%'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type in ('T-shirt', 'Jacket', 'Tank Top', 'Sweat Shirt')",
                 { type: QueryTypes.SELECT }
             );
             reslove(menShirts);
@@ -473,42 +473,56 @@ let getAllMenShirts = () => {
     });
 }
 
-let getAllMenTrousers = () => {
-    return new Promise(async (resolve, reject) => {
+let getAllMenTShirts = () => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let menTrousers = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName in ('Pant', 'Jeans')",
+            let menTShirts = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'T-shirt'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menTrousers);
+            reslove(menTShirts);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenAoThun = () => {
+let getAllMenJacket = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menAoThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='T-shirt'",
+            let menJacket = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Jacket'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAoThun);
+            resolve(menJacket);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenAoKhoac = () => {
+let getAllMenSweatShirt = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let menSweatShirt = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Sweat Shirt'",
+                { type: QueryTypes.SELECT }
+            );
+            resolve(menSweatShirt);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllMenTankTop = () => {
     return new Promise(async(resolve, reject) => {
         try {
-            let menAoKhoac = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='Jacket'",
+            let menTankTop = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type ='Tank Top'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAoKhoac);
+            resolve(menTankTop);
         } catch(e)
         {
             reject(e)
@@ -516,70 +530,70 @@ let getAllMenAoKhoac = () => {
     });
 }
 
-let getAllMenAoJean = () => {
+let getAllMenKhaki = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menAoJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Ao Jean'",
+            let menKhaki = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Khaki'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAoJean);
+            resolve(menKhaki);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanThun = () => {
+let getAllMenJeans = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menQuanThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Thun'",
+            let menJeans = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Jeans'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanThun);
+            resolve(menJeans);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanDui = () => {
+let getAllMenShortPants = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menQuanDui = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='Pant'",
+            let menShortPants = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Short Pants'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanDui);
+            resolve(menShortPants);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanJean = () => {
+let getAllMenUnderwear = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menQuanJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='Jeans'",
+            let menUnderwear = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Underwear'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanJean);
+            resolve(menUnderwear);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanTay = () => {
+let getAllMenTrousers = () => {
     return new Promise(async(resolve, reject) => {
         try {
-            let menQuanTay = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Tay'",
+            let menTrousers = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type in ('Pants', 'Jeans', 'Short Pants', 'Underwear')",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanTay);
+            resolve(menTrousers);
         } catch(e)
         {
             reject(e)
@@ -606,7 +620,7 @@ let getAllWomenShirts = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let womenShirts = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type like 'Ao%'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type in ('Dress', 'Shirt', 'T-Shirt', 'Jacket')",
                 { type: QueryTypes.SELECT }
             );
             reslove(womenShirts);
@@ -620,7 +634,7 @@ let getAllWomenTrousers = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let womenTrousers = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan%'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type in ('Pants', 'Shorts', 'Jeans', 'Auth Pants')",
                 { type: QueryTypes.SELECT }
             );
             resolve(womenTrousers);
@@ -630,112 +644,112 @@ let getAllWomenTrousers = () => {
     });
 }
 
-let getAllWomenAoThun = () => {
+let getAllWomenDresses = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenAoThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Ao Thun'",
+            let womenDresses = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Dress'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenAoThun);
+            resolve(womenDresses);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenAoSoMi = () => {
+let getAllWomenShirt = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenAoSoMi = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Ao So Mi'",
+            let womenShirts = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Shirt'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenAoSoMi);
+            resolve(womenShirts);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenAoJean = () => {
+let getAllWomenTShirt = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenAoJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Ao Jean'",
+            let womenTShirt = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'T-Shirt'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenAoJean);
+            resolve(womenTShirt);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenAoKhoac = () => {
+let getAllWomenJackets = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womanAoKhoac = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and categoryProductName ='Jacket'",
+            let womanJackets = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type ='Jacket'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womanAoKhoac);
+            resolve(womanJackets);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanThun = () => {
+let getAllWomenPants = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan Thun'",
+            let womenPants = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Pants'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanThun);
+            resolve(womenPants);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanDui = () => {
+let getAllWomenJeans = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanDui = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan Dui'",
+            let womenJeans = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Jeans'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanDui);
+            resolve(womenJeans);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanJean = () => {
+let getAllWomenAuthPants = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan Jean'",
+            let womenAuthPants = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Auth Pants'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanJean);
+            resolve(womenAuthPants);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanTay = () => {
+let getAllWomenShorts = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanTay = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and categoryProductName ='Dress'",
+            let womenShorts = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type ='Shorts'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanTay);
+            resolve(womenShorts);
         } catch (e) {
             reject(e)
         }
@@ -989,27 +1003,28 @@ module.exports = {
     getAllProducts: getAllProducts,
     getAllMen: getAllMen,
     getAllMenShirts: getAllMenShirts,
-    getAllMenAoThun: getAllMenAoThun,
-    //getAllMenAoSoMi: getAllMenAoSoMi,
-    getAllMenAoJean: getAllMenAoJean,
-    getAllMenAoKhoac: getAllMenAoKhoac,
+    getAllMenTShirts: getAllMenTShirts,
+    getAllMenJacket: getAllMenJacket,
+    getAllMenSweatShirt: getAllMenSweatShirt,
+    getAllMenTankTop: getAllMenTankTop,
     
     getAllMenTrousers: getAllMenTrousers,
-    // getAllMenQuanThun: getAllMenQuanThun,
-    getAllMenQuanDui: getAllMenQuanDui,
-    getAllMenQuanJean: getAllMenQuanJean,
-    getAllMenQuanTay: getAllMenQuanTay,
+    getAllMenKhaki: getAllMenKhaki,
+    getAllMenJeans: getAllMenJeans,
+    getAllMenShortPants: getAllMenShortPants,
+    getAllMenUnderwear: getAllMenUnderwear,
+
     getAllWomen: getAllWomen,
     getAllWomenShirts: getAllWomenShirts,
-    // getAllWomenAoThun: getAllWomenAoThun,
-    // getAllWomenAoSoMi: getAllWomenAoSoMi,
-    // getAllWomenAoJean: getAllWomenAoJean,
-    getAllWomenAoKhoac: getAllWomenAoKhoac,
-    // getAllWomenTrousers: getAllWomenTrousers,
-    // getAllWomenQuanThun: getAllWomenQuanThun,
-    // getAllWomenQuanDui: getAllWomenQuanDui,
-    // getAllWomenQuanJean: getAllWomenQuanJean,
-    //getAllWomenDress: getAllWomenDress, 
+    getAllWomenDresses: getAllWomenDresses,
+    getAllWomenShirt: getAllWomenShirt,
+    getAllWomenTShirt: getAllWomenTShirt,
+    getAllWomenJackets: getAllWomenJackets,
+    getAllWomenTrousers: getAllWomenTrousers,
+    getAllWomenPants: getAllWomenPants,
+    getAllWomenShorts: getAllWomenShorts,
+    getAllWomenJeans: getAllWomenJeans,
+    getAllWomenAuthPants: getAllWomenAuthPants, 
 
     // getAllShoes: getAllShoes,
     getAllDiscounted: getAllDiscounted,
