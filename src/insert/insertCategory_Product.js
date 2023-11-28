@@ -158,6 +158,14 @@ async function insertCP()
         }
         const Cp22 = await CP.create(newCP22);
         console.log('Cp22 created: ', Cp22.toJSON());
+        const newCP23 = 
+        {
+            categoryProductID: 'AHB',
+            type: 'Hand Bag',
+            gender: 'Woman',
+        }
+        const Cp23 = await CP.create(newCP23);
+        console.log('Cp23 created: ', Cp23.toJSON());
 
 
         

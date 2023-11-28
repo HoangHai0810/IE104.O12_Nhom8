@@ -768,6 +768,48 @@ async function insertSP()
         };
         const Sp205 = await Sp.create(newSP205);
         console.log('SP205 created: ', Sp205.toJSON());
+        //Product 206: https://aldoshoes.vn/products/tui-tote-nu-enobana-black-1
+        const newSP206 = 
+        {
+            productID: 'AHB001',
+            productName: 'Túi Tone Nữ Enobana',
+            description: 'Form túi cứng cáp, rộng rãi, quai cầm túi chắc chắn và thiết kế tinh xảo trong từng chi tiết',
+            material: 'Da Tổng Hợp',
+            price: 2250000,
+            rate: 4.7,
+            discount: 50,
+            categoryProductID: 'AHB'
+        };
+        const Sp206 = await Sp.create(newSP206);
+        console.log('SP206 created: ', Sp206.toJSON());
+        //Product 207: https://aldoshoes.vn/products/tui-deo-cheo-nu-eternal-pink-overflow
+        const newSP207 = 
+        {
+            productID: 'AHB002',
+            productName: 'Túi Đeo Chéo Nữ Eternal',
+            description: 'Màu sắc tối giản, rực rỡ, có thêm dây mắc xích mắc ngang qua túi',
+            material: 'Da Tổng Hợp',
+            price: 2100000,
+            rate: 4.2,
+            discount: 50,
+            categoryProductID: 'AHB'
+        };
+        const Sp207 = await Sp.create(newSP207);
+        console.log('SP207 created: ', Sp207.toJSON());
+        //Product 208: https://aldoshoes.vn/products/tui-cam-tay-nu-byday-bone?size=Nosize
+        const newSP208 = 
+        {
+            productID: 'AHB003',
+            productName: 'Túi Cầm Tay Nữ Byday',
+            description: 'Phần bề mặt các đường vân in nổi song song nhau cùng điểm nhấn phần xích to bản',
+            material: 'Da Tổng Hợp',
+            price: 1850000,
+            rate: 3.8,
+            discount: 50,
+            categoryProductID: 'AHB'
+        };
+        const Sp208 = await Sp.create(newSP208);
+        console.log('SP208 created: ', Sp208.toJSON());
     }   
     catch(error)
     {

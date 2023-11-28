@@ -907,8 +907,41 @@ async function insertPr_Cl()
         };
         const Pr_Cl213 = await Pr_Cl.create(newPr_Cl213);
         console.log('Pr_Cl213 created: ', Pr_Cl213.toJSON());
-
-
+        const newPr_Cl214 = 
+        {
+            productID: 'AHB001',
+            colorID: '#000000',
+        };
+        const Pr_Cl214 = await Pr_Cl.create(newPr_Cl214);
+        console.log('Pr_Cl214 created: ', Pr_Cl214.toJSON());
+        const newPr_Cl215 = 
+        {
+            productID: 'AHB002',
+            colorID: '#F5F5DC',
+        };
+        const Pr_Cl215 = await Pr_Cl.create(newPr_Cl215);
+        console.log('Pr_Cl215 created: ', Pr_Cl215.toJSON());
+        const newPr_Cl216 = 
+        {
+            productID: 'AHB002',
+            colorID: '#FFC0CB',
+        };
+        const Pr_Cl216 = await Pr_Cl.create(newPr_Cl216);
+        console.log('Pr_Cl216 created: ', Pr_Cl216.toJSON());
+        const newPr_Cl217 = 
+        {
+            productID: 'AHB003',
+            colorID: '#F5F5DC',
+        };
+        const Pr_Cl217 = await Pr_Cl.create(newPr_Cl217);
+        console.log('Pr_Cl217 created: ', Pr_Cl217.toJSON());
+        const newPr_Cl218 = 
+        {
+            productID: 'AHB003',
+            colorID: '#000000',
+        };
+        const Pr_Cl218 = await Pr_Cl.create(newPr_Cl218);
+        console.log('Pr_Cl218 created: ', Pr_Cl218.toJSON());
 
     }
     catch(error)

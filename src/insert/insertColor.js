@@ -280,6 +280,9 @@ async function insertColor()
         //Product 52: https://www.uniqlo.com/us/en/products/E462241-000/00?colorDisplayCode=00&sizeDisplayCode=027 (Black, Grey)
         //Product 53: https://www.uniqlo.com/us/en/products/E463645-001/00?colorDisplayCode=03&sizeDisplayCode=027 (Brown, Grey)
         //Product 54: https://www.uniqlo.com/us/en/products/E457278-000/00?colorDisplayCode=09&sizeDisplayCode=027 (Black, Blue, White)
+        //Product 55: https://aldoshoes.vn/products/tui-tote-nu-enobana-black-1 (Black)
+        //Product 56: https://aldoshoes.vn/products/tui-deo-cheo-nu-eternal-pink-overflow (Beige)
+        //Product 57: https://aldoshoes.vn/products/tui-cam-tay-nu-byday-bone?size=Nosize  (Beige, Black)
     }
     catch(error)
     {
