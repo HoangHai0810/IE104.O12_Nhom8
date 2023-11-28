@@ -8,8 +8,17 @@ const fs = require('fs');
 
 let getHomePage = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
-    console.log(login)
+    let dataUser = await CRUDSevice.getAllUser({
+        raw: true,
+    })
     try {
+        if (login[0].role === 'Admin')
+        {
+            return res.render('admin.ejs',{
+                login: login,
+                dataUser: dataUser,
+            })
+        }
         return res.render('homepage.ejs',{
             login: login
         })
@@ -20,6 +29,7 @@ let getHomePage = async (req, res) => {
 
 let getLoginSignUp = async (req, res) => {
     try {
+        let login = await CRUDSevice.getLogin({ raw: true });
         let dataUser = await CRUDSevice.getAllUser({
             raw: true,
         })
@@ -28,6 +38,7 @@ let getLoginSignUp = async (req, res) => {
             {
                 dataUserF: JSON.stringify(dataUser),
                 dataUser: dataUser,
+                login: login
             }
         )
     } catch (e) {
