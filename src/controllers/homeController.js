@@ -343,6 +343,7 @@ let getUpload = async (req, res) => {
 
 let getCart = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
+    // let cart = await CRUDSevice.getCartDetails({ raw: true });
     try {
         return res.render('cart.ejs', { login: login})
     } catch (e) {
