@@ -46,6 +46,17 @@ async function insertOrd()
         };
         const Ord3 = await Ord.create(newOrd3);
         console.log('Ord3 created: ', Ord3.toJSON());
+        const newOrd4 = 
+        {
+            orderID: 'Ord04',
+            customerID: 'CS005',
+            status: 'Đã hoàn thành',
+            note: 'Đã giao vào lúc 20:00 ngày 28/11/2023 - Người nhận: Phan Nguyễn Hải Yến',
+            address: 'Ký túc xá khu A: Đường Tạ Quang Bửu, Khu phố 6, Phường Linh Trung, Thành phố Thủ Đức, Thành phố Hồ Chí Minh.',
+            totalCost: 1178000,
+        };
+        const Ord4 = await Ord.create(newOrd4);
+        console.log('Ord4 created: ', Ord4.toJSON());
     }
     catch(error)
     {

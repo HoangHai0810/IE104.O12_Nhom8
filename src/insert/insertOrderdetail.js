@@ -14,8 +14,8 @@ async function insertDetail()
         await sequelize.sync();
         const newDT1 = 
         { 
-            orderID: '1',
-            productID: 'MP001'
+            orderID: 'Ord01',
+            productID: 'MK001'
         };
         const Dt1 = await Ord_Det.create(newDT1);
         console.log('Dt1 created: ', Dt1.toJSON())
@@ -33,6 +33,13 @@ async function insertDetail()
         };
         const Dt3 = await Ord_Det.create(newDT3);
         console.log('Dt3 created: ', Dt3.toJSON())
+        const newDT4 = 
+        { 
+            orderID: 'Ord04',
+            productID: 'WJK001'
+        };
+        const Dt4 = await Ord_Det.create(newDT4);
+        console.log('Dt4 created: ', Dt4.toJSON())
     }
     catch(error)
     {
