@@ -13,7 +13,7 @@ async function insertOrd()
         await sequelize.sync();
         const newOrd1 = 
         {
-            customerID: 'CS002',
+            customerID: 2,
             status: 'Đang chuẩn bị',
             note: '',
             address: 'Ký túc xá khu B: Đường Mạc Đĩnh Chi, Khu phố Tân Hòa, Phường Đông Hòa, Thành phố Dĩ An, Tỉnh Bình Dương',

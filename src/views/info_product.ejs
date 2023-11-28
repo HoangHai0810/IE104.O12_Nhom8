@@ -343,6 +343,20 @@
 
                                 button.classList.add('active');
                             }
+
+                            //Hàm lấy màu đã chọn
+                            function getSelectedColor() {
+                                var activeButton = document.querySelector('.color_btn.active');
+
+                                if (activeButton) {
+                                    var selectedColor = window.getComputedStyle(activeButton).getPropertyValue('--color');
+                                    console.log("Màu đã chọn: " + selectedColor);
+                                    return selectedColor;
+                                } else {
+                                    console.log("Không có màu nào được chọn.");
+                                    return null;
+                                }
+                            }
                         </script>
                         <div class="rows">
                             <button class="btn-outline-dark btn-sm" onclick="showMessage()" data-toggle="collapse"
@@ -372,9 +386,35 @@
                             <input type="text" id="quantity" value="1" min="1" max="10">
                             <button type="button" class="btn-plus">+</button>
                         </div>
-                        <button type="submit" class="btn_buy">MUA NGAY</button>
+                        <% if (logins.length > 0) { %>
+                        <button type="submit" onclick="addToCart()" class="btn_buy" id="btn_buy_now">THÊM VÀO GIỎ HÀNG</button>
+                        <%} else {%>
+                        <button type="submit" onclick="buyNow()" class="btn_buy" id="btn_buy_now">MUA NGAY</button>
+                        <%}%>
+                        <form id="buyNowReq" action="/postCart" method="post">
+                            <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
+                            <input type="hidden" id="colorID" name="colorID">
+                            <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
+                            <input type="hidden" id="userID" name="userID">
+                        </form>
                     </div>
                     <script>
+                        let logins = JSON.parse(unescape('<%- logins %>'));
+                        var buyNowBtn = document.getElementById('btn_buy_now');
+                        let form = document.getElementById('buyNowReq');
+
+                        function buyNow() {
+                            alert('Buy cc');
+                        }
+
+                        function addToCart() {
+                            document.getElementById('colorID').value = getSelectedColor();
+                            // document.getElementById('sizeID').value = getSelectedSize();
+                            document.getElementById('userID').value = logins.userID;
+                            form.submit();
+                            alert('Đã thêm vào giỏ hàng!')
+                        }
+                        
                         function increaseQuantity() {
                             var quantity = document.querySelector("#quantity").value;
                             quantity++;

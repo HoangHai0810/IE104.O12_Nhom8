@@ -269,8 +269,10 @@ let getListProduct = async (req, res) => {
 let getInfoProduct = async (req, res) => {
     try {
         let productID = req.query.productID;
-        let product = await CRUDSevice.getProductInfoByProductId(productID)
-        let Product_Color = await db.Product_Color.findAll()
+        let product = await CRUDSevice.getProductInfoByProductId(productID);
+        let Product_Color = await db.Product_Color.findAll();
+        let Product_Size = await db.Product_Size.findAll();
+        let logins = await CRUDSevice.getLogin({raw: true});
         let imageCount = 0;
         const path = require('path');
         const imgDirectory = path.join(__dirname, '..', 'public', 'img');
@@ -280,7 +282,7 @@ let getInfoProduct = async (req, res) => {
                 imageCount++;
             }
         });
-        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color})
+        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, logins: logins})
     } catch (e) {
         console.log(e);
     }
@@ -405,6 +407,11 @@ let logout = async (req,res) => {
     res.redirect('/')
 }
 
+let addToCart = async(req, res) => {
+    let mes = await CRUDSevice.updateCart(req.body);
+    console.log(mes);
+    res.render('cart.ejs');    
+}
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -419,4 +426,5 @@ module.exports = {
     getUpload: getUpload,
     logout: logout,
     pushProduct: pushProduct,
+    addToCart: addToCart,
 }

@@ -826,6 +826,20 @@ let getAllHats = () => {
     });
 }
 
+let getAllCarts = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let cart = await sequelize.query(
+                "select * from Carts",
+                { type: QueryTypes.SELECT }
+            );
+            resolve(cart)
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
 let createCustomer = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
@@ -848,18 +862,19 @@ let createUser = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
             await db.Users.create({
-                userID: data.userName,
                 userName: data.userName,
                 userPassword: data.userPassword,
                 role: 'Guest'
             })
-            await db.Customers.create({
-                fullName: data.fullName,
-                dateOfBirth: data.dateOfBirth,
-                phoneNumber: data.phoneNumber,
-                nativeVillage: data.nativeVillage,
-                userId: data.userName
+            let user = await db.Users.findOne({userName: data.userName})
+            await db.Customer.create({
+                // fullName: data.fullName,
+                // dateOfBirth: data.dateOfBirth,
+                // phoneNumber: data.phoneNumber,
+                // nativeVillage: data.nativeVillage,
+                userID: user.userID
             })
+            createCart(data)
             reslove('Added user!')
         } catch (e) {
             reject(e);
@@ -870,7 +885,7 @@ let createUser = async (data) => {
 let createCart = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
-            await db.Carts.create({
+            await db.Cart.create({
                 cartID: data.userID,
                 soLuong: 0,
                 thanhTien: 0,
@@ -905,29 +920,29 @@ let createOrder = async (data) => {
     })
 }
 
-let updateCart = async (user, product) => {
+let updateCart = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
             let cart = await db.Carts.findOne({
                 where: {
-                    cartID: user.userID,
+                    cartID: data.userID,
                 }
             })
             let product = await db.Products.findOne({
                 where: {
-                    productID: product.productID,
+                    productID: data.productID,
                 }
             })
             await db.Cart_Details.create({
-                cartID: user.userID,
-                productID: product.productID,
+                cartID: data.userID,
+                productID: data.productID,
                 soLuong: 0,
                 thanhTien: 0
             })
             let cd = await db.Cart_Details.findOne({
                 where: {
-                    cartID: user.userID,
-                    productID: product.productID
+                    cartID: data.userID,
+                    productID: data.productID
                 }
             })
             if (cart && product) {
@@ -1039,6 +1054,7 @@ module.exports = {
     createCustomer: createCustomer,
     createUser: createUser,
     createCart: createCart,
+    getAllCarts: getAllCarts,
     createOrder: createOrder,
     createNewProduct: createNewProduct,
 
