@@ -8,17 +8,7 @@ const fs = require('fs');
 
 let getHomePage = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
-    let dataUser = await CRUDSevice.getAllUser({
-        raw: true,
-    })
     try {
-        if (login[0].role === 'Admin')
-        {
-            return res.render('admin.ejs',{
-                login: login,
-                dataUser: dataUser,
-            })
-        }
         return res.render('homepage.ejs',{
             login: login
         })
@@ -443,6 +433,47 @@ let logout = async (req,res) => {
     res.redirect('/')
 }
 
+let getAdmin = async (req, res) => {
+    let login = await CRUDSevice.getLogin({ raw: true });
+    let dataUser = await CRUDSevice.getAllUser({
+        raw: true,
+    })
+    try {
+        if (login[0].role === 'Admin')
+        {
+            return res.render('admin.ejs',{
+                login: login,
+                dataUser: dataUser,
+                dataUserF: JSON.stringify(dataUser),
+                loginF: JSON.stringify(login),
+
+            })
+        }
+        else {
+            res.redirect('/')
+        }
+    } catch (e) {
+        console.log(e);
+    }
+    
+}
+
+let updateUser = async (req,res) => {
+    let mes = await CRUDSevice.updateUserRole(req.body);
+    res.redirect('/admin');
+}
+
+let delCRUD = async (req, res) => {
+    let userID = req.query.userID;
+    if (userID) {
+        await CRUDSevice.deleteUserById(userID);
+        res.redirect('/admin')
+    } else {
+        return res.send('User not found!');
+    }
+}
+
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -457,4 +488,7 @@ module.exports = {
     getUpload: getUpload,
     logout: logout,
     pushProduct: pushProduct,
+    updateUser: updateUser,
+    delCRUD: delCRUD,
+    getAdmin: getAdmin,
 }

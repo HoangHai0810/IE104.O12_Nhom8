@@ -300,7 +300,7 @@
                     <th>Họ và Tên</th>
                     <th>Username</th>
                     <th>Password</th>
-                    <th>Vai trò</th>
+                    <th>Role</th>
                     <th>Phân quyền</th>
                     <th>Xóa</th>
                 </tr>
@@ -312,18 +312,14 @@
         </div>
     </main>
     <script>
-        let Data = '<%-dataUser%>';
-        let login = '<%-login%>';
+        let Data = JSON.parse(unescape('<%-dataUserF%>'));
+        let login = JSON.parse(unescape('<%-loginF%>'));
         let data = [];
-        console.log(Data[1])
-
         for (let i = 0; i < Data.length; i++)
             if (Data[i].userID != login[0].userID) {
                 data.push(Data[i]);
             }
-
-        
-        for (let i = 0; i < Data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             var table = document.getElementById("myTable");
             var row = table.insertRow(-1);
 
@@ -339,16 +335,13 @@
             var cell4 = row.insertCell(3);
             cell4.innerHTML = createRoleSelect(i);
 
-            var cell5 = row.insertCell(4);
-            cell5.innerHTML = createDoiBongSelect(i);;
-
-            addDeleteButton(row, i);
             addPermissionButton(row, i);
+            addDeleteButton(row, i);
         }
         let roles = document.querySelectorAll('[id="roleiduser"]');
 
         function createRoleSelect(i) {
-            var select = "<select id='roleiduser' value='" + data[i].roleId + "'>";
+            var select = "<select id='roleiduser' value='" + data[i].role + "'>";
             if (data[i].role == 'Guest')
                 select += "<option value='Guest' selected>Khách</option>";
             else
@@ -366,33 +359,25 @@
         }
 
         function addDeleteButton(row, i) {
-            var cell = row.insertCell(6);
+            var cell = row.insertCell(5);
             var deleteButton = document.createElement("button");
             deleteButton.innerHTML = "Xóa";
             deleteButton.onclick = function () {
-                window.location.href = '/delete-crud?id=' + data[i].id;
+                window.location.href = '/delete-crud?userID=' + data[i].userID;
             };
             cell.appendChild(deleteButton);
         }
         function addPermissionButton(row, i) {
-            var cell = row.insertCell(6);
+            var cell = row.insertCell(4);
             var permissionButton = document.createElement("button");
             permissionButton.innerHTML = "Phân quyền";
             permissionButton.onclick = function () {
-                // Xử lý logic khi nhấp vào nút "Phân quyền"
                 let form = document.getElementById('tablepq');
-                let roleIdValue = document.getElementById('roleuser');
+                let roleValue = document.getElementById('roleuser');
                 let role = document.querySelectorAll('[id="roleiduser"]');
                 let userNameValue = document.getElementById('userName');
-                let tenDoiBongValue = document.getElementById('tendoibong');
-                console.log(tenDoiBongValue)
-                if (role[i].value === 'manager') {
-                    let doibonguser = document.querySelectorAll('[id="doibonguser"]');
-                    tenDoiBongValue.value = doibonguser[i].value;
-                }
-                roleIdValue.value = role[i].value;
+                roleValue.value = role[i].value;
                 userNameValue.value = data[i].userName;
-                console.log(userNameValue.value);
                 form.submit();
             };
             cell.appendChild(permissionButton);

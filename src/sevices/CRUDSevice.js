@@ -198,28 +198,14 @@ let getProductInfoByProductId = (productID) => {
 let updateUserRole = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({
+            let user = await db.Users.findOne({
                 where: {
                     userName: data.userName,
                 }
             })
             if (user) {
-                user.roleId = data.roleId;
-                let allcode = await db.Allcode.findOne({
-                    where: {
-                        userId: user.id,
-                    }
-                })
-                if (allcode) {
-                    allcode.destroy();
-                }
+                user.role = data.role;
                 await user.save();
-                if (user.roleId === 'manager') {
-                    await db.Allcode.create({
-                        tenDoiBong: data.tenDoiBong,
-                        userId: user.id
-                    })
-                }
                 reslove('Edited user!');
             }
             else {
@@ -232,24 +218,40 @@ let updateUserRole = async (data) => {
 }
 
 
-let deleteUserById = (userId) => {
+let deleteUserById = (userID) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({ where: { id: userId } })
+            let user = await db.Users.findOne({ where: { userID: userID } })
             if (user) {
-                if (user.roleId != 'manager')
-                    user.destroy();
-                else {
-                    let allcode = await db.Allcode.findOne({
-                        where: {
-                            userId: user.id,
+                    let logins = await db.Login.findOne({where: {userID: userID}})
+                    let feedbacks = await db.Feedback.findAll({where: {userID: userID}})
+                    let Customer = await db.Customer.findOne({
+                        where:{
+                            userID: user.userID
                         }
                     })
-                    if (allcode) {
-                        allcode.destroy();
+                    let Order = await db.Order.findAll({
+                        where: {
+                            customerID: Customer.customerID,
+                        }
+                    })
+                    for (let i=0;i< Order.length;i++)
+                    {
+                        let Orderdetail = await db.Orderdetail.findAll({
+                            where: {
+                            orderID: Order[i].orderID
+                            }
+                        })
+                        for (let j=0; j<Orderdetail.length;j++)
+                            Orderdetail[j].destroy()
+                        Order[i].destroy()
                     }
-                    user.destroy();
-                }
+                    // logins.destroy()
+                    for (let i=0; i < feedbacks.length; i++){
+                        feedbacks[i].destroy()
+                    }
+                    Customer.destroy()
+                    user.destroy()
             }
             reslove();
         } catch (e) {
@@ -272,18 +274,6 @@ let logoutCRUD = () => {
             reject(e);
         }
     })
-}
-
-
-let getAllThamSo = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT * FROM thamSos", { type: QueryTypes.SELECT });
-            reslove(ketqua);
-        } catch (e) {
-            reject(e)
-        }
-    });
 }
 
 // ------------------------------------------------------------------------------------------------------------
@@ -908,29 +898,8 @@ module.exports = {
     getLogin: getLogin,
 
     getUserInfoById: getUserInfoById,
-    // editUser: editUser,
-    // deleteUserById: deleteUserById,
-    // createTeam: createTeam,
-    // createKetQua: createKetQua,
-    // createDienBien: createDienBien,
-    // getAllTongKet: getAllTongKet,
-    // getAllCauThu: getAllCauThu,
-    // getALLDoiBong: getALLDoiBong,
-    // getAllLichChuaThiDau: getAllLichChuaThiDau,
-    // getAllLichDaThiDau: getAllLichDaThiDau,
-    // getAllKetQua: getAllKetQua,
-    // getAllLichThiDau: getAllLichThiDau,
-    // getAllTranDau: getAllTranDau,
-    // getAllThamSo: getAllThamSo,
+    updateUserRole: updateUserRole,
     createNewLogin: createNewLogin,
-    // getAllCode: getAllCode,
+    deleteUserById: deleteUserById,
     logoutCRUD: logoutCRUD,
-    // getCauThuByMaCauThu: getCauThuByMaCauThu,
-    // editCauThu: editCauThu,
-    // deleteCauThuById: deleteCauThuById,
-    // createCauThu: createCauThu,
-    // updateUserRole: updateUserRole,
-    // getAllAllCode: getAllAllCode,
-    // updateLichThiDau: updateLichThiDau,
-    // createLichThiDau: createLichThiDau
 }
