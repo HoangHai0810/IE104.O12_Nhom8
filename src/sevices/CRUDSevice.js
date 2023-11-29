@@ -685,7 +685,7 @@ let getAllCarts = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let cart = await sequelize.query(
-                "select * from Carts",
+                "select * from Carts, Cart_Details, Products where Carts.cartID = Cart_Details.cartID and Cart_Details.productID = Products.productID",
                 { type: QueryTypes.SELECT }
             );
             resolve(cart)

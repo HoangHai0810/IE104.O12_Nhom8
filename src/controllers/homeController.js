@@ -319,7 +319,7 @@ let getInfoProduct = async (req, res) => {
                 imageCount++;
             }
         });
-        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, logins: JSON.stringify(logins)})
+        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, loginsF: JSON.stringify(logins), logins: logins})
     } catch (e) {
         console.log(e);
     }
