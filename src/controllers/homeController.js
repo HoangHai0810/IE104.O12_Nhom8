@@ -12,9 +12,10 @@ let getHomePage = async (req, res) => {
         raw: true,
     })
     try {
-        if (login.length > 0) {
-            if (login[0].role === 'Admin') {
-                return res.render('admin.ejs', {
+        if (login.length>0) {
+            if (login[0].role === 'Admin')
+            {
+                return res.render('admin.ejs',{
                     login: login,
                     dataUser: dataUser,
                 })
@@ -424,8 +425,9 @@ let pushProduct = async (req, res) => {
 
 let loginCRUD = async (req, res) => {
     let mes = await CRUDSevice.createNewLogin(req.body);
-    let login = await CRUDSevice.getLogin({ raw: true });
-    if (login[0].role == 'admin') {
+    let login = await CRUDSevice.getLogin({ raw: true});
+    if (login[0].role == 'admin')
+    {   
         res.redirect('/admin');
     }
     else {
@@ -455,6 +457,7 @@ let removeProductFromCart = async(req, res) => {
     console.log(mess);
     res.redirect('/cart');
 }
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,

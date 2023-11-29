@@ -1336,6 +1336,175 @@ async function insertPr_Size()
         };
         const Ns194 = await Pr_Size.create(newSize194);
         console.log('Ns194 created: ', Ns194.toJSON());
+        /--------------------------------------------/
+        const newSize200 = 
+        {
+            productID: 'AS001',
+            sizeID: 'S39'
+        };
+        const Ns200 = await Pr_Size.create(newSize200);
+        console.log('Ns200 created: ', Ns200.toJSON());
+        const newSize201 = 
+        {
+            productID: 'AS001',
+            sizeID: 'S40'
+        };
+        const Ns201 = await Pr_Size.create(newSize201);
+        console.log('Ns201 created: ', Ns201.toJSON());
+        const newSize202 = 
+        {
+            productID: 'AS001',
+            sizeID: 'S41'
+        };
+        const Ns202 = await Pr_Size.create(newSize202);
+        console.log('Ns202 created: ', Ns202.toJSON());
+        const newSize203 = 
+        {
+            productID: 'AS001',
+            sizeID: 'S42'
+        };
+        const Ns203 = await Pr_Size.create(newSize203);
+        console.log('Ns203 created: ', Ns203.toJSON());
+        const newSize204 = 
+        {
+            productID: 'AS002',
+            sizeID: 'S39'
+        };
+        const Ns204 = await Pr_Size.create(newSize204);
+        console.log('Ns204 created: ', Ns204.toJSON());
+        const newSize205 = 
+        {
+            productID: 'AS002',
+            sizeID: 'S40'
+        };
+        const Ns205 = await Pr_Size.create(newSize205);
+        console.log('Ns205 created: ', Ns205.toJSON());
+        const newSize206 = 
+        {
+            productID: 'AS002',
+            sizeID: 'S41'
+        };
+        const Ns206 = await Pr_Size.create(newSize206);
+        console.log('Ns206 created: ', Ns206.toJSON());
+        const newSize207 = 
+        {
+            productID: 'AS002',
+            sizeID: 'S42'
+        };
+        const Ns207 = await Pr_Size.create(newSize207);
+        console.log('Ns207 created: ', Ns207.toJSON());
+        const newSize208 = 
+        {
+            productID: 'AS003',
+            sizeID: 'S39'
+        };
+        const Ns208 = await Pr_Size.create(newSize208);
+        console.log('Ns208 created: ', Ns208.toJSON());
+        const newSize209 = 
+        {
+            productID: 'AS003',
+            sizeID: 'S40'
+        };
+        const Ns209 = await Pr_Size.create(newSize209);
+        console.log('Ns209 created: ', Ns209.toJSON());
+        const newSize210 = 
+        {
+            productID: 'AS003',
+            sizeID: 'S41'
+        };
+        const Ns210 = await Pr_Size.create(newSize210);
+        console.log('Ns210 created: ', Ns210.toJSON());
+        const newSize211 = 
+        {
+            productID: 'AS003',
+            sizeID: 'S42'
+        };
+        const Ns211 = await Pr_Size.create(newSize211);
+        console.log('Ns211 created: ', Ns211.toJSON());
+        const newSize212 = 
+        {
+            productID: 'ASO001',
+            sizeID: 'S01'
+        };
+        const Ns212 = await Pr_Size.create(newSize212);
+        console.log('Ns212 created: ', Ns212.toJSON());
+        const newSize213 = 
+        {
+            productID: 'ASO001',
+            sizeID: 'M01'
+        };
+        const Ns213 = await Pr_Size.create(newSize213);
+        console.log('Ns213 created: ', Ns213.toJSON());
+        const newSize214 = 
+        {
+            productID: 'ASO001',
+            sizeID: 'L01'
+        };
+        const Ns214 = await Pr_Size.create(newSize214);
+        console.log('Ns214 created: ', Ns214.toJSON());
+        const newSize215 = 
+        {
+            productID: 'ASO001',
+            sizeID: 'XL01'
+        };
+        const Ns215 = await Pr_Size.create(newSize215);
+        console.log('Ns215 created: ', Ns215.toJSON());
+        const newSize216 = 
+        {
+            productID: 'ASO002',
+            sizeID: 'S01'
+        };
+        const Ns216 = await Pr_Size.create(newSize216);
+        console.log('Ns216 created: ', Ns216.toJSON());
+        const newSize217 = 
+        {
+            productID: 'ASO002',
+            sizeID: 'M01'
+        };
+        const Ns217 = await Pr_Size.create(newSize217);
+        console.log('Ns217 created: ', Ns217.toJSON());
+        const newSize218 = 
+        {
+            productID: 'ASO002',
+            sizeID: 'L01'
+        };
+        const Ns218 = await Pr_Size.create(newSize218);
+        console.log('Ns218 created: ', Ns218.toJSON());
+        const newSize219 = 
+        {
+            productID: 'ASO002',
+            sizeID: 'XL01'
+        };
+        const Ns219 = await Pr_Size.create(newSize219);
+        console.log('Ns219 created: ', Ns219.toJSON());
+        const newSize220 = 
+        {
+            productID: 'ASO003',
+            sizeID: 'S01'
+        };
+        const Ns220 = await Pr_Size.create(newSize220);
+        console.log('Ns220 created: ', Ns220.toJSON());
+        const newSize221 = 
+        {
+            productID: 'ASO003',
+            sizeID: 'M01'
+        };
+        const Ns221 = await Pr_Size.create(newSize221);
+        console.log('Ns221 created: ', Ns221.toJSON());
+        const newSize222 = 
+        {
+            productID: 'ASO003',
+            sizeID: 'L01'
+        };
+        const Ns222 = await Pr_Size.create(newSize222);
+        console.log('Ns222 created: ', Ns222.toJSON());
+        const newSize223 = 
+        {
+            productID: 'ASO003',
+            sizeID: 'XL01'
+        };
+        const Ns223 = await Pr_Size.create(newSize223);
+        console.log('Ns223 created: ', Ns223.toJSON());
         
     }
     catch(error)
