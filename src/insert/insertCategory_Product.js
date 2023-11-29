@@ -76,7 +76,7 @@ async function insertCP()
         };
         const Cp8 = await CP.create(newCP8);
         console.log('Cp8 created: ', Cp8.toJSON());
-        //Nữ: 10 - 20; 30 - 40; 50 - 60,...
+        //Nữ: 10 - 20
         const newCP10 = 
         {
             categoryProductID: 'WJK',
@@ -141,6 +141,32 @@ async function insertCP()
         };
         const Cp17 = await CP.create(newCP17);
         console.log('Cp17 created: ', Cp17.toJSON());
+        //Accessories
+        const newCP20 = 
+        {
+            categoryProductID: 'AS',
+            type: 'Shoes',
+            gender: 'Man',
+        }
+        const Cp20 = await CP.create(newCP20);
+        console.log('Cp20 created: ', Cp20.toJSON());
+        const newCP22 = 
+        {
+            categoryProductID: 'ASO',
+            type: 'Socks',
+            gender: 'Man',
+        }
+        const Cp22 = await CP.create(newCP22);
+        console.log('Cp22 created: ', Cp22.toJSON());
+        const newCP23 = 
+        {
+            categoryProductID: 'AHB',
+            type: 'Hand Bag',
+            gender: 'Woman',
+        }
+        const Cp23 = await CP.create(newCP23);
+        console.log('Cp23 created: ', Cp23.toJSON());
+
 
         
     }
