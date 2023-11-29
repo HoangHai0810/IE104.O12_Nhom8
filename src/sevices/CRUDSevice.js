@@ -789,9 +789,14 @@ let updateCart = async (data) => {
                 await db.Cart_Detail.create({
                     cartID: data.userID,
                     productID: data.productID,
-                    soLuong: 0,
-                    thanhTien: 0
+                    soLuong: parseInt(data.quantity),
+                    thanhTien: parseInt(data.priceProduct),
                 })
+            }
+            else{
+                Cart_Detail.soLuong += parseInt(data.quantity);
+                Cart_Detail.thanhTien = parseInt(data.priceProduct) * Cart_Detail.soLuong;
+                await Cart_Detail.save();
             }
             reslove('Updated cart!');
 
@@ -853,6 +858,36 @@ let deleteUser = (uID) => {
     })
 }
 
+let getCartDetails = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let allCartDetails = await sequelize.query(
+                "select * from (Carts inner join Cart_Details on Carts.cartID = Cart_Details.cartID) inner join Products on Products.productID = Cart_Details.productID ",
+                { type: QueryTypes.SELECT }
+            )
+            resolve(allCartDetails);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let removeFromCart = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let Cart_Detail = await db.Cart_Detail.findOne(
+                { where: {
+                    cartID: data.cartID,
+                    productID: data.productID, 
+                } }
+            )
+            Cart_Detail.destroy();
+            resolve();
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 
 module.exports = {
     getAllProducts: getAllProducts,
@@ -907,6 +942,9 @@ module.exports = {
     getLogin: getLogin,
 
     getUserInfoById: getUserInfoById,
+
+    getCartDetails: getCartDetails,
+    removeFromCart: removeFromCart,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
     // createTeam: createTeam,

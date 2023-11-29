@@ -410,9 +410,11 @@
                         <%}%>
                         <form id="buyNowReq" action="/postCart" method="post">
                             <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
+                            <input type="hidden" id="priceProduct" name="priceProduct" value="<%=product.price%>">
                             <input type="hidden" id="colorID" name="colorID">
                             <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
                             <input type="hidden" id="userID" name="userID">
+                            <input type="hidden" id="quantityReq" name="quantity">
                         </form>
                     </div>
                     <script>
@@ -440,10 +442,12 @@
                             alert('Buy cc');
                         }
                         function addToCart() {
+                            alert(document.getElementById('quantity').value);
                             console.log(logins[0].userID);
                             document.getElementById('colorID').value = getSelectedColor();
                             // document.getElementById('sizeID').value = getSelectedSize();
                             document.getElementById('userID').value = logins[0].userID;
+                            document.getElementById('quantityReq').value = document.getElementById('quantity').value;
                             // form.submit();
                             // alert('Đã thêm vào giỏ hàng!')
                             replaceTab();

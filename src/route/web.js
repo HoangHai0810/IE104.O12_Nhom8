@@ -49,6 +49,7 @@ let initWebRoutes = (app) => {
     router.get('/logout',homeController.logout);
     router.post('/uploadProduct', homeController.pushProduct);
     router.post('/postCart', homeController.addToCart);
+    router.post('/removeProduct', homeController.removeProductFromCart);
     return app.use("/", router);
 }
 
