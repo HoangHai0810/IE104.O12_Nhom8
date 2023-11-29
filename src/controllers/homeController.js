@@ -12,9 +12,10 @@ let getHomePage = async (req, res) => {
         raw: true,
     })
     try {
-        if (login.length > 0) {
-            if (login[0].role === 'Admin') {
-                return res.render('admin.ejs', {
+        if (login.length>0) {
+            if (login[0].role === 'Admin')
+            {
+                return res.render('admin.ejs',{
                     login: login,
                     dataUser: dataUser,
                 })
@@ -306,8 +307,10 @@ let getInfoProduct = async (req, res) => {
     try {
         let login = await CRUDSevice.getLogin({ raw: true });
         let productID = req.query.productID;
-        let product = await CRUDSevice.getProductInfoByProductId(productID)
-        let Product_Color = await db.Product_Color.findAll()
+        let product = await CRUDSevice.getProductInfoByProductId(productID);
+        let Product_Color = await db.Product_Color.findAll();
+        let Product_Size = await db.Product_Size.findAll();
+        let logins = await CRUDSevice.getLogin({raw: true});
         let imageCount = 0;
         const path = require('path');
         const imgDirectory = path.join(__dirname, '..', 'public', 'img');
@@ -317,7 +320,7 @@ let getInfoProduct = async (req, res) => {
                 imageCount++;
             }
         });
-        return res.render('info_product.ejs', { product: product, imageCount: imageCount, Product_Color: Product_Color, login: login })
+        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, logins: JSON.stringify(logins)})
     } catch (e) {
         console.log(e);
     }
@@ -371,7 +374,6 @@ const storageAVT = multer.diskStorage({
     destination: path.join(__dirname, '../public/img'),
     filename: function (req, file, cb) {
         const userID = req.query.userID;
-        console.log(userID)
         const filename = userID + '.png';
 
         cb(null, filename);
@@ -423,9 +425,9 @@ let pushProduct = async (req, res) => {
 
 let loginCRUD = async (req, res) => {
     let mes = await CRUDSevice.createNewLogin(req.body);
-    console.log(mes);
-    let login = await CRUDSevice.getLogin({ raw: true });
-    if (login[0].role == 'admin') {
+    let login = await CRUDSevice.getLogin({ raw: true});
+    if (login[0].role == 'admin')
+    {   
         res.redirect('/admin');
     }
     else {
@@ -434,7 +436,7 @@ let loginCRUD = async (req, res) => {
 }
 
 let postSignUp = async (req, res) => {
-    let message = await CRUDSevice.createNewUser(req.body);
+    let message = await CRUDSevice.createUser(req.body);
     console.log(message);
     res.redirect('/')
 }
@@ -444,6 +446,11 @@ let logout = async (req, res) => {
     res.redirect('/')
 }
 
+let addToCart = async(req, res) => {
+    let mes = await CRUDSevice.updateCart(req.body);
+    console.log(mes);
+    res.redirect('/cart');    
+}
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -458,4 +465,5 @@ module.exports = {
     getUpload: getUpload,
     logout: logout,
     pushProduct: pushProduct,
+    addToCart: addToCart,
 }

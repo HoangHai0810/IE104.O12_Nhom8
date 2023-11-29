@@ -47,7 +47,8 @@ let initWebRoutes = (app) => {
     router.post('/signup', homeController.postSignUp);
     router.post('/login', homeController.loginCRUD);
     router.get('/logout',homeController.logout);
-    router.post('/uploadProduct', homeController.pushProduct)
+    router.post('/uploadProduct', homeController.pushProduct);
+    router.post('/postCart', homeController.addToCart);
     return app.use("/", router);
 }
 

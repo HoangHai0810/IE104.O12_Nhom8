@@ -27,7 +27,6 @@ let createNewProduct = async(data) => {
     return new Promise(async (reslove,reject) => {
         try{
             let product = await db.Product.findAll();
-            console.log(product.length)
             var productID = data.categoryProductID + '0' + (product.length + 1).toString();
 
             await db.Product.create({
@@ -104,7 +103,6 @@ let getAllUser = () => {
         try {
             let users = await sequelize.query("SELECT * FROM `customers` INNER JOIN `users` ON customers.userID = users.userID", { type: QueryTypes.SELECT });
             reslove(users);
-            console.log(users)
         } catch (e) {
             reject(e);
         }
@@ -683,6 +681,20 @@ let getAllHats = () => {
     });
 }
 
+let getAllCarts = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let cart = await sequelize.query(
+                "select * from Carts",
+                { type: QueryTypes.SELECT }
+            );
+            resolve(cart)
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
 let createCustomer = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
@@ -705,18 +717,19 @@ let createUser = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
             await db.Users.create({
-                userID: data.userName,
                 userName: data.userName,
                 userPassword: data.userPassword,
                 role: 'Guest'
             })
-            await db.Customers.create({
-                fullName: data.fullName,
-                dateOfBirth: data.dateOfBirth,
-                phoneNumber: data.phoneNumber,
-                nativeVillage: data.nativeVillage,
-                userId: data.userName
+            let user = await db.Users.findOne({ where : {userName: data.userName}})
+            await db.Customer.create({
+                // fullName: data.fullName,
+                // dateOfBirth: data.dateOfBirth,
+                // phoneNumber: data.phoneNumber,
+                // nativeVillage: data.nativeVillage,
+                userID: user.userID
             })
+            createCart(user.userID)
             reslove('Added user!')
         } catch (e) {
             reject(e);
@@ -727,11 +740,11 @@ let createUser = async (data) => {
 let createCart = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
-            await db.Carts.create({
-                cartID: data.userID,
+            await db.Cart.create({
+                cartID: data,
                 soLuong: 0,
                 thanhTien: 0,
-                userID: data.userID
+                userID: data
             })
 
             reslove('Added Cart!')
@@ -762,39 +775,24 @@ let createOrder = async (data) => {
     })
 }
 
-let updateCart = async (user, product) => {
+let updateCart = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let cart = await db.Carts.findOne({
+            let Cart_Detail = await db.Cart_Detail.findOne({
                 where: {
-                    cartID: user.userID,
+                    productID: data.productID,
+                    cartID : data.userID,
                 }
             })
-            let product = await db.Products.findOne({
-                where: {
-                    productID: product.productID,
-                }
-            })
-            await db.Cart_Details.create({
-                cartID: user.userID,
-                productID: product.productID,
-                soLuong: 0,
-                thanhTien: 0
-            })
-            let cd = await db.Cart_Details.findOne({
-                where: {
-                    cartID: user.userID,
-                    productID: product.productID
-                }
-            })
-            if (cart && product) {
-                cd.soLuong = cd.soLuong + 1;
-                cd.thanhTien = cd.thanhTien + product.price;
-                await cd.save();
-                cart.soLuong = cart.soLuong + 1;
-                cart.thanhTien = cart.thanhTien + cd.thanhTien;
+            if(!Cart_Detail)
+            {
+                await db.Cart_Detail.create({
+                    cartID: data.userID,
+                    productID: data.productID,
+                    soLuong: 0,
+                    thanhTien: 0
+                })
             }
-            await cart.save();
             reslove('Updated cart!');
 
         } catch (e) {
@@ -909,6 +907,7 @@ module.exports = {
     createCustomer: createCustomer,
     createUser: createUser,
     createCart: createCart,
+    getAllCarts: getAllCarts,
     createOrder: createOrder,
     createNewProduct: createNewProduct,
 
