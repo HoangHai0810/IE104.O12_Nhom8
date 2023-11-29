@@ -2,6 +2,7 @@ import { promiseImpl } from 'ejs';
 import db, { sequelize } from '../models/index'
 import bcrypt from 'bcryptjs';
 import { query } from 'express';
+// import { all } from 'sequelize/types/lib/operators';
 const { QueryTypes } = require('sequelize');
 const salt = bcrypt.genSaltSync(10);
 
@@ -11,10 +12,73 @@ let createNewUser = async(data) => {
         try{
             await db.Users.create({
                 userName: data.userName,
-                userPassword: data.password,
-                // role: data.role,
+                userPassword: data.userPassword,
+                role: 'Guest',
             })
             reslove('Added user!')
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+
+let createNewProduct = async(data) => {
+    return new Promise(async (reslove,reject) => {
+        try{
+            let product = await db.Product.findAll();
+            console.log(product.length)
+            var productID = data.categoryProductID + '0' + (product.length + 1).toString();
+
+            await db.Product.create({
+                productID: productID,
+                productName: data.productName,
+                description: data.description,
+                material: data.material,
+                categoryProductID: data.categoryProductID,
+                price: data.price,
+                rate: 0,
+                discount: 0,
+            })
+
+            for (let i=0; i< data.sizeID.length; i++)
+            {
+                let size = ''
+                if (productID[0] === 'M')
+                    if (data.sizeID[i] != 'XS')
+                        size = data.sizeID[i] + '01';
+                else
+                    if (data.sizeID[i] != 'XL')
+                        size = data.sizeID[i] + '02';
+                if (size != '')
+                {
+                    await db.Product_Size.create({
+                        sizeID: size,
+                        productID: productID
+                    })
+                }
+            }
+            for (let i=0 ; i<data.colorID.length; i++)
+            {
+                let Color = db.Color.findAll()
+                let checkCl = true;
+                for (let j=0;j<Color.length;j++)
+                {
+                    if (Color.colorID == data.colorID[i])
+                        checkCl = false
+                }
+                if (checkCl)
+                {
+                    await db.Color.create({
+                        colorID: data.colorID[i],
+                    })
+                }
+                await db.Product_Color.create({
+                    colorID: data.colorID[i],
+                    productID: productID
+                })
+            }
+            reslove('Added Product!')
         } catch (e) {
             reject(e);
         }
@@ -34,344 +98,24 @@ let createNewLogin = async (data) => {
     })
 }
 
-let createLichThiDau = async (data, i) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            var tempVong;
-            if (data.vong[i] === 'Lượt đi') {
-                tempVong = 1;
-            }
-            else {
-                tempVong = 2;
-            }
-            data.ngay[i] = new Date();
-            data.ngay[i].setHours(data.ngay[i].getHours() + 7);
-            await db.lichThiDau.create({
-                tenDoiBong1: data.teamName1[i],
-                tenDoiBong2: data.teamName2[i],
-                ngayGio: data.ngay[i],
-                vong: tempVong,
-            });
-
-
-            reslove('Lich added!');
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
-
-let updateLichThiDau = async (data, i) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let tran = await db.lichThiDau.findOne({
-                where: {
-                    tenDoiBong1: data.teamName1[i],
-                    tenDoiBong2: data.teamName2[i]
-                }
-            })
-            if (tran) {
-                data.ngay[i] = new Date();
-                data.ngay[i].setHours(data.ngay[i].getHours() + 7);
-                tran.ngayGio = data.ngay[i];
-                await tran.save();
-            }
-            else {
-                reslove();
-            }
-            reslove('Lich updated!');
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
-
-let createDienBien = async (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-
-            for (let i = 0; i < data.dienBien.length; i++) {
-                var maLoaiBT = 'LBT01';
-                if (data.dienBien[i][2] == 'Trực tiếp') {
-                    maLoaiBT = 'LBT02';
-                }
-                if (data.dienBien[i][2] == 'Đá phạt') {
-                    maLoaiBT = 'LBT03';
-                }
-                if (data.dienBien[i][2] == 'Phản lưới nhà') {
-                    maLoaiBT = 'LBT04';
-                }
-                var maLoaiThe = 'LT01';
-                if (data.dienBien[i][3] == 'Thẻ vàng') {
-                    maLoaiThe = 'LT02';
-                }
-                if (data.dienBien[i][3] == 'Thẻ đỏ') {
-                    maLoaiThe = 'LT03';
-                }
-                await db.dienBien.create({
-                    tenCauThu: data.dienBien[i][1],
-                    tenDoiBong: data.dienBien[i][0],
-                    maLoaiBanThang: maLoaiBT,
-                    maLoaiThe: maLoaiThe,
-                    thoiDiem: data.dienBien[i][4],
-                    maLich: data.maLich,
-                })
-            }
-            reslove('AddDienBien!!');
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
-
-let createTeam = async (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            await db.doiBong.create({
-                tenDoiBong: data.teamName,
-                sanNha: data.homeGround,
-                mauAoSanNha: data.homeJerseyColor,
-                mauAoSanKhach: data.awayJerseyColor,
-            });
-            data.playerData = JSON.parse(data.playerData);
-            console.log(data.playerData);
-            for (let i = 0; i < data.playerData.length; i++) {
-                var tempLoaiCT = null;
-                if (data.playerData[i][7] === 'Cầu thủ nước ngoài') {
-                    tempLoaiCT = 'NN';
-                }
-                if (data.playerData[i][7] === 'Cầu thủ trong nước') {
-                    tempLoaiCT = 'TN';
-                }
-
-                await db.cauThu.create({
-                    tenCauThu: data.playerData[i][0],
-                    soAo: data.playerData[i][1],
-                    viTri: data.playerData[i][2],
-                    ngaySinh: data.playerData[i][3],
-                    chieuCao: data.playerData[i][4],
-                    canNang: data.playerData[i][5],
-                    tenDoiBong: data.teamName,
-                    quocTich: data.playerData[i][6],
-                    maLoaiCauThu: tempLoaiCT
-                })
-            }
-            await db.tongKet.create({
-                soBanThangSanKhach: 0,
-                soTranDau: 0,
-                soTranThang: 0,
-                soTranHoa: 0,
-                soTheVang: 0,
-                soBanThang: 0,
-                soBanThua: 0,
-                soTheDo: 0,
-                hieuSo: 0,
-                diemSo: 0,
-                soTranThua: 0,
-                tenDoiBong: data.teamName,
-            });
-            reslove('Added Team!')
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-let createKetQua = async (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketquaDoi1 = 0;
-            let ketquaDoi2 = 0;
-            let soTheVang = 0;
-            let soTheDo = 0;
-            let thamSo = getAllThamSo({ raw: true });
-            let DiemThang = 3;
-            let DiemHoa = 1;
-            let DiemThua = 0;
-            for (let i = 0; i < thamSo.length; i++) {
-                if (thamSo[i].tenThamSo == 'DiemThang') {
-                    DiemThang = parseInt(thamSo[i].giaTri);
-                }
-                if (thamSo[i].tenThamSo == 'DiemHoa') {
-                    DiemHoa = parseInt(thamSo[i].giaTri);
-                }
-                if (thamSo[i].tenThamSo == 'DiemThua') {
-                    DiemThua = parseInt(thamSo[i].giaTri);
-                }
-            }
-            for (let i = 0; i < data.dienBien.length; i++) {
-                console.log(data.dienBien[i])
-                console.log(data.doiNha)
-                console.log(data.maLich)
-                if (data.dienBien[i][3] == 'Thẻ vàng') { soTheVang = soTheVang + 1; };
-                if (data.dienBien[i][3] == 'Thẻ đỏ') { soTheDo = soTheDo + 1; };
-                if (data.dienBien[i][2] == 'Phản lưới nhà' && data.dienBien[i][0] == data.doiNha) { ketquaDoi2 = ketquaDoi2 + 1 };
-                if (data.dienBien[i][2] == 'Phản lưới nhà' && data.dienBien[i][0] != data.doiNha) { ketquaDoi1 = ketquaDoi1 + 1 };
-                if (data.dienBien[i][0] == data.doiNha) {
-                    if (data.dienBien[i][2] == 'Trực tiếp' || data.dienBien[i][2] == 'Đá phạt') {
-                        ketquaDoi1 = ketquaDoi1 + 1;
-                    }
-                }
-                if (data.dienBien[i][0] != data.doiNha) {
-                    if (data.dienBien[i][2] == 'Trực tiếp' || data.dienBien[i][2] == 'Đá phạt') {
-                        ketquaDoi2 = ketquaDoi2 + 1;
-                    }
-                }
-            };
-            await db.ketQua.create({
-                maLich: data.maLich,
-                soBanThangDoi1: ketquaDoi1,
-                soBanThangDoi2: ketquaDoi2,
-                soTheDo: soTheDo,
-                soTheVang: soTheVang,
-            })
-            let tongKet1 = await db.tongKet.findOne({
-                where: {
-                    tenDoiBong: data.doiNha,
-                }
-            })
-            if (tongKet1) {
-                tongKet1.soTranDau += 1;
-                if (ketquaDoi1 > ketquaDoi2) {
-                    tongKet1.diemSo += DiemThang;
-                    tongKet1.soTranThang += 1;
-                } else if (ketquaDoi1 == ketquaDoi2) {
-                    tongKet1.diemSo += DiemHoa
-                    tongKet1.soTranHoa += 1;
-                } else {
-                    tongKet1.diemSo += DiemThua;
-                    tongKet1.soTranThua += 1;
-                }
-                tongKet1.soBanThang = tongKet1.soBanThang + ketquaDoi1;
-                tongKet1.soBanThua += ketquaDoi2;
-                tongKet1.hieuSo = tongKet1.hieuSo + ketquaDoi1 - ketquaDoi2;
-                tongKet1.soTheVang = soTheVang;
-                tongKet1.soTheDo = soTheDo;
-
-                await tongKet1.save();
-            }
-            else {
-                reslove();
-            }
-
-
-            let tongKet2 = await db.tongKet.findOne({
-                where: {
-                    tenDoiBong: data.doiKhach,
-                }
-            })
-            if (tongKet2) {
-                tongKet2.soTranDau += 1;
-                if (ketquaDoi1 < ketquaDoi2) {
-                    tongKet2.diemSo += DiemThang;
-                    tongKet2.soTranThang += 1;
-                } else if (ketquaDoi1 == ketquaDoi2) {
-                    tongKet2.diemSo += DiemHoa
-                    tongKet2.soTranHoa += 1;
-                } else {
-                    tongKet2.diemSo += DiemThua;
-                    tongKet2.soTranThua += 1;
-                }
-                tongKet2.soBanThang = tongKet2.soBanThang + ketquaDoi2;
-                tongKet2.soBanThua += ketquaDoi1;
-                tongKet2.hieuSo = tongKet2.hieuSo + ketquaDoi2 - ketquaDoi1;
-                tongKet2.soTheVang = soTheVang;
-                tongKet2.soTheDo = soTheDo;
-
-                await tongKet2.save()
-            }
-            else {
-                reslove();
-            }
-            reslove('Add kq!');
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
-
-let createCauThu = (data) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let viTri = 1;
-            if (data.viTri == '1')
-                viTri = 'Tiền đạo';
-            if (data.viTri == '2')
-                viTri = 'Tiền vệ';
-            if (data.viTri == '3')
-                viTri = 'Hậu vệ';
-            if (data.viTri == '4')
-                viTri = 'Thủ môn';
-            let maLoaiCT = '';
-            if (data.quocTich === 'Việt Nam')
-                maLoaiCT = 'TN';
-            else
-                maLoaiCT = 'NN';
-            await db.cauThu.create({
-                tenCauThu: data.tenCauThu,
-                quocTich: data.quocTich,
-                viTri: viTri,
-                chieuCao: data.chieuCao,
-                canNang: data.canNang,
-                soAo: data.soAo,
-                ngaySinh: data.ngaySinh,
-                tenDoiBong: data.tenDoiBong,
-                maLoaiCauThu: maLoaiCT
-            })
-
-            reslove('Added user!')
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-let hashUserPassword = (password) => {
-    return new Promise((reslove, reject) => {
-        try {
-            var hashPassword = bcrypt.hashSync(password, salt);
-            reslove(hashPassword);
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
 
 let getAllUser = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let users = db.Users.findAll();
+            let users = await sequelize.query("SELECT * FROM `customers` INNER JOIN `users` ON customers.userID = users.userID", { type: QueryTypes.SELECT });
             reslove(users);
+            console.log(users)
         } catch (e) {
             reject(e);
         }
     })
 }
 
-let getAllCode = (userId) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let allcode = await db.Allcode.findOne({
-                where: {
-                    userId: userId,
-                }
-            })
-            if (allcode) {
-                reslove(allcode);
-            }
-            else {
-                reslove();
-            }
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
 
 let getLogin = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let login = await sequelize.query("SELECT users.userID ,users.role FROM `logins` INNER JOIN `users` ON logins.userID = users.userID", { type: QueryTypes.SELECT });
+            let login = await sequelize.query("SELECT * FROM (`logins` INNER JOIN `users` ON logins.userID = users.userID) INNER JOIN `customers` ON customers.userID = users.userID", { type: QueryTypes.SELECT });
             reslove(login);
         } catch (e) {
             reject(e);
@@ -379,101 +123,12 @@ let getLogin = () => {
     })
 }
 
-let getAllTongKet = () => {
+let getUserInfoById = (userID) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let tongket = await sequelize.query("SELECT tongKets.tenDoiBong,soTranDau,soTranThang,soTranHoa,soTranThua,soBanThang,soBanThua,soTheVang,soTheDo,hieuSo,diemSo FROM `tongKets` INNER JOIN `doiBongs` ON tongKets.tenDoiBong = doiBongs.tenDoiBong ORDER BY diemSo DESC, hieuSo DESC, soBanThang DESC", { type: QueryTypes.SELECT });
-            reslove(tongket);
-        } catch (e) {
-            reject(e);
-        }
-    })
-}
-
-let getAllCauThu = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let cauThu = await sequelize.query("SELECT * FROM `cauThus` ORDER BY tenDoiBong,viTri DESC", { type: QueryTypes.SELECT });
-            reslove(cauThu);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getALLDoiBong = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let doibong = await sequelize.query("SELECT * FROM `doiBongs` ORDER BY createdAt", { type: QueryTypes.SELECT });
-            reslove(doibong);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllLichDaThiDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let lichThiDau = await sequelize.query("SELECT distinct DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay FROM `lichThiDaus` WHERE (maLich  not in  (SELECT maLich from ketQuas )) and (DATE(ngayGio) <= NOW()) ORDER BY ngay DESC", { type: QueryTypes.SELECT });
-            reslove(lichThiDau);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllLichChuaThiDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let lichThiDauSau = await sequelize.query("SELECT lichThiDaus.maLich, tenDoiBong1,tenDoiBong2, soBanThangDoi1, soBanThangDoi2, DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, lichThiDaus.ngayGio FROM `lichThiDaus` INNER JOIN `ketQuas` ON lichThiDaus.maLich = ketQuas.maLich ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT });
-            reslove(lichThiDauSau);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllLichThiDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT maLich, tenDoiBong1,tenDoiBong2,DATE(ngayGio) AS ngayF, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha, lichThiDaus.ngayGio AS ngayGio, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%Y-%m-%dT%H:%i') as ngayGioThiDau FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong WHERE maLich NOT IN (SELECT maLich FROM `ketQuas`) ORDER BY lichThiDaus.ngayGio DESC", { type: QueryTypes.SELECT });
-            console.log(ketqua);
-            reslove(ketqua);
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
-
-let getAllTranDau = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let lichThiDauTruoc = await sequelize.query("SELECT tenDoiBong1,tenDoiBong2, DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay,DATE_FORMAT(ngayGio, '%H:%i') AS gio, vong, doiBongs.sanNha FROM `lichThiDaus` INNER JOIN `doiBongs` ON lichThiDaus.tenDoiBong1 = doiBongs.tenDoiBong ORDER BY ngay DESC", { type: QueryTypes.SELECT });
-            reslove(lichThiDauTruoc);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getAllKetQua = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT ketQuas.maLich,soBanThangDoi1,soBanThangDoi2,soTheVang,soTheDo,tenDoiBong1,tenDoiBong2,DATE_FORMAT(STR_TO_DATE(ngayGio, '%Y-%m-%d %H:%i:%s'), '%d/%m/%Y') AS ngay, DATE_FORMAT(ngayGio, '%H:%i') AS gio,vong FROM `ketQuas` INNER JOIN `lichThiDaus` ON ketQuas.maLich = lichThiDaus.maLich ORDER BY ngay DESC", { type: QueryTypes.SELECT });
-            reslove(ketqua);
-        } catch (e) {
-            reject(e)
-        }
-    });
-}
-
-let getUserInfoById = (userId) => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let user = await db.User.findOne({
+            let user = await db.Users.findOne({
                 where: {
-                    id: userId,
+                    userID: userID,
                 }
             })
             if (user) {
@@ -521,7 +176,7 @@ let editUser = async(data) => {
 let getProductInfoByProductId = (productID) => {
     return new Promise(async(reslove, reject) => {
         try {
-            let product = await db.Products.findOne({
+            let product = await db.Product.findOne({
                 where: {
                     productID: productID,
                 }
@@ -651,7 +306,7 @@ let getAllMen = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let allMen = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man'",
+                "select * from Products, Category_Products where Products.categoryProductID = Category_Products.categoryProductID and gender = 'Man'",
                 { type: QueryTypes.SELECT }
             );
             resolve(allMen);
@@ -661,12 +316,11 @@ let getAllMen = () => {
     });
 }
 
-
 let getAllMenShirts = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let menShirts = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type like 'Ao%'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type in ('T-shirt', 'Jacket', 'Tank Top', 'Sweater Shirt')",
                 { type: QueryTypes.SELECT }
             );
             reslove(menShirts);
@@ -676,42 +330,56 @@ let getAllMenShirts = () => {
     });
 }
 
-let getAllMenTrousers = () => {
-    return new Promise(async (resolve, reject) => {
+let getAllMenTShirts = () => {
+    return new Promise(async (reslove, reject) => {
         try {
-            let menTrousers = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName in ('Pant', 'Jeans')",
+            let menTShirts = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'T-shirt'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menTrousers);
+            reslove(menTShirts);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenAoThun = () => {
+let getAllMenJacket = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menAoThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='T-shirt'",
+            let menJacket = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Jacket'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAoThun);
+            resolve(menJacket);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenAoKhoac = () => {
+let getAllMenSweaterShirt = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let menSweatShirt = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Sweater Shirt'",
+                { type: QueryTypes.SELECT }
+            );
+            resolve(menSweatShirt);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
+let getAllMenTankTop = () => {
     return new Promise(async(resolve, reject) => {
         try {
-            let menAoKhoac = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='Jacket'",
+            let menTankTop = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type ='Tank Top'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAoKhoac);
+            resolve(menTankTop);
         } catch(e)
         {
             reject(e)
@@ -719,70 +387,70 @@ let getAllMenAoKhoac = () => {
     });
 }
 
-let getAllMenAoJean = () => {
+let getAllMenKaki = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menAoJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Ao Jean'",
+            let menKaki = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Kaki'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menAoJean);
+            resolve(menKaki);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanThun = () => {
+let getAllMenJeans = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menQuanThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Thun'",
+            let menJeans = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Jeans'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanThun);
+            resolve(menJeans);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanDui = () => {
+let getAllMenShortPants = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menQuanDui = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='Pant'",
+            let menShortPants = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Short Pants'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanDui);
+            resolve(menShortPants);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanJean = () => {
+let getAllMenUnderwear = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let menQuanJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and categoryProductName ='Jeans'",
+            let menUnderwear = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type = 'Underwear'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanJean);
+            resolve(menUnderwear);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllMenQuanTay = () => {
+let getAllMenTrousers = () => {
     return new Promise(async(resolve, reject) => {
         try {
-            let menQuanTay = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'male' and type = 'Quan Tay'",
+            let menTrousers = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Man' and type in ('Pants', 'Jeans', 'Short Pants', 'Underwear')",
                 { type: QueryTypes.SELECT }
             );
-            resolve(menQuanTay);
+            resolve(menTrousers);
         } catch(e)
         {
             reject(e)
@@ -809,7 +477,7 @@ let getAllWomenShirts = () => {
     return new Promise(async (reslove, reject) => {
         try {
             let womenShirts = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type like 'Ao%'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type in ('Dress', 'Shirt', 'T-Shirt', 'Jacket')",
                 { type: QueryTypes.SELECT }
             );
             reslove(womenShirts);
@@ -823,7 +491,7 @@ let getAllWomenTrousers = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let womenTrousers = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan%'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type in ('Pants', 'Shorts', 'Jeans', 'Auth Pants')",
                 { type: QueryTypes.SELECT }
             );
             resolve(womenTrousers);
@@ -833,112 +501,112 @@ let getAllWomenTrousers = () => {
     });
 }
 
-let getAllWomenAoThun = () => {
+let getAllWomenDresses = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenAoThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Ao Thun'",
+            let womenDresses = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Dress'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenAoThun);
+            resolve(womenDresses);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenAoSoMi = () => {
+let getAllWomenShirt = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenAoSoMi = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Ao So Mi'",
+            let womenShirts = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Shirt'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenAoSoMi);
+            resolve(womenShirts);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenAoJean = () => {
+let getAllWomenTShirt = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenAoJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Ao Jean'",
+            let womenTShirt = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'T-Shirt'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenAoJean);
+            resolve(womenTShirt);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenAoKhoac = () => {
+let getAllWomenJackets = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womanAoKhoac = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and categoryProductName ='Jacket'",
+            let womanJackets = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type ='Jacket'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womanAoKhoac);
+            resolve(womanJackets);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanThun = () => {
+let getAllWomenPants = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanThun = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan Thun'",
+            let womenPants = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Pants'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanThun);
+            resolve(womenPants);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanDui = () => {
+let getAllWomenJeans = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanDui = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan Dui'",
+            let womenJeans = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Jeans'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanDui);
+            resolve(womenJeans);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanJean = () => {
+let getAllWomenAuthPants = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanJean = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'female' and type = 'Quan Jean'",
+            let womenAuthPants = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type = 'Auth Pants'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanJean);
+            resolve(womenAuthPants);
         } catch (e) {
             reject(e)
         }
     });
 }
 
-let getAllWomenQuanTay = () => {
+let getAllWomenShorts = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let womenQuanTay = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and categoryProductName ='Dress'",
+            let womenShorts = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where gender = 'Woman' and type ='Shorts'",
                 { type: QueryTypes.SELECT }
             );
-            resolve(womenQuanTay);
+            resolve(womenShorts);
         } catch (e) {
             reject(e)
         }
@@ -1192,27 +860,28 @@ module.exports = {
     getAllProducts: getAllProducts,
     getAllMen: getAllMen,
     getAllMenShirts: getAllMenShirts,
-    getAllMenAoThun: getAllMenAoThun,
-    //getAllMenAoSoMi: getAllMenAoSoMi,
-    getAllMenAoJean: getAllMenAoJean,
-    getAllMenAoKhoac: getAllMenAoKhoac,
+    getAllMenTShirts: getAllMenTShirts,
+    getAllMenJacket: getAllMenJacket,
+    getAllMenSweaterShirt: getAllMenSweaterShirt,
+    getAllMenTankTop: getAllMenTankTop,
     
     getAllMenTrousers: getAllMenTrousers,
-    // getAllMenQuanThun: getAllMenQuanThun,
-    getAllMenQuanDui: getAllMenQuanDui,
-    getAllMenQuanJean: getAllMenQuanJean,
-    getAllMenQuanTay: getAllMenQuanTay,
+    getAllMenKaki: getAllMenKaki,
+    getAllMenJeans: getAllMenJeans,
+    getAllMenShortPants: getAllMenShortPants,
+    getAllMenUnderwear: getAllMenUnderwear,
+
     getAllWomen: getAllWomen,
     getAllWomenShirts: getAllWomenShirts,
-    // getAllWomenAoThun: getAllWomenAoThun,
-    // getAllWomenAoSoMi: getAllWomenAoSoMi,
-    // getAllWomenAoJean: getAllWomenAoJean,
-    getAllWomenAoKhoac: getAllWomenAoKhoac,
-    // getAllWomenTrousers: getAllWomenTrousers,
-    // getAllWomenQuanThun: getAllWomenQuanThun,
-    // getAllWomenQuanDui: getAllWomenQuanDui,
-    // getAllWomenQuanJean: getAllWomenQuanJean,
-    //getAllWomenDress: getAllWomenDress, 
+    getAllWomenDresses: getAllWomenDresses,
+    getAllWomenShirt: getAllWomenShirt,
+    getAllWomenTShirt: getAllWomenTShirt,
+    getAllWomenJackets: getAllWomenJackets,
+    getAllWomenTrousers: getAllWomenTrousers,
+    getAllWomenPants: getAllWomenPants,
+    getAllWomenShorts: getAllWomenShorts,
+    getAllWomenJeans: getAllWomenJeans,
+    getAllWomenAuthPants: getAllWomenAuthPants, 
 
     // getAllShoes: getAllShoes,
     getAllDiscounted: getAllDiscounted,
@@ -1228,6 +897,7 @@ module.exports = {
     createUser: createUser,
     createCart: createCart,
     createOrder: createOrder,
+    createNewProduct: createNewProduct,
 
     editUser: editUser,
     editCustomer: editCustomer,
@@ -1237,7 +907,7 @@ module.exports = {
 
     getLogin: getLogin,
 
-    // getUserInfoById: getUserInfoById,
+    getUserInfoById: getUserInfoById,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
     // createTeam: createTeam,
@@ -1254,7 +924,7 @@ module.exports = {
     // getAllThamSo: getAllThamSo,
     createNewLogin: createNewLogin,
     // getAllCode: getAllCode,
-    // logoutCRUD: logoutCRUD,
+    logoutCRUD: logoutCRUD,
     // getCauThuByMaCauThu: getCauThuByMaCauThu,
     // editCauThu: editCauThu,
     // deleteCauThuById: deleteCauThuById,

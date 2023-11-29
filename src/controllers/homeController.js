@@ -1,13 +1,27 @@
 import { render } from "ejs";
 import express, { application } from 'express'
-import db from "../models/index";
+import db, { sequelize } from "../models/index";
 import CRUDSevice from "../sevices/CRUDSevice";
 import { json } from "body-parser";
 
+const fs = require('fs');
 
 let getHomePage = async (req, res) => {
+    let login = await CRUDSevice.getLogin({ raw: true });
+    let dataUser = await CRUDSevice.getAllUser({
+        raw: true,
+    })
     try {
-        return res.render('homepage.ejs')
+        if (login[0].role === 'Admin')
+        {
+            return res.render('admin.ejs',{
+                login: login,
+                dataUser: dataUser,
+            })
+        }
+        return res.render('homepage.ejs',{
+            login: login
+        })
     } catch (e) {
         console.log(e);
     }
@@ -15,6 +29,7 @@ let getHomePage = async (req, res) => {
 
 let getLoginSignUp = async (req, res) => {
     try {
+        let login = await CRUDSevice.getLogin({ raw: true });
         let dataUser = await CRUDSevice.getAllUser({
             raw: true,
         })
@@ -23,6 +38,7 @@ let getLoginSignUp = async (req, res) => {
             {
                 dataUserF: JSON.stringify(dataUser),
                 dataUser: dataUser,
+                login: login
             }
         )
     } catch (e) {
@@ -32,6 +48,7 @@ let getLoginSignUp = async (req, res) => {
 
 let getListProduct = async (req, res) => {
     try {
+        let login = await CRUDSevice.getLogin({ raw: true });
         let allProducts = await CRUDSevice.getAllProducts({
             raw: true,
         });
@@ -43,96 +60,107 @@ let getListProduct = async (req, res) => {
             return res.render('list_product.ejs',
                 {
                     dataProduct: (allMen),
+                    login :login,
                 })
         }
-        else if (req.url == '/menshirts') {
+        else if (req.url == '/menShirts') {
             let menShirts = await CRUDSevice.getAllMenShirts({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
                     dataProduct: (menShirts),
+                    login: login,
                 })
         }
-        else if (req.url == '/menAoThun') {
-            let menAoThun = await CRUDSevice.getAllMenAoThun({
+        else if (req.url == '/menTShirt') {
+            let menTShirt = await CRUDSevice.getAllMenTShirts({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menAoThun),
+                    dataProduct: (menTShirt),
+                    login: login,
                 })
         }
-        else if (req.url == '/menSoMi') {
-            let menSoMi = await CRUDSevice.getAllMenSoMi({
+        else if (req.url == '/menSweater') {
+            let menSweater = await CRUDSevice.getAllMenSweaterShirt({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menSoMi),
+                    dataProduct: (menSweater),
+                    login: login,
                 })
         }
-        else if (req.url == '/menAoJean') {
-            let menAoJean = await CRUDSevice.getAllMenAoJean({
+        else if (req.url == '/menTankTop') {
+            let menTankTop = await CRUDSevice.getAllMenTankTop({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menAoJean),
+                    dataProduct: (menTankTop),
+                    login: login,
                 })
         }
-        else if (req.url == '/menAoKhoac') {
-            let menAoKhoac = await CRUDSevice.getAllMenAoKhoac({
+        else if (req.url == '/menJacket') {
+            let menJacket = await CRUDSevice.getAllMenJacket({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menAoKhoac),
+                    dataProduct: (menJacket),
+                    login: login,
                 })
         }
-        else if (req.url == '/mentrousers') {
+        else if (req.url == '/menTrousers') {
             let menTrousers = await CRUDSevice.getAllMenTrousers({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
                     dataProduct: (menTrousers),
+                    login: login,
                 })
         }
-        else if (req.url == '/menQuanDui') {
-            let menQuanDui = await CRUDSevice.getAllMenQuanDui({
+        else if (req.url == '/menShorts') {
+            let menShorts = await CRUDSevice.getAllMenShortPants({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menQuanDui),
+                    dataProduct: (menShorts),
+                    login: login,
                 })
         }
-        else if (req.url == '/menQuanThun') {
-            let menQuanThun = await CRUDSevice.getAllMenQuanThun({
+        else if (req.url == '/menKaki') {
+            let menKaki = await CRUDSevice.getAllMenKaki({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menQuanThun),
+                    dataProduct: (menKaki),
+                    login: login,
                 })
         }
-        else if (req.url == '/menQuanJean') {
-            let menQuanJean = await CRUDSevice.getAllMenQuanJean({
+        else if (req.url == '/menJean') {
+            let menJean = await CRUDSevice.getAllMenJeans({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menQuanJean),
+                    dataProduct: (menJean),
+                    login: login,
                 })
         }
-        else if (req.url == '/menQuanTay') {
-            let menQuanTay = await CRUDSevice.getAllMenQuanTay({
+        else if (req.url == '/menUnderwear') {
+            let menUnderwear = await CRUDSevice.getAllMenUnderwear({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (menQuanTay),
+                    dataProduct: (menUnderwear),
+                    login: login,
                 })
         }
         else if (req.url == '/women') {
@@ -142,105 +170,118 @@ let getListProduct = async (req, res) => {
             return res.render('list_product.ejs',
                 {
                     dataProduct: (allwomen),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenshirts') {
+        else if (req.url == '/womenShirts') {
             let womenShirts = await CRUDSevice.getAllWomenShirts({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
                     dataProduct: (womenShirts),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenAoThun') {
-            let womenAoThun = await CRUDSevice.getAllWomenAoThun({
+        else if (req.url == '/womenTShirt') {
+            let womenTShirt = await CRUDSevice.getAllWomenTShirt({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenAoThun),
+                    dataProduct: (womenTShirt),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenSoMi') {
-            let womenSoMi = await CRUDSevice.getAllWomenSoMi({
+        else if (req.url == '/womenShirt') {
+            let womenShirt = await CRUDSevice.getAllWomenShirt({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenSoMi),
+                    dataProduct: (womenShirt),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenAoJean') {
-            let womenAoJean = await CRUDSevice.getAllWomenAoJean({
+        else if (req.url == '/womenDress') {
+            let womenDress = await CRUDSevice.getAllWomenDresses({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenAoJean),
+                    dataProduct: (womenDress),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenAoKhoac') {
-            let womenAoKhoac = await CRUDSevice.getAllWomenAoKhoac({
+        else if (req.url == '/womenJacket') {
+            let womenJacket = await CRUDSevice.getAllWomenJackets({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenAoKhoac),
+                    dataProduct: (womenJacket),
+                    login: login,
                 })
         }
-        else if (req.url == '/womentrousers') {
+        else if (req.url == '/womenTrousers') {
             let womenTrousers = await CRUDSevice.getAllWomenTrousers({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
                     dataProduct: (womenTrousers),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenQuanDui') {
-            let womenQuanDui = await CRUDSevice.getAllWomenQuanDui({
+        else if (req.url == '/womenPants') {
+            let womenPants = await CRUDSevice.getAllWomenPants({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenQuanDui),
+                    dataProduct: (womenPants),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenQuanThun') {
-            let womenQuanThun = await CRUDSevice.getAllWomenQuanThun({
+        else if (req.url == '/womenShorts') {
+            let womenShorts = await CRUDSevice.getAllWomenShorts({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenQuanThun),
+                    dataProduct: (womenShorts),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenQuanJean') {
-            let womenQuanJean = await CRUDSevice.getAllWomenQuanJean({
+        else if (req.url == '/womenJeans') {
+            let womenJeans = await CRUDSevice.getAllWomenJeans({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenQuanJean),
+                    dataProduct: (womenJeans),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenQuanTay') {
-            let womenQuanTay = await CRUDSevice.getAllWomenQuanTay({
+        else if (req.url == '/womenAuthPants') {
+            let womenAuthPants = await CRUDSevice.getAllWomenAuthPants({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenQuanTay),
+                    dataProduct: (womenAuthPants),
+                    login: login,
                 })
         }
-        else if (req.url == '/womenQuanTay') {
-            let womenQuanTay = await CRUDSevice.getAllWomenQuanTay({
+        //////////////////////
+        else if (req.url == '/sale') {
+            let discounted = await CRUDSevice.getAllDiscounted({
                 raw: true,
             });
             return res.render('list_product.ejs',
                 {
-                    dataProduct: (womenQuanTay),
+                    dataProduct: (discounted),
+                    login: login,
                 })
         }
         else if (req.url == '/hotitem') {
@@ -250,6 +291,7 @@ let getListProduct = async (req, res) => {
             return res.render('list_product.ejs',
                 {
                     dataProduct: (hotItem),
+                    login: login,
                 })
         }
         
@@ -260,9 +302,20 @@ let getListProduct = async (req, res) => {
 
 let getInfoProduct = async (req, res) => {
     try {
+        let login = await CRUDSevice.getLogin({ raw: true });
         let productID = req.query.productID;
         let product = await CRUDSevice.getProductInfoByProductId(productID)
-        return res.render('info_product.ejs',{ product: product})
+        let Product_Color = await db.Product_Color.findAll()
+        let imageCount = 0;
+        const path = require('path');
+        const imgDirectory = path.join(__dirname, '..', 'public', 'img');
+        const files = fs.readdirSync(imgDirectory);
+        files.forEach(file => {
+            if (file.includes(productID)) {
+                imageCount++;
+            }
+        });
+        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, login: login})
     } catch (e) {
         console.log(e);
     }
@@ -272,11 +325,11 @@ let getInfoUser = async (req, res) => {
     try {
         let login = await CRUDSevice.getLogin({ raw: true });
         if (login.length > 0) {
-            let data = await CRUDSevice.getUser(login[0].userId, {
+            let data = await CRUDSevice.getUserInfoById(login[0].userID, {
                 raw: true,
             });
             return res.render('info_user.ejs', {
-                login: login,
+                login: JSON.stringify(login),
                 data: data
             })
         }
@@ -288,15 +341,21 @@ let getInfoUser = async (req, res) => {
 
 let getUpload = async (req, res) => {
     try {
-        return res.render('upload_product.ejs')
+        let login = await CRUDSevice.getLogin({ raw: true });
+        let product = await CRUDSevice.getAllProducts();
+        return res.render('upload_product.ejs' ,{
+            productLength: product.length,
+            login: login
+        })
     } catch (e) {
         console.log(e);
     }
 }
 
 let getCart = async (req, res) => {
+    let login = await CRUDSevice.getLogin({ raw: true });
     try {
-        return res.render('cart.ejs')
+        return res.render('cart.ejs', { login: login})
     } catch (e) {
         console.log(e);
     }
@@ -305,20 +364,21 @@ let getCart = async (req, res) => {
 const multer = require('multer');
 const path = require('path');
 
-const storage = multer.diskStorage({
+const storageAVT = multer.diskStorage({
     destination: path.join(__dirname, '../public/img'),
     filename: function (req, file, cb) {
-        const userId = req.user.id;
-        const filename = `${userId}`;
+        const userID = req.query.userID;
+        console.log(userID)
+        const filename = userID + '.png';
 
         cb(null, filename);
     }
 });
 
-const upload = multer({ storage: storage });
+const uploadAVT = multer({ storage: storageAVT });
 
 const uploadAvatar = (req, res) => {
-    upload.single('file')(req, res, (err) => {
+    uploadAVT.single('file')(req, res, (err) => {
         if (err) {
             console.error('Lỗi khi tải lên ảnh:', err);
             return res.status(500).send('Internal Server Error');
@@ -328,6 +388,35 @@ const uploadAvatar = (req, res) => {
         }
     });
 };
+
+const storagePT = multer.diskStorage({
+    destination: path.join(__dirname, '../public/img'),
+    filename: function (req, file, cb) {
+        const productID = req.query.productID;
+        const filename = productID + '.png';
+
+        cb(null, filename);
+    }
+});
+
+const uploadPT = multer({ storage: storagePT });
+
+const uploadPhoto = (req,res) => {
+    uploadPT.single('file')(req, res, (err) => {
+        if (err) {
+            console.error('Lỗi khi tải lên ảnh:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        else {
+            console.error('Lưu trữ ảnh thành công');
+        }
+    });
+}
+
+let pushProduct = async(req, res) => {
+    let mes = await CRUDSevice.createNewProduct(req.body);
+    res.redirect('/')
+}
 
 let loginCRUD = async(req, res) => {
     let mes = await CRUDSevice.createNewLogin(req.body);
@@ -349,6 +438,11 @@ let postSignUp = async (req, res) => {
     res.redirect('/')
 }
 
+let logout = async (req,res) => {
+    await CRUDSevice.logoutCRUD();
+    res.redirect('/')
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -357,7 +451,10 @@ module.exports = {
     getCart: getCart,
     getInfoProduct: getInfoProduct,
     uploadAvatar: uploadAvatar,
+    uploadPhoto, uploadPhoto,
     postSignUp: postSignUp,
     loginCRUD: loginCRUD,
     getUpload: getUpload,
+    logout: logout,
+    pushProduct: pushProduct,
 }

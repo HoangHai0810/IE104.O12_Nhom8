@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     cartID: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER,
       primaryKey: true,
     },
     soLuong: DataTypes.TINYINT,

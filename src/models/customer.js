@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     };
     Customer.init({
         customerID: {
-            type: DataTypes.STRING(10),
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
         },
         fullName: DataTypes.TEXT,

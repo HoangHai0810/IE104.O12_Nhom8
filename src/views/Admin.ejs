@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon"
+        href="https://th.bing.com/th/id/R.6cc73b5620060d4ba2def37f6d81625c?rik=iOta38bicn4zJA&pid=ImgRaw&r=0">
+    <title>Admin Fashion DLATT</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/admin.css">
+
+</head>
+
+<body>
+    <!--Header-->
+    <header>
+        <div class="header-container fixed">
+            <div class="header-main">
+                <div class="container">
+                    <div class="toggle">
+                        <i class="fa-solid fa-bars menu"></i>
+                        <div id="logo-toggle">
+                            <a href="#">
+                                <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                    style="width: 200px;">
+                            </a>
+                        </div>
+                        <div class="btn-toggle">
+                            <div id="search-toggle">
+                                <span class="search_button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                            </div>
+                            <div class="myaccount-toggle">
+                                <a href="/account" title="My Account">
+                                    <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="header-shoppingcart-toggle">
+                                <a href="/cart" title="Cart"></a>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav-toggle">
+                        <li class="top_level dropdown">
+                            <a href="/man">Nam</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/woman">Nữ</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/hotitem">Bán chạy</a>
+                        </li>
+                        <li class="top_level">
+                            <a href="/sale">Giảm giá</a>
+                        </li>
+                        <li class="top_level dropdown">
+                            <a href="/more">Xem thêm</a>
+                        </li>
+                    </ul>
+                    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $('.menu').click(function () {
+                                $('.navbar-nav-toggle').toggleClass('active')
+                            })
+                        }
+                        )
+                    </script>
+                    <div class="row">
+                        <div class="header-logo">
+                            <div id="logo">
+                                <a href="/">
+                                    <img src="./img/logo.png" title="DLATT Fashion" class="img-product"
+                                        style="width: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                        <nav class="nav-container">
+                            <div id="menu" class="main-menu" style="display: block;">
+                                <ul class="nav navbar-nav">
+                                    <li class="top_level dropdown">
+                                        <a href="/men">Nam</a>
+                                        <div class="dropdown-menu megamenu column3">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/menShirts">Áo</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dr  opdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/menSweater">Áo Sweater Nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menTankTop">Áo ba lỗ Nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menTShirt">Áo thun nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menJacket">Áo khoác nam</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/menTrousers">Quần</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/menKaki">Quần kaki nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menShorts">Quần đùi nam </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menJean">Quần jean nam</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/menUnderwear">Quần lót nam</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="top_level dropdown">
+                                        <a href="/women">Nữ</a>
+                                        <div class="dropdown-menu megamenu column3">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/womenShirts">Áo</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/womenShirt">Áo thun nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenTShirt">Áo sơ mi nữ </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenDress">Đầm nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenJacket">Áo khoác nữ</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled childs_1">
+                                                    <li class="dropdown">
+                                                        <a href="/womenTrousers">Quần</a>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-inner">
+                                                                <ul class="list-unstyled childs_2">
+                                                                    <li>
+                                                                        <a href="/womenPants">Quần dài nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenShorts">Quần đùi nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenJeans">Quần jean nữ</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/womenAuthPants">Quần tây nữ</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="top_level">
+                                        <a href="/hotitem">Bán chạy</a>
+                                    </li>
+                                    <li class="top_level">
+                                        <a href="/sale">Giảm giá</a>
+                                    </li>
+                                    <li class="top_level dropdown">
+                                        <a href="/more">Xem thêm</a>
+                                        <div class="dropdown-menu megamenu column1" style="height: 120px">
+                                            <div class="dropdown-inner">
+                                                <ul class="list-unstyled childs_1">
+                                                    <li>
+                                                        <a href="/shoes">Giày</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/glasses">Kính</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/socks">Tất</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="hats">Mũ</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div id="search" class="input-group">
+                            <span class="search_button"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <div class="search_toggle">
+                                <div id="searchbox">
+                                    <input type="text" name="search" value="" placeholder="Search Products Here"
+                                        class="form-control input-lg">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-lg">
+                                            Search
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <% if (login.length> 0) { %>
+                            <div class="dropdown myaccount" style="width: 200px">
+                                <a href="/account" title="My Account" style="width: 100%">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="userName">
+                                        <%=login[0].fullName%>
+                                    </span>
+                                    <% } else { %>
+                                        <div class="dropdown myaccount">
+                                            <a href="/account" title="My Account" style="width: 100%">
+                                                <i class="fa-solid fa-user"></i>
+                                                <% } %>
+                                                    <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                                        <% if (login.length==0) { %>
+                                                            <li>
+                                                                <a href="/register">Đăng kí</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/login">Đăng nhập</a>
+                                                            </li>
+                                                            <% } else { %>
+                                                                <li>
+                                                                    <a href="/logout">Đăng xuất</a>
+                                                                </li>
+                                                                <% } %>
+                                                                    <li>
+                                                                        <a href="/cart" title="Shopping Cart">Giỏ
+                                                                            hàng</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/checkout" title="Checkout">Thanh
+                                                                            toán</a>
+                                                                    </li>
+                                                                    <% if (login.length> 0 && login[0].role ===
+                                                                        'Employee') { %>
+                                                                        <li>
+                                                                            <a href="/upload" title="Checkout">Thêm sản
+                                                                                phẩm</a>
+                                                                        </li>
+                                                                        <% } %>
+                                                    </ul>
+                                        </div>
+                                        <div class="header-shoppingcart">
+                                            <div id="cart" class="btn-group btn-block">
+                                                <a href="/cart" title="Cart">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <!--Các tài khoản đã phân quyền-->
+    <main>
+        <div class="block cart" style="margin-top: 150px;">
+            <div class="block-title" style="padding: 30px;">
+                <strong>ADMIN</strong>
+            </div>
+            <table id="myTable">
+                <tr>
+                    <th>Họ và Tên</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Vai trò</th>
+                    <th>Phân quyền</th>
+                    <th>Xóa</th>
+                </tr>
+            </table>
+            <form id='tablepq' method="post" action="/updateuser">
+                <input hidden="true" name="userName" id="userName">
+                <input hidden="true" name="role" id="roleuser">
+            </form>
+        </div>
+    </main>
+    <script>
+        let Data = '<%-dataUser%>';
+        let login = '<%-login%>';
+        let data = [];
+        console.log(Data[1])
+
+        for (let i = 0; i < Data.length; i++)
+            if (Data[i].userID != login[0].userID) {
+                data.push(Data[i]);
+            }
+
+        
+        for (let i = 0; i < Data.length; i++) {
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(-1);
+
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = "<label>" + data[i].fullName + "</label>";
+
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = "<label>" + data[i].userName + "</label>";
+
+            var cell3 = row.insertCell(2);
+            cell3.innerHTML = "<label>" + data[i].userPassword + "</label>";
+
+            var cell4 = row.insertCell(3);
+            cell4.innerHTML = createRoleSelect(i);
+
+            var cell5 = row.insertCell(4);
+            cell5.innerHTML = createDoiBongSelect(i);;
+
+            addDeleteButton(row, i);
+            addPermissionButton(row, i);
+        }
+        let roles = document.querySelectorAll('[id="roleiduser"]');
+
+        function createRoleSelect(i) {
+            var select = "<select id='roleiduser' value='" + data[i].roleId + "'>";
+            if (data[i].role == 'Guest')
+                select += "<option value='Guest' selected>Khách</option>";
+            else
+                select += "<option value='Guest'>Khách</option>";
+            if (data[i].role == 'Employee')
+                select += "<option value='Employee' selected>Nhân viên</option>";
+            else
+                select += "<option value='Employee'>Nhân viên</option>";
+            if (data[i].roleId == 'Admin')
+                select += "<option value='Admin' selected>Admin</option>";
+            else
+                select += "<option value='Admin'>Admin</option>";
+            select += "</select>";
+            return select;
+        }
+
+        function addDeleteButton(row, i) {
+            var cell = row.insertCell(6);
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "Xóa";
+            deleteButton.onclick = function () {
+                window.location.href = '/delete-crud?id=' + data[i].id;
+            };
+            cell.appendChild(deleteButton);
+        }
+        function addPermissionButton(row, i) {
+            var cell = row.insertCell(6);
+            var permissionButton = document.createElement("button");
+            permissionButton.innerHTML = "Phân quyền";
+            permissionButton.onclick = function () {
+                // Xử lý logic khi nhấp vào nút "Phân quyền"
+                let form = document.getElementById('tablepq');
+                let roleIdValue = document.getElementById('roleuser');
+                let role = document.querySelectorAll('[id="roleiduser"]');
+                let userNameValue = document.getElementById('userName');
+                let tenDoiBongValue = document.getElementById('tendoibong');
+                console.log(tenDoiBongValue)
+                if (role[i].value === 'manager') {
+                    let doibonguser = document.querySelectorAll('[id="doibonguser"]');
+                    tenDoiBongValue.value = doibonguser[i].value;
+                }
+                roleIdValue.value = role[i].value;
+                userNameValue.value = data[i].userName;
+                console.log(userNameValue.value);
+                form.submit();
+            };
+            cell.appendChild(permissionButton);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+</body>
+
+</html>
