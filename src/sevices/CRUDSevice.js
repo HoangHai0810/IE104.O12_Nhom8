@@ -855,6 +855,19 @@ let deleteUser = (uID) => {
     })
 }
 
+let getCartDetails = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let allCartDetails = await sequelize.query(
+                "select * from (Carts inner join Cart_Details on Carts.cartID = Cart_Details.cartID) inner join Products on Products.productID = Cart_Details.productID ",
+                { type: QueryTypes.SELECT }
+            )
+            resolve(allCartDetails);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
 
 module.exports = {
     getAllProducts: getAllProducts,
@@ -908,6 +921,8 @@ module.exports = {
     getLogin: getLogin,
 
     getUserInfoById: getUserInfoById,
+
+    getCartDetails: getCartDetails,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
     // createTeam: createTeam,
