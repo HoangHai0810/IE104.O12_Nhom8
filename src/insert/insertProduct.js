@@ -474,7 +474,7 @@ async function insertSP()
         };
         const Sp108 = await Sp.create(newSP108);
         console.log('SP108 created: ', Sp108.toJSON());
-        //Product 109: https://routine.vn/ao-so-mi-unisex-ke-soc-caro-form-loose-10f23shlu001.html
+        //Product 109: https://routine.vn/ao-so-mi-nu-tay-dai-tron-form-regular-10f22shlw014.html?utm_source=google&utm_medium=cpc&utm_campaign=%7Bcampaignname%7D&utm_content=%7Badgroupname%7D&utm_keyword=&utm_matchtype=&campaign_id=20767326427&ad_group_id=&ad_id=&matchtype=&device=c&product_partition_id=&adposition=&loc_interest_ms=&loc_physical_ms=1028581&feeditemid=&gad_source=1&gclid=CjwKCAiAvJarBhA1EiwAGgZl0NXWVWE3FVy5GVbl2msmKwKYMv5smjihJfWj0oUEBI8fEBaEFCrQVxoCfn4QAvD_BwE
         const newSP109 = 
         {
             productID: 'WS001',
@@ -684,7 +684,133 @@ async function insertSP()
         };
         const Sp123 = await Sp.create(newSP123);
         console.log('SP123 created: ', Sp123.toJSON());
-    }
+        //Product 200: https://yody.vn/giay-nam-penny-loafer-da-bo-nappa-cao-cap
+        const newSP200 = 
+        {
+            productID: 'AS001',
+            productName: 'Giày Nam Penny Loafer Da Bò Nappa Cao Cấp',
+            description: 'Hạn chế nếp nhăn, lót giày êm, mềm mại tối đa',
+            material: 'Da Bò Nappa',
+            price: 1289000,
+            rate: 4.5,
+            discount: 0,
+            categoryProductID: 'AS'
+        };
+        const Sp200 = await Sp.create(newSP200);
+        console.log('SP200 created: ', Sp200.toJSON());
+        //Product 201: https://yody.vn/giay-nam-da-that-de-the-thao
+        const newSP201 = 
+        {
+            productID: 'AS002',
+            productName: 'Giày Nam Da Thật Đế Thể Thao',
+            description: 'Đế cao su siêu êm chân, có độ bám, đi bền bỉ, form dáng thoải mái, ôm chân',
+            material: 'Da Bò',
+            price: 2689000,
+            rate: 2.1,
+            discount: 0,
+            categoryProductID: 'AS'
+        };
+        const Sp201 = await Sp.create(newSP201);
+        console.log('SP201 created: ', Sp201.toJSON());
+        //Product 202: https://yody.vn/giay-sneaker-nam-basic-tre-trung
+        const newSP202 = 
+        {
+            productID: 'AS003',
+            productName: 'Giày Sneaker Nam Basic Trẻ Trung',
+            description: 'Form dáng thoải mái, đế giày cao su nguyên chất có độ bám dai bền bỉ, lót tẩy Ortholite hút ẩm chống hôi chân',
+            material: 'Polyester Microfiber',
+            price: 989000,
+            rate: 4.8,
+            discount: 0,
+            categoryProductID: 'AS'
+        };
+        const Sp202 = await Sp.create(newSP202);
+        console.log('SP202 created: ', Sp202.toJSON());
+        //Product 203: https://www.uniqlo.com/us/en/products/E462241-000/00?colorDisplayCode=00&sizeDisplayCode=027
+        const newSP203 = 
+        {
+            productID: 'ASO001',
+            productName: 'HEATTECH Fluffy Socks',
+            description: 'Chất liệu vải mềm mại và thoáng khí, khả năng hấp thụ nhiệt, giữ nhiệt, khử mùi và kiểm soát mùi cơ thể',
+            material: '87% Polyester / 8% Acrylic / 2% Rayon / 1% Modal / 1% Spandex / 1% Nylon',
+            price: 191500,
+            rate: 4.4,
+            discount: 0,
+            categoryProductID: 'ASO'
+        };
+        const Sp203 = await Sp.create(newSP203);
+        console.log('SP203 created: ', Sp203.toJSON());
+        //Product 204: https://www.uniqlo.com/us/en/products/E463645-001/00?colorDisplayCode=03&sizeDisplayCode=027
+        const newSP204 = 
+        {
+            productID: 'ASO002',
+            productName: 'HEATTECH Anti-Odor Socks',
+            description: 'Khả năng hấp thụ nhiệt và giữ nhiệt, tính năng khử mùi và kiểm soát mùi, rập chun ở mắt cá chân, thiết kế gót rộng',
+            material: '29% Acrylic / 27% Nylon / 24% Polyester / 10% Cotton / 9% Rayon / 1% Spandex',
+            price: 191500,
+            rate: 4.0,
+            discount: 0,
+            categoryProductID: 'ASO'
+        };
+        const Sp204 = await Sp.create(newSP204);
+        console.log('SP204 created: ', Sp204.toJSON());
+        //Product 205: https://www.uniqlo.com/us/en/products/E457278-000/00?colorDisplayCode=09&sizeDisplayCode=027
+        const newSP205 = 
+        {
+            productID: 'ASO003',
+            productName: 'Striped Low-Cut Socks',
+            description: 'Chất liệu mỏng nhẹ để ôm sát, đế chống trượt ở gót, thiết kế gót cong',
+            material: '57% Cotton / 39% Polyester / 4% Spandex',
+            price: 143000,
+            rate: 4.5,
+            discount: 0,
+            categoryProductID: 'ASO'
+        };
+        const Sp205 = await Sp.create(newSP205);
+        console.log('SP205 created: ', Sp205.toJSON());
+        //Product 206: https://aldoshoes.vn/products/tui-tote-nu-enobana-black-1
+        const newSP206 = 
+        {
+            productID: 'AHB001',
+            productName: 'Túi Tone Nữ Enobana',
+            description: 'Form túi cứng cáp, rộng rãi, quai cầm túi chắc chắn và thiết kế tinh xảo trong từng chi tiết',
+            material: 'Da Tổng Hợp',
+            price: 2250000,
+            rate: 4.7,
+            discount: 50,
+            categoryProductID: 'AHB'
+        };
+        const Sp206 = await Sp.create(newSP206);
+        console.log('SP206 created: ', Sp206.toJSON());
+        //Product 207: https://aldoshoes.vn/products/tui-deo-cheo-nu-eternal-pink-overflow
+        const newSP207 = 
+        {
+            productID: 'AHB002',
+            productName: 'Túi Đeo Chéo Nữ Eternal',
+            description: 'Màu sắc tối giản, rực rỡ, có thêm dây mắc xích mắc ngang qua túi',
+            material: 'Da Tổng Hợp',
+            price: 2100000,
+            rate: 4.2,
+            discount: 50,
+            categoryProductID: 'AHB'
+        };
+        const Sp207 = await Sp.create(newSP207);
+        console.log('SP207 created: ', Sp207.toJSON());
+        //Product 208: https://aldoshoes.vn/products/tui-cam-tay-nu-byday-bone?size=Nosize
+        const newSP208 = 
+        {
+            productID: 'AHB003',
+            productName: 'Túi Cầm Tay Nữ Byday',
+            description: 'Phần bề mặt các đường vân in nổi song song nhau cùng điểm nhấn phần xích to bản',
+            material: 'Da Tổng Hợp',
+            price: 1850000,
+            rate: 3.8,
+            discount: 50,
+            categoryProductID: 'AHB'
+        };
+        const Sp208 = await Sp.create(newSP208);
+        console.log('SP208 created: ', Sp208.toJSON());
+    }   
     catch(error)
     {
         console.error('Error inserting user:, error');
