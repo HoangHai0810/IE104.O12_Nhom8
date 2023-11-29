@@ -859,7 +859,7 @@ let getCartDetails = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let allCartDetails = await sequelize.query(
-                "select * from (Carts inner join Cart_Details on Carts.cartID = Cart_Details.cartID) innner join Products on Products.productID = Cart_Details.productID ",
+                "select * from (Carts inner join Cart_Details on Carts.cartID = Cart_Details.cartID) inner join Products on Products.productID = Cart_Details.productID ",
                 { type: QueryTypes.SELECT }
             )
             resolve(allCartDetails);
