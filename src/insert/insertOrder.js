@@ -18,7 +18,7 @@ async function insertOrd()
             note: '',
             address: 'Ký túc xá khu B: Đường Mạc Đĩnh Chi, Khu phố Tân Hòa, Phường Đông Hòa, Thành phố Dĩ An, Tỉnh Bình Dương',
             totalCost: 449000,
-            voucherID: 'S003',
+            voucherID: 'S003'
         };
         const Ord1 = await Ord.create(newOrd1);
         console.log('Ord1 created: ', Ord1.toJSON());
