@@ -8,19 +8,7 @@ const fs = require('fs');
 
 let getHomePage = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
-    let dataUser = await CRUDSevice.getAllUser({
-        raw: true,
-    })
     try {
-        if (login.length>0) {
-            if (login[0].role === 'Admin')
-            {
-                return res.render('admin.ejs',{
-                    login: login,
-                    dataUser: dataUser,
-                })
-            }
-        }
         return res.render('homepage.ejs', {
             login: login
         })
@@ -186,7 +174,7 @@ let getListProduct = async (req, res) => {
                     login: login,
                 })
         }
-        else if (req.url == '/womenTShirt') {
+        else if (req.url == '/womenShirt') {
             let womenTShirt = await CRUDSevice.getAllWomenTShirt({
                 raw: true,
             });
@@ -196,7 +184,7 @@ let getListProduct = async (req, res) => {
                     login: login,
                 })
         }
-        else if (req.url == '/womenShirt') {
+        else if (req.url == '/womenTShirt') {
             let womenShirt = await CRUDSevice.getAllWomenShirt({
                 raw: true,
             });
@@ -297,6 +285,37 @@ let getListProduct = async (req, res) => {
                     login: login,
                 })
         }
+        else if (req.url == '/shoes') {
+            let allShoes = await CRUDSevice.getAllShoes({
+                raw: true,
+            });
+            return res.render('list_product.ejs',
+                {
+                    dataProduct: (allShoes),
+                    login: login,
+                })
+        }
+        else if (req.url == '/socks') {
+            let allSocks = await CRUDSevice.getAllSocks({
+                raw: true,
+            });
+            return res.render('list_product.ejs',
+                {
+                    dataProduct: (allSocks),
+                    login: login,
+                })
+        }
+        else if (req.url == '/handbag') {
+            let allHandBag = await CRUDSevice.getAllHandBag({
+                raw: true,
+            });
+            return res.render('list_product.ejs',
+                {
+                    dataProduct: (allHandBag),
+                    login: login,
+                })
+        }   
+        
 
     } catch (e) {
         console.log(e);
@@ -310,7 +329,7 @@ let getInfoProduct = async (req, res) => {
         let product = await CRUDSevice.getProductInfoByProductId(productID);
         let Product_Color = await db.Product_Color.findAll();
         let Product_Size = await db.Product_Size.findAll();
-        let logins = await CRUDSevice.getLogin({raw: true});
+        let logins = await CRUDSevice.getLogin({ raw: true });
         let imageCount = 0;
         const path = require('path');
         const imgDirectory = path.join(__dirname, '..', 'public', 'img');
@@ -360,8 +379,9 @@ let getUpload = async (req, res) => {
 let getCart = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
     let cart = await CRUDSevice.getCartDetails({ raw: true });
+    let voucher = await CRUDSevice.getVouchers({ raw: true});
     try {
-        return res.render('cart.ejs', { login: login, cart: cart })
+        return res.render('cart.ejs', { login: login, cart: cart, voucher: voucher })
     } catch (e) {
         console.log(e);
     }
@@ -425,9 +445,8 @@ let pushProduct = async (req, res) => {
 
 let loginCRUD = async (req, res) => {
     let mes = await CRUDSevice.createNewLogin(req.body);
-    let login = await CRUDSevice.getLogin({ raw: true});
-    if (login[0].role == 'admin')
-    {   
+    let login = await CRUDSevice.getLogin({ raw: true });
+    if (login[0].role == 'Admin') {
         res.redirect('/admin');
     }
     else {
@@ -446,10 +465,54 @@ let logout = async (req, res) => {
     res.redirect('/')
 }
 
-let addToCart = async(req, res) => {
+let getAdmin = async (req, res) => {
+    let login = await CRUDSevice.getLogin({ raw: true });
+    let dataUser = await CRUDSevice.getAllUser({
+        raw: true,
+    })
+    try {
+        if (login.length > 0) {
+            if (login[0].role === 'Admin') {
+                return res.render('admin.ejs', {
+                    login: login,
+                    dataUser: dataUser,
+                    dataUserF: JSON.stringify(dataUser),
+                    loginF: JSON.stringify(login),
+
+                })  
+            }
+            else {
+                res.redirect('/')
+            }
+        }
+        else {
+            res.redirect('/')
+        }
+    } catch (e) {
+        console.log(e);
+    }
+
+}
+
+let updateUser = async (req, res) => {
+    let mes = await CRUDSevice.updateUserRole(req.body);
+    res.redirect('/admin');
+}
+
+let delCRUD = async (req, res) => {
+    let userID = req.query.userID;
+    if (userID) {
+        await CRUDSevice.deleteUserById(userID);
+        res.redirect('/admin')
+    } else {
+        return res.send('User not found!');
+    }
+}
+
+let addToCart = async (req, res) => {
     let mes = await CRUDSevice.updateCart(req.body);
     console.log(mes);
-    res.redirect('/cart');    
+    res.redirect('/cart');
 }
 
 let removeProductFromCart = async(req, res) => {
@@ -479,6 +542,9 @@ module.exports = {
     logout: logout,
     pushProduct: pushProduct,
     addToCart: addToCart,
+    updateUser: updateUser,
+    delCRUD: delCRUD,
+    getAdmin: getAdmin,
     removeProductFromCart: removeProductFromCart,
     deleteProduct: deleteProduct,
 }

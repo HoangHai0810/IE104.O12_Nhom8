@@ -196,28 +196,14 @@ let getProductInfoByProductId = (productID) => {
 let updateUserRole = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({
+            let user = await db.Users.findOne({
                 where: {
                     userName: data.userName,
                 }
             })
             if (user) {
-                user.roleId = data.roleId;
-                let allcode = await db.Allcode.findOne({
-                    where: {
-                        userId: user.id,
-                    }
-                })
-                if (allcode) {
-                    allcode.destroy();
-                }
+                user.role = data.role;
                 await user.save();
-                if (user.roleId === 'manager') {
-                    await db.Allcode.create({
-                        tenDoiBong: data.tenDoiBong,
-                        userId: user.id
-                    })
-                }
                 reslove('Edited user!');
             }
             else {
@@ -230,24 +216,40 @@ let updateUserRole = async (data) => {
 }
 
 
-let deleteUserById = (userId) => {
+let deleteUserById = (userID) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let user = await db.User.findOne({ where: { id: userId } })
+            let user = await db.Users.findOne({ where: { userID: userID } })
             if (user) {
-                if (user.roleId != 'manager')
-                    user.destroy();
-                else {
-                    let allcode = await db.Allcode.findOne({
-                        where: {
-                            userId: user.id,
+                    let logins = await db.Login.findOne({where: {userID: userID}})
+                    let feedbacks = await db.Feedback.findAll({where: {userID: userID}})
+                    let Customer = await db.Customer.findOne({
+                        where:{
+                            userID: user.userID
                         }
                     })
-                    if (allcode) {
-                        allcode.destroy();
+                    let Order = await db.Order.findAll({
+                        where: {
+                            customerID: Customer.customerID,
+                        }
+                    })
+                    for (let i=0;i< Order.length;i++)
+                    {
+                        let Orderdetail = await db.Orderdetail.findAll({
+                            where: {
+                            orderID: Order[i].orderID
+                            }
+                        })
+                        for (let j=0; j<Orderdetail.length;j++)
+                            Orderdetail[j].destroy()
+                        Order[i].destroy()
                     }
-                    user.destroy();
-                }
+                    // logins.destroy()
+                    for (let i=0; i < feedbacks.length; i++){
+                        feedbacks[i].destroy()
+                    }
+                    Customer.destroy()
+                    user.destroy()
             }
             reslove();
         } catch (e) {
@@ -270,18 +272,6 @@ let logoutCRUD = () => {
             reject(e);
         }
     })
-}
-
-
-let getAllThamSo = () => {
-    return new Promise(async (reslove, reject) => {
-        try {
-            let ketqua = await sequelize.query("SELECT * FROM thamSos", { type: QueryTypes.SELECT });
-            reslove(ketqua);
-        } catch (e) {
-            reject(e)
-        }
-    });
 }
 
 // ------------------------------------------------------------------------------------------------------------
@@ -615,7 +605,7 @@ let getAllShoes = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let allShoes = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'shoes'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'Shoes'",
                 { type: QueryTypes.SELECT }
             )
             resolve(allShoes);
@@ -657,7 +647,7 @@ let getAllSocks = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let allSocks = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'socks'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'Socks'",
                 { type: QueryTypes.SELECT }
             )
             resolve(allSocks);
@@ -667,14 +657,14 @@ let getAllSocks = () => {
     });
 }
 
-let getAllHats = () => {
+let getAllHandBag = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let allHats = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'hat'",
+            let allHanBag = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'Hand Bag'",
                 { type: QueryTypes.SELECT }
             )
-            resolve(allHats);
+            resolve(allHanBag);
         } catch (e) {
             reject(e)
         }
@@ -872,6 +862,19 @@ let getCartDetails = () => {
     });
 }
 
+let getVouchers = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let allVouchers = await sequelize.query(
+                "select * from vouchers",
+                { type: QueryTypes.SELECT }
+            )
+            resolve(allVouchers);
+        } catch (e) {
+            reject(e)
+        }
+    });
+  
 let deleteProduct = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -983,14 +986,15 @@ module.exports = {
     getAllWomenJeans: getAllWomenJeans,
     getAllWomenAuthPants: getAllWomenAuthPants, 
 
-    // getAllShoes: getAllShoes,
+    getAllShoes: getAllShoes,
     getAllDiscounted: getAllDiscounted,
     getAllGlasses: getAllGlasses,
     getAllSocks: getAllSocks,
-    getAllHats: getAllHats,
+    getAllHandBag: getAllHandBag,
 
     createNewUser : createNewUser,
     getAllUser: getAllUser,
+    getVouchers: getVouchers,
 
     getProductInfoByProductId: getProductInfoByProductId,
     createCustomer: createCustomer,
@@ -1011,6 +1015,7 @@ module.exports = {
     getUserInfoById: getUserInfoById,
 
     getCartDetails: getCartDetails,
+    updateUserRole: updateUserRole,
     removeFromCart: removeFromCart,
     deleteProduct: deleteProduct,
     // editUser: editUser,
@@ -1028,14 +1033,7 @@ module.exports = {
     // getAllTranDau: getAllTranDau,
     // getAllThamSo: getAllThamSo,
     createNewLogin: createNewLogin,
-    // getAllCode: getAllCode,
+    deleteUserById: deleteUserById,
     logoutCRUD: logoutCRUD,
-    // getCauThuByMaCauThu: getCauThuByMaCauThu,
-    // editCauThu: editCauThu,
-    // deleteCauThuById: deleteCauThuById,
-    // createCauThu: createCauThu,
-    // updateUserRole: updateUserRole,
-    // getAllAllCode: getAllAllCode,
-    // updateLichThiDau: updateLichThiDau,
-    // createLichThiDau: createLichThiDau
 }
+
