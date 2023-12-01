@@ -42,7 +42,7 @@
                                 </span>
                             </div>
                             <div class="myaccount-toggle">
-                                <a href="/account" title="My Account">  
+                                <a href="/account" title="My Account">
                                     <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="header-shoppingcart-toggle">
@@ -70,12 +70,11 @@
                     </ul>
                     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
                     <script>
-                        $(document).ready(function() 
-                            {
-                                $('.menu').click(function() {
-                                    $('.navbar-nav-toggle').toggleClass('active')
-                                })
-                            }
+                        $(document).ready(function () {
+                            $('.menu').click(function () {
+                                $('.navbar-nav-toggle').toggleClass('active')
+                            })
+                        }
                         )
                     </script>
                     <div class="row">
@@ -241,55 +240,61 @@
                                 </div>
                             </div>
                         </div>
-                        <% if (login.length > 0) { %>
-                        <div class="dropdown myaccount" style="width: 200px">
-                            <a href="/account" title="My Account" style="width: 100%">
-                                <i class="fa-solid fa-user"></i>
-                                    <span class="userName" ><%=login[0].fullName%></span>
-                        <% } else { %>
-                        <div class="dropdown myaccount">
-                            <a href="/account" title="My Account" style="width: 100%">
-                                <i class="fa-solid fa-user"></i>
-                                <% } %>
-                                <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
-                                    <% if (login.length == 0) { %>
-                                    <li>
-                                        <a href="/register">Đăng kí</a>
-                                    </li>
-                                    <li>
-                                        <a href="/login">Đăng nhập</a>
-                                    </li>
-                                    <% }  else { %>
-                                    <li>
-                                        <a href="/logout">Đăng xuất</a>
-                                    </li>
-                                    <% } %>
-                                    <li>
-                                        <a href="/cart" title="Shopping Cart">Giỏ hàng</a>
-                                    </li>
-                                    <li>
-                                        <a href="/checkout" title="Checkout">Thanh toán</a>
-                                    </li>
-                                    <% if (login.length > 0 && login[0].role === 'Employee') { %>
-                                    <li>
-                                        <a href="/upload" title="Checkout">Thêm sản phẩm</a>
-                                    </li>
-                                    <% } %>
-                                </ul>
-                        </div>
-                        <div class="header-shoppingcart">
-                            <div id="cart" class="btn-group btn-block">
-                                <a href="/cart" title="Cart">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </a>
+                        <% if (login.length> 0) { %>
+                            <div class="dropdown myaccount" style="width: 200px">
+                                <a href="/account" title="My Account" style="width: 100%">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="userName">
+                                        <%=login[0].fullName%>
+                                    </span>
+                                    <% } else { %>
+                                        <div class="dropdown myaccount">
+                                            <a href="/account" title="My Account" style="width: 100%">
+                                                <i class="fa-solid fa-user"></i>
+                                                <% } %>
+                                                    <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                                        <% if (login.length==0) { %>
+                                                            <li>
+                                                                <a href="/register">Đăng kí</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/login">Đăng nhập</a>
+                                                            </li>
+                                                            <% } else { %>
+                                                                <li>
+                                                                    <a href="/logout">Đăng xuất</a>
+                                                                </li>
+                                                                <% } %>
+                                                                    <li>
+                                                                        <a href="/cart" title="Shopping Cart">Giỏ
+                                                                            hàng</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/checkout" title="Checkout">Thanh
+                                                                            toán</a>
+                                                                    </li>
+                                                                    <% if (login.length> 0 && login[0].role ===
+                                                                        'Employee') { %>
+                                                                        <li>
+                                                                            <a href="/upload" title="Checkout">Thêm sản
+                                                                                phẩm</a>
+                                                                        </li>
+                                                                        <% } %>
+                                                    </ul>
+                                        </div>
+                                        <div class="header-shoppingcart">
+                                            <div id="cart" class="btn-group btn-block">
+                                                <a href="/cart" title="Cart">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </header>
-    
+
     <!--Block-->
     <div class="block">
         <div class="block-title">
@@ -372,39 +377,48 @@
             <!--Product Sale-->
             <ul class="products">
                 <% for (let i=0; i<dataProduct.length;i++) { %>
-                <li class="product_item">
-                    <a style="width: 325px; height: 400px;" href="/product?productID=<%=dataProduct[i].productID%>">
-                        <img class="product_img" src="./img/<%=dataProduct[i].productID %>0.png" alt="Ảnh sản phẩm <%=dataProduct[i].productName%>" width="100%" height="100%">
-                    </a>
-                    <a style="margin-top: 17px;" href="/product?productID=<%=dataProduct[i].productID%>" class="title_product"><%= dataProduct[i].productName %></a>
-                    <div class="price" style="margin-bottom: 10px;">
-                        <span class="price_discount" style="margin: auto"><%=dataProduct[i].price%> &#8363;</span>
-                    </div>
-                    <% if (login.length > 0){
-                    if (login[0].role == 'Employee'){%>
-                        <button class="button-82-pushable" onclick="del_product(this)" id="<%=dataProduct[i].productID%>" role="button">
-                            <span class="button-82-shadow"></span>
-                            <span class="button-82-edge"></span>
-                            <span class="button-82-front text">
-                                Xóa sản phẩm
+                    <li class="product_item">
+                        <a style="width: 100%; height: 100%;" href="/product?productID=<%=dataProduct[i].productID%>">
+                            <img class="product_img" src="./img/<%=dataProduct[i].productID %>0.png"
+                                alt="Ảnh sản phẩm <%=dataProduct[i].productName%>" width="100%" height="100%">
+                        </a>
+                        <a style="margin-top: 17px;" href="/product?productID=<%=dataProduct[i].productID%>"
+                            class="title_product">
+                            <%= dataProduct[i].productName %>
+                        </a>
+                        <div class="price" style="margin-bottom: 10px;">
+                            <span class="price_discount" style="margin: auto">
+                                <%=dataProduct[i].price%> &#8363;
                             </span>
-                        </button>
-                        <form action="/deleteProduct" method="post" id="del-product-form<%=dataProduct[i].productID%>">
-                            <input type="hidden" id="productID" name="productID" value="<%=dataProduct[i].productID%>">
-                            <input type="hidden" id="location<%=dataProduct[i].productID%>" name="Location">
-                        </form>
-                    <%}
-                    }%>
-                </li>
-                <% } %>
-                <script>
-                    function del_product(a) {
+                        </div>
+                        <% if (login.length> 0){
+                            if (login[0].role == 'Employee'){%>
+                            <button class="button-82-pushable" onclick="del_product(this)"
+                                id="<%=dataProduct[i].productID%>" role="button">
+                                <span class="button-82-shadow"></span>
+                                <span class="button-82-edge"></span>
+                                <span class="button-82-front text">
+                                    Xóa sản phẩm
+                                </span>
+                            </button>
+                            <form action="/deleteProduct" method="post"
+                                id="del-product-form<%=dataProduct[i].productID%>">
+                                <input type="hidden" id="productID" name="productID"
+                                    value="<%=dataProduct[i].productID%>">
+                                <input type="hidden" id="location<%=dataProduct[i].productID%>" name="Location">
+                            </form>
+                            <%} }%>
 
-                        form = document.getElementById('del-product-form'.concat(a.id));
-                        document.getElementById('location'.concat(a.id)).value = window.location.href.split('/')[3];
-                        form.submit();
-                    }
-                </script>
+                    </li>
+                    <% } %>
+                        <script>
+                            function del_product(a) {
+
+                                form = document.getElementById('del-product-form'.concat(a.id));
+                                document.getElementById('location'.concat(a.id)).value = window.location.href.split('/')[3];
+                                form.submit();
+                            }
+                        </script>
             </ul>
         </div>
     </div>
@@ -456,7 +470,7 @@
                         </div>
                         <div class="glass">
                             <span>Bùi Lê Trọng Đức</span>
-        
+
                         </div>
                     </div>
                     <div class="card">

@@ -28,7 +28,7 @@ let createNewProduct = async(data) => {
         try{
             let product = await db.Product.findAll();
             var productID = data.categoryProductID + '0' + (product.length + 1).toString();
-
+            console.log(data);
             await db.Product.create({
                 productID: productID,
                 productName: data.productName,
@@ -36,10 +36,27 @@ let createNewProduct = async(data) => {
                 material: data.material,
                 categoryProductID: data.categoryProductID,
                 price: data.price,
+                discount: data.discount,
                 rate: 0,
-                discount: 0,
             })
-
+            if (typeof(data.sizeID) == 'string')
+            {
+                let size = ''
+                if (productID[0] === 'M')
+                    if (data.sizeID != 'XS')
+                        size = data.sizeID + '01';
+                else
+                    if (data.sizeID != 'XL')
+                        size = data.sizeID + '02';
+                if (size != '')
+                {
+                    await db.Product_Size.create({
+                        sizeID: size,
+                        productID: productID
+                    })
+                }
+            }
+            else
             for (let i=0; i< data.sizeID.length; i++)
             {
                 let size = ''
@@ -57,13 +74,34 @@ let createNewProduct = async(data) => {
                     })
                 }
             }
-            for (let i=0 ; i<data.colorID.length; i++)
-            {
-                let Color = db.Color.findAll()
+            if (typeof(data.colorID) == 'string')
+                {
+                    let Color = await db.Color.findAll()
                 let checkCl = true;
                 for (let j=0;j<Color.length;j++)
                 {
-                    if (Color.colorID == data.colorID[i])
+                    if (Color[j].colorID == data.colorID)
+                        checkCl = false
+                }
+                if (checkCl)
+                {
+                    await db.Color.create({
+                        colorID: data.colorID,
+                    })
+                }
+                await db.Product_Color.create({
+                    colorID: data.colorID,
+                    productID: productID
+                })
+                }
+            else
+            for (let i=0 ; i<data.colorID.length; i++)
+            {
+                let Color = await db.Color.findAll()
+                let checkCl = true;
+                for (let j=0;j<Color.length;j++)
+                {
+                    if (Color[j].colorID == data.colorID[i])
                         checkCl = false
                 }
                 if (checkCl)
@@ -874,6 +912,7 @@ let getVouchers = () => {
             reject(e)
         }
     });
+}
   
 let deleteProduct = (data) => {
     return new Promise(async (resolve, reject) => {

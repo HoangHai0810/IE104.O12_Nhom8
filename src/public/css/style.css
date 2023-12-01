@@ -894,6 +894,7 @@ i {
 /*Banner*/
 .banner {
     display: flex;
+    flex-wrap: wrap;
     padding: 35px;
 }
 
@@ -1039,6 +1040,7 @@ i {
 }
 .block .block_content .products {
     display: flex;
+    flex-wrap: wrap;
 }
 
 li.product_item {
@@ -1050,6 +1052,27 @@ li.product_item {
     font-size: 16px;
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    li.product_item{
+        font-size: 10px;
+        width: 50%;
+    }
+}
+@media (max-width: 450px) {
+    li.product_item{
+        font-size: 13px;
+        width: auto;
+    }
+    .block .block_content .products
+    {
+        padding: 0;
+    }
+    .banner .home_banner{
+        width: auto;
+    }
+}
+
 
 li.product_item a:hover {
     text-decoration: underline;
