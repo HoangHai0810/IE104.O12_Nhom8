@@ -297,47 +297,14 @@
                 <strong>Giỏ hàng</strong>
             </div>
             <div class="small-container cart-page">
-              <% let dem=0; for (let i=0; i < cart.length; i++) { if (login[0].userID==cart[i].userID) { dem++ } }; if
-                  (dem> 0) { %>
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 60%">Sản phẩm</th>
-                            <th style="width: 15%">Số lượng</th>
-                            <th style="width: 25%">Số tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-product">
-                        <% for (let i=0; i < cart.length; i++) { if (login[0].userID==cart[i].userID) { %>
-                            <tr id="<%=cart[i].productID%>">
-                                <td>
-                                    <div class="cart-info">
-                                        <img
-                                            src="https://routine.vn/media/catalog/product/cache/d0cf4470db45e8932c69fc124d711a7e/1/0/10f21jac022-whitesand-3_4_1.jpg">
-                                        <div>
-                                            <p>
-                                                <%=cart[i].productName%>
-                                            </p>
-                                            <small>Đơn giá: <%=cart[i].price%>đ</small>
-                                            <br>
-                                            <button id="<%=cart[i].productID%>" class="remove"
-                                                onclick="removeProduct(this)">Xóa</button>
-                                            <form action="/removeProduct" method="post" id="revProduct<%=cart[i].productID%>">
-                                                <input type="hidden" name="cartID" id="cartID" value="<%=cart[i].cartID%>">
-                                                <input type="hidden" name="productID" id="productID" value="<%=cart[i].productID%>">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="product-quantity">
-                                        <button type="button" class="btn-minus">-</button>
-                                        <input type="text" id="quantity" value="<%=cart[i].soLuong%>" min="1" max="10">
-                                        <button type="button" class="btn-plus">+</button>
-                                    </div>
-                                <td style="text-align: center;">
-                                    <%=cart[i].price*cart[i].soLuong%>
-                                </td>
+                <% let dem=0; for (let i=0; i < cart.length; i++) { if (login[0].userID==cart[i].userID) { dem++ } }; if
+                    (dem> 0) { %>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 60%">Sản phẩm</th>
+                                <th style="width: 15%">Số lượng</th>
+                                <th style="width: 25%">Số tiền</th>
                             </tr>
                         </thead>
                         <tbody id="table-product">
@@ -354,6 +321,13 @@
                                                 <br>
                                                 <button id="<%=cart[i].productID%>" class="remove"
                                                     onclick="removeProduct(this)">Xóa</button>
+                                                <form action="/removeProduct" method="post"
+                                                    id="revProduct<%=cart[i].productID%>">
+                                                    <input type="hidden" name="cartID" id="cartID"
+                                                        value="<%=cart[i].cartID%>">
+                                                    <input type="hidden" name="productID" id="productID"
+                                                        value="<%=cart[i].productID%>">
+                                                </form>
                                             </div>
                                         </div>
                                     </td>
@@ -365,37 +339,32 @@
                                             <button type="button" class="btn-plus">+</button>
                                         </div>
                                     <td style="text-align: center;">
-                                        <%=cart[i].price*cart[i].soLuong%>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <% 
-                                            sum = 0;
-                                            for (let i=0; i < cart.length; i++) {
-                                                if (login[0].userID==cart[i].userID) {
-                                                    sum += cart[i].price*cart[i].soLuong;
-                                                }
-                                            };
-                                        %>
-                                        <%=sum%>
+                                        <% sum=0; for (let i=0; i < cart.length; i++) { if
+                                            (login[0].userID==cart[i].userID) { sum +=cart[i].price*cart[i].soLuong; }
+                                            }; %>
+                                            <%=sum%>
                                     </td>
                                 </tr>
                                 <% } }%>
-                                <tr class="discount-block">
+                                    <tr class="discount-block">
                                         <td class="coupon-public" colspan="3">
                                             <div class="coupons">
-                                                <% for (let j = 0; j < voucher.length; j++) { %>
-                                                <div class="coupon">
-                                                    <div class="coupon-left"></div>
-                                                    <div class="coupon-right">
-                                                        <div class="coupon-title">
-                                                            <%= voucher[j].voucherID %>
-                                                        </div>
-                                                        <div class="coupon-description"><span>Giảm
-                                                            <%= voucher[j].value %>%</span> <%= voucher[j].describe %> (Còn <%= voucher[j].expirationDate %> ngày)
+                                                <% for (let j=0; j < voucher.length; j++) { %>
+                                                    <div class="coupon">
+                                                        <div class="coupon-left"></div>
+                                                        <div class="coupon-right">
+                                                            <div class="coupon-title">
+                                                                <%= voucher[j].voucherID %>
+                                                            </div>
+                                                            <div class="coupon-description"><span>Giảm
+                                                                    <%= voucher[j].value %>%
+                                                                </span>
+                                                                <%= voucher[j].describe %> (Còn <%=
+                                                                        voucher[j].expirationDate %> ngày)
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <% } %>
+                                                    <% } %>
                                             </div>
                                         </td>
                                     </tr>
@@ -488,13 +457,15 @@
                 coupon.classList.add("active");
             });
         });
+
         function removeProduct(a) {
             let row = document.getElementById(a.id)
             let table = document.getElementById('table-product')
             form = document.getElementById('revProduct'.concat(a.id));
-            form.submit();  
+            form.submit();
             table.removeChild(row)
         }
+
         function increaseQuantity() {
             var quantity = document.querySelector("#quantity").value;
             quantity++;
@@ -513,7 +484,7 @@
         document.querySelector(".btn-plus").addEventListener("click", increaseQuantity);
 
         document.querySelector(".btn-minus").addEventListener("click", decreaseQuantity);
-          
+
     </script>
     </td>
 </body>

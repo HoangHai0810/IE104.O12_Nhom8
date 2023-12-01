@@ -313,13 +313,13 @@
                 <label for="">Loại sản phẩm
                     <select id="catePro" name="categoryProductID">
                         <option value="MJ">Quần Jeans</option>
-                        <option value="MP">Quần Tây</option>
+                        <option value="MK">Quần Kaki</option>
                         <option value="MSP">Quần Đùi</option>
-                        <option value="MSS">Quần thể thao</option>
-                        <option value="MS">Áo thun</option>
-                        <option value="MTS">Áo sơ mi</option>
-                        <option value="MTT">Áo ba lỗ</option>
-                        <option value="MJK">Áo khoác</option>
+                        <option value="MU">Quần Lót</option>
+                        <option value="MSS">Áo Sweater</option>
+                        <option value="MTS">Áo Thun</option>
+                        <option value="MTT">Áo Ba Lỗ</option>
+                        <option value="MJK">Áo Khoác</option>
                     </select>
                 </label>
 
@@ -332,25 +332,25 @@
                             catePro.innerHTML =
                                 `
                     <option value="MJ">Quần Jeans</option>
-                    <option value="MP">Quần Tây</option>
+                    <option value="MK">Quần Kaki</option>
                     <option value="MSP">Quần Đùi</option>
-                    <option value="MSS">Quần thể thao</option>
-                    <option value="MS">Áo thun</option>
-                    <option value="MTS">Áo sơ mi</option>
-                    <option value="MTT">Áo ba lỗ</option>
-                    <option value="MJK">Áo khoác</option>
+                    <option value="MU">Quần Lót</option>
+                    <option value="MSS">Áo Sweater</option>
+                    <option value="MTS">Áo Thun</option>
+                    <option value="MTT">Áo Ba Lỗ</option>
+                    <option value="MJK">Áo Khoác</option>
                     `
                         } else {
                             catePro.innerHTML =
                                 `
                     <option value="WJ">Quần Jeans</option>
-                    <option value="WP">Quần Tây</option>
+                    <option value="WP">Quần Dài</option>
+                    <option value="WAP">Quần Âu</option>
                     <option value="WSP">Quần Đùi</option>
-                    <option value="WSS">Quần thể thao</option>
-                    <option value="WS">Áo thun</option>
-                    <option value="WTS">Áo sơ mi</option>
-                    <option value="WTT">Áo ba lỗ</option>
-                    <option value="WJK">Áo khoác</option>
+                    <option value="WS">Áo Sơ Mi</option>
+                    <option value="WTS">Áo Thun</option>
+                    <option value="WDr">Đầm</option>
+                    <option value="WJK">Áo Khoác</option>
                     `
                         }
                     })
@@ -409,7 +409,8 @@
                     <label for=""><input name="sizeID" type="checkbox" value="L" /> L</label>
                     <label for=""><input name="sizeID" type="checkbox" value="XL" /> XL</label>
                 </label>
-                <label>Giá niêm yết: <input type="number" name="price"> VNĐ.</label>
+                <label>Giá niêm yết: <input style="width: 30%;" type="number" name="price"> VNĐ.</label>
+                <label>Phần trăm giảm giá (0-100%): <input style="width: 30%;" type="number" min="0" max="100" name="discount"> %.</label>
             </fieldset>
             <fieldset class="submitField">
                 <button class="button1" type="button" value="Submit" onclick="uploadFile()">Tải lên</button>
