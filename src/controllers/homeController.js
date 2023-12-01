@@ -458,6 +458,12 @@ let removeProductFromCart = async(req, res) => {
     res.redirect('/cart');
 }
 
+let deleteProduct = async(req, res) => {
+    let mess = await CRUDSevice.deleteProduct(req.body);
+    // console.log(mess);
+    res.redirect('/' + req.body.Location);
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -474,4 +480,5 @@ module.exports = {
     pushProduct: pushProduct,
     addToCart: addToCart,
     removeProductFromCart: removeProductFromCart,
+    deleteProduct: deleteProduct,
 }

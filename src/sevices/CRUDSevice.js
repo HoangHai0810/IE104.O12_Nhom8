@@ -872,6 +872,73 @@ let getCartDetails = () => {
     });
 }
 
+let deleteProduct = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            function remove(rows){
+                for(let i = 0; i < rows.length; i++){
+                    rows[i].destroy();
+                }
+            };
+            let Order_Detail = await db.Orderdetail.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Product_Color = await db.Product_Color.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Product_Size = await db.Product_Size.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Feedback = await db.Feedback.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Cart_Detail = await db.Cart_Detail.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Product = await db.Product.findOne(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            if(Order_Detail){
+                for(let i = 0; i < Order_Detail.length; i++){
+                    await Order_Detail[i].destroy();
+                }
+            }
+            if(Feedback){
+                for(let i = 0; i < Feedback.length; i++){
+                    await Feedback[i].destroy();
+                }
+            }
+            if(Cart_Detail){
+                for(let i = 0; i < Cart_Detail.length; i++){
+                    await Cart_Detail[i].destroy();
+                }
+            }
+            for(let i = 0; i < Product_Color.length; i++){
+                await Product_Color[i].destroy();
+            }
+            for(let i = 0; i < Product_Size.length; i++){
+                await Product_Size[i].destroy();
+            }
+            await Product.destroy();
+            resolve();
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 let removeFromCart = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -945,6 +1012,7 @@ module.exports = {
 
     getCartDetails: getCartDetails,
     removeFromCart: removeFromCart,
+    deleteProduct: deleteProduct,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
     // createTeam: createTeam,

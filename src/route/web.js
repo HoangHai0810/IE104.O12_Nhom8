@@ -50,6 +50,7 @@ let initWebRoutes = (app) => {
     router.post('/uploadProduct', homeController.pushProduct);
     router.post('/postCart', homeController.addToCart);
     router.post('/removeProduct', homeController.removeProductFromCart);
+    router.post('/deleteProduct', homeController.deleteProduct);
     return app.use("/", router);
 }
 
