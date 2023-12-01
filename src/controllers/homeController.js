@@ -174,7 +174,7 @@ let getListProduct = async (req, res) => {
                     login: login,
                 })
         }
-        else if (req.url == '/womenTShirt') {
+        else if (req.url == '/womenShirt') {
             let womenTShirt = await CRUDSevice.getAllWomenTShirt({
                 raw: true,
             });
@@ -184,7 +184,7 @@ let getListProduct = async (req, res) => {
                     login: login,
                 })
         }
-        else if (req.url == '/womenShirt') {
+        else if (req.url == '/womenTShirt') {
             let womenShirt = await CRUDSevice.getAllWomenShirt({
                 raw: true,
             });
@@ -285,6 +285,37 @@ let getListProduct = async (req, res) => {
                     login: login,
                 })
         }
+        else if (req.url == '/shoes') {
+            let allShoes = await CRUDSevice.getAllShoes({
+                raw: true,
+            });
+            return res.render('list_product.ejs',
+                {
+                    dataProduct: (allShoes),
+                    login: login,
+                })
+        }
+        else if (req.url == '/socks') {
+            let allSocks = await CRUDSevice.getAllSocks({
+                raw: true,
+            });
+            return res.render('list_product.ejs',
+                {
+                    dataProduct: (allSocks),
+                    login: login,
+                })
+        }
+        else if (req.url == '/handbag') {
+            let allHandBag = await CRUDSevice.getAllHandBag({
+                raw: true,
+            });
+            return res.render('list_product.ejs',
+                {
+                    dataProduct: (allHandBag),
+                    login: login,
+                })
+        }   
+        
 
     } catch (e) {
         console.log(e);
@@ -348,8 +379,9 @@ let getUpload = async (req, res) => {
 let getCart = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
     let cart = await CRUDSevice.getCartDetails({ raw: true });
+    let voucher = await CRUDSevice.getVouchers({ raw: true});
     try {
-        return res.render('cart.ejs', { login: login, cart: cart })
+        return res.render('cart.ejs', { login: login, cart: cart, voucher: voucher })
     } catch (e) {
         console.log(e);
     }
@@ -414,7 +446,7 @@ let pushProduct = async (req, res) => {
 let loginCRUD = async (req, res) => {
     let mes = await CRUDSevice.createNewLogin(req.body);
     let login = await CRUDSevice.getLogin({ raw: true });
-    if (login[0].role == 'admin') {
+    if (login[0].role == 'Admin') {
         res.redirect('/admin');
     }
     else {

@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         value: DataTypes.TINYINT,
-        description: DataTypes.TEXT,
-        expirationDate: DataTypes.DATE,
+        describe: DataTypes.TEXT,
+        expirationDate: DataTypes.INTEGER,
         // categoryVoucherID: DataTypes.STRING(10)
     }, {
         sequelize,

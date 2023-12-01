@@ -605,7 +605,7 @@ let getAllShoes = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let allShoes = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'shoes'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'Shoes'",
                 { type: QueryTypes.SELECT }
             )
             resolve(allShoes);
@@ -647,7 +647,7 @@ let getAllSocks = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let allSocks = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'socks'",
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'Socks'",
                 { type: QueryTypes.SELECT }
             )
             resolve(allSocks);
@@ -657,14 +657,14 @@ let getAllSocks = () => {
     });
 }
 
-let getAllHats = () => {
+let getAllHandBag = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let allHats = await sequelize.query(
-                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'hat'",
+            let allHanBag = await sequelize.query(
+                "select * from Products inner join Category_Products on Products.categoryProductID = Category_Products.categoryProductID where type = 'Hand Bag'",
                 { type: QueryTypes.SELECT }
             )
-            resolve(allHats);
+            resolve(allHanBag);
         } catch (e) {
             reject(e)
         }
@@ -857,6 +857,20 @@ let getCartDetails = () => {
     });
 }
 
+let getVouchers = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let allVouchers = await sequelize.query(
+                "select * from vouchers",
+                { type: QueryTypes.SELECT }
+            )
+            resolve(allVouchers);
+        } catch (e) {
+            reject(e)
+        }
+    });
+}
+
 module.exports = {
     getAllProducts: getAllProducts,
     getAllMen: getAllMen,
@@ -884,14 +898,15 @@ module.exports = {
     getAllWomenJeans: getAllWomenJeans,
     getAllWomenAuthPants: getAllWomenAuthPants, 
 
-    // getAllShoes: getAllShoes,
+    getAllShoes: getAllShoes,
     getAllDiscounted: getAllDiscounted,
     getAllGlasses: getAllGlasses,
     getAllSocks: getAllSocks,
-    getAllHats: getAllHats,
+    getAllHandBag: getAllHandBag,
 
     createNewUser : createNewUser,
     getAllUser: getAllUser,
+    getVouchers: getVouchers,
 
     getProductInfoByProductId: getProductInfoByProductId,
     createCustomer: createCustomer,

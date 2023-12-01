@@ -2,16 +2,20 @@
 <html lang="en">
 
 <head>
-    <link rel="icon"
-        href="https://th.bing.com/th/id/R.6cc73b5620060d4ba2def37f6d81625c?rik=iOta38bicn4zJA&pid=ImgRaw&r=0">
-    <title>Admin Fashion DLATT</title>
-
-
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DLATT Fashion</title>
 
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="./css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/admin.css">
 
 </head>
@@ -311,6 +315,69 @@
             </form>
         </div>
     </main>
+    <footer class="footer">
+        <div class="footer_row">
+            <div class="footer_infomation">
+                <div class="logo">
+                    <a href="/">
+                        <img src="./img/logo.png" alt="DLATT">
+                    </a>
+                </div>
+                <h3>CÔNG TY TNHH DLATT VIETNAM</h3>
+            </div>
+            <div class="group">
+                <h3>IE104.012 - Nhóm 8</h3>
+                <div class="members">
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Hoàng Hải Anh</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Nguyễn Chí Thi</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Trương Khánh Long</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Bùi Lê Trọng Đức</span>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTymz8hEzCiURnEoQYnLTiehMAGb4xIeKWRDQ&usqp=CAU"
+                                alt="">
+                        </div>
+                        <div class="glass">
+                            <span>Nguyễn Tiến Thịnh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script>
         let Data = JSON.parse(unescape('<%-dataUserF%>'));
         let login = JSON.parse(unescape('<%-loginF%>'));
@@ -350,7 +417,7 @@
                 select += "<option value='Employee' selected>Nhân viên</option>";
             else
                 select += "<option value='Employee'>Nhân viên</option>";
-            if (data[i].roleId == 'Admin')
+            if (data[i].role == 'Admin')
                 select += "<option value='Admin' selected>Admin</option>";
             else
                 select += "<option value='Admin'>Admin</option>";

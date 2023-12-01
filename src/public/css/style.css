@@ -128,7 +128,6 @@ header li{
 .dropdown.myaccount:hover ul{
     display: inline;
     scale: 1; 
-    left: 0;
 }
 .dropdown.myaccount:hover  a{
     color: #888888; 
