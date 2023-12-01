@@ -320,7 +320,7 @@ let getInfoProduct = async (req, res) => {
                 imageCount++;
             }
         });
-        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, logins: JSON.stringify(logins)})
+        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, loginsF: JSON.stringify(logins), logins: logins})
     } catch (e) {
         console.log(e);
     }
@@ -451,6 +451,19 @@ let addToCart = async(req, res) => {
     console.log(mes);
     res.redirect('/cart');    
 }
+
+let removeProductFromCart = async(req, res) => {
+    let mess = await CRUDSevice.removeFromCart(req.body);
+    console.log(mess);
+    res.redirect('/cart');
+}
+
+let deleteProduct = async(req, res) => {
+    let mess = await CRUDSevice.deleteProduct(req.body);
+    // console.log(mess);
+    res.redirect('/' + req.body.Location);
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -466,4 +479,6 @@ module.exports = {
     logout: logout,
     pushProduct: pushProduct,
     addToCart: addToCart,
+    removeProductFromCart: removeProductFromCart,
+    deleteProduct: deleteProduct,
 }

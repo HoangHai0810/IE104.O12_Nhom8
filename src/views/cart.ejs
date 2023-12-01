@@ -317,6 +317,10 @@
                                             <br>
                                             <button id="<%=cart[i].productID%>" class="remove"
                                                 onclick="removeProduct(this)">Xóa</button>
+                                            <form action="/removeProduct" method="post" id="revProduct<%=cart[i].productID%>">
+                                                <input type="hidden" name="cartID" id="cartID" value="<%=cart[i].cartID%>">
+                                                <input type="hidden" name="productID" id="productID" value="<%=cart[i].productID%>">
+                                            </form>
                                         </div>
                                     </div>
                                 </td>
@@ -336,7 +340,17 @@
                                     <td colspan="2">
                                         Tổng tiền:
                                     </td>
-                                    <td style="text-align: center;">100.000</td>
+                                    <td style="text-align: center;">
+                                        <% 
+                                            sum = 0;
+                                            for (let i=0; i < cart.length; i++) {
+                                                if (login[0].userID==cart[i].userID) {
+                                                    sum += cart[i].price*cart[i].soLuong;
+                                                }
+                                            };
+                                        %>
+                                        <%=sum%>
+                                    </td>
                                 </tr>
                     </tbody>
                 </table>
@@ -347,6 +361,8 @@
         function removeProduct(a) {
             let row = document.getElementById(a.id)
             let table = document.getElementById('table-product')
+            form = document.getElementById('revProduct'.concat(a.id));
+            form.submit();  
             table.removeChild(row)
         }
         function increaseQuantity() {

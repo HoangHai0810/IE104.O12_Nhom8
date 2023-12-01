@@ -685,7 +685,7 @@ let getAllCarts = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let cart = await sequelize.query(
-                "select * from Carts",
+                "select * from Carts, Cart_Details, Products where Carts.cartID = Cart_Details.cartID and Cart_Details.productID = Products.productID",
                 { type: QueryTypes.SELECT }
             );
             resolve(cart)
@@ -789,9 +789,14 @@ let updateCart = async (data) => {
                 await db.Cart_Detail.create({
                     cartID: data.userID,
                     productID: data.productID,
-                    soLuong: 0,
-                    thanhTien: 0
+                    soLuong: parseInt(data.quantity),
+                    thanhTien: parseInt(data.priceProduct),
                 })
+            }
+            else{
+                Cart_Detail.soLuong += parseInt(data.quantity);
+                Cart_Detail.thanhTien = parseInt(data.priceProduct) * Cart_Detail.soLuong;
+                await Cart_Detail.save();
             }
             reslove('Updated cart!');
 
@@ -867,6 +872,90 @@ let getCartDetails = () => {
     });
 }
 
+let deleteProduct = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            function remove(rows){
+                for(let i = 0; i < rows.length; i++){
+                    rows[i].destroy();
+                }
+            };
+            let Order_Detail = await db.Orderdetail.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Product_Color = await db.Product_Color.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Product_Size = await db.Product_Size.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Feedback = await db.Feedback.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Cart_Detail = await db.Cart_Detail.findAll(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            let Product = await db.Product.findOne(
+                { where: {
+                    productID: data.productID, 
+                } }
+            );
+            if(Order_Detail){
+                for(let i = 0; i < Order_Detail.length; i++){
+                    await Order_Detail[i].destroy();
+                }
+            }
+            if(Feedback){
+                for(let i = 0; i < Feedback.length; i++){
+                    await Feedback[i].destroy();
+                }
+            }
+            if(Cart_Detail){
+                for(let i = 0; i < Cart_Detail.length; i++){
+                    await Cart_Detail[i].destroy();
+                }
+            }
+            for(let i = 0; i < Product_Color.length; i++){
+                await Product_Color[i].destroy();
+            }
+            for(let i = 0; i < Product_Size.length; i++){
+                await Product_Size[i].destroy();
+            }
+            await Product.destroy();
+            resolve();
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let removeFromCart = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let Cart_Detail = await db.Cart_Detail.findOne(
+                { where: {
+                    cartID: data.cartID,
+                    productID: data.productID, 
+                } }
+            )
+            Cart_Detail.destroy();
+            resolve();
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     getAllProducts: getAllProducts,
     getAllMen: getAllMen,
@@ -922,6 +1011,8 @@ module.exports = {
     getUserInfoById: getUserInfoById,
 
     getCartDetails: getCartDetails,
+    removeFromCart: removeFromCart,
+    deleteProduct: deleteProduct,
     // editUser: editUser,
     // deleteUserById: deleteUserById,
     // createTeam: createTeam,
