@@ -9,9 +9,10 @@ const fs = require('fs');
 let getHomePage = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
     try {
-        return res.render('homepage.ejs',{
+        return res.render('homepage.ejs', {
             login: login
         })
+
     } catch (e) {
         console.log(e);
     }
@@ -42,7 +43,7 @@ let getListProduct = async (req, res) => {
         let allProducts = await CRUDSevice.getAllProducts({
             raw: true,
         });
-        
+
         if (req.url == '/men') {
             let allMen = await CRUDSevice.getAllMen({
                 raw: true,
@@ -50,7 +51,7 @@ let getListProduct = async (req, res) => {
             return res.render('list_product.ejs',
                 {
                     dataProduct: (allMen),
-                    login :login,
+                    login: login,
                 })
         }
         else if (req.url == '/menShirts') {
@@ -284,7 +285,7 @@ let getListProduct = async (req, res) => {
                     login: login,
                 })
         }
-        
+
     } catch (e) {
         console.log(e);
     }
@@ -294,8 +295,10 @@ let getInfoProduct = async (req, res) => {
     try {
         let login = await CRUDSevice.getLogin({ raw: true });
         let productID = req.query.productID;
-        let product = await CRUDSevice.getProductInfoByProductId(productID)
-        let Product_Color = await db.Product_Color.findAll()
+        let product = await CRUDSevice.getProductInfoByProductId(productID);
+        let Product_Color = await db.Product_Color.findAll();
+        let Product_Size = await db.Product_Size.findAll();
+        let logins = await CRUDSevice.getLogin({ raw: true });
         let imageCount = 0;
         const path = require('path');
         const imgDirectory = path.join(__dirname, '..', 'public', 'img');
@@ -305,7 +308,7 @@ let getInfoProduct = async (req, res) => {
                 imageCount++;
             }
         });
-        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, login: login})
+        return res.render('info_product.ejs', { product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, logins: JSON.stringify(logins) })
     } catch (e) {
         console.log(e);
     }
@@ -333,7 +336,7 @@ let getUpload = async (req, res) => {
     try {
         let login = await CRUDSevice.getLogin({ raw: true });
         let product = await CRUDSevice.getAllProducts();
-        return res.render('upload_product.ejs' ,{
+        return res.render('upload_product.ejs', {
             productLength: product.length,
             login: login
         })
@@ -344,8 +347,9 @@ let getUpload = async (req, res) => {
 
 let getCart = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
+    let cart = await CRUDSevice.getCartDetails({ raw: true });
     try {
-        return res.render('cart.ejs', { login: login})
+        return res.render('cart.ejs', { login: login, cart: cart })
     } catch (e) {
         console.log(e);
     }
@@ -358,7 +362,6 @@ const storageAVT = multer.diskStorage({
     destination: path.join(__dirname, '../public/img'),
     filename: function (req, file, cb) {
         const userID = req.query.userID;
-        console.log(userID)
         const filename = userID + '.png';
 
         cb(null, filename);
@@ -391,7 +394,7 @@ const storagePT = multer.diskStorage({
 
 const uploadPT = multer({ storage: storagePT });
 
-const uploadPhoto = (req,res) => {
+const uploadPhoto = (req, res) => {
     uploadPT.single('file')(req, res, (err) => {
         if (err) {
             console.error('Lỗi khi tải lên ảnh:', err);
@@ -403,32 +406,29 @@ const uploadPhoto = (req,res) => {
     });
 }
 
-let pushProduct = async(req, res) => {
+let pushProduct = async (req, res) => {
     let mes = await CRUDSevice.createNewProduct(req.body);
     res.redirect('/')
 }
 
-let loginCRUD = async(req, res) => {
+let loginCRUD = async (req, res) => {
     let mes = await CRUDSevice.createNewLogin(req.body);
-    console.log(mes);
-    let login = await CRUDSevice.getLogin({ raw: true});
-    if (login[0].role == 'admin')
-    {   
+    let login = await CRUDSevice.getLogin({ raw: true });
+    if (login[0].role == 'admin') {
         res.redirect('/admin');
     }
-    else
-    {
+    else {
         res.redirect('/')
     }
 }
 
 let postSignUp = async (req, res) => {
-    let message = await CRUDSevice.createNewUser(req.body);
+    let message = await CRUDSevice.createUser(req.body);
     console.log(message);
     res.redirect('/')
 }
 
-let logout = async (req,res) => {
+let logout = async (req, res) => {
     await CRUDSevice.logoutCRUD();
     res.redirect('/')
 }
@@ -439,15 +439,19 @@ let getAdmin = async (req, res) => {
         raw: true,
     })
     try {
-        if (login[0].role === 'Admin')
-        {
-            return res.render('admin.ejs',{
-                login: login,
-                dataUser: dataUser,
-                dataUserF: JSON.stringify(dataUser),
-                loginF: JSON.stringify(login),
+        if (login.length > 0) {
+            if (login[0].role === 'Admin') {
+                return res.render('admin.ejs', {
+                    login: login,
+                    dataUser: dataUser,
+                    dataUserF: JSON.stringify(dataUser),
+                    loginF: JSON.stringify(login),
 
-            })
+                })  
+            }
+            else {
+                res.redirect('/')
+            }
         }
         else {
             res.redirect('/')
@@ -455,10 +459,10 @@ let getAdmin = async (req, res) => {
     } catch (e) {
         console.log(e);
     }
-    
+
 }
 
-let updateUser = async (req,res) => {
+let updateUser = async (req, res) => {
     let mes = await CRUDSevice.updateUserRole(req.body);
     res.redirect('/admin');
 }
@@ -473,7 +477,11 @@ let delCRUD = async (req, res) => {
     }
 }
 
-
+let addToCart = async (req, res) => {
+    let mes = await CRUDSevice.updateCart(req.body);
+    console.log(mes);
+    res.redirect('/cart');
+}
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -488,6 +496,7 @@ module.exports = {
     getUpload: getUpload,
     logout: logout,
     pushProduct: pushProduct,
+    addToCart: addToCart,
     updateUser: updateUser,
     delCRUD: delCRUD,
     getAdmin: getAdmin,
