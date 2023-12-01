@@ -10,8 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-       Cart_Detail.belongsTo(models.Cart, {foreignKey: 'cartID'});
-       Cart_Detail.belongsTo(models.Product, {foreignKey: 'productID'})
+      Cart_Detail.belongsTo(models.Cart, { foreignKey: 'cartID' });
+      Cart_Detail.belongsTo(models.Product, { foreignKey: 'productID' })
+      Cart_Detail.belongsTo(models.Color, { foreignKey: 'colorID' })
+      Cart_Detail.belongsTo(models.Size, { foreignKey: 'sizeID' })
     }
   };
   Cart_Detail.init({
@@ -25,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     soLuong: DataTypes.TINYINT,
     thanhTien: DataTypes.BIGINT,
+    colorID: DataTypes.STRING(10),
+    sizeID: DataTypes.STRING(5)
   }, {
     sequelize,
     modelName: 'Cart_Detail',
