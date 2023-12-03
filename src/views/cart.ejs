@@ -317,7 +317,7 @@
                                                 <p>
                                                     <%=cart[i].productName%>
                                                 </p>
-                                                <small>Đơn giá: <%=cart[i].price%>đ</small>
+                                                <small>Đơn giá: <%=(cart[i].price*(1 - cart[i].discount/100)).toLocaleString("en-US")%> &#8363;</small>
                                                 <br>
                                                 <button id="<%=cart[i].productID%>" class="remove"
                                                     onclick="removeProduct(this)">Xóa</button>
@@ -339,10 +339,10 @@
                                             <button type="button" class="btn-plus">+</button>
                                         </div>
                                     <td style="text-align: center;">
-                                        <% sum=0; for (let i=0; i < cart.length; i++) { if
-                                            (login[0].userID==cart[i].userID) { sum +=cart[i].price*cart[i].soLuong; }
-                                            }; %>
-                                            <%=sum%>
+                                        <% sum=0; for (let j=0; j < cart.length; j++) { if
+                                            (cart[i].productID == cart[j].productID) { sum +=(cart[j].price*(1 - cart[j].discount/100))*cart[j].soLuong; }
+                                        }; %>
+                                        <%=sum.toLocaleString("en-US")%> &#8363;
                                     </td>
                                 </tr>
                                 <% } }%>
@@ -372,7 +372,12 @@
                                         <td colspan="2">
                                             Tổng tiền:
                                         </td>
-                                        <td style="text-align: center;">100.000</td>
+                                        <td style="text-align: center;">
+                                            <% sum=0; for (let j=0; j < cart.length; j++) { if
+                                                (login[0].userID==cart[j].userID) { sum +=(cart[j].price*(1 - cart[j].discount/100))*cart[j].soLuong; }
+                                            }; %>
+                                            <%=sum.toLocaleString("en-US")%> &#8363
+                                        </td>
                                     </tr>
                         </tbody>
                     </table>

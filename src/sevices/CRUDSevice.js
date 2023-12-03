@@ -1,4 +1,4 @@
-import { promiseImpl } from 'ejs';
+import { promiseImpl, resolveInclude } from 'ejs';
 import db, { sequelize } from '../models/index'
 import bcrypt from 'bcryptjs';
 import { query } from 'express';
@@ -726,7 +726,7 @@ let getAllCarts = () => {
 let createCustomer = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
-            await db.Customers.create({
+            let cus = await db.Customer.create({
                 fullName: data.fullName,
                 dateOfBirth: data.dateOfBirth,
                 phoneNumber: data.phoneNumber,
@@ -734,7 +734,7 @@ let createCustomer = async (data) => {
                 userId: 'Null',
             })
 
-            reslove('Added customer!')
+            reslove({cus, data});
         } catch (e) {
             reject(e);
         }
@@ -785,18 +785,15 @@ let createCart = async (data) => {
 let createOrder = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
-            let Od = await db.Orders.create({
+            let Order = await db.Order.create({
                 customerID: data.customerID,
                 status: 'Đang chuẩn bị',
                 note: '',
-                address: data.address,
+                address: data.nativeVillage,
                 totalCost: 0,
-                voucherID: ''
+                // voucherID: 
             })
-
-            // Od.totalCost = Od.totalCost + 
-
-            reslove('Added Cart!')
+            reslove(Order)
         } catch (e) {
             reject(e);
         }
@@ -998,6 +995,37 @@ let removeFromCart = (data) => {
     })
 }
 
+let createOrderDetail = (order, data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let ord_det = await db.Orderdetail.create({
+                productID: data.productID,
+                orderID: order.orderID,
+            })
+            updateOrder(ord_det, data);
+            resolve(ord_det);
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let updateOrder = (orderF, data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let order = await db.Order.findOne({
+                where: {
+                    orderID: orderF.orderID,
+                }
+            })
+            order.totalCost += (parseFloat(data.quantity) * parseFloat(data.priceProduct));
+            await order.save();
+            resolve(order)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllProducts: getAllProducts,
     getAllMen: getAllMen,
@@ -1074,5 +1102,7 @@ module.exports = {
     createNewLogin: createNewLogin,
     deleteUserById: deleteUserById,
     logoutCRUD: logoutCRUD,
+    createOrderDetail: createOrderDetail,
+    updateOrder: updateOrder,
 }
 

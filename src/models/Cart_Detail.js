@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     soLuong: DataTypes.TINYINT,
     thanhTien: DataTypes.BIGINT,
-    colorID: DataTypes.STRING(10),
-    sizeID: DataTypes.STRING(5)
+    // colorID: DataTypes.STRING(10),
+    // sizeID: DataTypes.STRING(5)
   }, {
     sequelize,
     modelName: 'Cart_Detail',

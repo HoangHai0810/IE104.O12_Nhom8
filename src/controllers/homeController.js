@@ -527,6 +527,13 @@ let deleteProduct = async(req, res) => {
     res.redirect('/' + req.body.Location);
 }
 
+let buyNow = async(req, res) => {
+    let cus_prod = await CRUDSevice.createCustomer(req.body);
+    let order = await CRUDSevice.createOrder(cus_prod.cus);
+    let order_detail = await CRUDSevice.createOrderDetail(order, cus_prod.data);
+    res.redirect('/')
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -547,4 +554,5 @@ module.exports = {
     getAdmin: getAdmin,
     removeProductFromCart: removeProductFromCart,
     deleteProduct: deleteProduct,
+    buyNow: buyNow,
 }
