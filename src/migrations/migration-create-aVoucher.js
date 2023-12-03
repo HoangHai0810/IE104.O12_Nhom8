@@ -12,7 +12,7 @@ module.exports = {
       },
       describe: Sequelize.TEXT,
       value: Sequelize.TINYINT,
-      expirationDate: Sequelize.INTEGER,
+      expirationDate: Sequelize.DATE,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
