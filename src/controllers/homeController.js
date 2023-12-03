@@ -8,9 +8,11 @@ const fs = require('fs');
 
 let getHomePage = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
+    let allProducts = await CRUDSevice.getAllProducts({raw : true})
     try {
         return res.render('homepage.ejs', {
-            login: login
+            login: login,
+            allProducts: allProducts
         })
 
     } catch (e) {
@@ -527,6 +529,20 @@ let deleteProduct = async(req, res) => {
     res.redirect('/' + req.body.Location);
 }
 
+let getInfoCheckout = async (req, res) => {
+    let login = await CRUDSevice.getLogin({ raw: true });
+    let allProducts = await CRUDSevice.getAllProducts({raw : true})
+    try {
+        return res.render('info_checkout.ejs', {
+            login: login,
+            allProducts: allProducts
+        })
+
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -547,4 +563,5 @@ module.exports = {
     getAdmin: getAdmin,
     removeProductFromCart: removeProductFromCart,
     deleteProduct: deleteProduct,
+    getInfoCheckout: getInfoCheckout,
 }

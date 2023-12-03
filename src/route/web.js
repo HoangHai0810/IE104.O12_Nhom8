@@ -54,6 +54,7 @@ let initWebRoutes = (app) => {
     router.get('/admin', homeController.getAdmin)
     router.post('/removeProduct', homeController.removeProductFromCart);
     router.post('/deleteProduct', homeController.deleteProduct);
+    router.get('/infocheckout', homeController.getInfoCheckout)
     return app.use("/", router);
 }
 
