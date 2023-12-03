@@ -5,11 +5,12 @@
 .products {
     display: flex;
     flex-wrap: wrap;
+    padding: auto;
 }
 
 .button-82-pushable {
     margin: auto;
-    width: 230px;
+    width: 100%;
     position: relative;
     border: none;
     background: transparent;
