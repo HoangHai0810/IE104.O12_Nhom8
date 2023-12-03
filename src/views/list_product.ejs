@@ -387,9 +387,18 @@
                             <%= dataProduct[i].productName %>
                         </a>
                         <div class="price" style="margin-bottom: 10px;">
+                            <%if(dataProduct[i].discount != 0){%>
                             <span class="price_discount" style="margin: auto">
-                                <%=dataProduct[i].price%> &#8363;
+                                <%=(dataProduct[i].price*(1-dataProduct[i].discount/100)).toLocaleString("en-US")%> &#8363;
                             </span>
+                            <span class="price_original"><%=dataProduct[i].price.toLocaleString("en-US")%> ₫</span>
+                            <span class="discount">-<%=dataProduct[i].discount%>%</span>
+                            <i class="fa-solid fa-tag"></i>
+                            <%} else {%>
+                                <span class="price_discount" style="margin: auto">
+                                    <%=dataProduct[i].price.toLocaleString("en-US")%> &#8363;
+                                </span>
+                            <%}%>
                         </div>
                         <% if (login.length> 0){
                             if (login[0].role == 'Employee'){%>
