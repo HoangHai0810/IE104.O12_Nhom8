@@ -52,10 +52,10 @@
                     </div>
                     <ul class="navbar-nav-toggle">
                         <li class="top_level dropdown">
-                            <a href="/man">Nam</a>
+                            <a href="/men">Nam</a>
                         </li>
                         <li class="top_level dropdown">
-                            <a href="/woman">Nữ</a>
+                            <a href="/women">Nữ</a>
                         </li>
                         <li class="top_level">
                             <a href="/hotitem">Bán chạy</a>
@@ -215,7 +215,7 @@
                                                         <a href="/socks">Tất</a>
                                                     </li>
                                                     <li>
-                                                        <a href="hats">Mũ</a>
+                                                        <a href="handbag">Mũ</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -225,20 +225,64 @@
                             </div>
                         </nav>
                         <div id="search" class="input-group">
-                            <span class="search_button"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <div class="search_toggle">
+                            <span class="search_button" id="search_button"><i
+                                    class="fa-solid fa-magnifying-glass"></i></span>
+                            <div class="search_toggle" id="search_toggle">
                                 <div id="searchbox">
                                     <input type="text" name="search" value="" placeholder="Search Products Here"
-                                        class="form-control input-lg">
+                                        class="form-control input-lg" id="search-input">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-lg">
-                                            Search
+                                        <button type="button" class="btn btn-default btn-lg" id="search-btn">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
                                     </span>
                                 </div>
+                                <ul id="search-results" class="search-results"></ul>
                             </div>
                         </div>
+                        <script>
+                            document.getElementById('search_button').addEventListener('click', () => {
+                                const searchToggle = document.getElementById('search_toggle');
+                                searchToggle.classList.toggle('active');
+                              });
+                              
+                              const searchInput = document.getElementById('search-input');
+                              const searchResults = document.getElementById('search-results');
+                              
+                              searchInput.addEventListener('input', function () {
+                                searchResults.innerHTML = '';
+                              
+                                var items = [];
+                                '<% allProducts.forEach(function(item) { %>'
+                                  items.push({ name: '<%= item.productName %>', productID: '<%= item.productID %>' });
+                                '<% }); %>'
+                              
+                                const searchTerm = searchInput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                var filteredItems = items.filter(item => item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(searchTerm));
+                                filteredItems = filteredItems.slice(0, 5);
+                              
+                                filteredItems.forEach(item => {
+                                  const li = document.createElement('li');
+                                  const productID = item.productID;
+
+                                  const img = document.createElement('img');
+                                  img.src = `./img/${productID}0.png`;
+                              
+                                  li.appendChild(img);
+                                  li.innerHTML += ` ${item.name}`;
+                              
+                                  li.addEventListener('click', () => {
+                                    window.location.href = `/product?productID=${productID}`;
+                                  });
+                              
+                                  searchResults.appendChild(li);
+                                });
+                              
+                                if (searchTerm === '') {
+                                  searchResults.innerHTML = '';
+                                }
+                              });                              
+                        </script>
                         <% if (login.length> 0) { %>
                             <div class="dropdown myaccount" style="width: 200px">
                                 <a href="/account" title="My Account" style="width: 100%">
@@ -281,13 +325,15 @@
                                                                         <% } %>
                                                     </ul>
                                         </div>
-                                        <div class="header-shoppingcart">
-                                            <div id="cart" class="btn-group btn-block">
-                                                <a href="/cart" title="Cart">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
+                                        <% if (login.length> 0) { %>
+                                            <div class="header-shoppingcart">
+                                                <div id="cart" class="btn-group btn-block">
+                                                    <a href="/cart" title="Cart">
+                                                        <i class="fa-solid fa-cart-shopping"></i>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <% } %>
                             </div>
                     </div>
                 </div>

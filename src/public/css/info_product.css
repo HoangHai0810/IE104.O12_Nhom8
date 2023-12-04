@@ -38,6 +38,29 @@
   align-items: center;
 }
 
+.btn-outline-dark {
+  background-color: #000;
+  color: #ffffff;
+  width: 50%;
+  border-radius: 10px;
+  border: none !important;
+}
+
+.btn-outline-dark:focus {
+  border: none;
+  box-shadow: none;
+}
+
+#message {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+#message.show {
+  max-height: 200px; 
+}
+
 .product-quantity {
   display: flex;
   justify-content: space-between; /* Add space between quantity input and buttons */

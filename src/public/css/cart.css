@@ -2,8 +2,10 @@
     margin: 20px auto;
 }
 table {
+    position: relative;
     border-collapse: collapse;
-    margin: auto;
+    width: 90% !important;
+    margin: 5%;
 }
 .cart-info {
     display: flex;
@@ -19,8 +21,18 @@ th
     text-align: center;
 }
 
+tbody {
+    width: 100%;
+}
+
 td {
     padding: 10px 5px;
+    font-weight: bold;
+    color: #000;
+}
+
+td img {
+    max-width: 60px;
 }
 
 td p {
@@ -33,6 +45,7 @@ td p {
     align-items: center;
     border: 1px solid #73737368;
     margin: 20px;
+    width: 80%;
   }
   
   .product-quantity label {
@@ -40,7 +53,8 @@ td p {
   }
   
   .product-quantity input {
-    width: 50px;
+    width: 25%;
+    max-width: 30px;
     height: 40px;
     text-align: center;
     padding: auto;
@@ -76,14 +90,13 @@ td img {
     font-size: 20px;
 }
 
-.discount-block
-{
-    width: 200px;
+.discount-block .coupon-public {
+    width: 100%;
 }
 
 .discount-block .coupon-public .coupons
 {
-    max-width: 75em;
+    max-width: 95em;
     overflow-x: auto;
     overflow-y: hidden;
     display: flex;
@@ -111,7 +124,12 @@ td img {
 .discount-block .coupon-public .coupons .coupon.active
 {
     background-color: #2f5acf;
-    border: 2px solid #2f5acf;
+    border: 1px solid #2f5acf;
+    color: white;
+}
+
+.discount-block .coupon-public .coupons .coupon.active .coupon-description
+{
     color: white;
 }
 
@@ -147,12 +165,24 @@ td img {
     position: relative;
 }
 
+.discount-block .coupon-public .coupons .coupon-right .coupon-description
+{
+    color: #616161;
+}
+
+
+.details {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
 .details .btn_buy {
     width: 100%; /* Make the button full width on small screens */
 }
 
 #btn_buy_now {
-  margin: auto;
+  margin-right: 15%;
 }
 
 .details .btn_buy {
@@ -168,4 +198,24 @@ td img {
   
   .details .btn_buy:hover {
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 992px) {
+    .discount-block .coupon-public .coupons
+    {
+        flex-direction: column;
+        max-height: 120px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: flex;
+        padding-bottom: 10px;
+    }
+    .discount-block .coupon-public .coupons .coupon
+    {
+        margin-bottom: 20px;
+    }
+    #btn_buy_now
+    {
+        margin: auto;
+    }
   }
