@@ -423,7 +423,7 @@
                         <button type="submit" onclick="addToCart()" class="btn_buy" id="btn_add_to_cart">THÊM VÀO GIỎ HÀNG</button>
                         <form id="addToCartReq" action="/postCart" method="post">
                             <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
-                            <input type="hidden" id="priceProduct" name="priceProduct" value="<%=product.price%>">
+                            <input type="hidden" id="priceProduct" name="priceProduct" value="<%=product.price*(1-product.discount/100)%>">
                             <input type="hidden" id="colorID" name="colorID">
                             <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
                             <input type="hidden" id="userID" name="userID">
@@ -469,7 +469,6 @@
                             form.submit();
                         }
                         function addToCart() {
-                            console.log(logins[0].userID);
                             document.getElementById('colorID').value = getSelectedColor();
                             document.getElementById('userID').value = logins[0].userID;
                             document.getElementById('quantityReq').value = document.getElementById('quantity').value;
