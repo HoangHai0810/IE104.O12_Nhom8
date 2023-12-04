@@ -530,19 +530,65 @@ let deleteProduct = async(req, res) => {
 }
 
 let buyNow = async(req, res) => {
-    let cus_prod = await CRUDSevice.createCustomer(req.body);
-    let order = await CRUDSevice.createOrder(cus_prod.cus);
-    let order_detail = await CRUDSevice.createOrderDetail(order, cus_prod.data);
-    res.redirect('/')
+    if(!req.body.userID){
+        let cus_prod = await CRUDSevice.createCustomer(req.body);
+        let order = await CRUDSevice.createOrder(cus_prod.cus, req.body);
+        let order_detail = await CRUDSevice.createOrderDetail(order, cus_prod.data);
+        res.redirect('/')
+    }else{
+        let cus = await db.Customer.findOne({
+            where: {
+                userID: req.body.userID,
+            }
+        });
+        await CRUDSevice.updateCustomer(req.body);
+        let orderF = await db.Order.findOne({
+            where: {
+                customerID: cus.customerID,
+            }
+        });
+        if(!orderF){
+            orderF = await CRUDSevice.createOrder(cus, req.body);
+        }
+        await CRUDSevice.updateOrder(orderF, req.body);
+        let carts = await CRUDSevice.getAllCarts();
+        for (let i = 0; i < carts.length; i++){
+            if (carts[i].cartID == req.body.userID){
+                console.log(carts[i].productID, carts[i].soLuong);
+                let temp = await db.Orderdetail.findAll({
+                    where:{
+                        orderID: orderF.orderID,
+                        productID: carts[i].productID,
+                    }
+                })
+                await CRUDSevice.createOrderDetail(orderF, carts[i]);
+
+                // if(!temp){
+                //     await CRUDSevice.createOrderDetail(orderF, carts[i]);
+                // }
+                // else{
+                //     for (let j = 0; j < temp.length; j++){
+                //         temp[i].quantity += carts[i].soLuong;
+                //         temp[i].price +=
+                //     }
+                // }
+            }
+        }
+        // console.log(carts[1].soLuong);
+        res.redirect('/')
+    }
 }
 
 let getInfoCheckout = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
     let allProducts = await CRUDSevice.getAllProducts({raw : true})
     try {
+        // console.log(req.userID)
         return res.render('info_checkout.ejs', {
             login: login,
-            allProducts: allProducts
+            loginF: JSON.stringify(login),
+            allProducts: allProducts,
+            orderData: req.body,
         })
 
     } catch (e) {

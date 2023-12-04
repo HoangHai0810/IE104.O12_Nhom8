@@ -280,7 +280,7 @@
                                         <a href="/cart" title="Shopping Cart">Giỏ hàng</a>
                                     </li>
                                     <li>
-                                        <a href="/checkout" title="Checkout">Thanh toán</a>
+                                        <a href="/infocheckout" title="Checkout">Thanh toán</a>
                                     </li>
                                     <% if (logins.length > 0 && logins[0].role === 'Employee') { %>
                                     <li>
@@ -349,7 +349,7 @@
                         <div class="price" style="margin-bottom: 10px;">
                             <%if(product.discount != 0){%>
                             <span class="price_discount" style="margin: auto">
-                                <%=(product.price*(1-product.discount/100)).toLocaleString("en-US")%> &#8363;
+                                <%=(product.price*(1-product.discount/100)).toLocaleString("en-US")%>&#8363;
                             </span>
                             <span class="price_original"><%=product.price.toLocaleString("en-US")%> ₫</span>
                             <span class="discount">-<%=product.discount%>%</span>
@@ -431,10 +431,11 @@
                         </form>
                         <%} else {%>
                         <button type="submit" onclick="buyNow()" class="btn_buy" id="btn_buy_now">MUA NGAY</button>
-                        <form id="buyNowReq" action="/postOrder" method="post">
+                        <form id="buyNowReq" action="/infocheckout" method="post">
                             <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
                             <input type="hidden" id="priceProduct" name="priceProduct" value="<%=(product.price*(1-product.discount/100))%>">
                             <input type="hidden" id="colorID" name="colorID">
+                            <input type="hidden" id="userID" name="userID" value='null' >
                             <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
                             <input type="hidden" id="quantityReq" name="quantity">
                         </form>

@@ -267,7 +267,7 @@
                                                                             hàng</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="/checkout" title="Checkout">Thanh
+                                                                        <a href="/infocheckout" title="Checkout">Thanh
                                                                             toán</a>
                                                                     </li>
                                                                     <% if (login.length> 0 && login[0].role ===
@@ -376,16 +376,27 @@
                                             <% sum=0; for (let j=0; j < cart.length; j++) { if
                                                 (login[0].userID==cart[j].userID) { sum +=(cart[j].price*(1 - cart[j].discount/100))*cart[j].soLuong; }
                                             }; %>
-                                            <%=sum.toLocaleString("en-US")%> &#8363
+                                            <%=sum.toLocaleString("en-US")%> &#8363;
                                         </td>
                                     </tr>
                         </tbody>
                     </table>
+                    <div class="details">
+                        <button type="submit" onclick="checkout()" class="btn_buy" id="btn_buy_now">THANH TOÁN</button>
+                    </div>
+                    <form action="/infocheckout" method="post" id="postFromCart">
+                        <input type="hidden" name="userID" value="<%=login[0].userID%>">
+                    </form>
                     <% } else { %>
                         <div class="empty">Giỏ hàng trống!</div>
-                        <% } %>
+                        <% } %> 
             </div>
         </div>
+        <script>
+            function checkout(){
+                document.getElementById('postFromCart').submit();
+            }
+        </script>
     </main>
     <footer class="footer">
         <div class="footer_row">

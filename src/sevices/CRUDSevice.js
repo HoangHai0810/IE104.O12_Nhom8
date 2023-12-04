@@ -727,10 +727,10 @@ let createCustomer = async (data) => {
     return new Promise(async (reslove, reject) => {
         try {
             let cus = await db.Customer.create({
-                fullName: data.fullName,
+                fullName: data.name,
                 dateOfBirth: data.dateOfBirth,
                 phoneNumber: data.phoneNumber,
-                nativeVillage: data.nativeVillage,
+                nativeVillage: data.ward + ', ' + data.district + ', ' + data.city,
                 userId: 'Null',
             })
 
@@ -782,14 +782,14 @@ let createCart = async (data) => {
     })
 }
 
-let createOrder = async (data) => {
+let createOrder = async (data, addr) => {
     return new Promise(async (reslove, reject) => {
         try {
             let Order = await db.Order.create({
                 customerID: data.customerID,
                 status: 'Đang chuẩn bị',
                 note: '',
-                address: data.nativeVillage,
+                address: addr.address,
                 totalCost: 0,
                 // voucherID: 
             })
@@ -815,12 +815,12 @@ let updateCart = async (data) => {
                     cartID: data.userID,
                     productID: data.productID,
                     soLuong: parseInt(data.quantity),
-                    thanhTien: parseInt(data.priceProduct),
+                    thanhTien: parseFloat(data.priceProduct)*parseFloat(data.quantity),
                 })
             }
             else{
-                Cart_Detail.soLuong += parseInt(data.quantity);
-                Cart_Detail.thanhTien = parseInt(data.priceProduct) * Cart_Detail.soLuong;
+                Cart_Detail.soLuong += parseFloat(data.quantity);
+                Cart_Detail.thanhTien = parseFloat(data.priceProduct) * Cart_Detail.soLuong;
                 await Cart_Detail.save();
             }
             reslove('Updated cart!');
@@ -1001,6 +1001,9 @@ let createOrderDetail = (order, data) => {
             let ord_det = await db.Orderdetail.create({
                 productID: data.productID,
                 orderID: order.orderID,
+                // quantity: data.quantity,
+                // size: data.sizeID,
+                // color: data.colorID,
             })
             updateOrder(ord_det, data);
             resolve(ord_det);
@@ -1018,9 +1021,34 @@ let updateOrder = (orderF, data) => {
                     orderID: orderF.orderID,
                 }
             })
-            order.totalCost += (parseFloat(data.quantity) * parseFloat(data.priceProduct));
+            if(!data.cartID){
+                order.totalCost += (parseFloat(data.quantity) * parseFloat(data.priceProduct));
+            }else{
+                order.totalCost += (parseFloat(data.soLuong) * (parseFloat(data.price)*(1-parseFloat(data.discount)/100)));
+            }
+            order.address = data.address;
+            order.phoneNumber = data.phoneNumber;
             await order.save();
             resolve(order)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let updateCustomer = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let cus = await db.Customer.findOne({
+                where: {
+                    userID: data.userID,
+                }
+            })
+            cus.fullName = data.name,
+            cus.phoneNumber = data.phoneNumber,
+            cus.nativeVillage = data.ward + ', ' + data.district + ', ' + data.city,
+            await cus.save();
+            resolve(cus)
         } catch (e) {
             reject(e)
         }
@@ -1104,5 +1132,6 @@ module.exports = {
     logoutCRUD: logoutCRUD,
     createOrderDetail: createOrderDetail,
     updateOrder: updateOrder,
+    updateCustomer: updateCustomer,
 }
 

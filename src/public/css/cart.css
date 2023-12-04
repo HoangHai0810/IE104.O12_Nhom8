@@ -146,3 +146,26 @@ td img {
     padding: 0.5rem 1rem 0.5rem 1rem;
     position: relative;
 }
+
+.details .btn_buy {
+    width: 100%; /* Make the button full width on small screens */
+}
+
+#btn_buy_now {
+  margin: auto;
+}
+
+.details .btn_buy {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    background-color: #000;
+    color: #fff;
+    font-weight: bolder;
+    transition: 0.3s;
+  }
+  
+  .details .btn_buy:hover {
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  }
