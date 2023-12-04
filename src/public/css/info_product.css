@@ -1,18 +1,19 @@
 .row.wraper {
   margin: 20px;
 }
-
-.color_btn {
-  width: 50px;
-  height: 50px;
-  background-color: var(--color);
-  border: none;
-  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.2);
-  box-sizing: content-box;
+.color_btn
+{
+    width: 7%;
+    height: 2em;
+    background-color: var(--color);
+    border: none;
+    box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-sizing: content-box;
+    border-radius: 1.125rem;
 }
-
-.color_btn.active {
-  border: 2px solid #000000;
+.color_btn.active
+{
+    border: 2px solid #000000;    
 }
 
 #myCarousel {
@@ -95,6 +96,34 @@
 
 }
 
+div .price .price_discount
+{
+    font-weight: bold;
+    color: #000;
+    font-size: 175%;
+}
+div .price .price_original {
+    text-decoration: line-through;
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+div .price .discount {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    margin-top: 9px;
+    margin-left: 9px;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+div .price i {
+    color: rgb(255, 0, 0);
+    font-size: 40px;
+    rotate: -45deg;
+}
+
 @media only screen and (max-width: 767px) {
 
   .row.wraper{
@@ -113,6 +142,12 @@
     min-width: 100%;
     justify-content: center;
     align-items: center;
+  }
+
+  .rows p {
+    font-weight: bold;
+    color: #000;
+    font-size: 20;
   }
 
   .product-quantity {

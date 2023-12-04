@@ -299,7 +299,7 @@
                                                                             hàng</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="/checkout" title="Checkout">Thanh
+                                                                        <a href="/infocheckout" title="Checkout">Thanh
                                                                             toán</a>
                                                                     </li>
                                                                     <% if (login.length> 0 && login[0].role ===
@@ -330,9 +330,12 @@
         <div class="block-title">
             <strong>THÔNG TIN THANH TOÁN</strong>
         </div>
-        <form>
+        <form id="checkoutForm" action="/postOrder" method="post">
             <label for="name">Họ và tên</label>
             <input type="text" id="name" name="name" required>
+
+            <label for="phoneNumber">Số điện thoại</label>
+            <input type="tel" id="phoneNum" name="phoneNumber"  placeholder="xxxx-xxx-xxx" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required>
 
             <label for="address">Địa chỉ</label>
             <input type="text" id="address" name="address" required>
@@ -355,10 +358,22 @@
                 <option value="">Chọn phường/xã</option>
             </select>
 
-            <input type="checkbox" id="agree" name="agree" required>Lưu thông tin địa chỉ cho lần đặt hàng sau
-            <label for="agree">Tôi đồng ý với các điều khoản và điều kiện</label>
+            <label for="agree"><input type="checkbox" id="agree_saving_inf" name="agreeSavingInf" required> Lưu thông tin địa chỉ cho lần đặt hàng sau</label>
+            
+            <label for="agree"><input type="checkbox" id="agree_terms" name="agreeTerms" required> Tôi đồng ý với các điều khoản và điều kiện</label>
+            <%if(login.length > 0){%>
+                <input type="hidden" name="userID" value='<%= login[0].userID %>'>
+            <%}else{%>
+                <input type="hidden" name="userID" value="null">
+            <%}%>
+            <!-- Truong hop mua ngay -->
+            <input type="hidden" name="productID" value="<%=orderData.productID%>">
+            <input type="hidden" name="colorID" value="<%=orderData.colorID%>">
+            <!-- <input type="hidden" name="sizeID" value="<%=orderData.sizeID%>"> -->
+            <input type="hidden" name="priceProduct" value="<%=orderData.priceProduct%>">
+            <input type="hidden" name="quantity" value="<%=orderData.quantity%>">
 
-            <button type="submit">Thanh toán</button>
+            <button type="submit" onclick="checkout(this)">Thanh toán</button>
         </form>
     </div>
 
@@ -418,6 +433,10 @@
         // Event listeners for city and district dropdowns
         document.getElementById("city").addEventListener("change", populateDistricts);
         document.getElementById("district").addEventListener("change", populateWards);
+
+        function checkout(){
+            document.getElementById('checkoutForm').submit();
+        }
     </script>
 </body>
 
