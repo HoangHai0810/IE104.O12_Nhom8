@@ -24,6 +24,12 @@ module.exports = {
             thanhTien: {
                 type: Sequelize.INTEGER,
             },
+            colorID: {
+                type: Sequelize.STRING(10),
+            },
+            sizeID: {
+                type: Sequelize.STRING(5),
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

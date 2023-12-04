@@ -209,3 +209,13 @@ form .inputBox input[type='button'] {
 .error-border {
     border: #cc2530 solid 1px;
 }
+
+.showPass {
+    position: absolute;
+    width: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    right: 0%;
+    top: 25%;
+    color: #fff;
+}

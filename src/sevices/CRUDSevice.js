@@ -814,11 +814,15 @@ let updateCart = async (data) => {
                 await db.Cart_Detail.create({
                     cartID: data.userID,
                     productID: data.productID,
+                    colorID: data.colorID,
+                    sizeID: data.sizeID,
                     soLuong: parseInt(data.quantity),
                     thanhTien: parseFloat(data.priceProduct)*parseFloat(data.quantity),
                 })
             }
             else{
+                Cart_Detail.colorID = data.colorID,
+                Cart_Detail.sizeID = data.sizeID,
                 Cart_Detail.soLuong += parseFloat(data.quantity);
                 Cart_Detail.thanhTien = parseFloat(data.priceProduct) * Cart_Detail.soLuong;
                 await Cart_Detail.save();
@@ -914,11 +918,11 @@ let getVouchers = () => {
 let deleteProduct = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            function remove(rows){
-                for(let i = 0; i < rows.length; i++){
-                    rows[i].destroy();
-                }
-            };
+            // function remove(rows){
+            //     for(let i = 0; i < rows.length; i++){
+            //         rows[i].destroy();
+            //     }
+            // };
             let Order_Detail = await db.Orderdetail.findAll(
                 { where: {
                     productID: data.productID, 
@@ -998,14 +1002,23 @@ let removeFromCart = (data) => {
 let createOrderDetail = (order, data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let ord_det = await db.Orderdetail.create({
-                productID: data.productID,
-                orderID: order.orderID,
-                // quantity: data.quantity,
-                // size: data.sizeID,
-                // color: data.colorID,
-            })
-            updateOrder(ord_det, data);
+            let ord_det = db.Orderdetail.findOne({
+                where: {
+                    productID: data.productID,
+                    orderID: order.orderID,
+                }
+            });
+            if (!ord_det)
+            {
+                let ord_det = await db.Orderdetail.create({
+                    productID: data.productID,
+                    orderID: order.orderID,
+                    // quantity: data.quantity,
+                    // size: data.sizeID,
+                    // color: data.colorID,
+                })
+                updateOrder(ord_det, data);
+            }
             resolve(ord_det);
         } catch (e) {
             reject(e)

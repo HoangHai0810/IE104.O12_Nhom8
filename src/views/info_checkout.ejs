@@ -253,27 +253,44 @@
                             document.getElementById('search_button').addEventListener('click', () => {
                                 const searchToggle = document.getElementById('search_toggle');
                                 searchToggle.classList.toggle('active');
-                            });
-
-                            const searchInput = document.getElementById('search-input');
-                            const searchResults = document.getElementById('search-results');
-
-                            searchInput.addEventListener('input', function () {
+                              });
+                              
+                              const searchInput = document.getElementById('search-input');
+                              const searchResults = document.getElementById('search-results');
+                              
+                              searchInput.addEventListener('input', function () {
                                 searchResults.innerHTML = '';
-
-                                const items = '<%- JSON.stringify(allProducts) %>';
-
-                                console.log(items[1])
-
-                                const searchTerm = searchInput.value.toLowerCase();
-                                const filteredItems = items.filter(item => item.toLowerCase().includes(searchTerm));
-
+                              
+                                var items = [];
+                                '<% allProducts.forEach(function(item) { %>'
+                                  items.push({ name: '<%= item.productName %>', productID: '<%= item.productID %>' });
+                                '<% }); %>'
+                              
+                                const searchTerm = searchInput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                var filteredItems = items.filter(item => item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(searchTerm));
+                                filteredItems = filteredItems.slice(0, 5);
+                              
                                 filteredItems.forEach(item => {
-                                    const li = document.createElement('li');
-                                    li.textContent = item;
-                                    searchResults.appendChild(li);
+                                  const li = document.createElement('li');
+                                  const productID = item.productID;
+
+                                  const img = document.createElement('img');
+                                  img.src = `./img/${productID}0.png`;
+                              
+                                  li.appendChild(img);
+                                  li.innerHTML += ` ${item.name}`;
+                              
+                                  li.addEventListener('click', () => {
+                                    window.location.href = `/product?productID=${productID}`;
+                                  });
+                              
+                                  searchResults.appendChild(li);
                                 });
-                            });
+                              
+                                if (searchTerm === '') {
+                                  searchResults.innerHTML = '';
+                                }
+                              });                              
                         </script>
                         <% if (login.length> 0) { %>
                             <div class="dropdown myaccount" style="width: 200px">

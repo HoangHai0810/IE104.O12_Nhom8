@@ -251,7 +251,7 @@ header{
 #search .search_toggle{
     display: none;
     background: #2d2c2c;
-    width: 260px;
+    width: 360px;
     z-index: 9;
     position: absolute;
 	right: 0;
@@ -270,18 +270,27 @@ header{
     margin: 0;
     border: 1px solid #ccc;
     border-top: none;
-    max-height: 150px;
-    overflow-y: auto;
+    max-height: 200px;
 }
 
 .search-results li {
     padding: 8px;
+    height: 40px;
     cursor: pointer;
+    background-color: #ccc;
     transition: background-color 0.3s;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: left;
 }
 
 .search-results li:hover {
-    background-color: #f5f5f5;
+    background-color: #000000;
+    color: #ccc;
+}
+
+.search-results li img {
+    height: 100%;
 }
 
 
@@ -817,6 +826,10 @@ ul.nav.navbar-nav li{
 .hiden_menu .top_level > a{color:#262626;}
  
 @media (min-width: 768px) {
+    .header-main
+    {
+        position: fixed;
+    }
 	#menu li:hover .dropdown-menu, #menu ul li.hiden_menu:hover .dropdown-menu{
 	opacity: 1;
 	-khtml-opacity: 1;

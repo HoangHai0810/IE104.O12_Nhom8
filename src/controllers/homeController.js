@@ -12,7 +12,7 @@ let getHomePage = async (req, res) => {
     try {
         return res.render('homepage.ejs', {
             login: login,
-            allProducts: allProducts
+            allProducts: allProducts,
         })
 
     } catch (e) {
@@ -26,12 +26,14 @@ let getLoginSignUp = async (req, res) => {
         let dataUser = await CRUDSevice.getAllUser({
             raw: true,
         })
+        let allProducts = await CRUDSevice.getAllProducts({raw : true})
         return res.render(
             'login_signup.ejs',
             {
                 dataUserF: JSON.stringify(dataUser),
                 dataUser: dataUser,
-                login: login
+                login: login,
+                allProducts: allProducts
             }
         )
     } catch (e) {
@@ -54,6 +56,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (allMen),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menShirts') {
@@ -64,6 +67,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menShirts),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menTShirt') {
@@ -74,6 +78,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menTShirt),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menSweater') {
@@ -84,6 +89,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menSweater),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menTankTop') {
@@ -94,6 +100,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menTankTop),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menJacket') {
@@ -104,6 +111,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menJacket),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menTrousers') {
@@ -114,6 +122,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menTrousers),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menShorts') {
@@ -124,6 +133,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menShorts),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menKaki') {
@@ -134,6 +144,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menKaki),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menJean') {
@@ -144,6 +155,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menJean),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/menUnderwear') {
@@ -154,6 +166,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (menUnderwear),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/women') {
@@ -164,6 +177,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (allwomen),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenShirts') {
@@ -174,6 +188,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenShirts),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenShirt') {
@@ -184,6 +199,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenTShirt),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenTShirt') {
@@ -194,6 +210,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenShirt),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenDress') {
@@ -204,6 +221,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenDress),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenJacket') {
@@ -214,6 +232,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenJacket),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenTrousers') {
@@ -224,6 +243,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenTrousers),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenPants') {
@@ -234,6 +254,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenPants),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenShorts') {
@@ -244,6 +265,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenShorts),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenJeans') {
@@ -254,6 +276,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenJeans),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/womenAuthPants') {
@@ -264,6 +287,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (womenAuthPants),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         //////////////////////
@@ -275,6 +299,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (discounted),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/hotitem') {
@@ -285,6 +310,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (hotItem),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/shoes') {
@@ -295,6 +321,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (allShoes),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/socks') {
@@ -305,6 +332,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (allSocks),
                     login: login,
+                    allProducts: allProducts
                 })
         }
         else if (req.url == '/handbag') {
@@ -315,6 +343,7 @@ let getListProduct = async (req, res) => {
                 {
                     dataProduct: (allHandBag),
                     login: login,
+                    allProducts: allProducts
                 })
         }   
         
@@ -326,13 +355,13 @@ let getListProduct = async (req, res) => {
 
 let getInfoProduct = async (req, res) => {
     try {
-        let login = await CRUDSevice.getLogin({ raw: true });
         let productID = req.query.productID;
         let product = await CRUDSevice.getProductInfoByProductId(productID);
         let Product_Color = await db.Product_Color.findAll();
         let Product_Size = await db.Product_Size.findAll();
         let logins = await CRUDSevice.getLogin({ raw: true });
         let imageCount = 0;
+        let allProducts = await CRUDSevice.getAllProducts({raw : true})
         const path = require('path');
         const imgDirectory = path.join(__dirname, '..', 'public', 'img');
         const files = fs.readdirSync(imgDirectory);
@@ -341,7 +370,7 @@ let getInfoProduct = async (req, res) => {
                 imageCount++;
             }
         });
-        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, loginsF: JSON.stringify(logins), logins: logins})
+        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, loginsF: JSON.stringify(logins), logins: logins, allProducts: allProducts})
     } catch (e) {
         console.log(e);
     }
@@ -350,13 +379,15 @@ let getInfoProduct = async (req, res) => {
 let getInfoUser = async (req, res) => {
     try {
         let login = await CRUDSevice.getLogin({ raw: true });
+        let allProducts = await CRUDSevice.getAllProducts({raw : true})
         if (login.length > 0) {
             let data = await CRUDSevice.getUserInfoById(login[0].userID, {
                 raw: true,
             });
             return res.render('info_user.ejs', {
                 login: JSON.stringify(login),
-                data: data
+                data: data,
+                allProducts: allProducts
             })
         }
         res.redirect('/');
@@ -369,9 +400,11 @@ let getUpload = async (req, res) => {
     try {
         let login = await CRUDSevice.getLogin({ raw: true });
         let product = await CRUDSevice.getAllProducts();
+        let allProducts = await CRUDSevice.getAllProducts({raw : true})
         return res.render('upload_product.ejs', {
             productLength: product.length,
-            login: login
+            login: login,
+            allProducts: allProducts
         })
     } catch (e) {
         console.log(e);
@@ -382,8 +415,9 @@ let getCart = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
     let cart = await CRUDSevice.getCartDetails({ raw: true });
     let voucher = await CRUDSevice.getVouchers({ raw: true});
+    let allProducts = await CRUDSevice.getAllProducts({raw : true})
     try {
-        return res.render('cart.ejs', { login: login, cart: cart, voucher: voucher })
+        return res.render('cart.ejs', { login: login, cart: cart, voucher: voucher, allProducts })
     } catch (e) {
         console.log(e);
     }
@@ -472,6 +506,8 @@ let getAdmin = async (req, res) => {
     let dataUser = await CRUDSevice.getAllUser({
         raw: true,
     })
+    let allProducts = await CRUDSevice.getAllProducts({raw : true})
+    
     try {
         if (login.length > 0) {
             if (login[0].role === 'Admin') {
@@ -480,7 +516,7 @@ let getAdmin = async (req, res) => {
                     dataUser: dataUser,
                     dataUserF: JSON.stringify(dataUser),
                     loginF: JSON.stringify(login),
-
+                    allProducts: allProducts
                 })  
             }
             else {
@@ -525,12 +561,11 @@ let removeProductFromCart = async(req, res) => {
 
 let deleteProduct = async(req, res) => {
     let mess = await CRUDSevice.deleteProduct(req.body);
-    // console.log(mess);
     res.redirect('/' + req.body.Location);
 }
 
 let buyNow = async(req, res) => {
-    if(!req.body.userID){
+    if(req.body.userID == 'null'){
         let cus_prod = await CRUDSevice.createCustomer(req.body);
         let order = await CRUDSevice.createOrder(cus_prod.cus, req.body);
         let order_detail = await CRUDSevice.createOrderDetail(order, cus_prod.data);
@@ -562,19 +597,9 @@ let buyNow = async(req, res) => {
                     }
                 })
                 await CRUDSevice.createOrderDetail(orderF, carts[i]);
-
-                // if(!temp){
-                //     await CRUDSevice.createOrderDetail(orderF, carts[i]);
-                // }
-                // else{
-                //     for (let j = 0; j < temp.length; j++){
-                //         temp[i].quantity += carts[i].soLuong;
-                //         temp[i].price +=
-                //     }
-                // }
+                await CRUDSevice.removeFromCart({cartID: carts[i].cartID, productID: carts[i].productID })
             }
         }
-        // console.log(carts[1].soLuong);
         res.redirect('/')
     }
 }
@@ -583,7 +608,6 @@ let getInfoCheckout = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
     let allProducts = await CRUDSevice.getAllProducts({raw : true})
     try {
-        // console.log(req.userID)
         return res.render('info_checkout.ejs', {
             login: login,
             loginF: JSON.stringify(login),
