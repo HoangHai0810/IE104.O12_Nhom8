@@ -559,6 +559,123 @@
                     </script>
                 </div>
             </div>
+
+            <div id="feedbackForm">
+                <div class="rating-product" id="rating">
+                  <div class="star-rating">★</div>
+                  <div class="rate-product"><%= product.rate %></div>
+                </div>
+                <div id="formFB">
+                  <h2>Your Feedback</h2>
+                  <form id="form">
+                    <label for="rating">Rating:</label>
+                    <div class="rating" id="userRating">
+                      <span class="star" onclick="setRating(1)">★</span>
+                      <span class="star" onclick="setRating(2)">★</span>
+                      <span class="star" onclick="setRating(3)">★</span>
+                      <span class="star" onclick="setRating(4)">★</span>
+                      <span class="star" onclick="setRating(5)">★</span>
+                    </div>
+            
+                    <label for="comments">Comments:</label>
+                    <textarea id="comments" name="comments" required></textarea>
+            
+                    <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+                  </form>
+                </div>
+              </div>
+            
+              <div id="feedbackList">
+                <h2>All Feedback</h2>
+                <div id="userFeedback">
+
+                </div>
+                <button id="showAllFeedback" onclick="showAllFeedback()">Show All Feedback</button>
+              </div>
+            
+              <script>
+                var selectedRating = 0;
+                var feedbackList = [];
+            
+                function setRating(rating) {
+                  selectedRating = rating;
+                  highlightStars(rating, 'userRating');
+                }
+            
+                function highlightStars(count, containerId) {
+                  var stars = document.querySelectorAll(`#${containerId} .star`);
+                  stars.forEach(function (star, index) {
+                    if (index < count) {
+                      star.style.color = '#1780a5';
+                    } else {
+                      star.style.color = '#ccc';
+                    }
+                  });
+                }
+            
+                function submitFeedback() {
+                  // Get form values
+                  var comments = document.getElementById("comments").value;
+            
+                  // Do something with the feedback (you can send it to a server, store in a database, etc.)
+                  console.log("Rating: " + selectedRating);
+                  console.log("Comments: " + comments);
+            
+                  // Add feedback to the list
+                  feedbackList.push({ rating: selectedRating, comments: comments });
+            
+                  // Display user feedback
+                  displayUserFeedback();
+            
+                  // Clear the form
+                  document.getElementById("form").reset();
+            
+                  // Reset star ratings
+                  selectedRating = 0;
+                  highlightStars(0, 'userRating');
+            
+                  // Provide a confirmation message (you can customize this part)
+                  alert("Thank you for your feedback!");
+                }
+            
+                function displayUserFeedback() {
+                  var userFeedbackContainer = document.getElementById("userFeedback");
+                  userFeedbackContainer.innerHTML = '';
+            
+                  feedbackList.forEach(function (feedback, index) {
+                    var feedbackItem = document.createElement('div');
+                    feedbackItem.classList.add('feedback-item');
+                    feedbackItem.innerHTML = `
+                            <p class="user-rating">
+                                Rating:
+                                ${Array.from({ length: feedback.rating }, (_, i) => `<span class="user-star">★</span>`).join('')}
+                            </p>
+                            <p>${feedback.comments}</p>
+                        `;
+                    userFeedbackContainer.appendChild(feedbackItem);
+                  });
+                }
+            
+                function showAllFeedback() {
+                  var allFeedbackContainer = document.getElementById("userFeedback");
+                  allFeedbackContainer.innerHTML = '';
+
+                  feedback = []
+            
+                  feedbackList.forEach(function (feedback, index) {
+                    var feedbackItem = document.createElement('div');
+                    feedbackItem.classList.add('feedback-item');
+                    feedbackItem.innerHTML = `
+                            <p class="user-rating">
+                                Rating:
+                                ${Array.from({ length: feedback.rating }, (_, i) => `<span class="user-star">★</span>`).join('')}
+                            </p>
+                            <p>${feedback.comments}</p>
+                        `;
+                    allFeedbackContainer.appendChild(feedbackItem);
+                  });
+                }
+              </script>
         </div>
     </div>
     <!--Footer-->

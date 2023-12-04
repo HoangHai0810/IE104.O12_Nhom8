@@ -506,6 +506,8 @@ let getAdmin = async (req, res) => {
     let dataUser = await CRUDSevice.getAllUser({
         raw: true,
     })
+    let allProducts = await CRUDSevice.getAllProducts({raw : true})
+    
     try {
         if (login.length > 0) {
             if (login[0].role === 'Admin') {
@@ -514,7 +516,7 @@ let getAdmin = async (req, res) => {
                     dataUser: dataUser,
                     dataUserF: JSON.stringify(dataUser),
                     loginF: JSON.stringify(login),
-
+                    allProducts: allProducts
                 })  
             }
             else {
@@ -559,7 +561,6 @@ let removeProductFromCart = async(req, res) => {
 
 let deleteProduct = async(req, res) => {
     let mess = await CRUDSevice.deleteProduct(req.body);
-    // console.log(mess);
     res.redirect('/' + req.body.Location);
 }
 
@@ -596,19 +597,9 @@ let buyNow = async(req, res) => {
                     }
                 })
                 await CRUDSevice.createOrderDetail(orderF, carts[i]);
-
-                // if(!temp){
-                //     await CRUDSevice.createOrderDetail(orderF, carts[i]);
-                // }
-                // else{
-                //     for (let j = 0; j < temp.length; j++){
-                //         temp[i].quantity += carts[i].soLuong;
-                //         temp[i].price +=
-                //     }
-                // }
+                await CRUDSevice.removeFromCart({cartID: carts[i].cartID, productID: carts[i].productID })
             }
         }
-        // console.log(carts[1].soLuong);
         res.redirect('/')
     }
 }
@@ -617,7 +608,6 @@ let getInfoCheckout = async (req, res) => {
     let login = await CRUDSevice.getLogin({ raw: true });
     let allProducts = await CRUDSevice.getAllProducts({raw : true})
     try {
-        // console.log(req.userID)
         return res.render('info_checkout.ejs', {
             login: login,
             loginF: JSON.stringify(login),
