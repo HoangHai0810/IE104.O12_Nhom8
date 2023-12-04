@@ -71,6 +71,7 @@ label {
 
 .account-settings-links .list-group-item.active {
     font-weight: bold !important;
+    color: #ffffff !important;
 }
 
 
@@ -84,7 +85,8 @@ label {
 }
 
 .light-style .account-settings-links .list-group-item.active {
-    color: #4e5155 !important;
+    background-color: #666666 !important;
+    color: #ffffff !important;
 }
 
 .material-style .account-settings-links .list-group-item {
@@ -92,21 +94,10 @@ label {
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
 
-.material-style .account-settings-links .list-group-item.active {
-    color: #4e5155 !important;
-}
 
 .dark-style .account-settings-links .list-group-item {
     padding     : 0.85rem 1.5rem;
     border-color: rgba(255, 255, 255, 0.03) !important;
-}
-
-.dark-style .account-settings-links .list-group-item.active {
-    color: #fff !important;
-}
-
-.light-style .account-settings-links .list-group-item.active {
-    color: #4E5155 !important;
 }
 
 .light-style .account-settings-links .list-group-item {

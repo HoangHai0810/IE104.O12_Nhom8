@@ -41,7 +41,7 @@
                                 </span>
                             </div>
                             <div class="myaccount-toggle">
-                                <a href="/account" title="My Account">  
+                                <a href="/account" title="My Account">
                                     <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="header-shoppingcart-toggle">
@@ -52,10 +52,10 @@
                     </div>
                     <ul class="navbar-nav-toggle">
                         <li class="top_level dropdown">
-                            <a href="/man">Nam</a>
+                            <a href="/men">Nam</a>
                         </li>
                         <li class="top_level dropdown">
-                            <a href="/woman">Nữ</a>
+                            <a href="/women">Nữ</a>
                         </li>
                         <li class="top_level">
                             <a href="/hotitem">Bán chạy</a>
@@ -69,12 +69,11 @@
                     </ul>
                     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
                     <script>
-                        $(document).ready(function() 
-                            {
-                                $('.menu').click(function() {
-                                    $('.navbar-nav-toggle').toggleClass('active')
-                                })
-                            }
+                        $(document).ready(function () {
+                            $('.menu').click(function () {
+                                $('.navbar-nav-toggle').toggleClass('active')
+                            })
+                        }
                         )
                     </script>
                     <div class="row">
@@ -216,7 +215,7 @@
                                                         <a href="/socks">Tất</a>
                                                     </li>
                                                     <li>
-                                                        <a href="hats">Mũ</a>
+                                                        <a href="handbag">Mũ</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -226,72 +225,124 @@
                             </div>
                         </nav>
                         <div id="search" class="input-group">
-                            <span class="search_button"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <div class="search_toggle">
+                            <span class="search_button" id="search_button"><i
+                                    class="fa-solid fa-magnifying-glass"></i></span>
+                            <div class="search_toggle" id="search_toggle">
                                 <div id="searchbox">
                                     <input type="text" name="search" value="" placeholder="Search Products Here"
-                                        class="form-control input-lg">
+                                        class="form-control input-lg" id="search-input">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-lg">
-                                            Search
+                                        <button type="button" class="btn btn-default btn-lg" id="search-btn">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
                                     </span>
                                 </div>
+                                <ul id="search-results" class="search-results"></ul>
                             </div>
                         </div>
-                        <% if (login.length > 0) { %>
-                        <div class="dropdown myaccount" style="width: 200px">
-                            <a href="/account" title="My Account" style="width: 100%">
-                                <i class="fa-solid fa-user"></i>
-                                    <span class="userName" ><%=login[0].fullName%></span>
-                        <% } else { %>
-                        <div class="dropdown myaccount">
-                            <a href="/account" title="My Account" style="width: 100%">
-                                <i class="fa-solid fa-user"></i>
-                                <% } %>
-                                <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
-                                    <% if (login.length == 0) { %>
-                                    <li>
-                                        <a href="/register">Đăng kí</a>
-                                    </li>
-                                    <li>
-                                        <a href="/login">Đăng nhập</a>
-                                    </li>
-                                    <% }  else { %>
-                                    <li>
-                                        <a href="/logout">Đăng xuất</a>
-                                    </li>
-                                    <% } %>
-                                    <li>
-                                        <a href="/cart" title="Shopping Cart">Giỏ hàng</a>
-                                    </li>
-                                    <li>
-                                        <a href="/infocheckout" title="Checkout">Thanh toán</a>
-                                    </li>
-                                    <% if (login.length > 0 && login[0].role === 'Employee') { %>
-                                    <li>
-                                        <a href="/upload" title="Checkout">Thêm sản phẩm</a>
-                                    </li>
-                                    <% } %>
-                                </ul>
-                        </div>
-                        <div class="header-shoppingcart">
-                            <div id="cart" class="btn-group btn-block">
-                                <a href="/cart" title="Cart">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </a>
+                        <script>
+                            document.getElementById('search_button').addEventListener('click', () => {
+                                const searchToggle = document.getElementById('search_toggle');
+                                searchToggle.classList.toggle('active');
+                              });
+                              
+                              const searchInput = document.getElementById('search-input');
+                              const searchResults = document.getElementById('search-results');
+                              
+                              searchInput.addEventListener('input', function () {
+                                searchResults.innerHTML = '';
+                              
+                                var items = [];
+                                '<% allProducts.forEach(function(item) { %>'
+                                  items.push({ name: '<%= item.productName %>', productID: '<%= item.productID %>' });
+                                '<% }); %>'
+                              
+                                const searchTerm = searchInput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                var filteredItems = items.filter(item => item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(searchTerm));
+                                filteredItems = filteredItems.slice(0, 5);
+                              
+                                filteredItems.forEach(item => {
+                                  const li = document.createElement('li');
+                                  const productID = item.productID;
+
+                                  const img = document.createElement('img');
+                                  img.src = `./img/${productID}0.png`;
+                              
+                                  li.appendChild(img);
+                                  li.innerHTML += ` ${item.name}`;
+                              
+                                  li.addEventListener('click', () => {
+                                    window.location.href = `/product?productID=${productID}`;
+                                  });
+                              
+                                  searchResults.appendChild(li);
+                                });
+                              
+                                if (searchTerm === '') {
+                                  searchResults.innerHTML = '';
+                                }
+                              });                              
+                        </script>
+                        <% if (login.length> 0) { %>
+                            <div class="dropdown myaccount" style="width: 200px">
+                                <a href="/account" title="My Account" style="width: 100%">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="userName">
+                                        <%=login[0].fullName%>
+                                    </span>
+                                    <% } else { %>
+                                        <div class="dropdown myaccount">
+                                            <a href="/account" title="My Account" style="width: 100%">
+                                                <i class="fa-solid fa-user"></i>
+                                                <% } %>
+                                                    <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                                        <% if (login.length==0) { %>
+                                                            <li>
+                                                                <a href="/register">Đăng kí</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/login">Đăng nhập</a>
+                                                            </li>
+                                                            <% } else { %>
+                                                                <li>
+                                                                    <a href="/logout">Đăng xuất</a>
+                                                                </li>
+                                                                <% } %>
+                                                                    <li>
+                                                                        <a href="/cart" title="Shopping Cart">Giỏ
+                                                                            hàng</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="/infocheckout" title="Checkout">Thanh
+                                                                            toán</a>
+                                                                    </li>
+                                                                    <% if (login.length> 0 && login[0].role ===
+                                                                        'Employee') { %>
+                                                                        <li>
+                                                                            <a href="/upload" title="Checkout">Thêm sản
+                                                                                phẩm</a>
+                                                                        </li>
+                                                                        <% } %>
+                                                    </ul>
+                                        </div>
+                                        <% if (login.length> 0) { %>
+                                            <div class="header-shoppingcart">
+                                                <div id="cart" class="btn-group btn-block">
+                                                    <a href="/cart" title="Cart">
+                                                        <i class="fa-solid fa-cart-shopping"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <% } %>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </header>
     <!--Contentttttttttt-->
     <div class="container light-style flex-grow-1 container-p-y content-user">
         <h4 class="font-weight-bold py-3 mb-4">
-            Account settings
+            Thông tin tài khoản
         </h4>
         <div class="card overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
@@ -375,10 +426,6 @@
                                 <div class="form-group">
                                     <label class="form-label">E-mail</label>
                                     <input type="text" class="form-control mb-1">
-                                    <div class="alert alert-warning mt-3">
-                                        Your email is not confirmed. Please check your inbox.<br>
-                                        <a href="javascript:void(0)">Resend confirmation</a>
-                                    </div>
                                 </div>
                                 
                                 <div class="form-group">
@@ -412,9 +459,8 @@
             </div>
         </div>
         <div class="text-right mt-3">
-            <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-            <button type="button" class="btn btn-default">Cancel</button>
-        </div>
+            <button type="button" class="btn btn-primary" style="margin-bottom: 20px;">Lưu thay đổi</button>&nbsp;
+            </div>
     </div>
     <footer class="footer">
         <div class="footer_row">

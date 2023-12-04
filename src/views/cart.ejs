@@ -50,10 +50,10 @@
                     </div>
                     <ul class="navbar-nav-toggle">
                         <li class="top_level dropdown">
-                            <a href="/man">Nam</a>
+                            <a href="/men">Nam</a>
                         </li>
                         <li class="top_level dropdown">
-                            <a href="/woman">Nữ</a>
+                            <a href="/women">Nữ</a>
                         </li>
                         <li class="top_level">
                             <a href="/hotitem">Bán chạy</a>
@@ -213,7 +213,7 @@
                                                         <a href="/socks">Tất</a>
                                                     </li>
                                                     <li>
-                                                        <a href="hats">Mũ</a>
+                                                        <a href="handbag">Mũ</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -223,20 +223,47 @@
                             </div>
                         </nav>
                         <div id="search" class="input-group">
-                            <span class="search_button"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <div class="search_toggle">
+                            <span class="search_button" id="search_button"><i
+                                    class="fa-solid fa-magnifying-glass"></i></span>
+                            <div class="search_toggle" id="search_toggle">
                                 <div id="searchbox">
                                     <input type="text" name="search" value="" placeholder="Search Products Here"
-                                        class="form-control input-lg">
+                                        class="form-control input-lg" id="search-input">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-lg">
-                                            Search
+                                        <button type="button" class="btn btn-default btn-lg" id="search-btn">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
                                     </span>
                                 </div>
+                                <ul id="search-results" class="search-results"></ul>
                             </div>
                         </div>
+                        <script>
+                            document.getElementById('search_button').addEventListener('click', () => {
+                                const searchToggle = document.getElementById('search_toggle');
+                                searchToggle.classList.toggle('active');
+                            });
+
+                            const searchInput = document.getElementById('search-input');
+                            const searchResults = document.getElementById('search-results');
+
+                            searchInput.addEventListener('input', function () {
+                                searchResults.innerHTML = '';
+
+                                const items = '<%- JSON.stringify(allProducts) %>';
+
+                                console.log(items[1])
+
+                                const searchTerm = searchInput.value.toLowerCase();
+                                const filteredItems = items.filter(item => item.toLowerCase().includes(searchTerm));
+
+                                filteredItems.forEach(item => {
+                                    const li = document.createElement('li');
+                                    li.textContent = item;
+                                    searchResults.appendChild(li);
+                                });
+                            });
+                        </script>
                         <% if (login.length> 0) { %>
                             <div class="dropdown myaccount" style="width: 200px">
                                 <a href="/account" title="My Account" style="width: 100%">
@@ -279,13 +306,15 @@
                                                                         <% } %>
                                                     </ul>
                                         </div>
-                                        <div class="header-shoppingcart">
-                                            <div id="cart" class="btn-group btn-block">
-                                                <a href="/cart" title="Cart">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
+                                        <% if (login.length> 0) { %>
+                                            <div class="header-shoppingcart">
+                                                <div id="cart" class="btn-group btn-block">
+                                                    <a href="/cart" title="Cart">
+                                                        <i class="fa-solid fa-cart-shopping"></i>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <% } %>
                             </div>
                     </div>
                 </div>
@@ -309,7 +338,7 @@
                         </thead>
                         <tbody id="table-product">
                             <% for (let i=0; i < cart.length; i++) { if (login[0].userID==cart[i].userID) { %>
-                                <tr id="<%=cart[i].productID%>">
+                                <tr id="<%=cart[i].productID%>" class="product_cart">
                                     <td>
                                         <div class="cart-info">
                                             <img src="./img/<%=cart[i].productID%>0.png">
@@ -317,7 +346,8 @@
                                                 <p>
                                                     <%=cart[i].productName%>
                                                 </p>
-                                                <small>Đơn giá: <%=(cart[i].price*(1 - cart[i].discount/100)).toLocaleString("en-US")%> &#8363;</small>
+                                                <small>Đơn giá: <%=(cart[i].price*(1 -
+                                                        cart[i].discount/100)).toLocaleString("en-US")%> &#8363;</small>
                                                 <br>
                                                 <button id="<%=cart[i].productID%>" class="remove"
                                                     onclick="removeProduct(this)">Xóa</button>
@@ -333,16 +363,19 @@
                                     </td>
                                     <td>
                                         <div class="product-quantity">
-                                            <button type="button" class="btn-minus">-</button>
+                                            <button type="button" class="btn-minus"
+                                                onclick="updateQuantity(this, -1)">-</button>
                                             <input type="text" id="quantity" value="<%=cart[i].soLuong%>" min="1"
-                                                max="10">
-                                            <button type="button" class="btn-plus">+</button>
+                                                max="10" onchange="updateQuantity(this, 0)">
+                                            <button type="button" class="btn-plus"
+                                                onclick="updateQuantity(this, 1)">+</button>
+
                                         </div>
                                     <td style="text-align: center;">
                                         <% sum=0; for (let j=0; j < cart.length; j++) { if
-                                            (cart[i].productID == cart[j].productID) { sum +=(cart[j].price*(1 - cart[j].discount/100))*cart[j].soLuong; }
-                                        }; %>
-                                        <%=sum.toLocaleString("en-US")%> &#8363;
+                                            (cart[i].productID==cart[j].productID) { sum +=(cart[j].price*(1 -
+                                            cart[j].discount/100))*cart[j].soLuong; } }; %>
+                                            <%=sum.toLocaleString("en-US")%> &#8363;
                                     </td>
                                 </tr>
                                 <% } }%>
@@ -374,9 +407,9 @@
                                         </td>
                                         <td style="text-align: center;">
                                             <% sum=0; for (let j=0; j < cart.length; j++) { if
-                                                (login[0].userID==cart[j].userID) { sum +=(cart[j].price*(1 - cart[j].discount/100))*cart[j].soLuong; }
-                                            }; %>
-                                            <%=sum.toLocaleString("en-US")%> &#8363;
+                                                (login[0].userID==cart[j].userID) { sum +=(cart[j].price*(1 -
+                                                cart[j].discount/100))*cart[j].soLuong; } }; %>
+                                                <%=sum.toLocaleString("en-US")%> &#8363;
                                         </td>
                                     </tr>
                         </tbody>
@@ -389,11 +422,11 @@
                     </form>
                     <% } else { %>
                         <div class="empty">Giỏ hàng trống!</div>
-                        <% } %> 
+                        <% } %>
             </div>
         </div>
         <script>
-            function checkout(){
+            function checkout() {
                 document.getElementById('postFromCart').submit();
             }
         </script>
@@ -482,24 +515,36 @@
             table.removeChild(row)
         }
 
-        function increaseQuantity() {
-            var quantity = document.querySelector("#quantity").value;
-            quantity++;
-            document.querySelector("#quantity").value = quantity;
-        }
-
-        function decreaseQuantity() {
-            var quantity = document.querySelector("#quantity").value;
-            quantity--;
-            if (quantity < 1) {
-                quantity = 1;
+        function updateQuantity(element, change) {
+            var quantityInput = element.parentNode.querySelector('#quantity');
+            var oldQuantity = parseInt(quantityInput.value);
+        
+            var newQuantity = oldQuantity + change;
+            if (newQuantity < 1) {
+                newQuantity = 1; 
+            } else if (newQuantity > 10) {
+                newQuantity = 10; 
             }
-            document.querySelector("#quantity").value = quantity;
+            quantityInput.value = newQuantity;
+        
+            var price = parseFloat(element.closest('tr').querySelector('.cart-info small').innerText.replace(/[^\d.]/g, ''));
+
+            var newTotal = price  * newQuantity;
+            element.closest('tr').querySelector('td:last-child').innerText = newTotal.toLocaleString("en-US") + ' ₫';
+        
+            calculateTotal();
         }
-
-        document.querySelector(".btn-plus").addEventListener("click", increaseQuantity);
-
-        document.querySelector(".btn-minus").addEventListener("click", decreaseQuantity);
+        
+        function calculateTotal() {
+            var sum = 0;
+            var cartRows = document.querySelectorAll('#table-product .product_cart');
+            cartRows.forEach(function (row) {
+                var rowTotal = parseFloat(row.querySelector('td:last-child').innerText.replace(/[^\d.]/g, ''));
+                sum += rowTotal;
+            });
+        
+            document.querySelector('#table-product tr:last-child td:last-child').innerText = sum.toLocaleString("en-US") + ' ₫';
+        }
 
     </script>
     </td>
