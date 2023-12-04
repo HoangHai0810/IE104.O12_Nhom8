@@ -361,7 +361,8 @@ let getInfoProduct = async (req, res) => {
         let Product_Size = await db.Product_Size.findAll();
         let logins = await CRUDSevice.getLogin({ raw: true });
         let imageCount = 0;
-        let allProducts = await CRUDSevice.getAllProducts({raw : true})
+        let allProducts = await CRUDSevice.getAllProducts({raw : true});
+        let feedbacks = await CRUDSevice.getAllFeedback({raw: true});
         const path = require('path');
         const imgDirectory = path.join(__dirname, '..', 'public', 'img');
         const files = fs.readdirSync(imgDirectory);
@@ -370,7 +371,7 @@ let getInfoProduct = async (req, res) => {
                 imageCount++;
             }
         });
-        return res.render('info_product.ejs',{ product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, loginsF: JSON.stringify(logins), logins: logins, allProducts: allProducts})
+        return res.render('info_product.ejs',{ feedbacks: feedbacks, product: product, imageCount: imageCount, Product_Color: Product_Color, Product_Size: Product_Size, loginsF: JSON.stringify(logins), logins: logins, allProducts: allProducts})
     } catch (e) {
         console.log(e);
     }
@@ -620,6 +621,11 @@ let getInfoCheckout = async (req, res) => {
     }
 }
 
+let postFeedback = async(req, res) => {
+    let fb = await CRUDSevice.createFeedback(req.body);
+    res.redirect('/product?productID=' + req.body.productID)
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getLoginSignUp: getLoginSignUp,
@@ -642,4 +648,5 @@ module.exports = {
     deleteProduct: deleteProduct,
     buyNow: buyNow,
     getInfoCheckout: getInfoCheckout,
+    postFeedback: postFeedback,
 }

@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   Feedback.init({
     feedbackID: {
       allowNull: false,
-      type: DataTypes.STRING(15),
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
     },
     userID: DataTypes.INTEGER,

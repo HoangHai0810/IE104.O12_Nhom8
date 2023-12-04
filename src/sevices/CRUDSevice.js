@@ -814,15 +814,11 @@ let updateCart = async (data) => {
                 await db.Cart_Detail.create({
                     cartID: data.userID,
                     productID: data.productID,
-                    colorID: data.colorID,
-                    sizeID: data.sizeID,
                     soLuong: parseInt(data.quantity),
                     thanhTien: parseFloat(data.priceProduct)*parseFloat(data.quantity),
                 })
             }
             else{
-                Cart_Detail.colorID = data.colorID,
-                Cart_Detail.sizeID = data.sizeID,
                 Cart_Detail.soLuong += parseFloat(data.quantity);
                 Cart_Detail.thanhTien = parseFloat(data.priceProduct) * Cart_Detail.soLuong;
                 await Cart_Detail.save();
@@ -918,11 +914,11 @@ let getVouchers = () => {
 let deleteProduct = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            // function remove(rows){
-            //     for(let i = 0; i < rows.length; i++){
-            //         rows[i].destroy();
-            //     }
-            // };
+            function remove(rows){
+                for(let i = 0; i < rows.length; i++){
+                    rows[i].destroy();
+                }
+            };
             let Order_Detail = await db.Orderdetail.findAll(
                 { where: {
                     productID: data.productID, 
@@ -1002,23 +998,14 @@ let removeFromCart = (data) => {
 let createOrderDetail = (order, data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let ord_det = db.Orderdetail.findOne({
-                where: {
-                    productID: data.productID,
-                    orderID: order.orderID,
-                }
-            });
-            if (!ord_det)
-            {
-                let ord_det = await db.Orderdetail.create({
-                    productID: data.productID,
-                    orderID: order.orderID,
-                    // quantity: data.quantity,
-                    // size: data.sizeID,
-                    // color: data.colorID,
-                })
-                updateOrder(ord_det, data);
-            }
+            let ord_det = await db.Orderdetail.create({
+                productID: data.productID,
+                orderID: order.orderID,
+                // quantity: data.quantity,
+                // size: data.sizeID,
+                // color: data.colorID,
+            })
+            updateOrder(ord_det, data);
             resolve(ord_det);
         } catch (e) {
             reject(e)
@@ -1067,6 +1054,65 @@ let updateCustomer = (data) => {
         }
     })
 }
+
+let updateRateProduct = (data) =>{
+    return new Promise(async (resolve, reject) => {
+        try {
+            let prod = await db.Product.findOne({
+                where:{
+                    productID: data.productID,
+                }
+            })
+            let feedbacks = await db.Feedback.findAll({
+                where: {
+                    productID: data.productID,
+                }
+            })
+            let cnt = 0;
+            let sum = 0;
+            for (let i = 0; i < feedbacks.length; i++){
+                cnt++;
+                sum += parseFloat(feedbacks[i].rate);
+            }
+            prod.rate = sum/cnt;
+            prod.save();
+        }catch(e){
+            reject(e);
+        }
+    })
+}
+
+let getAllFeedback = () => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let feedbacks = await sequelize.query(
+                "select *, DATE(Feedbacks.createdAt) as dateCreatedAt, TIME(Feedbacks.createdAt) as timeCreatedAt from Customers, Feedbacks where Customers.userID = Feedbacks.userID",
+                { type: QueryTypes.SELECT }
+            )
+            resolve(feedbacks)
+        } catch (e){
+            reject(e);
+        }
+    })
+}
+
+let createFeedback = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            await db.Feedback.create({
+                productID: data.productID,
+                userID: data.userID,
+                rate: parseInt(data.rating),
+                content: data.content,
+            });
+            updateRateProduct(data);
+            resolve('Added Feedback!');
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getAllProducts: getAllProducts,
     getAllMen: getAllMen,
@@ -1126,25 +1172,14 @@ module.exports = {
     updateUserRole: updateUserRole,
     removeFromCart: removeFromCart,
     deleteProduct: deleteProduct,
-    // editUser: editUser,
-    // deleteUserById: deleteUserById,
-    // createTeam: createTeam,
-    // createKetQua: createKetQua,
-    // createDienBien: createDienBien,
-    // getAllTongKet: getAllTongKet,
-    // getAllCauThu: getAllCauThu,
-    // getALLDoiBong: getALLDoiBong,
-    // getAllLichChuaThiDau: getAllLichChuaThiDau,
-    // getAllLichDaThiDau: getAllLichDaThiDau,
-    // getAllKetQua: getAllKetQua,
-    // getAllLichThiDau: getAllLichThiDau,
-    // getAllTranDau: getAllTranDau,
-    // getAllThamSo: getAllThamSo,
     createNewLogin: createNewLogin,
     deleteUserById: deleteUserById,
     logoutCRUD: logoutCRUD,
     createOrderDetail: createOrderDetail,
     updateOrder: updateOrder,
     updateCustomer: updateCustomer,
+    updateRateProduct: updateRateProduct,
+    getAllFeedback: getAllFeedback,
+    createFeedback: createFeedback,
 }
 

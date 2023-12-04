@@ -475,27 +475,31 @@
                             <input type="text" id="quantity" value="1" min="1" max="10">
                             <button type="button" class="btn-plus">+</button>
                         </div>
-                        <% if (logins.length != 0) { %>
-                        <button type="submit" onclick="addToCart()" class="btn_buy" id="btn_add_to_cart">THÊM VÀO GIỎ HÀNG</button>
-                        <form id="addToCartReq" action="/postCart" method="post">
-                            <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
-                            <input type="hidden" id="priceProduct" name="priceProduct" value="<%=product.price*(1-product.discount/100)%>">
-                            <input type="hidden" id="colorID" name="colorID">
-                            <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
-                            <input type="hidden" id="userID" name="userID">
-                            <input type="hidden" id="quantityReq" name="quantity">
-                        </form>
-                        <%} else {%>
-                        <button type="submit" onclick="buyNow()" class="btn_buy" id="btn_buy_now">MUA NGAY</button>
-                        <form id="buyNowReq" action="/infocheckout" method="post">
-                            <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
-                            <input type="hidden" id="priceProduct" name="priceProduct" value="<%=(product.price*(1-product.discount/100))%>">
-                            <input type="hidden" id="colorID" name="colorID">
-                            <input type="hidden" id="userID" name="userID" value='null' >
-                            <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
-                            <input type="hidden" id="quantityReq" name="quantity">
-                        </form>
-                        <%}%>
+                        <% if (logins.length !=0) { %>
+                            <button type="submit" onclick="addToCart()" class="btn_buy" id="btn_add_to_cart">THÊM VÀO
+                                GIỎ HÀNG</button>
+                            <form id="addToCartReq" action="/postCart" method="post">
+                                <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
+                                <input type="hidden" id="priceProduct" name="priceProduct"
+                                    value="<%=product.price*(1-product.discount/100)%>">
+                                <input type="hidden" id="colorID" name="colorID">
+                                <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
+                                <input type="hidden" id="userID" name="userID">
+                                <input type="hidden" id="quantityReq" name="quantity">
+                            </form>
+                            <%} else {%>
+                                <button type="submit" onclick="buyNow()" class="btn_buy" id="btn_buy_now">MUA
+                                    NGAY</button>
+                                <form id="buyNowReq" action="/infocheckout" method="post">
+                                    <input type="hidden" id="productID" name="productID" value="<%=product.productID%>">
+                                    <input type="hidden" id="priceProduct" name="priceProduct"
+                                        value="<%=(product.price*(1-product.discount/100))%>">
+                                    <input type="hidden" id="colorID" name="colorID">
+                                    <input type="hidden" id="userID" name="userID" value='null'>
+                                    <!-- <input type="hidden" id="sizeID" name="sizeID"> -->
+                                    <input type="hidden" id="quantityReq" name="quantity">
+                                </form>
+                                <%}%>
                     </div>
                     <script>
                         let logins = JSON.parse(unescape('<%- loginsF %>'));
@@ -558,120 +562,135 @@
 
             <div id="feedbackForm">
                 <div class="rating-product" id="rating">
-                  <div class="star-rating">★</div>
-                  <div class="rate-product"><%= product.rate %></div>
-                </div>
-                <div id="formFB">
-                  <h2>Your Feedback</h2>
-                  <form id="form">
-                    <label for="rating">Rating:</label>
-                    <div class="rating" id="userRating">
-                      <span class="star" onclick="setRating(1)">★</span>
-                      <span class="star" onclick="setRating(2)">★</span>
-                      <span class="star" onclick="setRating(3)">★</span>
-                      <span class="star" onclick="setRating(4)">★</span>
-                      <span class="star" onclick="setRating(5)">★</span>
+                    <div class="star-rating">★</div>
+                    <div class="rate-product">
+                        <%= product.rate %>
                     </div>
-            
-                    <label for="comments">Comments:</label>
-                    <textarea id="comments" name="comments" required></textarea>
-            
-                    <button type="button" onclick="submitFeedback()">Submit Feedback</button>
-                  </form>
                 </div>
-              </div>
-            
-              <div id="feedbackList">
+                <%if(logins.length> 0){%>
+                    <div id="formFB">
+                        <h2>Your Feedback</h2>
+                        <form id="form-feedback" action="/postFeedback" method="post">
+                            <input type="hidden" name="productID" value="<%=product.productID%>">
+                            <input type="hidden" name="userID" value="<%=logins[0].userID%>">
+                            <label for="rating">Rating:</label>
+                            <div class="rating" id="userRating">
+                                <span class="star" onclick="setRating(1)">★</span>
+                                <span class="star" onclick="setRating(2)">★</span>
+                                <span class="star" onclick="setRating(3)">★</span>
+                                <span class="star" onclick="setRating(4)">★</span>
+                                <span class="star" onclick="setRating(5)">★</span>
+                            </div>
+                            <input type="hidden" id="rating_input" name="rating" value="5">
+
+                            <label for="comments">Comments:</label>
+                            <textarea id="comments" name="content" required></textarea>
+
+                            <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+                        </form>
+                    </div>
+                    <%}%>
+            </div>
+
+            <div id="feedbackList">
                 <h2>All Feedback</h2>
                 <div id="userFeedback">
 
                 </div>
                 <button id="showAllFeedback" onclick="showAllFeedback()">Show All Feedback</button>
-              </div>
-            
-              <script>
+            </div>
+
+            <script>
                 var selectedRating = 0;
                 var feedbackList = [];
-            
-                function setRating(rating) {
-                  selectedRating = rating;
-                  highlightStars(rating, 'userRating');
-                }
-            
-                function highlightStars(count, containerId) {
-                  var stars = document.querySelectorAll(`#${containerId} .star`);
-                  stars.forEach(function (star, index) {
-                    if (index < count) {
-                      star.style.color = '#1780a5';
-                    } else {
-                      star.style.color = '#ccc';
-                    }
-                  });
-                }
-            
-                function submitFeedback() {
-                  // Get form values
-                  var comments = document.getElementById("comments").value;
-            
-                  // Do something with the feedback (you can send it to a server, store in a database, etc.)
-                  console.log("Rating: " + selectedRating);
-                  console.log("Comments: " + comments);
-            
-                  // Add feedback to the list
-                  feedbackList.push({ rating: selectedRating, comments: comments });
-            
-                  // Display user feedback
-                  displayUserFeedback();
-            
-                  // Clear the form
-                  document.getElementById("form").reset();
-            
-                  // Reset star ratings
-                  selectedRating = 0;
-                  highlightStars(0, 'userRating');
-            
-                  // Provide a confirmation message (you can customize this part)
-                  alert("Thank you for your feedback!");
-                }
-            
-                function displayUserFeedback() {
-                  var userFeedbackContainer = document.getElementById("userFeedback");
-                  userFeedbackContainer.innerHTML = '';
-            
-                  feedbackList.forEach(function (feedback, index) {
-                    var feedbackItem = document.createElement('div');
-                    feedbackItem.classList.add('feedback-item');
-                    feedbackItem.innerHTML = `
-                            <p class="user-rating">
-                                Rating:
-                                ${Array.from({ length: feedback.rating }, (_, i) => `<span class="user-star">★</span>`).join('')}
-                            </p>
-                            <p>${feedback.comments}</p>
-                        `;
-                    userFeedbackContainer.appendChild(feedbackItem);
-                  });
-                }
-            
-                function showAllFeedback() {
-                  var allFeedbackContainer = document.getElementById("userFeedback");
-                  allFeedbackContainer.innerHTML = '';
 
-                  feedback = []
-            
-                  feedbackList.forEach(function (feedback, index) {
-                    var feedbackItem = document.createElement('div');
-                    feedbackItem.classList.add('feedback-item');
-                    feedbackItem.innerHTML = `
+                function setRating(rating) {
+                    selectedRating = rating;
+                    highlightStars(rating, 'userRating');
+                    document.getElementById('rating_input').value = rating;
+
+                }
+
+                function highlightStars(count, containerId) {
+                    var stars = document.querySelectorAll(`#${containerId} .star`);
+                    stars.forEach(function (star, index) {
+                        if (index < count) {
+                            star.style.color = '#1780a5';
+                        } else {
+                            star.style.color = '#ccc';
+                        }
+                    });
+                }
+
+                function submitFeedback() {
+                    Swal.fire({
+                        title: 'Xác nhận feedback',
+                        text: 'Bạn có chắc chắn gửi đánh giá sản phẩm không?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Gửi',
+                        cancelButtonText: 'Hủy',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: 'Thành công',
+                                text: 'Cảm ơn bạn vì đã feedback!',
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK'
+                            }).then((res) => {
+                                if (res.isConfirmed) {
+                                    document.getElementById('form-feedback').submit();
+                                }
+                            });
+                        }
+                    });
+                }
+
+                function displayUserFeedback() {
+                    var userFeedbackContainer = document.getElementById("userFeedback");
+                    userFeedbackContainer.innerHTML = '';
+
+                    feedbackList.forEach(function (feedback, index) {
+                        var feedbackItem = document.createElement('div');
+                        feedbackItem.classList.add('feedback-item');
+                        feedbackItem.innerHTML = `
                             <p class="user-rating">
                                 Rating:
-                                ${Array.from({ length: feedback.rating }, (_, i) => `<span class="user-star">★</span>`).join('')}
+                                ${Array.from({ length: feedback.rate }, (_, i) => `<span class="user-star">★</span>`).join('')}
                             </p>
-                            <p>${feedback.comments}</p>
+                            <p>${feedback.content}</p>
                         `;
-                    allFeedbackContainer.appendChild(feedbackItem);
-                  });
+                        userFeedbackContainer.appendChild(feedbackItem);
+                    });
                 }
-              </script>
+
+                function showAllFeedback() {
+                    var allFeedbackContainer = document.getElementById("userFeedback");
+                    allFeedbackContainer.innerHTML = '';
+
+                    let feedbackList = JSON.parse(unescape('<%-JSON.stringify(feedbacks)%>'));
+                    let product = JSON.parse(unescape('<%-JSON.stringify(product)%>'));
+                    feedbackList.forEach(function (feedback, index) {
+                        if (feedback.productID == product.productID) {
+                            var feedbackItem = document.createElement('div');
+                            feedbackItem.classList.add('feedback-item');
+                            feedbackItem.innerHTML = `
+                                <p class="user-rating">
+                                    <div style='line-height: 40px; font-weight: bold;'> ${feedback.fullName} </div>
+                                    ${Array.from({ length: feedback.rate }, (_, i) => `<span class="user-star">★</span>`).join('')}
+                                    <div style='line-height: 40px; font-style: italic; font-size: 9pt'>${feedback.dateCreatedAt} </div>
+                                </p>
+                                <p>${feedback.content}</p>
+                            `;
+                            allFeedbackContainer.appendChild(feedbackItem);
+                        }
+                    });
+                }
+            </script>
         </div>
     </div>
     <!--Footer-->
