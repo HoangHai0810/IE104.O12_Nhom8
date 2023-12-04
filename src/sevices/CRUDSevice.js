@@ -918,11 +918,11 @@ let getVouchers = () => {
 let deleteProduct = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            function remove(rows){
-                for(let i = 0; i < rows.length; i++){
-                    rows[i].destroy();
-                }
-            };
+            // function remove(rows){
+            //     for(let i = 0; i < rows.length; i++){
+            //         rows[i].destroy();
+            //     }
+            // };
             let Order_Detail = await db.Orderdetail.findAll(
                 { where: {
                     productID: data.productID, 

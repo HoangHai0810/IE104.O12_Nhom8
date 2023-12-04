@@ -147,6 +147,137 @@ div .price i {
     rotate: -45deg;
 }
 
+#feedbackForm {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 90%;
+  margin: 5%;
+  justify-content: center;
+  align-items: center;
+  color: #1780a5;
+}
+
+#feedbackList {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  margin: 5%;
+  border: 3px #ccc solid;
+}
+
+#feedbackForm {
+  margin-right: 20px;
+}
+
+#feedbackForm h2,
+#feedbackList h2 {
+  text-align: center;
+  color: #333;
+}
+
+#feedbackForm label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+#feedbackForm input,
+#feedbackForm select,
+#feedbackForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#feedbackForm textarea {
+  height: 100px;
+}
+
+#feedbackForm button {
+  padding: 10px;
+  background-color: #1a1c1c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.rating-product
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+#formFB
+{
+    width: 70%;
+    border: 3px #ccc solid;
+    padding: 20px;
+}
+.user-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-rating {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.rate-product {
+  font-size: 60px;
+}
+
+.star,
+.user-star {
+  color: #1780a5;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.star:hover,
+.user-star:hover {
+  color: #0f5d79;
+}
+
+#feedbackList .feedback-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#feedbackList .feedback-item:last-child {
+  border-bottom: none;
+}
+
+#showAllFeedback {
+  background-color: #337ab7;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#showAllFeedback:hover {
+  background-color: #23527c;
+}
+
 @media only screen and (max-width: 767px) {
 
   .row.wraper{
@@ -178,7 +309,7 @@ div .price i {
   }
 
   .details .btn_buy {
-      width: 100%; /* Make the button full width on small screens */
+      width: 100%; 
   }
 
   #btn_buy_now {
