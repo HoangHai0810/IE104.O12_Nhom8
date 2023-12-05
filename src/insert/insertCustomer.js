@@ -61,7 +61,26 @@ async function insertCTM()
         };
         const Ctm5 = await ctm.create(newCTM5);
         console.log('Customer_5 created: ', Ctm5.toJSON());
-        
+        const newCTM6 = 
+        {
+           fullName: 'Hoàng Hải Anh',
+           dateOfBirth: '2003-10-08',
+           phoneNumber: '0905117043',
+           nativeVillage: 'Đắk Lắk',
+           userID: 6
+        };
+        const Ctm6 = await ctm.create(newCTM6);
+        console.log('Customer_6 created: ', Ctm6.toJSON());
+        const newCTM7 = 
+        {
+           fullName: 'Bùi Lê Trọng Đức',
+           dateOfBirth: '2003-12-02',
+           phoneNumber: '0774529747',
+           nativeVillage: 'Bình Định',
+           userID: 7
+        };
+        const Ctm7 = await ctm.create(newCTM7);
+        console.log('Customer_7 created: ', Ctm7.toJSON());
     }
     catch(error)
     {
