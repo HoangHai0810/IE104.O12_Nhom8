@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <link href="./css/style.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/list_product.css">
     <script src="./js/homepage.js"></script>
@@ -447,7 +451,7 @@
                             <%}%>
                         </div>
                         <% if (login.length> 0){
-                            if (login[0].role == 'Employee'){%>
+                            if (login[0].role != 'Guest'){%>
                             <button class="button-82-pushable" onclick="del_product(this)"
                                 id="<%=dataProduct[i].productID%>" role="button">
                                 <span class="button-82-shadow"></span>
@@ -468,10 +472,30 @@
                     <% } %>
                         <script>
                             function del_product(a) {
-
-                                form = document.getElementById('del-product-form'.concat(a.id));
-                                document.getElementById('location'.concat(a.id)).value = window.location.href.split('/')[3];
-                                form.submit();
+                                Swal.fire({
+                                    title: 'Xác nhận xóa sản phẩm',
+                                    text: 'Bạn có chắc chắn muốn xóa sản phẩm này không?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Xóa',
+                                    cancelButtonText: 'Hủy',
+                                }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: 'Thành công',
+                                        icon: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'OK'
+                                    }).then(() => {
+                                        form = document.getElementById('del-product-form'.concat(a.id));
+                                        document.getElementById('location'.concat(a.id)).value = window.location.href.split('/')[3];
+                                        form.submit();
+                                    });
+                                    }
+                                });
                             }
                         </script>
             </ul>

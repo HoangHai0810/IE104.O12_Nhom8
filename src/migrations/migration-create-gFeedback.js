@@ -5,7 +5,8 @@ module.exports = {
       feedbackID: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(15)
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
       },
       productID: {
         type: Sequelize.STRING(10),
