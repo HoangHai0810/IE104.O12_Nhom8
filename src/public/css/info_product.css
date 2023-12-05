@@ -315,6 +315,15 @@ div .price i {
   #btn_buy_now {
     margin: auto;
   }
+  #feedbackForm {
+    flex-direction: column;
+  }
+  .rating-product {
+    margin-bottom: 20px;
+  }
+  #formFB {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 992px) {

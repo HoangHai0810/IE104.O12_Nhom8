@@ -14,7 +14,6 @@ async function insertFB()
         await sequelize.sync();
         const newFB1 = 
         { 
-            feedbackID: 'FB001',
             productID: 'MTS002',
             userID: 4,
             content: 'Áo mặc tốt, thoải mái, form dáng đẹp như hình ảnh trưng bày.',
@@ -25,7 +24,6 @@ async function insertFB()
         console.log('FB1 created: ', Fb1.toJSON());
         const newFB2 = 
         { 
-            feedbackID: 'FB002',
             productID: 'MJK001',
             userID: 5,
             content: 'Áo khoác chần bông này không chỉ chất lượng mà còn thể hiện sự ấm áp và phong cách. Thiết kế slim fit tôn lên đường cong cơ thể mà không làm giảm sự thoải mái. Tính năng như túi ngoại, mũ trùm đầu và dây rút ở lưng tăng thêm tính tiện ích. Đây là sự kết hợp hoàn hảo giữa chất lượng và phong cách cho mùa đông',

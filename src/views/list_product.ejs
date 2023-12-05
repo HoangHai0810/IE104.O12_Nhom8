@@ -321,8 +321,8 @@
                                                                         <a href="/infocheckout" title="Checkout">Thanh
                                                                             toán</a>
                                                                     </li>
-                                                                    <% if (login.length> 0 && login[0].role ===
-                                                                        'Employee') { %>
+                                                                    <% if (login.length> 0 && login[0].role !=
+                                                                        'Guest') { %>
                                                                         <li>
                                                                             <a href="/upload" title="Checkout">Thêm sản
                                                                                 phẩm</a>
